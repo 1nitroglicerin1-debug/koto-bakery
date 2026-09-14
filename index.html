@@ -7,38 +7,95 @@
   <title>Кото-Пекарня: Мурчащий Батон</title>
   <script>
 function getSvgIcon(name, size = 16) {
-  const s = size;
-  const icons = {
-    van: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="2" y="7" width="13" height="10" rx="1.5" fill="#3498db"/><path d="M15 10 H19 L22 13 V17 H15 Z" fill="#2980b9"/><circle cx="6" cy="18" r="2.5" fill="#2c3e50"/><circle cx="18" cy="18" r="2.5" fill="#2c3e50"/></svg>`,
-    tag: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M20.6 13 L12.5 4.9 C12.1 4.5 11.6 4.3 11 4.3 H4.5 C3.7 4.3 3 5 3 5.8 V12.3 C3 12.9 3.2 13.4 3.6 13.8 L11.7 21.9 C12.5 22.7 13.7 22.7 14.5 21.9 L20.6 15.8 C21.4 15 21.4 13.8 20.6 13 Z" fill="#e74c3c"/><circle cx="7.5" cy="8.5" r="1.5" fill="#ffffff"/></svg>`,
-    inspector: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="12" cy="12" r="7" fill="#f1c40f"/><circle cx="15" cy="11" r="3.5" stroke="#2c3e50" stroke-width="1.5" fill="none"/><line x1="17.5" y1="13.5" x2="20" y2="17" stroke="#2c3e50" stroke-width="1.5"/></svg>`,
-    paw: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><ellipse cx="12" cy="15" rx="5" ry="4" fill="#ff6d00"/><circle cx="6.5" cy="9.5" r="2.2" fill="#ff6d00"/><circle cx="10" cy="6.5" r="2.2" fill="#ff6d00"/><circle cx="14" cy="6.5" r="2.2" fill="#ff6d00"/><circle cx="17.5" cy="9.5" r="2.2" fill="#ff6d00"/></svg>`,
-    cookie: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="12" cy="12" r="10" fill="#e6a15c" stroke="#8d5b2d" stroke-width="1.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="#5c3818"/><circle cx="15.5" cy="9.5" r="1.3" fill="#5c3818"/><circle cx="11" cy="13.5" r="1.6" fill="#5c3818"/><circle cx="15.5" cy="15.5" r="1.2" fill="#5c3818"/><circle cx="8" cy="15" r="1.1" fill="#5c3818"/></svg>`,
-    herb: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M17 8C8 10 5 19 5 19C5 19 14 16 16 7" stroke="#27ae60" stroke-width="2" stroke-linecap="round"/><path d="M12 12C9 9 10 3 10 3C10 3 16 4 15 10" fill="#2ecc71"/></svg>`,
-    pin: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="5" y="10" width="14" height="4" rx="2" fill="#d35400"/><rect x="2" y="11" width="3" height="2" rx="1" fill="#7f8c8d"/><rect x="19" y="11" width="3" height="2" rx="1" fill="#7f8c8d"/></svg>`,
-    sauce: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M8 9H16V19C16 20.1 15.1 21 14 21H10C8.9 21 8 20.1 8 19V9Z" fill="#ecf0f1" stroke="#bdc3c7" stroke-width="1.5"/><path d="M10 5H14V9H10V5Z" fill="#e74c3c"/></svg>`,
-    bell: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M18 16V11C18 7.7 15.3 5 12 5C8.7 5 6 7.7 6 11V16L4 18H20L18 16Z" fill="#f1c40f" stroke="#d4ac0d" stroke-width="1.5"/><circle cx="12" cy="19" r="2" fill="#d4ac0d"/></svg>`,
-    jar: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="6" y="8" width="12" height="13" rx="3" fill="#3498db" fill-opacity="0.3" stroke="#2980b9" stroke-width="1.5"/><rect x="8" y="4" width="8" height="4" rx="1" fill="#e67e22"/></svg>`,
-    glasses: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="7" cy="12" r="4" stroke="#2c3e50" stroke-width="2" fill="none"/><circle cx="17" cy="12" r="4" stroke="#2c3e50" stroke-width="2" fill="none"/><line x1="11" y1="12" x2="13" y2="12" stroke="#2c3e50" stroke-width="2"/></svg>`,
-    bow: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><polygon points="4,8 12,12 4,16" fill="#e91e63"/><polygon points="20,8 12,12 20,16" fill="#e91e63"/><circle cx="12" cy="12" r="2.5" fill="#c2185b"/></svg>`,
-    money_bag: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M12 4 C10 4 9 2.5 7.5 3 C6.5 3.5 7 5.5 8.5 6 C5 8 3.5 12 4 16 C4.5 20.5 8 22 12 22 C16 22 19.5 20.5 20 16 C20.5 12 19 8 15.5 6 C17 5.5 17.5 3.5 16.5 3 C15 2.5 14 4 12 4 Z" fill="#e67e22" stroke="#b95c00" stroke-width="1.2"/><path d="M7.5 6.5 C10 8 14 8 16.5 6.5" stroke="#f1c40f" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="14" r="4.5" fill="#f1c40f" stroke="#b95c00" stroke-width="1"/><text x="12" y="17" font-size="6.5" font-weight="900" fill="#783d00" text-anchor="middle" font-family="Arial, sans-serif">$</text></svg>`,
-    flower: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><g stroke="#b83b5e" stroke-width="1.2" stroke-linejoin="round"><circle cx="12" cy="6.5" r="3.8" fill="#ffccd5"/><circle cx="17.2" cy="10.2" r="3.8" fill="#ffccd5"/><circle cx="15.2" cy="16.5" r="3.8" fill="#ffccd5"/><circle cx="8.8" cy="16.5" r="3.8" fill="#ffccd5"/><circle cx="6.8" cy="10.2" r="3.8" fill="#ffccd5"/></g><circle cx="12" cy="12" r="3.2" fill="#ffd166" stroke="#f4a261" stroke-width="1"/></svg>`,
-    devil: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M5 4 C6 7 7 10 9 11 C8 9 7 6 5 4 Z" fill="#e74c3c" stroke="#962d22" stroke-width="0.8"/><path d="M19 4 C18 7 17 10 15 11 C16 9 17 6 19 4 Z" fill="#e74c3c" stroke="#962d22" stroke-width="0.8"/><circle cx="12" cy="13" r="8.5" fill="#e74c3c" stroke="#962d22" stroke-width="1.2"/><circle cx="9" cy="11.5" r="1.8" fill="#ffffff"/><circle cx="9.2" cy="11.5" r="0.9" fill="#2c3e50"/><circle cx="15" cy="11.5" r="1.8" fill="#ffffff"/><circle cx="14.8" cy="11.5" r="0.9" fill="#2c3e50"/><path d="M9 15 Q12 18.5 15 15" stroke="#2c3e50" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>`,
-    heart: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#e74c3c"/></svg>`,
-    fish: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M3 12 C7 6, 17 6, 21 12 C17 18, 7 18, 3 12 Z" fill="#f39c12"/><polygon points="21,12 24,8 24,16" fill="#e67e22"/><circle cx="7" cy="11" r="1" fill="#2c3e50"/></svg>`,
-    yarn: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="12" cy="12" r="10" fill="#2ecc71" stroke="#27ae60" stroke-width="1.5"/><path d="M5 12 Q12 7 19 12 M6 16 Q12 11 18 16 M8 8 Q12 13 16 8" stroke="#ffffff" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M19 17 Q21 21 23 20" stroke="#2ecc71" stroke-width="1.5" fill="none"/></svg>`,
-    star: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><polygon points="12,2 15,8.5 22,9.3 17,14 18.5,21 12,17.3 5.5,21 7,14 2,9.3 9,8.5" fill="#f1c40f" stroke="#d4ac0d" stroke-width="1.5"/></svg>`,
-    trophy: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M5 4 H19 V10 C19 14 15.5 17 12 17 C8.5 17 5 14 5 10 Z" fill="#f1c40f" stroke="#d4ac0d" stroke-width="1.5"/><path d="M5 6 H2 C2 9 4 10 5 10 M19 6 H22 C22 9 20 10 19 10 M10 17 V20 H14 V17 M8 20 H16 V22 H8 Z" stroke="#d4ac0d" stroke-width="1.5" fill="none"/></svg>`,
-    gear: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="12" cy="12" r="4" fill="none" stroke="#7f8c8d" stroke-width="2"/><path d="M12 2 V5 M12 19 V22 M2 12 H5 M19 12 H22 M4.9 4.9 L7.1 7.1 M16.9 16.9 L19.1 19.1 M4.9 19.1 L7.1 16.9 M16.9 7.1 L19.1 4.9" stroke="#7f8c8d" stroke-width="2" stroke-linecap="round"/></svg>`,
-    lightning: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><polygon points="13,2 4,14 11,14 9,22 20,10 13,10" fill="#f39c12" stroke="#d68910" stroke-width="1.2"/></svg>`,
-    baker: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M6 18 H18 V21 H6 Z" fill="#ecf0f1" stroke="#bdc3c7" stroke-width="1.2"/><path d="M6 18 C3 18 3 13 6 12 C5 9 9 7 12 8 C15 7 19 9 18 12 C21 13 21 18 18 18 Z" fill="#ffffff" stroke="#bdc3c7" stroke-width="1.2"/></svg>`,
-    crown: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><polygon points="3,18 4,8 8.5,13 12,6 15.5,13 20,8 21,18" fill="#f1c40f" stroke="#d4ac0d" stroke-width="1.5"/><rect x="3" y="18" width="18" height="3" fill="#e67e22"/></svg>`,
-    home: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M3 10 L12 3 L21 10 V20 C21 20.6 20.6 21 20 21 H4 C3.4 21 3 20.6 3 20 Z" fill="#e67e22"/><polygon points="9,21 9,14 15,14 15,21" fill="#ffffff"/></svg>`,
-    sound_on: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><polygon points="4,9 8,9 13,4 13,20 8,15 4,15" fill="#7f8c8d"/><path d="M16 8 C17.5 9.5 17.5 14.5 16 16 M18.5 5.5 C21 8 21 16 18.5 18.5" stroke="#7f8c8d" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg>`,
-    cat_sleep: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="12" cy="14" r="7" fill="#f7caa5" stroke="#3d2314" stroke-width="1.2"/><polygon points="6,9 9,12 5,12" fill="#f7caa5" stroke="#3d2314" stroke-width="1"/><polygon points="18,9 15,12 19,12" fill="#f7caa5" stroke="#3d2314" stroke-width="1"/><path d="M9 14 Q10.5 15.5 12 14 Q13.5 15.5 15 14" stroke="#3d2314" stroke-width="1.2" fill="none"/></svg>`,
-    lock: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="6" y="10" width="12" height="11" rx="2" fill="#95a5a6" stroke="#7f8c8d" stroke-width="1.5"/><path d="M8 10 V7 C8 4.8 9.8 3 12 3 C14.2 3 16 4.8 16 7 V10" stroke="#7f8c8d" stroke-width="2" fill="none"/></svg>`
-  };
-  return icons[name] || '';
+  const s = `width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"`;
+  switch (name) {
+    case 'paw':
+      return `<svg ${s}><ellipse cx="12" cy="15.5" rx="4.8" ry="3.8" fill="#ff6d00"/><circle cx="6.5" cy="10" r="2.2" fill="#ff6d00"/><circle cx="10" cy="6.8" r="2.2" fill="#ff6d00"/><circle cx="14" cy="6.8" r="2.2" fill="#ff6d00"/><circle cx="17.5" cy="10" r="2.2" fill="#ff6d00"/></svg>`;
+    case 'cookie':
+      return `<svg ${s}><circle cx="12" cy="12" r="9.5" fill="#e09e53" stroke="#a06023" stroke-width="1.2"/><circle cx="8" cy="9" r="1.5" fill="#5c2e0b"/><circle cx="15.5" cy="8.5" r="1.4" fill="#5c2e0b"/><circle cx="11.5" cy="14" r="1.6" fill="#5c2e0b"/><circle cx="16" cy="15.5" r="1.3" fill="#5c2e0b"/><circle cx="7.5" cy="14.5" r="1.2" fill="#5c2e0b"/></svg>`;
+    case 'star':
+      return `<svg ${s}><path d="M12 2L14.9 8.5L22 9.2L16.7 14L18.2 21L12 17.3L5.8 21L7.3 14L2 9.2L9.1 8.5L12 2Z" fill="#f1c40f" stroke="#d4ac0d" stroke-width="1.2" stroke-linejoin="round"/></svg>`;
+    case 'trophy':
+      return `<svg ${s}><path d="M7 4H17V9C17 11.8 14.8 14 12 14C9.2 14 7 11.8 7 9V4Z" fill="#f59e0b" stroke="#b45309" stroke-width="1.2"/><path d="M7 6H4C3.4 6 3 6.4 3 7C3 9 4.5 10.6 6.5 10.9M17 6H20C20.6 6 21 6.4 21 7C21 9 19.5 10.6 17.5 10.9" stroke="#b45309" stroke-width="1.2" stroke-linecap="round"/><path d="M10 14V17H14V14M8 20H16V17H8V20Z" fill="#d97706" stroke="#b45309" stroke-width="1.2" stroke-linejoin="round"/></svg>`;
+    case 'gear':
+      return `<svg ${s}><circle cx="12" cy="12" r="3" fill="#94a3b8" stroke="#475569" stroke-width="1.2"/><path d="M12 2V4M12 20V22M4 12H2M22 12H20M5 5L6.5 6.5M17.5 17.5L19 19M5 19L6.5 17.5M17.5 6.5L19 5" stroke="#64748b" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="6" stroke="#64748b" stroke-width="1.5"/></svg>`;
+    case 'lightning':
+      return `<svg ${s}><polygon points="13,2 4,13 11,13 10,22 20,10 13,10" fill="#fbbf24" stroke="#d97706" stroke-width="1.2" stroke-linejoin="round"/></svg>`;
+    case 'crown':
+      return `<svg ${s}><path d="M4 18L2 7L7.5 12L12 5L16.5 12L22 7L20 18H4Z" fill="#f59e0b" stroke="#b45309" stroke-width="1.2" stroke-linejoin="round"/><circle cx="2" cy="7" r="1.2" fill="#ef4444"/><circle cx="12" cy="5" r="1.2" fill="#ef4444"/><circle cx="22" cy="7" r="1.2" fill="#ef4444"/></svg>`;
+    case 'baker':
+      return `<svg ${s}><path d="M6 14C3.5 14 2 11.5 3 9C2.5 6 6 4 8.5 5.5C10 3 14 3 15.5 5.5C18 4 21.5 6 21 9C22 11.5 20.5 14 18 14Z" fill="#ffffff" stroke="#78350f" stroke-width="1.2"/><rect x="6" y="14" width="12" height="5" rx="1.5" fill="#fef3c7" stroke="#78350f" stroke-width="1.2"/></svg>`;
+    case 'croissant':
+      return `<svg ${s}><path d="M4 14C3 11 5 7 9 5C13 3 17 5 19 8C21 11 21 14 19 16C17 18 13 19 9 17C6 16 4 14 4 14Z" fill="#f59e0b" stroke="#b45309" stroke-width="1.2"/><path d="M8 7C10 6 14 7 16 9M7 11C9 10 13 11 15 13" stroke="#fef3c7" stroke-width="1.2" stroke-linecap="round"/></svg>`;
+    case 'flask':
+      return `<svg ${s}><path d="M9 3H15M10 3V8L5 18C4 20 5.5 21 7 21H17C18.5 21 20 20 19 18L14 8V3" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 16H17L15 12H9L7 16Z" fill="#a7f3d0"/></svg>`;
+    case 'robot':
+      return `<svg ${s}><rect x="5" y="7" width="14" height="12" rx="3" fill="#06b6d4" stroke="#0891b2" stroke-width="1.2"/><circle cx="9" cy="12" r="1.5" fill="#fff"/><circle cx="15" cy="12" r="1.5" fill="#fff"/><line x1="12" y1="3" x2="12" y2="7" stroke="#0891b2" stroke-width="1.5"/><circle cx="12" cy="3" r="1.5" fill="#ec4899"/><line x1="8" y1="16" x2="16" y2="16" stroke="#164e63" stroke-width="1.2" stroke-linecap="round"/></svg>`;
+    case 'portal':
+      return `<svg ${s}><ellipse cx="12" cy="12" rx="8" ry="9.5" fill="#3b0764" stroke="#a855f7" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="4.5" ry="6" fill="#c084fc"/><circle cx="12" cy="12" r="2" fill="#fff"/></svg>`;
+    case 'fire':
+      return `<svg ${s}><path d="M12 2C10 6 7 9 7 13C7 16.5 9.5 19 12 19C14.5 19 17 16.5 17 13C17 9 14 6 12 2Z" fill="#ef4444" stroke="#b91c1c" stroke-width="1.2"/><path d="M12 8C11 10.5 9.5 12 9.5 14C9.5 15.5 10.5 17 12 17C13.5 17 14.5 15.5 14.5 14C14.5 12 13 10.5 12 8Z" fill="#fbbf24"/></svg>`;
+    case 'coffee':
+      return `<svg ${s}><rect x="4" y="8" width="12" height="11" rx="3" fill="#854d0e" stroke="#582f0e" stroke-width="1.2"/><path d="M16 10H18C19.5 10 20.5 11 20.5 12.5C20.5 14 19.5 15 18 15H16" stroke="#582f0e" stroke-width="1.2" stroke-linecap="round"/><path d="M7 5C7 5 7.5 3 9 3M11 5C11 5 11.5 3 13 3" stroke="#d97706" stroke-width="1" stroke-linecap="round"/></svg>`;
+    case 'scooter':
+      return `<svg ${s}><circle cx="6" cy="17" r="3" fill="#64748b" stroke="#334155" stroke-width="1.2"/><circle cx="18" cy="17" r="3" fill="#64748b" stroke="#334155" stroke-width="1.2"/><path d="M6 17H12L15 10H9L8 6H5M15 10L17 17" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    case 'cat_sleep':
+      return `<svg ${s}><circle cx="12" cy="13" r="7.5" fill="#fed7aa" stroke="#7c2d12" stroke-width="1.2"/><path d="M6 8L8 11M18 8L16 11" stroke="#7c2d12" stroke-width="1.4" stroke-linecap="round"/><path d="M9 14Q10.5 15 12 14Q13.5 15 15 14" stroke="#7c2d12" stroke-width="1.2" stroke-linecap="round" fill="none"/><path d="M16 4H19L16 7H19M19 1H21L19 3H21" stroke="#3b82f6" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    case 'cancel':
+      return `<svg ${s}><circle cx="12" cy="12" r="8" fill="none" stroke="#94a3b8" stroke-width="1.5"/><line x1="7" y1="7" x2="17" y2="17" stroke="#ef4444" stroke-width="1.5"/></svg>`;
+    case 'sound_on':
+      return `<svg ${s}><polygon points="3,9 7,9 12,4 12,20 7,15 3,15" fill="#10b981" stroke="#047857" stroke-width="1.2"/><path d="M16 8C17.5 9.5 17.5 14.5 16 16M19 5C22 8 22 16 19 19" stroke="#047857" stroke-width="1.3" stroke-linecap="round" fill="none"/></svg>`;
+    case 'sound_off':
+      return `<svg ${s}><polygon points="3,9 7,9 12,4 12,20 7,15 3,15" fill="#94a3b8" stroke="#475569" stroke-width="1.2"/><line x1="16" y1="9" x2="21" y2="15" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/><line x1="21" y1="9" x2="16" y2="15" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+    case 'money_bag':
+      return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M12 4 C10 4 9 2.5 7.5 3 C6.5 3.5 7 5.5 8.5 6 C5 8 3.5 12 4 16 C4.5 20.5 8 22 12 22 C16 22 19.5 20.5 20 16 C20.5 12 19 8 15.5 6 C17 5.5 17.5 3.5 16.5 3 C15 2.5 14 4 12 4 Z" fill="#e67e22" stroke="#b95c00" stroke-width="1.2"/><path d="M7.5 6.5 C10 8 14 8 16.5 6.5" stroke="#f1c40f" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="14" r="4.5" fill="#f1c40f" stroke="#b95c00" stroke-width="1"/><text x="12" y="17" font-size="6.5" font-weight="900" fill="#783d00" text-anchor="middle" font-family="Arial, sans-serif">$</text></svg>`;
+    case 'wardrobe':
+      return `<svg ${s}><path d="M12 4C10.5 4 10 5.5 10 6.5C10 8 12 8.5 12 10L3 15V17H21V15L12 10" stroke="#9b59b6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="18.5" r="1" fill="#9b59b6"/></svg>`;
+    case 'box':
+      return `<svg ${s}><rect x="4" y="9" width="16" height="12" rx="2" fill="#d97706" stroke="#78350f" stroke-width="1.2"/><path d="M2 9L12 4L22 9" stroke="#78350f" stroke-width="1.2" stroke-linecap="round"/><line x1="12" y1="9" x2="12" y2="21" stroke="#78350f" stroke-width="1.2"/><rect x="10" y="9" width="4" height="12" fill="#fde68a"/></svg>`;
+    case 'fish':
+      return `<svg ${s}><path d="M4 12C1 8 2 5 3 4C6 8 8 10 11 9L15 6C19 6 22 9 22 12C22 15 19 18 15 18L11 15C8 14 6 16 3 20C2 19 1 16 4 12Z" fill="#ffb300" stroke="#ff8f00" stroke-width="1"/><circle cx="18.5" cy="10.5" r="1.2" fill="#2d1600"/><circle cx="18.8" cy="10.2" r="0.4" fill="#fff"/></svg>`;
+    case 'clock':
+      return `<svg ${s}><circle cx="12" cy="12" r="8.5" fill="#f8fafc" stroke="#475569" stroke-width="1.3"/><polyline points="12,7 12,12 15,14" stroke="#475569" stroke-width="1.4" stroke-linecap="round"/></svg>`;
+    case 'home':
+      return `<svg ${s}><path d="M3 11L12 3L21 11V20H5V11" fill="#f97316" stroke="#9a3412" stroke-width="1.2" stroke-linejoin="round"/><rect x="9" y="14" width="6" height="6" fill="#fef3c7" stroke="#9a3412" stroke-width="1"/></svg>`;
+    case 'tools':
+      return `<svg ${s}><path d="M14.5 4.5L19.5 9.5L9.5 19.5H4.5V14.5L14.5 4.5Z" fill="#cbd5e1" stroke="#475569" stroke-width="1.2" stroke-linejoin="round"/><circle cx="16" cy="6" r="1" fill="#475569"/></svg>`;
+    case 'van':
+      return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="2" y="7" width="13" height="10" rx="1.5" fill="#3498db"/><path d="M15 10 H19 L22 13 V17 H15 Z" fill="#2980b9"/><circle cx="6" cy="18" r="2.5" fill="#2c3e50"/><circle cx="18" cy="18" r="2.5" fill="#2c3e50"/></svg>`;
+    case 'tag':
+      return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M20.6 13 L12.5 4.9 C12.1 4.5 11.6 4.3 11 4.3 H4.5 C3.7 4.3 3 5 3 5.8 V12.3 C3 12.9 3.2 13.4 3.6 13.8 L11.7 21.9 C12.5 22.7 13.7 22.7 14.5 21.9 L20.6 15.8 C21.4 15 21.4 13.8 20.6 13 Z" fill="#e74c3c"/><circle cx="7.5" cy="8.5" r="1.5" fill="#ffffff"/></svg>`;
+    case 'inspector':
+      return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="12" cy="12" r="7" fill="#f1c40f"/><circle cx="15" cy="11" r="3.5" stroke="#2c3e50" stroke-width="1.5" fill="none"/><line x1="17.5" y1="13.5" x2="20" y2="17" stroke="#2c3e50" stroke-width="1.5"/></svg>`;
+    case 'herb':
+      return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M17 8C8 10 5 19 5 19C5 19 14 16 16 7" stroke="#27ae60" stroke-width="2" stroke-linecap="round"/><path d="M12 12C9 9 10 3 10 3C10 3 16 4 15 10" fill="#2ecc71"/></svg>`;
+    case 'pin':
+      return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="5" y="10" width="14" height="4" rx="2" fill="#d35400"/><rect x="2" y="11" width="3" height="2" rx="1" fill="#7f8c8d"/><rect x="19" y="11" width="3" height="2" rx="1" fill="#7f8c8d"/></svg>`;
+    case 'sauce':
+      return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M8 9H16V19C16 20.1 15.1 21 14 21H10C8.9 21 8 20.1 8 19V9Z" fill="#ecf0f1" stroke="#bdc3c7" stroke-width="1.5"/><path d="M10 5H14V9H10V5Z" fill="#e74c3c"/></svg>`;
+    case 'bell':
+      return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M18 16V11C18 7.7 15.3 5 12 5C8.7 5 6 7.7 6 11V16L4 18H20L18 16Z" fill="#f1c40f" stroke="#d4ac0d" stroke-width="1.5"/><circle cx="12" cy="19" r="2" fill="#d4ac0d"/></svg>`;
+    case 'jar':
+      return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="6" y="8" width="12" height="13" rx="3" fill="#3498db" fill-opacity="0.3" stroke="#2980b9" stroke-width="1.5"/><rect x="8" y="4" width="8" height="4" rx="1" fill="#e67e22"/></svg>`;
+    case 'glasses':
+      return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="7" cy="12" r="4" stroke="#2c3e50" stroke-width="2" fill="none"/><circle cx="17" cy="12" r="4" stroke="#2c3e50" stroke-width="2" fill="none"/><line x1="11" y1="12" x2="13" y2="12" stroke="#2c3e50" stroke-width="2"/></svg>`;
+    case 'bow':
+      return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><polygon points="4,8 12,12 4,16" fill="#e91e63"/><polygon points="20,8 12,12 20,16" fill="#e91e63"/><circle cx="12" cy="12" r="2.5" fill="#c2185b"/></svg>`;
+    case 'flower':
+      return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><g stroke="#b83b5e" stroke-width="1.2" stroke-linejoin="round"><circle cx="12" cy="6.5" r="3.8" fill="#ffccd5"/><circle cx="17.2" cy="10.2" r="3.8" fill="#ffccd5"/><circle cx="15.2" cy="16.5" r="3.8" fill="#ffccd5"/><circle cx="8.8" cy="16.5" r="3.8" fill="#ffccd5"/><circle cx="6.8" cy="10.2" r="3.8" fill="#ffccd5"/></g><circle cx="12" cy="12" r="3.2" fill="#ffd166" stroke="#f4a261" stroke-width="1"/></svg>`;
+    case 'devil':
+      return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M5 4 C6 7 7 10 9 11 C8 9 7 6 5 4 Z" fill="#e74c3c" stroke="#962d22" stroke-width="0.8"/><path d="M19 4 C18 7 17 10 15 11 C16 9 17 6 19 4 Z" fill="#e74c3c" stroke="#962d22" stroke-width="0.8"/><circle cx="12" cy="13" r="8.5" fill="#e74c3c" stroke="#962d22" stroke-width="1.2"/><circle cx="9" cy="11.5" r="1.8" fill="#ffffff"/><circle cx="9.2" cy="11.5" r="0.9" fill="#2c3e50"/><circle cx="15" cy="11.5" r="1.8" fill="#ffffff"/><circle cx="14.8" cy="11.5" r="0.9" fill="#2c3e50"/><path d="M9 15 Q12 18.5 15 15" stroke="#2c3e50" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>`;
+    case 'heart':
+      return `<svg ${s}><path d="M12 20C12 20 4 14.5 4 8.5C4 5.5 6.5 3.5 9.5 3.5C11 3.5 12 4.5 12 4.5C12 4.5 13 3.5 14.5 3.5C17.5 3.5 20 5.5 20 8.5C20 14.5 12 20 12 20Z" fill="#f43f5e" stroke="#be123c" stroke-width="1.2"/></svg>`;
+    case 'lock':
+      return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="6" y="10" width="12" height="11" rx="2" fill="#95a5a6" stroke="#7f8c8d" stroke-width="1.5"/><path d="M8 10 V7 C8 4.8 9.8 3 12 3 C14.2 3 16 4.8 16 7 V10" stroke="#7f8c8d" stroke-width="2" fill="none"/></svg>`;
+    case 'scroll':
+      return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M19 3H7a3 3 0 00-3 3v12a3 3 0 003 3h12V3z" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/><path d="M7 7h10M7 11h8M7 15h6" stroke="#b45309" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+    case 'bubble':
+      return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="12" cy="12" r="9" fill="url(#rainbowBubbleGrad)" stroke="rgba(255,255,255,0.85)" stroke-width="1.2"/><path d="M7.5 7.5A6 6 0 0115 6" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.9"/><circle cx="15.5" cy="15.5" r="1.5" fill="#ffffff" opacity="0.7"/></svg>`;
+    default:
+      return '';
+  }
 }
 window.getSvgIcon = getSvgIcon;
 </script>
@@ -48,6 +105,351 @@ window.getSvgIcon = getSvgIcon;
       --color-bg-card: #ffffff;
       --color-bg-secondary: #faede0;
       --color-bg-tertiary: #f4e1cf;
+
+    /* Стили фонов и тем для 6 филиалов (Глубокие градиенты и стеклянный глянец) */
+    .bg-loc-kitchen, .theme-bakery-0 {
+      --color-bg: #fff7ee !important;
+      --color-bg-secondary: #faede0 !important;
+      --color-primary: #ff5722 !important;
+      position: relative;
+    }
+    .bg-loc-kitchen::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      /* Четкая уютная керамическая плитка с видимым теплым швом */
+      background-image: 
+        linear-gradient(rgba(234, 179, 8, 0.28) 1.5px, transparent 1.5px),
+        linear-gradient(90deg, rgba(234, 179, 8, 0.28) 1.5px, transparent 1.5px);
+      background-size: 26px 26px;
+      opacity: 1 !important;
+    }
+
+    /* Благородная кофейня: мягкий сливочно-кофейный фон, цвет эспрессо и капучино */
+    .bg-loc-cafe, .theme-bakery-1 {
+      --color-bg: #fbf7f2 !important;
+      --color-bg-secondary: #ede3d7 !important;
+      --color-primary: #78350f !important;
+    }
+
+    .bg-loc-palace, .theme-bakery-2 {
+      --color-bg: #fdfbf0 !important;
+      --color-bg-secondary: #f6f0cb !important;
+      --color-primary: #d4af37 !important;
+      position: relative;
+    }
+    .bg-loc-palace::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      /* Роскошный ромбовидный узор королевской ткани */
+      background-image: 
+        linear-gradient(135deg, rgba(251, 191, 36, 0.12) 25%, transparent 25%),
+        linear-gradient(225deg, rgba(251, 191, 36, 0.12) 25%, transparent 25%),
+        linear-gradient(315deg, rgba(251, 191, 36, 0.12) 25%, transparent 25%),
+        linear-gradient(45deg, rgba(251, 191, 36, 0.12) 25%, transparent 25%),
+        radial-gradient(circle at 50% 30%, rgba(251, 191, 36, 0.18) 0%, transparent 70%);
+      background-position: -16px 0, -16px 0, 0 0, 0 0, 0 0;
+      background-size: 32px 32px, 32px 32px, 32px 32px, 32px 32px, 100% 100%;
+    }
+    /* Мишлен: премиальный глубокий тёмный изумруд с золотым сиянием */
+    .bg-loc-michelin, .theme-bakery-3 {
+      background: radial-gradient(circle at 50% 38%, #064e3b 0%, #06281e 68%, #02140f 100%) !important;
+      --color-bg: #06281e !important;
+      --color-bg-secondary: #064e3b !important;
+      --color-primary: #10b981 !important;
+    }
+    /* Кибер-Пекарня 2077: стильный индиго/нави с неоново-бирюзовым свечением */
+    .bg-loc-cyber, .theme-bakery-4 {
+      background: radial-gradient(circle at 50% 38%, #1e1b4b 0%, #0f172a 65%, #020617 100%) !important;
+      --color-bg: #0f172a !important;
+      --color-bg-secondary: #1e1b4b !important;
+      --color-primary: #06b6d4 !important;
+    }
+    /* Астрал: космическая туманность — глубокий тёмно-пурпурный в звёздную полночь */
+    .bg-loc-astral, .theme-bakery-5 {
+      background: radial-gradient(circle at 50% 38%, #2e1065 0%, #17092c 60%, #090214 100%) !important;
+      --color-bg: #17092c !important;
+      --color-bg-secondary: #2e1065 !important;
+      --color-primary: #a855f7 !important;
+    }
+
+    /* Мишлен: утончённые золотистые лучи/арка ресторана */
+    .bg-loc-michelin::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      /* Насыщенные золотые акцентные искры/точки */
+      background-image: 
+        radial-gradient(circle, #fbbf24 1.5px, transparent 1.5px),
+        radial-gradient(circle at 50% 25%, rgba(251, 191, 36, 0.15) 0%, transparent 65%);
+      background-size: 32px 32px, 100% 100%;
+      opacity: 1 !important;
+    }
+
+    /* Кибер-Пекарня: цифровая кибер-сетка перспективы на полу и неоновые глифы */
+    .bg-loc-cyber::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: 
+        linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(circle at 50% 40%, black 30%, transparent 80%);
+      -webkit-mask-image: radial-gradient(circle at 50% 40%, black 30%, transparent 80%);
+    }
+
+    /* Астрал: мерцающие далёкие звёзды и созвездия */
+    .bg-loc-astral::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: 
+        radial-gradient(1.5px 1.5px at 20% 30%, #fff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 80% 20%, #e9d5ff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 70% 70%, #c084fc, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 30% 80%, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 15% 65%, #fae8ff, rgba(0,0,0,0));
+      background-repeat: repeat;
+      background-size: 200px 200px;
+      opacity: 0.85;
+    }
+
+    /* Контраст текста на тёмных темах */
+    .theme-dark .cookies-value,
+    .theme-dark #cookies-display,
+    .bg-loc-michelin .cookies-value,
+    .bg-loc-cyber .cookies-value,
+    .bg-loc-astral .cookies-value {
+      color: #ffffff !important;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .theme-dark .rate-counter,
+    .theme-dark #rate-display,
+    .bg-loc-michelin .rate-counter,
+    .bg-loc-cyber .rate-counter,
+    .bg-loc-astral .rate-counter {
+      color: rgba(255, 255, 255, 0.75) !important;
+      font-weight: 600;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Стилизация кнопки x2 на тёмных темах */
+    .theme-dark .ad-boost-pill.inactive,
+    .bg-loc-michelin .ad-boost-pill.inactive,
+    .bg-loc-cyber .ad-boost-pill.inactive,
+    .bg-loc-astral .ad-boost-pill.inactive {
+      background: rgba(255, 255, 255, 0.16) !important;
+      border: 1px solid rgba(255, 255, 255, 0.3) !important;
+      color: #ffffff !important;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .theme-dark .ad-boost-pill svg,
+    .bg-loc-michelin .ad-boost-pill svg,
+    .bg-loc-cyber .ad-boost-pill svg,
+    .bg-loc-astral .ad-boost-pill svg {
+      filter: drop-shadow(0 0 6px #facc15);
+    }
+
+    /* Кнопка улучшения клика под котиком */
+    .theme-dark .click-upgrade-btn {
+      background: rgba(255, 255, 255, 0.15) !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
+      color: #ffffff !important;
+      backdrop-filter: blur(8px);
+    }
+    .theme-dark .click-upgrade-btn .btn-title,
+    .theme-dark .click-upgrade-btn .btn-cost {
+      color: #ffffff !important;
+    }
+
+    /* Специфика для Кибера: бирюзовый акцент текста клика */
+    .bg-loc-cyber .click-upgrade-btn {
+      border-color: #06b6d4 !important;
+      color: #38bdf8 !important;
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.25) !important;
+    }
+
+    /* Специфика для Астрала: мягкий сиреневый акцент текста клика */
+    .bg-loc-astral .click-upgrade-btn {
+      border-color: #c084fc !important;
+      color: #f3e8ff !important;
+      box-shadow: 0 0 15px rgba(192, 132, 252, 0.25) !important;
+    }
+
+    /* Адаптивные бейджи локации и прокачки клика под тёмные филиалы */
+    .bg-loc-michelin .location-badge {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(254, 243, 199, 0.92) 100%) !important;
+      color: #1c1917 !important;
+      border: 1.5px solid #f59e0b !important;
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.25) !important;
+    }
+
+    .bg-loc-michelin .gen-buy-btn:not(:disabled) {
+      background: linear-gradient(180deg, #10b981 0%, #059669 100%) !important;
+      border-bottom: 2px solid #047857 !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35) !important;
+    }
+    .bg-loc-michelin .location-badge {
+      background: rgba(6, 40, 30, 0.9) !important;
+      border: 1.5px solid #10b981 !important;
+      color: #6ee7b7 !important;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.3) !important;
+    }
+    .bg-loc-michelin #btn-upgrade-click,
+    .bg-loc-michelin .click-upgrade-btn {
+      background: rgba(4, 30, 22, 0.9) !important;
+      border: 1.5px solid #10b981 !important;
+      color: #a7f3d0 !important;
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.25) !important;
+    }
+    .bg-loc-michelin #btn-upgrade-click span,
+    .bg-loc-michelin .click-upgrade-btn span,
+    .bg-loc-michelin .click-upgrade-btn .btn-title,
+    .bg-loc-michelin .click-upgrade-btn .btn-cost {
+      color: #a7f3d0 !important;
+    }
+    .bg-loc-michelin .gen-level-badge,
+    .bg-loc-michelin .perk-level {
+      background: #d1fae5 !important;
+      color: #065f46 !important;
+      border: 1px solid #a7f3d0 !important;
+    }
+    .bg-loc-michelin .milestone-bar-fill {
+      background: linear-gradient(90deg, #34d399, #059669) !important;
+    }
+    .bg-loc-michelin .generator-avatar,
+    .bg-loc-michelin .shop-card-avatar {
+      border-color: #a7f3d0 !important;
+    }
+
+    .bg-loc-cyber .location-badge,
+    .bg-loc-cyber .click-upgrade-btn {
+      background: rgba(15, 23, 42, 0.8) !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #38bdf8 !important;
+      border: 1.5px solid #06b6d4 !important;
+      box-shadow: 0 0 16px rgba(6, 182, 212, 0.3) !important;
+    }
+
+    .bg-loc-astral .location-badge,
+    .bg-loc-astral .click-upgrade-btn {
+      background: rgba(30, 27, 75, 0.82) !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #f3e8ff !important;
+      border: 1.5px solid #a855f7 !important;
+      box-shadow: 0 0 16px rgba(168, 85, 247, 0.35) !important;
+    }
+
+    /* Стилизация бейджей уровней и шкал под тему Кибера */
+    .bg-loc-cyber .gen-level-badge,
+    .bg-loc-cyber .perk-level {
+      background: #e0f2fe !important;
+      color: #0369a1 !important;
+      border: 1px solid #bae6fd;
+    }
+    .bg-loc-cyber .milestone-bar-fill {
+      background: linear-gradient(90deg, #06b6d4, #0284c7) !important;
+    }
+    .bg-loc-cyber .generator-avatar {
+      border-color: #bae6fd !important;
+    }
+
+    /* Стилизация бейджей уровней и шкал под тему Астрала */
+    .bg-loc-astral .gen-level-badge,
+    .bg-loc-astral .perk-level {
+      background: #f3e8ff !important;
+      color: #7e22ce !important;
+      border: 1px solid #e9d5ff;
+    }
+    .bg-loc-astral .milestone-bar-fill {
+      background: linear-gradient(90deg, #a855f7, #7c3aed) !important;
+    }
+    .bg-loc-astral .generator-avatar {
+      border-color: #e9d5ff !important;
+    }
+
+    /* Стилизация бейджей уровней и шкал под тему Мишлена */
+    .bg-loc-michelin .gen-level-badge,
+    .bg-loc-michelin .perk-level {
+      background: #fef3c7 !important;
+      color: #b45309 !important;
+      border: 1px solid #fde68a;
+    }
+    .bg-loc-michelin .milestone-bar-fill {
+      background: linear-gradient(90deg, #f59e0b, #d97706) !important;
+    }
+    .bg-loc-michelin .generator-avatar {
+      border-color: #fde68a !important;
+    }
+
+    /* Адаптивный нижний бабл мини-событий под тёмные темы */
+    .bg-loc-michelin .cat-mood-bubble,
+    .bg-loc-cyber .cat-mood-bubble,
+    .bg-loc-astral .cat-mood-bubble {
+      background: rgba(15, 23, 42, 0.88) !important;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      color: #f8fafc !important;
+      border-color: rgba(255, 255, 255, 0.2) !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45) !important;
+    }
+
+    /* Плашка клика во Дворце */
+    .bg-loc-palace .click-upgrade-btn {
+      background: #ffffff !important;
+      border: 2px solid #f59e0b !important;
+      box-shadow: 0 4px 10px rgba(217, 119, 6, 0.2) !important;
+    }
+
+    /* Насыщенный королевский янтарь/золото для Дворца */
+    .bg-loc-palace .gen-buy-btn:not(:disabled) {
+      background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%) !important;
+      border-bottom: 2px solid #b45309 !important;
+      color: #ffffff !important;
+    }
+
+    /* Кнопки цвета благородного тёмного кофе */
+    .bg-loc-cafe .gen-buy-btn:not(:disabled),
+    .bg-loc-cafe .shop-buy-btn:not(:disabled) {
+      background: linear-gradient(180deg, #854d0e 0%, #582f0e 100%) !important;
+      border-bottom: 2px solid #3d1e08 !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 12px rgba(88, 47, 14, 0.28) !important;
+    }
+    .bg-loc-cafe .location-badge {
+      background: #fdfaf6 !important;
+      border-color: #d6c0b0 !important;
+      color: #78350f !important;
+    }
+    .bg-loc-cafe .click-upgrade-btn {
+      border-color: #854d0e !important;
+      color: #78350f !important;
+    }
+    .bg-loc-cafe .gen-level-badge,
+    .bg-loc-cafe .perk-level {
+      background: #f5ece1 !important;
+      color: #78350f !important;
+      border: 1px solid #e3d0bf;
+    }
+    .bg-loc-cafe .milestone-bar-fill {
+      background: linear-gradient(90deg, #b45309, #78350f) !important;
+    }
+    .bg-loc-cafe .generator-avatar,
+    .bg-loc-cafe .shop-card-avatar {
+      border-color: #d6c0b0 !important;
+    }
       
       /* Фирменная тёплая красно-коралловая палитра игры */
       --color-primary: #ff5722;
@@ -319,53 +721,46 @@ window.getSvgIcon = getSvgIcon;
     }
 
     .floating-number {
-  position: absolute;
-  pointer-events: none;
-  user-select: none;
-  font-family: inherit;
-  font-weight: 900;
-  font-size: 24px;
-  color: #ff4757; /* Яркий акцентный кораллово-красный */
-  /* Плотная белая обводка со всех сторон + мягкая тень */
-  text-shadow: 
-    -2px -2px 0 #ffffff,
-     2px -2px 0 #ffffff,
-    -2px  2px 0 #ffffff,
-     2px  2px 0 #ffffff,
-     0 3px 8px rgba(92, 40, 10, 0.25);
-  animation: floatUp 0.8s ease-out forwards;
-  z-index: 100;
-}
-
-@keyframes floatUp {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, 0) scale(0.8);
-  }
-  20% {
-    opacity: 1;
-    transform: translate(-50%, -15px) scale(1.15);
-  }
-  70% {
-    opacity: 1;
-    transform: translate(-50%, -40px) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -60px) scale(0.9);
-  }
-}
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      font-family: inherit;
+      font-weight: 900;
+      font-size: 17px;
+      color: #ea580c;
+      text-shadow: 
+        -1.5px -1.5px 0 #ffffff,
+         1.5px -1.5px 0 #ffffff,
+        -1.5px  1.5px 0 #ffffff,
+         1.5px  1.5px 0 #ffffff;
+      animation: floatUp 0.75s ease-out forwards;
+      z-index: 50;
+    }
 
     .floating-number.fever {
-      font-size: 2.3rem;
-      color: #ff9800;
+      font-size: 19px;
+      color: #d97706;
       text-shadow: 
-        -3px -3px 0 #ffffff,
-         3px -3px 0 #ffffff,
-        -3px  3px 0 #ffffff,
-         3px  3px 0 #ffffff,
-         0 0 20px var(--color-accent-gold-glow),
-         0 6px 16px rgba(0, 0, 0, 0.45);
+        -1.5px -1.5px 0 #ffffff,
+         1.5px -1.5px 0 #ffffff,
+        -1.5px  1.5px 0 #ffffff,
+         1.5px  1.5px 0 #ffffff,
+         0 0 8px rgba(251, 191, 36, 0.6);
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 0.9;
+        transform: translate(-50%, 0) scale(0.9);
+      }
+      30% {
+        opacity: 1;
+        transform: translate(-50%, -18px) scale(1.05);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--dx, 0px)), -55px) scale(0.8);
+      }
     }
 
     @keyframes floatUp {
@@ -434,8 +829,8 @@ window.getSvgIcon = getSvgIcon;
     }
 
     .cat-bun-entity {
-      width: 78%;
-      height: 78%;
+      width: 88%;
+      height: 88%;
       pointer-events: none;
       transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
       display: flex;
@@ -468,6 +863,29 @@ window.getSvgIcon = getSvgIcon;
       0% { transform: scale(1) rotate(-1.5deg); }
       50% { transform: scale(1.04) rotate(1.5deg); }
       100% { transform: scale(1.02) rotate(-0.5deg); }
+    }
+
+    /* Точный эллипс 44x12 по тригонометрическим координатам (шаг 45°: cos*44, sin*12) */
+    @keyframes starOrbitMotion {
+      0%    { transform: translate(44px, 0px); }
+      12.5% { transform: translate(31.1px, 8.5px); }
+      25%   { transform: translate(0px, 12px); }
+      37.5% { transform: translate(-31.1px, 8.5px); }
+      50%   { transform: translate(-44px, 0px); }
+      62.5% { transform: translate(-31.1px, -8.5px); }
+      75%   { transform: translate(0px, -12px); }
+      87.5% { transform: translate(31.1px, -8.5px); }
+      100%  { transform: translate(44px, 0px); }
+    }
+
+    .astral-star-node {
+      animation: starOrbitMotion 5s linear infinite;
+    }
+    .astral-star-node.node-2 {
+      animation-delay: -1.66s;
+    }
+    .astral-star-node.node-3 {
+      animation-delay: -3.33s;
     }
 
     /* Анимация сердечек */
@@ -745,13 +1163,15 @@ window.getSvgIcon = getSvgIcon;
       width: 40px;
       height: 40px;
       border-radius: var(--radius-sm);
-      background: var(--color-bg-secondary);
+      /* Всегда чистый светлый фон для идеальной читаемости SVG */
+      background: #fdfaf6 !important;
+      border: 1.5px solid #ebd9c8 !important;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.4rem;
-      border: 1.5px solid var(--color-border);
       flex-shrink: 0;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
     }
 
     .generator-info {
@@ -971,16 +1391,18 @@ window.getSvgIcon = getSvgIcon;
     }
 
     .perk-icon-wrap {
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: var(--radius-sm);
-      background: var(--color-bg-secondary);
+      /* Всегда чистый светлый фон под звёздные перки */
+      background: #fffdfa !important;
+      border: 1.5px solid #fed7aa !important;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.25rem;
-      border: 1.5px solid var(--color-border);
       flex-shrink: 0;
+      box-shadow: 0 1px 4px rgba(251, 146, 60, 0.1);
     }
 
     .perk-info {
@@ -1043,16 +1465,7 @@ window.getSvgIcon = getSvgIcon;
     }
     /* Лавка за золотых рыбок */
     .shop-section-title {
-      font-size: 0.8rem;
-      font-weight: 900;
-      color: var(--color-text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-top: 6px;
-      margin-bottom: 2px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
+      display: none !important;
     }
 
     .shop-card {
@@ -1060,7 +1473,7 @@ window.getSvgIcon = getSvgIcon;
       align-items: center;
       justify-content: space-between;
       background: var(--color-bg-card);
-      padding: 9px 10px;
+      padding: 8px 10px;
       border-radius: var(--radius-md);
       border: 1.5px solid var(--color-border);
       box-shadow: var(--shadow-sm);
@@ -1071,21 +1484,22 @@ window.getSvgIcon = getSvgIcon;
       display: flex;
       align-items: center;
       gap: 8px;
-      flex: 1;
+      flex: 1 1 auto;
       min-width: 0;
     }
 
     .shop-card-avatar {
-      width: 38px;
-      height: 38px;
+      width: 40px;
+      height: 40px;
       border-radius: var(--radius-sm);
-      background: #fff8e1;
-      border: 1.5px solid #ffe082;
+      background: #fdfaf6 !important;
+      border: 1.5px solid #ebd9c8 !important;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.35rem;
       flex-shrink: 0;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
     }
 
     .shop-card-info {
@@ -1113,21 +1527,50 @@ window.getSvgIcon = getSvgIcon;
 
     .shop-buy-btn {
       border: none;
-      background: linear-gradient(135deg, #ffa000, #ff6f00);
-      color: #fff;
-      padding: 7px 10px;
+      background: var(--color-primary);
+      color: #ffffff;
+      padding: 8px 12px;
       border-radius: var(--radius-sm);
       font-weight: 800;
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 4px;
-      box-shadow: 0 4px 12px rgba(255, 111, 0, 0.3);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
       flex-shrink: 0;
-      min-width: 76px;
+      min-width: 80px;
       text-align: center;
+      transition: transform 0.1s ease, filter 0.15s ease;
+    }
+
+    .shop-buy-btn:not(:disabled):active { transform: scale(0.95); }
+
+    /* Адаптивные темы для кнопок Лавки под цвета локаций */
+    .bg-loc-cafe .shop-buy-btn:not(:disabled) {
+      background: linear-gradient(180deg, #0ea5e9 0%, #0284c7 100%) !important;
+      box-shadow: 0 3px 10px rgba(2, 132, 199, 0.3) !important;
+    }
+
+    .bg-loc-michelin .shop-buy-btn:not(:disabled) {
+      background: linear-gradient(180deg, #10b981 0%, #059669 100%) !important;
+      box-shadow: 0 3px 10px rgba(16, 185, 129, 0.35) !important;
+    }
+
+    .bg-loc-cyber .shop-buy-btn:not(:disabled) {
+      background: linear-gradient(180deg, #06b6d4 0%, #0891b2 100%) !important;
+      box-shadow: 0 3px 10px rgba(6, 182, 212, 0.35) !important;
+    }
+
+    .bg-loc-astral .shop-buy-btn:not(:disabled) {
+      background: linear-gradient(180deg, #a855f7 0%, #7e22ce 100%) !important;
+      box-shadow: 0 3px 10px rgba(168, 85, 247, 0.35) !important;
+    }
+
+    .bg-loc-palace .shop-buy-btn:not(:disabled) {
+      background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%) !important;
+      box-shadow: 0 3px 10px rgba(217, 119, 6, 0.3) !important;
     }
 
     .shop-buy-btn:not(:disabled):active { transform: scale(0.95); }
@@ -1204,9 +1647,11 @@ window.getSvgIcon = getSvgIcon;
       justify-content: center;
       font-size: 1.6rem;
       margin-bottom: 4px;
-      background: var(--color-bg-secondary);
+      /* Всегда стабильный светлый фон для идеальной контрастности любых аксессуаров */
+      background: #fdf5ec !important;
       border-radius: 10px;
-      border: 1px solid var(--color-border);
+      border: 1.5px solid #e7d5c4 !important;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
     }
 
     .wardrobe-title {
@@ -1358,18 +1803,26 @@ window.getSvgIcon = getSvgIcon;
     }
 
     .btn-close-modal {
-      background: var(--color-bg-secondary);
-      border: none;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-text-muted);
-      font-weight: 900;
+      width: 34px !important;
+      height: 34px !important;
+      border-radius: 50% !important;
+      background: #f1f5f9 !important;
+      border: 1px solid #cbd5e1 !important;
+      color: #475569 !important;
+      font-size: 1.1rem !important;
+      font-weight: 900 !important;
+      cursor: pointer !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      flex-shrink: 0 !important;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+    .btn-close-modal:active {
+      background: #e2e8f0 !important;
+      transform: scale(0.92);
     }
 
     .modal-scroll-body {
@@ -1465,18 +1918,23 @@ window.getSvgIcon = getSvgIcon;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: var(--color-bg-secondary);
-      padding: 9px 12px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--color-border);
+      background: #f8fafc !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 14px !important;
+      padding: 10px 14px;
     }
 
     .settings-label {
-      font-size: 0.85rem;
-      font-weight: 800;
+      font-size: 15px !important;
+      font-weight: 700 !important;
+      color: #1e293b !important;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+    }
+
+    .settings-label svg {
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08));
     }
 
     .toggle-btn {
@@ -1832,38 +2290,55 @@ window.getSvgIcon = getSvgIcon;
       100% { opacity: 0; transform: translate(-50%, -46px) scale(0.9); }
     }
 
-    /* Аккуратный нижний бейдж статуса настроения */
+    /* Слот под плашку (резервирует место, чтобы интерфейс не дёргался вверх-вниз) */
+    .cat-mood-slot {
+      height: 24px;
+      min-height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 25;
+    }
+
     .cat-mood-bubble {
-      position: absolute;
-      bottom: 6px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255, 255, 255, 0.94);
-      border: 1px solid var(--color-border);
-      color: var(--color-text-main);
-      font-size: 0.68rem;
+      position: relative;
+      background: #ffffff;
+      border: 1.5px solid #fed7aa;
+      color: #7c2d12;
+      font-size: 0.72rem;
       font-weight: 800;
-      padding: 2px 9px;
+      padding: 3px 12px;
       border-radius: var(--radius-pill);
-      box-shadow: 0 2px 6px rgba(52, 34, 26, 0.08);
-      z-index: 45;
+      box-shadow: 0 2px 8px rgba(124, 45, 18, 0.1);
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
       white-space: nowrap;
       pointer-events: none;
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
-      transition: opacity 0.2s ease;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      animation: moodBubblePop 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes moodBubblePop {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
     }
 
     .cat-mood-bubble.interactive {
       pointer-events: auto;
       cursor: pointer;
-      background: #fff5f5;
-      border-color: #ff4757;
-      color: #e11d48;
-      box-shadow: 0 2px 8px rgba(255, 71, 87, 0.25);
+      background: #fff1f2;
+      border-color: #fb7185;
+      color: #be123c;
+      box-shadow: 0 4px 14px rgba(225, 29, 72, 0.25);
+      animation: moodBubbleBounce 1.2s infinite ease-in-out;
+    }
+
+    @keyframes moodBubbleBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
     }
 
     .cat-mood-bubble.hidden {
@@ -1915,6 +2390,202 @@ window.getSvgIcon = getSvgIcon;
       filter: drop-shadow(0 0 16px rgba(255, 71, 87, 0.55)) drop-shadow(0 8px 16px rgba(52, 34, 26, 0.18));
       transform: scale(1.03);
     }
+
+    /* Аккуратное золотое кольцо без искажения контейнера */
+    .dough-fever-wrapper.fever-active #fever-ring-progress {
+      stroke: #fbbf24 !important;
+      filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.7)) !important;
+    }
+
+    /* Компактный квадратный виджет квеста в верхнем правом углу */
+    .urgent-order-badge {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      width: 44px;
+      height: 44px;
+      background: #fff8f0;
+      border: 2px solid #f59e0b;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 80;
+      pointer-events: auto;
+      touch-action: manipulation;
+      animation: orderPopIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), orderJiggle 2.5s infinite ease-in-out;
+      user-select: none;
+    }
+    .urgent-order-badge * {
+      pointer-events: none;
+    }
+
+    @keyframes orderPopIn {
+      0% { transform: scale(0.4); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes orderJiggle {
+      0%, 85%, 100% { transform: scale(1) rotate(0deg); }
+      90% { transform: scale(1.08) rotate(-4deg); }
+      95% { transform: scale(1.08) rotate(4deg); }
+    }
+
+    .urgent-order-badge .order-mini-timer {
+      position: absolute;
+      bottom: -4px;
+      left: 3px;
+      right: 3px;
+      height: 4px;
+      background: #fef3c7;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .urgent-order-badge .order-mini-fill {
+      height: 100%;
+      background: #f59e0b;
+      width: 100%;
+      transition: width 0.15s linear;
+    }
+    .urgent-order-badge .order-alert-dot {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      width: 10px;
+      height: 10px;
+      background: #ef4444;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+    }
+
+    /* Полноэкранный оверлей победы в квесте */
+    .order-complete-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 1200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: modalFadeIn 0.25s ease-out;
+    }
+
+    .order-complete-card {
+      background: #ffffff;
+      border: 3px solid #f59e0b;
+      border-radius: 24px;
+      padding: 24px 20px;
+      width: 90%;
+      max-width: 340px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), 0 0 30px rgba(245, 158, 11, 0.4);
+      animation: completeCardPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+    }
+
+    @keyframes completeCardPop {
+      0% { transform: scale(0.6) translateY(20px); opacity: 0; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    .order-reward-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fffbeb;
+      border: 1.5px solid #fcd34d;
+      padding: 8px 14px;
+      border-radius: 12px;
+      font-weight: 800;
+      color: #b45309;
+      font-size: 0.95rem;
+    }
+
+    /* Модальное окно задания */
+    .order-modal-card {
+      background: #ffffff;
+      padding: 18px 16px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 320px;
+      text-align: center;
+      border: 2px solid #f59e0b;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .order-difficulty-pill {
+      align-self: center;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 99px;
+      text-transform: uppercase;
+    }
+    .diff-easy { background: #dcfce7; color: #15803d; }
+    .diff-medium { background: #fef3c7; color: #b45309; }
+    .diff-hard { background: #fee2e2; color: #b91c1c; }
+
+    /* Радужные интерактивные пузыри */
+    .rainbow-bubble-target {
+      position: fixed;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.9), rgba(168, 85, 247, 0.45) 60%, rgba(6, 182, 212, 0.7) 100%);
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.8);
+      border: 1.5px solid rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      transition: transform 0.15s ease;
+      animation: bubbleFloat 6s ease-in-out forwards;
+    }
+    .rainbow-bubble-target:active { transform: scale(1.2); }
+    @keyframes bubbleFloat {
+      0% { transform: translateY(0) scale(0.6); opacity: 0; }
+      15% { opacity: 1; transform: translateY(-20px) scale(1); }
+      85% { opacity: 1; }
+      100% { transform: translateY(-120px) scale(0.7); opacity: 0; }
+    }
+
+    /* Маленькие ненавязчивые золотые блёстки */
+    .fever-spark-particle {
+      position: absolute;
+      pointer-events: none;
+      z-index: 20;
+      border-radius: 50%;
+      background: #fef08a;
+      box-shadow: 0 0 4px #f59e0b;
+      animation: feverSparkFade 0.6s ease-out forwards;
+    }
+
+    @keyframes feverSparkFade {
+      0% {
+        opacity: 0;
+        transform: translate(0, 0) scale(0.4);
+      }
+      50% {
+        opacity: 0.9;
+        transform: translate(var(--dx), var(--dy)) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(var(--dx), calc(var(--dy) - 6px)) scale(0.2);
+      }
+    }
   </style>
 </head>
 <body>
@@ -1925,6 +2596,20 @@ window.getSvgIcon = getSvgIcon;
         <linearGradient id="feverGlowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stop-color="#FFD54F" />
           <stop offset="100%" stop-color="#FF5722" />
+        </linearGradient>
+
+        <linearGradient id="rainbowBubbleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
+          <stop offset="45%" stop-color="#c084fc" stop-opacity="0.4" />
+          <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.7" />
+        </linearGradient>
+
+        <!-- Градиент для золотого кольца Лихорадки -->
+        <linearGradient id="feverGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#fffbeb" />
+          <stop offset="30%" stop-color="#fde047" />
+          <stop offset="70%" stop-color="#f59e0b" />
+          <stop offset="100%" stop-color="#b45309" />
         </linearGradient>
 
         <linearGradient id="goldFishBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -2025,6 +2710,44 @@ window.getSvgIcon = getSvgIcon;
           <circle cx="12" cy="8.6" r="1.1" fill="#B45309" />
           <circle cx="14.8" cy="9.8" r="1.1" fill="#B45309" />
         </g>
+
+        <!-- Иконка Цилиндра фокусника для гардероба -->
+        <g id="wardrobe-icon-tophat">
+          <ellipse cx="14" cy="18" rx="10" ry="2.2" fill="#1e1b4b" stroke="#0f172a" stroke-width="1.2" />
+          <path d="M 7 18 L 8 6 C 8 5.5, 10 5, 14 5 C 18 5, 20 5.5, 20 6 L 21 18 Z" fill="#1e1b4b" stroke="#0f172a" stroke-width="1.2" />
+          <ellipse cx="14" cy="6" rx="6.5" ry="1.8" fill="#312e81" stroke="#0f172a" stroke-width="0.8" />
+          <path d="M 7.2 15 C 10 16, 18 16, 20.8 15 L 21 17 C 18 18, 10 18, 7 17 Z" fill="#9333ea" />
+          <rect x="12" y="14.5" width="4" height="3" rx="0.8" fill="#fbbf24" stroke="#b45309" stroke-width="0.6" />
+        </g>
+
+        <!-- Иконка Кибер-визора для гардероба -->
+        <g id="wardrobe-icon-visor">
+          <polygon points="4,9 24,9 22,16 6,16" fill="rgba(6, 182, 212, 0.85)" stroke="#0891b2" stroke-width="1.2" />
+          <polygon points="6,10 12,10 9,15 5,15" fill="#ffffff" opacity="0.4" />
+          <line x1="8" y1="12.5" x2="20" y2="12.5" stroke="#ecfeff" stroke-width="0.8" stroke-dasharray="2,1.5" />
+          <circle cx="14" cy="12.5" r="1.2" fill="#ffffff" />
+        </g>
+
+        <!-- Иконка Астрального нимба для гардероба -->
+        <g id="wardrobe-icon-halo">
+          <ellipse cx="14" cy="12" rx="10" ry="4" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-dasharray="4,2" />
+          <circle cx="5" cy="12" r="1.4" fill="#ffffff" />
+          <circle cx="23" cy="12" r="1.4" fill="#ffffff" />
+          <circle cx="14" cy="8" r="1.1" fill="#fdf4ff" />
+        </g>
+
+        <g id="wardrobe-icon-glasses">
+          <!-- Чёрные линзы с чёткой серебристо-белой окантовкой для безупречной читаемости -->
+          <rect x="2" y="7" width="10.5" height="9.5" rx="2.5" fill="#111827" stroke="#e2e8f0" stroke-width="1.2" />
+          <rect x="15.5" y="7" width="10.5" height="9.5" rx="2.5" fill="#111827" stroke="#e2e8f0" stroke-width="1.2" />
+          <rect x="11.5" y="9.5" width="5" height="2" rx="0.5" fill="#e2e8f0" />
+          <polygon points="4,8.5 7,8.5 4,14.5 3,14.5" fill="#ffffff" opacity="0.95" />
+          <polygon points="8,8.5 9.5,8.5 7,14.5 5.5,14.5" fill="#ffffff" opacity="0.6" />
+          <polygon points="17.5,8.5 20.5,8.5 17.5,14.5 16.5,14.5" fill="#ffffff" opacity="0.95" />
+          <polygon points="21.5,8.5 23,8.5 20.5,14.5 19,14.5" fill="#ffffff" opacity="0.6" />
+          <path d="M 2 9.5 L 0.5 9" stroke="#e2e8f0" stroke-width="1.2" stroke-linecap="round" />
+          <path d="M 26 9.5 L 27.5 9" stroke="#e2e8f0" stroke-width="1.2" stroke-linecap="round" />
+        </g>
       </defs>
     </svg>
     <!-- Верхняя панель валют -->
@@ -2074,14 +2797,19 @@ window.getSvgIcon = getSvgIcon;
       </div>
     </header>
 
-    <!-- Полоска множителя рекламы -->
-    <div id="active-boosts-bar" class="boosts-bar">
+    <!-- Полоска множителя рекламы и контрактов -->
+    <div id="active-boosts-bar" class="boosts-bar" style="display:flex; gap:8px; justify-content:center; align-items:center;">
       <button id="btn-ad-boost" class="ad-boost-pill inactive">
         <span class="boost-icon">
           <script>document.write(getSvgIcon('lightning', 16));</script> x2
         </span>
         <span id="ad-boost-timer">Активировать</span>
       </button>
+
+      <div id="order-rush-pill" class="ad-boost-pill" style="display:none; background:linear-gradient(135deg, #f59e0b, #d97706); box-shadow:0 4px 12px rgba(217,119,6,0.35);">
+        <span class="boost-icon"><script>document.write(getSvgIcon('lightning', 15));</script> <span id="order-rush-mult-label">x2</span></span>
+        <span id="order-rush-timer-label">25с</span>
+      </div>
     </div>
     <!-- Основная зона выпечки -->
     <main class="click-zone">
@@ -2092,10 +2820,14 @@ window.getSvgIcon = getSvgIcon;
         <span id="location-badge-name">Уютная кухня</span>
       </div>
 
+      <!-- Фиксированная зона под статус котика между локацией и кругом -->
+      <div class="cat-mood-slot">
+        <div id="cat-mood-bubble" class="cat-mood-bubble hidden"></div>
+      </div>
+
       <div id="floating-container" class="floating-container"></div>
 
       <div id="fever-wrapper" class="dough-fever-wrapper" role="button" tabindex="0" aria-label="Размять котика-пекаря">
-        <div id="cat-mood-bubble" class="cat-mood-bubble hidden"></div>
         <svg class="fever-ring" viewBox="0 0 240 240">
           <circle class="ring-bg" cx="120" cy="120" r="108" />
           <circle id="fever-ring-progress" class="ring-fill" cx="120" cy="120" r="108" />
@@ -2155,10 +2887,11 @@ window.getSvgIcon = getSvgIcon;
             <ellipse cx="64" cy="118" rx="11" ry="6.5" fill="#ff9ea8" opacity="0.6" />
             <ellipse cx="136" cy="118" rx="11" ry="6.5" fill="#ff9ea8" opacity="0.6" />
 
-            <line x1="38" y1="112" x2="56" y2="114" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
-            <line x1="36" y1="122" x2="54" y2="120" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
-            <line x1="162" y1="112" x2="144" y2="114" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
-            <line x1="164" y1="122" x2="146" y2="120" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
+            <!-- Оставлено по 2 аккуратных верхних усика (нижние убраны, чтобы не конфликтовать с ошейниками) -->
+            <line x1="38" y1="110" x2="56" y2="112" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
+            <line x1="36" y1="118" x2="55" y2="118" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
+            <line x1="162" y1="110" x2="144" y2="112" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
+            <line x1="164" y1="118" x2="145" y2="118" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
 
             <!-- СЛОЙ 4: ДИНАМИЧЕСКИЙ СЛОЙ ШЕИ / ПУЗИКА (y: 138..144) -->
             <g id="cat-neck-layer" pointer-events="none"></g>
@@ -2340,8 +3073,12 @@ window.getSvgIcon = getSvgIcon;
             </div>
             
             <div class="devtools-grid">
-              <button id="dev-add-100k" class="dev-btn"><script>document.write(getSvgIcon('money_bag', 13));</script> +100 тыс. <script>document.write(getSvgIcon('cookie', 13));</script></button>
-              <button id="dev-add-10m" class="dev-btn"><script>document.write(getSvgIcon('money_bag', 13));</script> +10 млн. <script>document.write(getSvgIcon('cookie', 13));</script></button>
+              <button id="dev-add-100k" class="dev-btn"><script>document.write(getSvgIcon('money_bag', 13));</script> +100 тыс.</button>
+              <button id="dev-add-10m" class="dev-btn"><script>document.write(getSvgIcon('money_bag', 13));</script> +10 млн.</button>
+            </div>
+            <div class="devtools-grid">
+              <button id="dev-add-10b" class="dev-btn"><script>document.write(getSvgIcon('money_bag', 13));</script> +10 млрд. <script>document.write(getSvgIcon('cookie', 13));</script></button>
+              <button id="dev-add-1t" class="dev-btn"><script>document.write(getSvgIcon('money_bag', 13));</script> +1 трлн. <script>document.write(getSvgIcon('cookie', 13));</script></button>
             </div>
 
             <div class="devtools-grid">
@@ -2361,7 +3098,11 @@ window.getSvgIcon = getSvgIcon;
             <div class="devtools-grid">
               <button id="dev-unlock-wardrobe" class="dev-btn"><script>document.write(getSvgIcon('wardrobe', 13));</script> Весь гардероб</button>
               <button id="dev-spawn-box" class="dev-btn"><script>document.write(getSvgIcon('box', 13));</script> Призвать коробку</button>
-              </div>
+            </div>
+
+            <div class="devtools-grid">
+              <button id="dev-btn-order" class="dev-btn"><script>document.write(getSvgIcon('scroll', 14));</script> Призвать квест</button>
+            </div>
 
             <div class="devtools-grid-3">
               <button id="dev-mood-purr" class="dev-btn"><script>document.write(getSvgIcon('heart', 13));</script> Мурчание</button>
@@ -2376,9 +3117,12 @@ window.getSvgIcon = getSvgIcon;
 
             <div style="font-size: 0.68rem; font-weight: 800; color: #475569; margin-top: 2px;">Сменить филиал:</div>
             <div class="devtools-grid-3">
-              <button id="dev-loc-0" class="dev-btn"><script>document.write(getSvgIcon('home', 13));</script> Кухня</button>
-              <button id="dev-loc-1" class="dev-btn"><script>document.write(getSvgIcon('cookie', 13));</script> Кафе</button>
-              <button id="dev-loc-2" class="dev-btn"><script>document.write(getSvgIcon('crown', 13));</script> Дворец</button>
+              <button id="dev-loc-0" class="dev-btn">Филиал 1 (Кухня)</button>
+              <button id="dev-loc-1" class="dev-btn">Филиал 2 (Кафе)</button>
+              <button id="dev-loc-2" class="dev-btn">Филиал 3 (Дворец)</button>
+              <button id="dev-loc-3" class="dev-btn">Филиал 4 (Мишлен)</button>
+              <button id="dev-loc-4" class="dev-btn">Филиал 5 (Кибер)</button>
+              <button id="dev-loc-5" class="dev-btn">Филиал 6 (Астрал)</button>
             </div>
           </div>
 
@@ -2410,15 +3154,29 @@ window.getSvgIcon = getSvgIcon;
     const STORAGE_KEY = 'koto_bakery_standalone_v52';
     const FEVER_CIRCUMFERENCE = 678.58;
 
-    const GENERATOR_IDS = ['lapkolap', 'mur_pech', 'kot_barista', 'courier', 'chef_murych'];
+    const GENERATOR_IDS = [
+      'lapkolap', 
+      'mur_pech', 
+      'kot_barista', 
+      'courier', 
+      'chef_murych',
+      'croissant_factory',
+      'molecular_chef',
+      'cyber_autoclave',
+      'astral_portal'
+    ];
     const PERK_IDS = ['start_van', 'strong_paws', 'cat_sleep', 'bulk_buy', 'generous_inspector'];
 
     const GENERATORS_CONFIG = {
       lapkolap: { name: 'Лапколап', baseCost: 50, baseRate: 1, costGrowthRate: 1.12 },
-      mur_pech: { name: 'Мур-Печь', baseCost: 450, baseRate: 8, costGrowthRate: 1.12 },
-      kot_barista: { name: 'Кот-Бариста', baseCost: 3200, baseRate: 45, costGrowthRate: 1.12 },
-      courier: { name: 'Курьер', baseCost: 24000, baseRate: 260, costGrowthRate: 1.12 },
-      chef_murych: { name: 'Шеф Мурыч', baseCost: 120000, baseRate: 1800, costGrowthRate: 1.12 }
+      mur_pech: { name: 'Мур-Печь', baseCost: 500, baseRate: 7, costGrowthRate: 1.12 },
+      kot_barista: { name: 'Кот-Бариста', baseCost: 5000, baseRate: 40, costGrowthRate: 1.13 },
+      courier: { name: 'Курьер', baseCost: 50000, baseRate: 220, costGrowthRate: 1.14 },
+      chef_murych: { name: 'Шеф Мурыч', baseCost: 500000, baseRate: 1400, costGrowthRate: 1.14 },
+      croissant_factory: { name: 'Круассан-фабрика', baseCost: 5000000, baseRate: 12000, costGrowthRate: 1.14 },
+      molecular_chef: { name: 'Молекулярный шеф', baseCost: 80000000, baseRate: 210000, costGrowthRate: 1.15 },
+      cyber_autoclave: { name: 'Кибер-Пекарь 3000', baseCost: 2000000000, baseRate: 6500000, costGrowthRate: 1.15 },
+      astral_portal: { name: 'Портал пряностей', baseCost: 75000000000, baseRate: 320000000, costGrowthRate: 1.16 }
     };
 
     const GENERATOR_ICONS = {
@@ -2426,16 +3184,125 @@ window.getSvgIcon = getSvgIcon;
       mur_pech: getSvgIcon('fire', 24),
       kot_barista: getSvgIcon('coffee', 24),
       courier: getSvgIcon('scooter', 24),
-      chef_murych: getSvgIcon('baker', 24)
+      chef_murych: getSvgIcon('baker', 24),
+      croissant_factory: getSvgIcon('croissant', 24),
+      molecular_chef: getSvgIcon('flask', 24),
+      cyber_autoclave: getSvgIcon('robot', 24),
+      astral_portal: getSvgIcon('portal', 24)
     };
 
     const MILESTONES = [25, 50, 75, 100, 150, 200];
 
-    const LOCATION_THEMES = [
-      { name: 'Уютная кухня', icon: getSvgIcon('home', 14) },
-      { name: 'Городское кафе', icon: getSvgIcon('cookie', 14) },
-      { name: 'Королевский дворец', icon: getSvgIcon('crown', 14) }
-    ];
+    const LOCATIONS_CONFIG = [
+    {
+      id: 'loc_0',
+      name: 'Уютная кухня',
+      icon: getSvgIcon('home', 14),
+      reqCookies: 0,
+      bonusText: 'Базовая выпечка',
+      cpsMultiplier: 1.0,
+      clickBonus: 0,
+      bgClass: 'bg-loc-kitchen',
+      ringColor: '#e07a38',
+      ringFilter: 'drop-shadow(0 2px 10px rgba(224, 122, 56, 0.45))',
+      rewardItem: null
+    },
+    {
+      id: 'loc_1',
+      name: 'Городское кафе',
+      icon: getSvgIcon('coffee', 14),
+      reqCookies: 200000,
+      bonusText: '+100% выпечка / +5 к клику',
+      cpsMultiplier: 2.0,
+      clickBonus: 5,
+      bgClass: 'bg-loc-cafe',
+      ringColor: '#8c4b18',
+      ringFilter: 'drop-shadow(0 2px 12px rgba(140, 75, 24, 0.45))',
+      rewardItem: { head: 'chef_hat_2', neck: 'red_bowtie' }
+    },
+    {
+      id: 'loc_2',
+      name: 'Королевский дворец',
+      icon: getSvgIcon('crown', 14),
+      reqCookies: 25000000,
+      bonusText: '+350% выпечка / +25 к клику',
+      cpsMultiplier: 4.5,
+      clickBonus: 25,
+      bgClass: 'bg-loc-palace',
+      ringColor: '#d49410',
+      ringFilter: 'drop-shadow(0 2px 14px rgba(212, 148, 16, 0.5))',
+      rewardItem: { head: 'beret_royal', neck: 'gold_medal' }
+    },
+    {
+      id: 'loc_3',
+      name: 'Кондитерская Мишлен',
+      icon: getSvgIcon('star', 14),
+      reqCookies: 5000000000,
+      bonusText: '+1000% выпечка / +100 к клику',
+      cpsMultiplier: 11.0,
+      clickBonus: 100,
+      bgClass: 'bg-loc-michelin',
+      ringColor: '#10b981',
+      ringFilter: 'drop-shadow(0 0 16px rgba(16, 185, 129, 0.7))',
+      rewardItem: { head: 'gold_crown', neck: 'ruby_collar' }
+    },
+    {
+      id: 'loc_4',
+      name: 'Кибер-Пекарня 2077',
+      icon: getSvgIcon('lightning', 14),
+      reqCookies: 100000000000,
+      bonusText: '+2500% выпечка / +500 к клику',
+      cpsMultiplier: 26.0,
+      clickBonus: 500,
+      bgClass: 'bg-loc-cyber',
+      ringColor: '#00f0ff',
+      ringFilter: 'drop-shadow(0 0 16px rgba(0, 240, 255, 0.75))',
+      rewardItem: { head: 'cyber_visor', neck: 'neon_choker' }
+    },
+    {
+      id: 'loc_5',
+      name: 'Астральная Обсерватория',
+      icon: getSvgIcon('star', 14),
+      reqCookies: 2500000000000,
+      bonusText: '+7500% выпечка / +2000 к клику',
+      cpsMultiplier: 76.0,
+      clickBonus: 2000,
+      bgClass: 'bg-loc-astral',
+      ringColor: '#c084fc',
+      ringFilter: 'drop-shadow(0 0 18px rgba(192, 132, 252, 0.8))',
+      rewardItem: { head: 'astral_halo', neck: 'star_pendant' }
+    }
+  ];
+    const LOCATION_THEMES = LOCATIONS_CONFIG;
+
+    function getPrestigeThresholdByIndex(n) {
+      if (n <= 0) return 0;
+      const staticTiers = [0, 5000000, 10000000, 25000000, 50000000, 100000000];
+      if (n < staticTiers.length) return staticTiers[n];
+
+      const after100m = n - 5;
+      if (after100m <= 9) {
+        return 100000000 + after100m * 100000000; // До 1 млрд (шаг 100 млн)
+      }
+
+      const after1b = after100m - 9;
+      if (after1b <= 9) {
+        return 1000000000 + after1b * 1000000000; // От 1 млрд до 10 млрд (шаг 1 млрд)
+      }
+
+      const after10b = after1b - 9;
+      if (after10b <= 9) {
+        return 10000000000 + after10b * 10000000000; // От 10 млрд до 100 млрд (шаг 10 млрд)
+      }
+
+      const after100b = after10b - 9;
+      return 100000000000 + after100b * 100000000000; // Выше 100 млрд (шаг 100 млрд)
+    }
+
+    function getTotalPurchasedPerks(state) {
+      if (!state.meta?.perks) return 0;
+      return Object.values(state.meta.perks).reduce((sum, lvl) => sum + (Number(lvl) || 0), 0);
+    }
 
     function getFishIconSvg(size = 16, extraClass = '') {
       return `<svg class="icon-svg-badge ${extraClass}" width="${size}" height="${size}" viewBox="0 0 24 24"><use href="#universal-gold-fish" /></svg>`;
@@ -2510,7 +3377,7 @@ window.getSvgIcon = getSvgIcon;
         {
           id: 'glasses_cool',
           name: 'Крутые очки',
-          icon: getSvgIcon('glasses', 28),
+          iconSvg: 'wardrobe-icon-glasses',
           cost: 3,
           currency: 'yarn',
           bonusDesc: '+5% к клику',
@@ -2654,24 +3521,106 @@ window.getSvgIcon = getSvgIcon;
           `
         },
         {
-          id: 'royal_crown',
-          name: 'Королевская корона',
-          icon: getSvgIcon('crown', 28),
+          id: 'magic_tophat',
+          name: 'Цилиндр фокусника',
+          iconSvg: 'wardrobe-icon-tophat',
           cost: 25,
           currency: 'yarn',
           bonusDesc: '+5% ко всем доходам',
-          desc: 'Сверкающий золотой венец монарха с драгоценными рубинами',
+          desc: 'Шелковый вечерний цилиндр с фиолетовой лентой и золотой пряжкой',
           svg: `
-            <g id="acc-royal_crown">
-              <ellipse cx="100" cy="40" rx="26" ry="14" fill="#991B1B" stroke="#450A0A" stroke-width="2.2" />
-              <circle cx="100" cy="24" r="3.2" fill="#FDE047" stroke="#713F12" stroke-width="1.2" />
-              <path d="M 70 48 L 66 26 L 82 35 L 100 16 L 118 35 L 134 26 L 130 48 Z" 
-                    fill="url(#goldFishBodyGrad)" stroke="#713F12" stroke-width="3.5" stroke-linejoin="round" />
-              <rect x="68" y="44" width="64" height="11" rx="3" fill="url(#goldFishBodyGrad)" stroke="#713F12" stroke-width="3" />
-              <circle cx="66" cy="24" r="3.8" fill="#FFFDF9" stroke="#713F12" stroke-width="1.6" />
-              <circle cx="100" cy="14" r="4.6" fill="#FFFDF9" stroke="#713F12" stroke-width="1.8" />
-              <circle cx="134" cy="24" r="3.8" fill="#FFFDF9" stroke="#713F12" stroke-width="1.6" />
-              <polygon points="100,45 105,49.5 100,54 95,49.5" fill="#DC2626" stroke="#450A0A" stroke-width="1.2" />
+            <g id="acc-magic_tophat">
+              <!-- Поля цилиндра -->
+              <ellipse cx="100" cy="54" rx="36" ry="7" fill="#1e1b4b" stroke="#0f172a" stroke-width="2.5" />
+              <!-- Тулья цилиндра -->
+              <path d="M 74 52 L 77 18 C 77 16, 85 14, 100 14 C 115 14, 123 16, 123 18 L 126 52 Z" 
+                    fill="#1e1b4b" stroke="#0f172a" stroke-width="2.5" stroke-linejoin="round" />
+              <ellipse cx="100" cy="18" rx="23" ry="5.5" fill="#312e81" stroke="#0f172a" stroke-width="1.8" />
+              <!-- Шёлковая фиолетовая лента -->
+              <path d="M 74.5 44 C 84 46, 116 46, 125.5 44 L 126 51 C 116 53, 84 53, 74 51 Z" fill="#9333ea" />
+              <!-- Золотая пряжка -->
+              <rect x="94" y="43" width="12" height="9" rx="2" fill="#fbbf24" stroke="#b45309" stroke-width="1.2" />
+              <rect x="97" y="45.5" width="6" height="4" rx="1" fill="#1e1b4b" />
+              <!-- Магические искры над шляпой -->
+              <circle cx="68" cy="22" r="1.8" fill="#fde047" opacity="0.85" />
+              <circle cx="132" cy="28" r="1.5" fill="#fde047" opacity="0.85" />
+            </g>
+          `
+        },
+        {
+          id: 'gold_crown',
+          name: 'Корона Мишлен',
+          icon: getSvgIcon('crown', 28),
+          cost: 0,
+          currency: 'yarn',
+          unlockStage: 3,
+          bonusDesc: '+6% ко всем доходам',
+          desc: 'Сверкающая золотая тиара с тремя рубинами высшей кондитерской пробы',
+          svg: `
+            <g id="acc-gold_crown">
+              <path d="M 72 50 L 68 28 L 84 37 L 100 18 L 116 37 L 132 28 L 128 50 Z" 
+                    fill="url(#goldAccMedalGrad)" stroke="#713F12" stroke-width="3" stroke-linejoin="round" />
+              <rect x="70" y="46" width="60" height="9" rx="2.5" fill="url(#goldFishBodyGrad)" stroke="#713F12" stroke-width="2.5" />
+              <circle cx="68" cy="26" r="3.2" fill="#EF4444" stroke="#713F12" stroke-width="1.2" />
+              <circle cx="100" cy="16" r="4" fill="#EF4444" stroke="#713F12" stroke-width="1.4" />
+              <circle cx="132" cy="26" r="3.2" fill="#EF4444" stroke="#713F12" stroke-width="1.2" />
+            </g>
+          `
+        },
+        {
+          id: 'cyber_visor',
+          name: 'Кибер-визор 2077',
+          iconSvg: 'wardrobe-icon-visor',
+          cost: 0,
+          currency: 'yarn',
+          unlockStage: 4,
+          bonusDesc: '+8% к силе клика',
+          desc: 'Неоновый голографический дисплей с проекцией прицела и данных выпечки',
+          svg: `
+            <g id="acc-cyber_visor">
+              <!-- Опущен на 3px вниз (y: 94..110) ровно по линии прищуренных глаз -->
+              <polygon points="48,94 152,94 145,110 55,110" 
+                       fill="rgba(6, 182, 212, 0.68)" stroke="#0891b2" stroke-width="2.2" filter="drop-shadow(0 0 8px rgba(6,182,212,0.9))" />
+              <!-- Глянцевый световой блик -->
+              <polygon points="56,96 82,96 70,108 52,108" fill="#ffffff" opacity="0.35" />
+              <polygon points="86,96 94,96 84,108 76,108" fill="#ffffff" opacity="0.2" />
+              <!-- Центральный видоискатель -->
+              <path d="M 94 99 L 92 99 L 92 105 L 94 105" fill="none" stroke="#ecfeff" stroke-width="1.2" opacity="0.85" />
+              <path d="M 106 99 L 108 99 L 108 105 L 106 105" fill="none" stroke="#ecfeff" stroke-width="1.2" opacity="0.85" />
+              <circle cx="100" cy="102" r="1.6" fill="#ecfeff" />
+              <!-- Диоды -->
+              <circle cx="136" cy="102" r="1.4" fill="#a5f3fc" />
+              <circle cx="140" cy="102" r="1.4" fill="#a5f3fc" />
+            </g>
+          `
+        },
+        {
+          id: 'astral_halo',
+          name: 'Астральный нимб',
+          iconSvg: 'wardrobe-icon-halo',
+          cost: 0,
+          currency: 'yarn',
+          unlockStage: 5,
+          bonusDesc: '+10% ко всем доходам',
+          desc: 'Пульсирующее кольцо космической энергии с парящими вокруг звездами',
+          svg: `
+            <g id="acc-astral_halo">
+              <!-- Статичное кольцо туманности -->
+              <ellipse cx="100" cy="18" rx="44" ry="12" fill="none" stroke="#c084fc" stroke-width="3" 
+                       stroke-dasharray="12,6" filter="drop-shadow(0 0 10px rgba(192,132,252,0.95))" />
+              
+              <!-- Звёздные шарики, движущиеся строго по овалу нимба -->
+              <g transform="translate(100, 18)">
+                <g class="astral-star-node">
+                  <circle cx="0" cy="0" r="3.6" fill="#ffffff" filter="drop-shadow(0 0 6px #fff)" />
+                </g>
+                <g class="astral-star-node node-2">
+                  <circle cx="0" cy="0" r="3.2" fill="#fdf4ff" filter="drop-shadow(0 0 6px #e879f9)" />
+                </g>
+                <g class="astral-star-node node-3">
+                  <circle cx="0" cy="0" r="3.2" fill="#fdf4ff" filter="drop-shadow(0 0 6px #c084fc)" />
+                </g>
+              </g>
             </g>
           `
         }
@@ -2717,99 +3666,72 @@ window.getSvgIcon = getSvgIcon;
           desc: 'Приколотый золотой орден с кошачьей лапкой прямо на манишке',
           svg: `
             <g id="acc-gold_medal" pointer-events="none">
-              <circle cx="82" cy="136" r="9.5" fill="url(#goldMedalBroochGrad)" stroke="#3D2314" stroke-width="1.6" />
-              <circle cx="82" cy="136" r="7.4" fill="none" stroke="#B45309" stroke-width="0.75" stroke-dasharray="1.5,1.2" />
-              <ellipse cx="82" cy="137.3" rx="3.0" ry="2.2" fill="#B45309" />
-              <circle cx="79" cy="134" r="1.0" fill="#B45309" />
-              <circle cx="82" cy="132.8" r="1.0" fill="#B45309" />
-              <circle cx="85" cy="134" r="1.0" fill="#B45309" />
-              <path d="M 76.5 132.5 A 7 7 0 0 1 84.8 128.5" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" fill="none" opacity="0.85" />
+              <!-- Смещено левее на x: 72 (было 82), лежит строго по левой стороне манишки -->
+              <circle cx="72" cy="136" r="9.5" fill="url(#goldMedalBroochGrad)" stroke="#3D2314" stroke-width="1.6" />
+              <circle cx="72" cy="136" r="7.4" fill="none" stroke="#B45309" stroke-width="0.75" stroke-dasharray="1.5,1.2" />
+              <ellipse cx="72" cy="137.3" rx="3.0" ry="2.2" fill="#B45309" />
+              <circle cx="69" cy="134" r="1.0" fill="#B45309" />
+              <circle cx="72" cy="132.8" r="1.0" fill="#B45309" />
+              <circle cx="75" cy="134" r="1.0" fill="#B45309" />
+              <path d="M 66.5 132.5 A 7 7 0 0 1 74.8 128.5" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" fill="none" opacity="0.85" />
+            </g>
+          `
+        },
+        {
+          id: 'ruby_collar',
+          name: 'Рубиновое колье',
+          icon: getSvgIcon('heart', 28),
+          cost: 0,
+          currency: 'yarn',
+          unlockStage: 3,
+          bonusDesc: '+5% к клику',
+          desc: 'Тёмно-изумрудный бархатный ошейник с сияющим огранённым рубином',
+          svg: `
+            <g id="acc-ruby_collar" pointer-events="none">
+              <path d="M 30 126 Q 100 156 170 126" fill="none" stroke="#064e3b" stroke-width="4.5" stroke-linecap="round" />
+              <polygon points="100,140 107,147 100,154 93,147" fill="#ef4444" stroke="#7f1d1d" stroke-width="1.2" />
+              <circle cx="98.5" cy="145" r="1.2" fill="#fca5a5" />
+            </g>
+          `
+        },
+        {
+          id: 'neon_choker',
+          name: 'Кибер-ошейник',
+          icon: getSvgIcon('lightning', 28),
+          cost: 0,
+          currency: 'yarn',
+          unlockStage: 4,
+          bonusDesc: '+5% к выпечке пекарей',
+          desc: 'Матовый неоновый чокер с микрочипом и светодиодным питанием',
+          svg: `
+            <g id="acc-neon_choker" pointer-events="none">
+              <path d="M 30 126 Q 100 156 170 126" fill="none" stroke="#0f172a" stroke-width="5" stroke-linecap="round" />
+              <path d="M 32 126 Q 100 156 168 126" fill="none" stroke="#06b6d4" stroke-width="2.2" stroke-linecap="round" filter="drop-shadow(0 0 6px #06b6d4)" />
+              <rect x="92" y="141" width="16" height="8" rx="2.5" fill="#38bdf8" stroke="#0284c7" stroke-width="1.2" />
+              <circle cx="100" cy="145" r="1.8" fill="#ffffff" />
+            </g>
+          `
+        },
+        {
+          id: 'star_pendant',
+          name: 'Кулон «Сверхновая»',
+          icon: getSvgIcon('star', 28),
+          cost: 0,
+          currency: 'yarn',
+          unlockStage: 5,
+          bonusDesc: '+20% к улову рыбки',
+          desc: 'Фрагмент настоящей метеоритной пыли в филигранной платиновой оправе',
+          svg: `
+            <g id="acc-star_pendant" pointer-events="none">
+              <path d="M 32 124 Q 100 158 168 124" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" />
+              <polygon points="100,142 103,149 110,152 103,155 100,162 97,155 90,152 97,149" 
+                       fill="#f3e8ff" stroke="#9333ea" stroke-width="1.5" filter="drop-shadow(0 0 8px #c084fc)" />
+              <circle cx="100" cy="152" r="2" fill="#ffffff" />
             </g>
           `
         }
       ]
     };
-    // Стало:
-    function getSvgIcon(name, size = 16) {
-  const s = `width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"`;
-  switch (name) {
-    case 'paw':
-      return `<svg ${s}><ellipse cx="12" cy="15.5" rx="4.8" ry="3.8" fill="#ff6d00"/><circle cx="6.5" cy="10" r="2.2" fill="#ff6d00"/><circle cx="10" cy="6.8" r="2.2" fill="#ff6d00"/><circle cx="14" cy="6.8" r="2.2" fill="#ff6d00"/><circle cx="17.5" cy="10" r="2.2" fill="#ff6d00"/></svg>`;
-    case 'cookie':
-      return `<svg ${s}><circle cx="12" cy="12" r="9.5" fill="#e09e53" stroke="#a06023" stroke-width="1.2"/><circle cx="8" cy="9" r="1.5" fill="#5c2e0b"/><circle cx="15.5" cy="8.5" r="1.4" fill="#5c2e0b"/><circle cx="11.5" cy="14" r="1.6" fill="#5c2e0b"/><circle cx="16" cy="15.5" r="1.3" fill="#5c2e0b"/><circle cx="7.5" cy="14.5" r="1.2" fill="#5c2e0b"/></svg>`;
-    case 'star':
-      return `<svg ${s}><path d="M12 2L14.9 8.5L22 9.2L16.7 14L18.2 21L12 17.3L5.8 21L7.3 14L2 9.2L9.1 8.5L12 2Z" fill="#f1c40f" stroke="#d4ac0d" stroke-width="1.2" stroke-linejoin="round"/></svg>`;
-    case 'trophy':
-      return `<svg ${s}><path d="M7 4H17V9C17 11.8 14.8 14 12 14C9.2 14 7 11.8 7 9V4Z" fill="#f59e0b" stroke="#b45309" stroke-width="1.2"/><path d="M7 6H4C3.4 6 3 6.4 3 7C3 9 4.5 10.6 6.5 10.9M17 6H20C20.6 6 21 6.4 21 7C21 9 19.5 10.6 17.5 10.9" stroke="#b45309" stroke-width="1.2" stroke-linecap="round"/><path d="M10 14V17H14V14M8 20H16V17H8V20Z" fill="#d97706" stroke="#b45309" stroke-width="1.2" stroke-linejoin="round"/></svg>`;
-    case 'gear':
-      return `<svg ${s}><circle cx="12" cy="12" r="3" fill="#94a3b8" stroke="#475569" stroke-width="1.2"/><path d="M12 2V4M12 20V22M4 12H2M22 12H20M5 5L6.5 6.5M17.5 17.5L19 19M5 19L6.5 17.5M17.5 6.5L19 5" stroke="#64748b" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="6" stroke="#64748b" stroke-width="1.5"/></svg>`;
-    case 'lightning':
-      return `<svg ${s}><polygon points="13,2 4,13 11,13 10,22 20,10 13,10" fill="#fbbf24" stroke="#d97706" stroke-width="1.2" stroke-linejoin="round"/></svg>`;
-    case 'crown':
-      return `<svg ${s}><path d="M4 18L2 7L7.5 12L12 5L16.5 12L22 7L20 18H4Z" fill="#f59e0b" stroke="#b45309" stroke-width="1.2" stroke-linejoin="round"/><circle cx="2" cy="7" r="1.2" fill="#ef4444"/><circle cx="12" cy="5" r="1.2" fill="#ef4444"/><circle cx="22" cy="7" r="1.2" fill="#ef4444"/></svg>`;
-    case 'baker':
-      return `<svg ${s}><path d="M6 14C3.5 14 2 11.5 3 9C2.5 6 6 4 8.5 5.5C10 3 14 3 15.5 5.5C18 4 21.5 6 21 9C22 11.5 20.5 14 18 14Z" fill="#ffffff" stroke="#78350f" stroke-width="1.2"/><rect x="6" y="14" width="12" height="5" rx="1.5" fill="#fef3c7" stroke="#78350f" stroke-width="1.2"/></svg>`;
-    case 'fire':
-      return `<svg ${s}><path d="M12 2C10 6 7 9 7 13C7 16.5 9.5 19 12 19C14.5 19 17 16.5 17 13C17 9 14 6 12 2Z" fill="#ef4444" stroke="#b91c1c" stroke-width="1.2"/><path d="M12 8C11 10.5 9.5 12 9.5 14C9.5 15.5 10.5 17 12 17C13.5 17 14.5 15.5 14.5 14C14.5 12 13 10.5 12 8Z" fill="#fbbf24"/></svg>`;
-    case 'coffee':
-      return `<svg ${s}><rect x="4" y="8" width="12" height="11" rx="3" fill="#854d0e" stroke="#582f0e" stroke-width="1.2"/><path d="M16 10H18C19.5 10 20.5 11 20.5 12.5C20.5 14 19.5 15 18 15H16" stroke="#582f0e" stroke-width="1.2" stroke-linecap="round"/><path d="M7 5C7 5 7.5 3 9 3M11 5C11 5 11.5 3 13 3" stroke="#d97706" stroke-width="1" stroke-linecap="round"/></svg>`;
-    case 'scooter':
-      return `<svg ${s}><circle cx="6" cy="17" r="3" fill="#64748b" stroke="#334155" stroke-width="1.2"/><circle cx="18" cy="17" r="3" fill="#64748b" stroke="#334155" stroke-width="1.2"/><path d="M6 17H12L15 10H9L8 6H5M15 10L17 17" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-    case 'cat_sleep':
-      return `<svg ${s}><circle cx="12" cy="13" r="7.5" fill="#fed7aa" stroke="#7c2d12" stroke-width="1.2"/><path d="M6 8L8 11M18 8L16 11" stroke="#7c2d12" stroke-width="1.4" stroke-linecap="round"/><path d="M9 14Q10.5 15 12 14Q13.5 15 15 14" stroke="#7c2d12" stroke-width="1.2" stroke-linecap="round" fill="none"/><path d="M16 4H19L16 7H19M19 1H21L19 3H21" stroke="#3b82f6" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-    case 'sound_on':
-      return `<svg ${s}><polygon points="3,9 7,9 12,4 12,20 7,15 3,15" fill="#10b981" stroke="#047857" stroke-width="1.2"/><path d="M16 8C17.5 9.5 17.5 14.5 16 16M19 5C22 8 22 16 19 19" stroke="#047857" stroke-width="1.3" stroke-linecap="round" fill="none"/></svg>`;
-    case 'sound_off':
-      return `<svg ${s}><polygon points="3,9 7,9 12,4 12,20 7,15 3,15" fill="#94a3b8" stroke="#475569" stroke-width="1.2"/><line x1="16" y1="9" x2="21" y2="15" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/><line x1="21" y1="9" x2="16" y2="15" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/></svg>`;
-    case 'money_bag':
-      return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M12 4 C10 4 9 2.5 7.5 3 C6.5 3.5 7 5.5 8.5 6 C5 8 3.5 12 4 16 C4.5 20.5 8 22 12 22 C16 22 19.5 20.5 20 16 C20.5 12 19 8 15.5 6 C17 5.5 17.5 3.5 16.5 3 C15 2.5 14 4 12 4 Z" fill="#e67e22" stroke="#b95c00" stroke-width="1.2"/><path d="M7.5 6.5 C10 8 14 8 16.5 6.5" stroke="#f1c40f" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="14" r="4.5" fill="#f1c40f" stroke="#b95c00" stroke-width="1"/><text x="12" y="17" font-size="6.5" font-weight="900" fill="#783d00" text-anchor="middle" font-family="Arial, sans-serif">$</text></svg>`;
-    case 'wardrobe':
-      return `<svg ${s}><path d="M12 4C10.5 4 10 5.5 10 6.5C10 8 12 8.5 12 10L3 15V17H21V15L12 10" stroke="#9b59b6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="18.5" r="1" fill="#9b59b6"/></svg>`;
-    case 'box':
-      return `<svg ${s}><rect x="4" y="9" width="16" height="12" rx="2" fill="#d97706" stroke="#78350f" stroke-width="1.2"/><path d="M2 9L12 4L22 9" stroke="#78350f" stroke-width="1.2" stroke-linecap="round"/><line x1="12" y1="9" x2="12" y2="21" stroke="#78350f" stroke-width="1.2"/><rect x="10" y="9" width="4" height="12" fill="#fde68a"/></svg>`;
-    case 'fish':
-      return `<svg ${s}><path d="M4 12C1 8 2 5 3 4C6 8 8 10 11 9L15 6C19 6 22 9 22 12C22 15 19 18 15 18L11 15C8 14 6 16 3 20C2 19 1 16 4 12Z" fill="#ffb300" stroke="#ff8f00" stroke-width="1"/><circle cx="18.5" cy="10.5" r="1.2" fill="#2d1600"/><circle cx="18.8" cy="10.2" r="0.4" fill="#fff"/></svg>`;
-    case 'clock':
-      return `<svg ${s}><circle cx="12" cy="12" r="8.5" fill="#f8fafc" stroke="#475569" stroke-width="1.3"/><polyline points="12,7 12,12 15,14" stroke="#475569" stroke-width="1.4" stroke-linecap="round"/></svg>`;
-    case 'home':
-      return `<svg ${s}><path d="M3 11L12 3L21 11V20H5V11" fill="#f97316" stroke="#9a3412" stroke-width="1.2" stroke-linejoin="round"/><rect x="9" y="14" width="6" height="6" fill="#fef3c7" stroke="#9a3412" stroke-width="1"/></svg>`;
-    case 'tools':
-      return `<svg ${s}><path d="M14.5 4.5L19.5 9.5L9.5 19.5H4.5V14.5L14.5 4.5Z" fill="#cbd5e1" stroke="#475569" stroke-width="1.2" stroke-linejoin="round"/><circle cx="16" cy="6" r="1" fill="#475569"/></svg>`;
-    case 'van':
-      return `<svg ${s}><rect x="3" y="7" width="13" height="9" rx="2" fill="#38bdf8" stroke="#0284c7" stroke-width="1.2"/><path d="M16 9H20L22 13V16H16V9Z" fill="#7dd3fc" stroke="#0284c7" stroke-width="1.2"/><circle cx="7" cy="16" r="2.5" fill="#334155"/><circle cx="18" cy="16" r="2.5" fill="#334155"/></svg>`;
-    case 'tag':
-      return `<svg ${s}><path d="M20.59 13.41L13.42 20.58C12.64 21.36 11.37 21.36 10.59 20.58L3.41 13.41C2.63 12.63 2.63 11.37 3.41 10.59L10.59 3.41C11.37 2.63 12.64 2.63 13.42 3.41L20.59 10.59C21.37 11.37 21.37 12.64 20.59 13.41Z" fill="#f43f5e" stroke="#be123c" stroke-width="1.2"/><circle cx="8.5" cy="8.5" r="1.5" fill="#ffffff"/></svg>`;
-    case 'inspector':
-      return `<svg ${s}><circle cx="10" cy="10" r="6" fill="#fef3c7" stroke="#b45309" stroke-width="1.3"/><circle cx="10" cy="10" r="3.5" stroke="#d97706" stroke-width="1"/><line x1="14.5" y1="14.5" x2="20" y2="20" stroke="#78350f" stroke-width="2" stroke-linecap="round"/></svg>`;
-    case 'herb':
-      return `<svg ${s}><path d="M17 4C11 4 7 8 7 14C7 16 8 18 9 20C15 20 19 16 19 10C19 8 18 6 17 4Z" fill="#86efac" stroke="#16a34a" stroke-width="1.3"/><path d="M7 20C9 15 13 11 17 4" stroke="#16a34a" stroke-width="1.2" stroke-linecap="round"/></svg>`;
-    case 'pin':
-      return `<svg ${s}><rect x="6" y="9" width="12" height="6" rx="2" fill="#fed7aa" stroke="#c2410c" stroke-width="1.2"/><rect x="2" y="10.5" width="4" height="3" rx="1" fill="#fdba74" stroke="#c2410c" stroke-width="1"/><rect x="18" y="10.5" width="4" height="3" rx="1" fill="#fdba74" stroke="#c2410c" stroke-width="1"/></svg>`;
-    case 'sauce':
-      return `<svg ${s}><path d="M8 8C8 6 10 5 12 5C14 5 16 6 16 8V19C16 20.1 15.1 21 14 21H10C8.9 21 8 20.1 8 19V8Z" fill="#fef3c7" stroke="#d97706" stroke-width="1.2"/><path d="M10 5V3H14V5" stroke="#d97706" stroke-width="1.2" stroke-linecap="round"/><ellipse cx="12" cy="12" rx="2.5" ry="3" fill="#fde68a"/></svg>`;
-    case 'bell':
-      return `<svg ${s}><path d="M12 4C8.7 4 6 6.7 6 10V14L4 17H20L18 14V10C18 6.7 15.3 4 12 4Z" fill="#fde047" stroke="#ca8a04" stroke-width="1.2" stroke-linejoin="round"/><circle cx="12" cy="19" r="2" fill="#ca8a04"/></svg>`;
-    case 'jar':
-      return `<svg ${s}><rect x="6" y="8" width="12" height="13" rx="3" fill="#fef08a" stroke="#ca8a04" stroke-width="1.2"/><rect x="7" y="4" width="10" height="4" rx="1.5" fill="#f59e0b" stroke="#b45309" stroke-width="1"/><line x1="8" y1="12" x2="16" y2="12" stroke="#eab308" stroke-width="1.2"/></svg>`;
-    case 'glasses':
-      return `<svg ${s}><rect x="3" y="9" width="8" height="6" rx="2" fill="#1e293b" stroke="#0f172a" stroke-width="1.2"/><rect x="13" y="9" width="8" height="6" rx="2" fill="#1e293b" stroke="#0f172a" stroke-width="1.2"/><line x1="11" y1="12" x2="13" y2="12" stroke="#0f172a" stroke-width="1.4"/></svg>`;
-    case 'bow':
-      return `<svg ${s}><polygon points="7,8 12,12 7,16" fill="#f43f5e" stroke="#be123c" stroke-width="1.2"/><polygon points="17,8 12,12 17,16" fill="#f43f5e" stroke="#be123c" stroke-width="1.2"/><circle cx="12" cy="12" r="2.5" fill="#e11d48" stroke="#be123c" stroke-width="1"/></svg>`;
-    case 'flower':
-      return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><g stroke="#b83b5e" stroke-width="1.2" stroke-linejoin="round"><circle cx="12" cy="6.5" r="3.8" fill="#ffccd5"/><circle cx="17.2" cy="10.2" r="3.8" fill="#ffccd5"/><circle cx="15.2" cy="16.5" r="3.8" fill="#ffccd5"/><circle cx="8.8" cy="16.5" r="3.8" fill="#ffccd5"/><circle cx="6.8" cy="10.2" r="3.8" fill="#ffccd5"/></g><circle cx="12" cy="12" r="3.2" fill="#ffd166" stroke="#f4a261" stroke-width="1"/></svg>`;
-    case 'devil':
-      return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M5 4 C6 7 7 10 9 11 C8 9 7 6 5 4 Z" fill="#e74c3c" stroke="#962d22" stroke-width="0.8"/><path d="M19 4 C18 7 17 10 15 11 C16 9 17 6 19 4 Z" fill="#e74c3c" stroke="#962d22" stroke-width="0.8"/><circle cx="12" cy="13" r="8.5" fill="#e74c3c" stroke="#962d22" stroke-width="1.2"/><circle cx="9" cy="11.5" r="1.8" fill="#ffffff"/><circle cx="9.2" cy="11.5" r="0.9" fill="#2c3e50"/><circle cx="15" cy="11.5" r="1.8" fill="#ffffff"/><circle cx="14.8" cy="11.5" r="0.9" fill="#2c3e50"/><path d="M9 15 Q12 18.5 15 15" stroke="#2c3e50" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>`;
-    case 'money_bag':
-      return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M9 4 C9 2.8 10.3 2 12 2 C13.7 2 15 2.8 15 4 L17 7 H7 Z" fill="#d35400"/><ellipse cx="12" cy="7" rx="5" ry="1.5" fill="#e67e22"/><path d="M5 9 C4 14 5 21 12 21 C19 21 20 14 19 9 C18 7.5 6 7.5 5 9 Z" fill="#f1c40f" stroke="#d4ac0d" stroke-width="1.2"/><text x="12" y="16.5" font-size="9" font-weight="900" fill="#784212" text-anchor="middle" font-family="sans-serif">$</text></svg>`;
-    case 'heart':
-      return `<svg ${s}><path d="M12 20C12 20 4 14.5 4 8.5C4 5.5 6.5 3.5 9.5 3.5C11 3.5 12 4.5 12 4.5C12 4.5 13 3.5 14.5 3.5C17.5 3.5 20 5.5 20 8.5C20 14.5 12 20 12 20Z" fill="#f43f5e" stroke="#be123c" stroke-width="1.2"/></svg>`;
-    case 'cancel':
-      return `<svg ${s}><circle cx="12" cy="12" r="8" fill="none" stroke="#94a3b8" stroke-width="1.5"/><line x1="6.5" y1="6.5" x2="17.5" y2="17.5" stroke="#ef4444" stroke-width="1.5"/></svg>`;
-    default:
-      return '';
-  }
-}
-
     function hasWardrobeUnlocked(state, id) {
       return Array.isArray(state?.meta?.wardrobe?.unlocked) && state.meta.wardrobe.unlocked.includes(id);
     }
@@ -2826,30 +3748,41 @@ window.getSvgIcon = getSvgIcon;
     function getPrestigeThresholds(allTime, state) {
       const inspectorLvl = state?.meta?.perks?.generous_inspector || 0;
       const discountMult = 1 - Math.min(0.25, inspectorLvl * 0.05);
-      const effectiveBase = 1000000 * discountMult;
-      const currentTotalStars = Math.floor(1.5 * Math.sqrt(Math.max(0, allTime) / effectiveBase));
-      const nextTotalStars = currentTotalStars + 1;
-      const prevThreshold = Math.floor(Math.pow(currentTotalStars / 1.5, 2) * effectiveBase);
-      const nextThreshold = Math.ceil(Math.pow(nextTotalStars / 1.5, 2) * effectiveBase);
-      return { prev: prevThreshold, next: nextThreshold };
+
+      let starIndex = 0;
+      while (allTime >= Math.floor(getPrestigeThresholdByIndex(starIndex + 1) * discountMult)) {
+        starIndex++;
+      }
+
+      const prev = Math.floor(getPrestigeThresholdByIndex(starIndex) * discountMult);
+      const next = Math.floor(getPrestigeThresholdByIndex(starIndex + 1) * discountMult);
+      return { prev, next };
     }
 
     function calculatePrestigeReward(state) {
-      const allTime = state.stats?.totalCookiesAllTime || 0;
+      const currentPrestige = state.meta?.prestigeCount || 0;
+      if (currentPrestige >= LOCATIONS_CONFIG.length - 1) return 0;
+
+      const nextLoc = LOCATIONS_CONFIG[currentPrestige + 1];
+      // Учитываем выпечку строго внутри текущего филиала
+      const runBaked = Math.max(state.run?.cookies || 0, state.run?.lifetimeCookiesRun || 0);
       const inspectorLvl = state?.meta?.perks?.generous_inspector || 0;
       const discountMult = 1 - Math.min(0.25, inspectorLvl * 0.05);
-      const effectiveBase = 1000000 * discountMult;
-      const eligibleStars = Math.floor(1.5 * Math.sqrt(Math.max(0, allTime) / effectiveBase));
-      return Math.max(0, eligibleStars - (state.meta?.lifetimeStars || 0));
+      const targetReq = Math.floor(nextLoc.reqCookies * discountMult);
+
+      const starsByBranch = [0, 5, 15, 35, 75, 150];
+      const reward = starsByBranch[currentPrestige + 1] || 10;
+
+      return runBaked >= targetReq ? reward : 0;
     }
 
     const PRESTIGE_PERKS_CONFIG = {
       start_van: {
         id: 'start_van',
         name: 'Стартовый фургон',
-        desc: 'Дает +2 Лапколапа сразу после переезда за каждый уровень (максимум 10)',
+        desc: 'Дает +2 Лапколапа сразу после переезда за каждый уровень',
         icon: getSvgIcon('van', 22),
-        maxLevel: 5,
+        maxLevel: 10,
         getCost: (l) => (l === 0 ? 1 : (l + 1) * 2)
       },
       strong_paws: {
@@ -2857,31 +3790,31 @@ window.getSvgIcon = getSvgIcon;
         name: 'Крепкие лапки',
         desc: '+100% к силе клика и синергии за каждый уровень',
         icon: getSvgIcon('paw', 22),
-        maxLevel: 10,
-        getCost: (l) => (l === 0 ? 1 : Math.floor(1 * Math.pow(1.5, l)))
+        maxLevel: 20,
+        getCost: (l) => (l === 0 ? 1 : Math.floor(1 * Math.pow(1.35, l)))
       },
       cat_sleep: {
         id: 'cat_sleep',
         name: 'Кошачий сон',
-        desc: 'Увеличивает максимальный сон без вас: 4ч → 6ч → 8ч → 12ч',
+        desc: 'Увеличивает максимальный сон без вас: 4ч → 6ч → 8ч → 12ч → 16ч',
         icon: getSvgIcon('cat_sleep', 22),
-        maxLevel: 3,
+        maxLevel: 4,
         getCost: (l) => (l === 0 ? 1 : (l + 1) * 5)
       },
       bulk_buy: {
         id: 'bulk_buy',
         name: 'Оптовая закупка',
-        desc: 'Постоянная скидка -1% на всех пекарей (до -5%)',
+        desc: 'Постоянная скидка -1% на всех пекарей (до -10%)',
         icon: getSvgIcon('tag', 22),
-        maxLevel: 5,
+        maxLevel: 10,
         getCost: (l) => (l === 0 ? 1 : (l + 1) * 3)
       },
       generous_inspector: {
         id: 'generous_inspector',
         name: 'Щедрый инспектор',
-        desc: 'Снижает порог выпечки для получения Звёзд на 5% за уровень (до -25%)',
+        desc: 'Снижает порог выпечки для филиалов на 4% за уровень (до -40%)',
         icon: getSvgIcon('inspector', 22),
-        maxLevel: 5,
+        maxLevel: 10,
         getCost: (l) => (l === 0 ? 1 : (l + 1) * 4)
       }
     };
@@ -3057,7 +3990,8 @@ window.getSvgIcon = getSvgIcon;
             goldenRollingPin: 0,
             creamSauce: 0,
             catBell: 0,
-            fishJar: 0
+            fishJar: 0,
+            meteorFlour: 0
           },
           wardrobe: {
             unlocked: ['chef_hat_1', 'neck_none'],
@@ -3074,7 +4008,10 @@ window.getSvgIcon = getSvgIcon;
         boosts: {
           adMultiplierExpiresAt: 0,
           feverActive: false,
-          feverProgress: 0
+          feverProgress: 0,
+          orderRushTimer: 0,
+          activeOrder: null,
+          nextOrderCooldown: 120
         },
         timestamps: {
           lastSaveTime: now,
@@ -3158,6 +4095,7 @@ window.getSvgIcon = getSvgIcon;
           if (oldEq === 'golden_monocle') equippedHead = 'devil_horns';
           else if (oldEq === 'cherry_flower') equippedHead = 'flower_wreath';
           else if (oldEq === 'angel_halo') equippedHead = 'love_hearts';
+          else if (oldEq === 'royal_crown') equippedHead = 'magic_tophat';
           else if (oldEq !== 'none') equippedHead = oldEq;
         }
 
@@ -3194,8 +4132,9 @@ window.getSvgIcon = getSvgIcon;
             catnip: Math.floor(sanitizeNumber(data.meta?.shop?.catnip, 0)),
             goldenRollingPin: Math.floor(sanitizeNumber(data.meta?.shop?.goldenRollingPin, 0)),
             creamSauce: Math.floor(sanitizeNumber(data.meta?.shop?.creamSauce || data.meta?.shop?.eternalEnergy, 0)),
-            catBell: Math.min(5, Math.floor(sanitizeNumber(data.meta?.shop?.catBell, 0))),
-            fishJar: Math.floor(sanitizeNumber(data.meta?.shop?.fishJar, 0))
+            catBell: Math.min(8, Math.floor(sanitizeNumber(data.meta?.shop?.catBell, 0))),
+            fishJar: Math.floor(sanitizeNumber(data.meta?.shop?.fishJar, 0)),
+            meteorFlour: Math.floor(sanitizeNumber(data.meta?.shop?.meteorFlour, 0))
           },
           wardrobe: {
             unlocked: Array.from(new Set(wardrobeUnlocked)),
@@ -3212,7 +4151,10 @@ window.getSvgIcon = getSvgIcon;
         boosts: {
           adMultiplierExpiresAt: sanitizeNumber(data.boosts?.adMultiplierExpiresAt, 0),
           feverActive: !!data.boosts?.feverActive,
-          feverProgress: Math.min(100, sanitizeNumber(data.boosts?.feverProgress, 0))
+          feverProgress: Math.min(100, sanitizeNumber(data.boosts?.feverProgress, 0)),
+          orderRushTimer: sanitizeNumber(data.boosts?.orderRushTimer, 0),
+          activeOrder: data.boosts?.activeOrder || null,
+          nextOrderCooldown: sanitizeNumber(data.boosts?.nextOrderCooldown, 120)
         },
         timestamps: {
           lastSaveTime: sanitizeNumber(data.timestamps?.lastSaveTime, Date.now()),
@@ -3310,14 +4252,19 @@ window.getSvgIcon = getSvgIcon;
         baseTotalRate += getGeneratorCurrentRate(id, state);
       }
       const stars = state.meta.stars || 0;
-      const prestigeMultiplier = 1 + stars * 0.05;
+      const locIdx = Math.min(Math.max(0, state.meta?.prestigeCount || 0), LOCATION_THEMES.length - 1);
+      const activeLoc = LOCATION_THEMES[locIdx] || LOCATION_THEMES[0];
+      const branchMultiplier = activeLoc.cpsMultiplier || 1.0;
+      const prestigeMultiplier = branchMultiplier * (1 + stars * 0.10);
       const sauceLevel = state.meta?.shop?.creamSauce || 0;
       const shopSauceMultiplier = 1 + sauceLevel * 0.15;
+      const meteorFlourMultiplier = 1 + (state.meta?.shop?.meteorFlour || 0) * 0.30;
       const nowMsTime = Date.now();
       const isAdBoosted = (state.boosts.adMultiplierExpiresAt || 0) > nowMsTime;
       const adMultiplier = isAdBoosted ? 2 : 1;
       const sugarMultiplier = (typeof sugarRushExpiresAt !== 'undefined' && sugarRushExpiresAt > nowMsTime) ? 3 : 1;
       const sleepMultiplier = (typeof activeCatMood !== 'undefined' && activeCatMood === 'sleep' && nowMsTime < moodTimerEnd) ? 2.5 : 1;
+      const orderRushMult = (state.boosts && state.boosts.orderRushTimer > 0) ? (Number(state.boosts.orderRushMultiplier) || 2.0) : 1.0;
 
       let wardrobeRateMult = 1.0;
       if (hasWardrobeUnlocked(state, 'chef_hat_2')) {
@@ -3329,11 +4276,20 @@ window.getSvgIcon = getSvgIcon;
       if (hasWardrobeUnlocked(state, 'beret_royal')) {
         wardrobeRateMult *= 1.04;
       }
-      if (hasWardrobeUnlocked(state, 'royal_crown')) {
+      if (hasWardrobeUnlocked(state, 'royal_crown') || hasWardrobeUnlocked(state, 'magic_tophat')) {
         wardrobeRateMult *= 1.05;
       }
+      if (hasWardrobeUnlocked(state, 'gold_crown')) {
+        wardrobeRateMult *= 1.06;
+      }
+      if (hasWardrobeUnlocked(state, 'neon_choker')) {
+        wardrobeRateMult *= 1.05;
+      }
+      if (hasWardrobeUnlocked(state, 'astral_halo')) {
+        wardrobeRateMult *= 1.10;
+      }
 
-      return Math.floor(baseTotalRate * prestigeMultiplier * shopSauceMultiplier * adMultiplier * sugarMultiplier * sleepMultiplier * wardrobeRateMult);
+      return Math.floor(baseTotalRate * prestigeMultiplier * shopSauceMultiplier * meteorFlourMultiplier * adMultiplier * sugarMultiplier * sleepMultiplier * orderRushMult * wardrobeRateMult);
     }
 
     function getCostWithDiscount(rawPrice, perkLevel = 0) {
@@ -3462,7 +4418,11 @@ window.getSvgIcon = getSvgIcon;
     }
 
     function getClickPower(state) {
-      const basePower = (1 + (state.meta.stars || 0)) * Math.max(1, state.run.clickLevel);
+      const locIdx = Math.min(Math.max(0, state.meta?.prestigeCount || 0), LOCATION_THEMES.length - 1);
+      const activeLoc = LOCATION_THEMES[locIdx] || LOCATION_THEMES[0];
+      const locClickBonus = activeLoc.clickBonus || 0;
+
+      const basePower = ((1 + (state.meta.stars || 0)) * Math.max(1, state.run.clickLevel)) + locClickBonus;
       const perkMult = 1 + (state.meta?.perks?.strong_paws || 0);
       const pinMult = 1 + (state.meta?.shop?.goldenRollingPin || 0) * 0.15;
       
@@ -3476,8 +4436,14 @@ window.getSvgIcon = getSvgIcon;
       if (hasWardrobeUnlocked(state, 'beret_royal')) {
         wardrobeClickMult *= 1.04;
       }
-      if (hasWardrobeUnlocked(state, 'royal_crown')) {
+      if (hasWardrobeUnlocked(state, 'royal_crown') || hasWardrobeUnlocked(state, 'magic_tophat')) {
         wardrobeClickMult *= 1.05;
+      }
+      if (hasWardrobeUnlocked(state, 'ruby_collar')) {
+        wardrobeClickMult *= 1.05;
+      }
+      if (hasWardrobeUnlocked(state, 'cyber_visor')) {
+        wardrobeClickMult *= 1.08;
       }
 
       const clickUpgradesMult = perkMult * pinMult * wardrobeClickMult;
@@ -3513,6 +4479,10 @@ window.getSvgIcon = getSvgIcon;
       el.textContent = `+${formatNumber(amount)}`;
       el.style.left = `${x}px`;
       el.style.top = `${y}px`;
+
+      // Разлёт влево или вправо на 12-28px, чтобы не закрывать кота
+      const scatterX = (Math.random() - 0.5) * 45;
+      el.style.setProperty('--dx', `${scatterX}px`);
 
       const cleanup = () => {
         if (el.parentNode === container) container.removeChild(el);
@@ -3560,7 +4530,11 @@ window.getSvgIcon = getSvgIcon;
 
     let activeCatMood = null;
     let moodTimerEnd = 0;
-    let scratchTapsNeeded = 0;
+    let petProgress = 0; // 0..100%
+    let isPointerDownOnCat = false;
+    let lastPetMoveX = 0;
+    let lastPetMoveY = 0;
+    let lastPetHeartTime = 0;
     let nextCatMoodTimestamp = Date.now() + (60 + Math.random() * 30) * 1000;
 
     function getComboMultiplier() {
@@ -3584,17 +4558,53 @@ window.getSvgIcon = getSvgIcon;
       setTimeout(() => heart.remove(), 800);
     }
 
+    function spawnFeverSpark() {
+      const container = document.getElementById('fever-wrapper');
+      if (!container) return;
+
+      const spark = document.createElement('div');
+      spark.className = 'fever-spark-particle';
+
+      // Маленький размер мини-блесток: 2.5 - 4px
+      const size = 2.5 + Math.random() * 2;
+      spark.style.width = `${size}px`;
+      spark.style.height = `${size}px`;
+
+      // Появление в радиусе самого кольца
+      const angle = Math.random() * Math.PI * 2;
+      const radius = 68 + (Math.random() * 10 - 5);
+      const startX = 50 + (Math.cos(angle) * radius / 1.7);
+      const startY = 50 + (Math.sin(angle) * radius / 1.7);
+
+      spark.style.left = `${startX}%`;
+      spark.style.top = `${startY}%`;
+
+      const driftX = (Math.random() - 0.5) * 8;
+      const driftY = (Math.random() - 0.5) * 8;
+
+      spark.style.setProperty('--dx', `${driftX}px`);
+      spark.style.setProperty('--dy', `${driftY}px`);
+
+      container.appendChild(spark);
+      setTimeout(() => spark.remove(), 600);
+    }
+
     function triggerFeverMode(state) {
-      if (typeof activeCatMood !== 'undefined' && activeCatMood) {
-        activeCatMood = null;
-        const catMoodBubbleEl = document.getElementById('cat-mood-bubble');
-        if (catMoodBubbleEl) catMoodBubbleEl.classList.add('hidden');
-        if (typeof clearCatMoodVisuals === 'function') clearCatMoodVisuals();
-      }
+      try {
+        clearCatMoodVisuals();
+      } catch (e) {}
+
+      nextCatMoodTimestamp = Date.now() + (60 + Math.random() * 30) * 1000;
       state.boosts.feverActive = true;
       state.boosts.feverProgress = 100;
       feverRemainingTimer = getMaxFeverDuration(state);
-      SoundFX.playFever(state.settings.soundMuted);
+
+      const wrapper = document.getElementById('fever-wrapper');
+      if (wrapper) {
+        wrapper.classList.add('fever-active');
+      }
+
+      SoundFX.playFever(state.settings?.soundMuted);
     }
 
     function processTap(state, container, clientX, clientY) {
@@ -3690,6 +4700,7 @@ window.getSvgIcon = getSvgIcon;
     }
     function initGame() {
       let state = loadFromLocal();
+      window.state = state; // Доступ для консоли F12
       let subCookieAccumulator = 0;
 
       const appRoot = document.getElementById('app-root');
@@ -3768,6 +4779,8 @@ window.getSvgIcon = getSvgIcon;
 
       const devAdd100k = document.getElementById('dev-add-100k');
       const devAdd10m = document.getElementById('dev-add-10m');
+      const devAdd10b = document.getElementById('dev-add-10b');
+      const devAdd1t = document.getElementById('dev-add-1t');
       const devAdd50Fish = document.getElementById('dev-add-50-fish');
       const devAdd5Stars = document.getElementById('dev-add-5-stars');
       const devAdd20Yarn = document.getElementById('dev-add-20-yarn');
@@ -3785,9 +4798,21 @@ window.getSvgIcon = getSvgIcon;
       let activeWardrobeSlot = 'head';
       let toastTimeoutId = null;
 
+      function getCurrentLocationIndex(gameState) {
+        const allTime = gameState.stats?.totalCookiesAllTime || 0;
+        let activeIdx = 0;
+        for (let i = 0; i < LOCATIONS_CONFIG.length; i++) {
+          const loc = LOCATIONS_CONFIG[i];
+          if (allTime >= loc.reqCookies) {
+            activeIdx = i;
+          }
+        }
+        return activeIdx;
+      }
+
       function updateCatVisuals(gameState) {
-        const prestiges = gameState.meta?.prestigeCount || 0;
-        const stageIndex = Math.min(2, prestiges);
+        const stageIndex = Math.min(Math.max(0, gameState.meta?.prestigeCount || 0), LOCATIONS_CONFIG.length - 1);
+        const locConfig = LOCATIONS_CONFIG[stageIndex] || LOCATIONS_CONFIG[0];
 
         const eqHeadId = gameState.meta?.wardrobe?.equippedHead || 'chef_hat_1';
         const eqNeckId = gameState.meta?.wardrobe?.equippedNeck || 'neck_none';
@@ -3802,12 +4827,38 @@ window.getSvgIcon = getSvgIcon;
           catNeckLayer.innerHTML = (neckItem && neckItem.svg) ? neckItem.svg : '';
         }
 
-        appRoot.classList.remove('theme-bakery-0', 'theme-bakery-1', 'theme-bakery-2');
+        for (let i = 0; i < LOCATIONS_CONFIG.length; i++) {
+          appRoot.classList.remove(`theme-bakery-${i}`);
+          if (LOCATIONS_CONFIG[i].bgClass) {
+            appRoot.classList.remove(LOCATIONS_CONFIG[i].bgClass);
+          }
+        }
         appRoot.classList.add(`theme-bakery-${stageIndex}`);
+        if (locConfig.bgClass) {
+          appRoot.classList.add(locConfig.bgClass);
+        }
 
-        const locConfig = LOCATION_THEMES[stageIndex] || LOCATION_THEMES[0];
+        if (stageIndex === 3 || stageIndex === 4 || stageIndex === 5) {
+          appRoot.classList.add('theme-dark');
+        } else {
+          appRoot.classList.remove('theme-dark');
+        }
+
         if (locationBadgeIcon) locationBadgeIcon.innerHTML = locConfig.icon;
         if (locationBadgeName) locationBadgeName.textContent = locConfig.name;
+
+        const feverRingPath = document.getElementById('fever-ring-progress');
+        const feverRingBg = document.querySelector('.fever-ring .ring-bg');
+        const feverRingSvg = document.querySelector('.fever-ring');
+        if (feverRingPath) {
+          feverRingPath.style.stroke = locConfig.ringColor || 'url(#feverGlowGrad)';
+        }
+        if (feverRingBg) {
+          feverRingBg.style.stroke = locConfig.ringColor ? `${locConfig.ringColor}38` : 'rgba(180, 83, 9, 0.22)';
+        }
+        if (feverRingSvg) {
+          feverRingSvg.style.filter = locConfig.ringFilter || 'none';
+        }
       }
 
       function showTutorial(icon, title, text, btnText, onConfirm) {
@@ -3886,8 +4937,23 @@ window.getSvgIcon = getSvgIcon;
       const catMoodBubble = document.getElementById('cat-mood-bubble');
 
       function clearCatMoodVisuals() {
-        doughTarget.classList.remove('cat-blissful');
-        feverWrapper.classList.remove('sleep-active');
+        activeCatMood = null;
+        const target = document.getElementById('dough-target');
+        const wrapper = document.getElementById('fever-wrapper');
+        const bubble = document.getElementById('cat-mood-bubble');
+
+        if (target) target.classList.remove('cat-blissful');
+        if (wrapper) wrapper.classList.remove('sleep-active');
+        if (bubble) bubble.classList.add('hidden');
+
+        if (typeof zzzSpawnInterval !== 'undefined' && zzzSpawnInterval) {
+          clearInterval(zzzSpawnInterval);
+          zzzSpawnInterval = null;
+        }
+        if (typeof purrHeartsInterval !== 'undefined' && purrHeartsInterval) {
+          clearInterval(purrHeartsInterval);
+          purrHeartsInterval = null;
+        }
       }
 
       let zzzSpawnInterval = null;
@@ -3932,24 +4998,20 @@ window.getSvgIcon = getSvgIcon;
 
         if (activeCatMood === 'sleep') {
           catMoodBubble.classList.remove('interactive');
-          catMoodBubble.innerHTML = `${getSvgIcon('cat_sleep', 14)} CPS x2.5 (${remainingSec}с)`;
+          catMoodBubble.innerHTML = `${getSvgIcon('cat_sleep', 15)} Спит: Выпечка x2.5 (${remainingSec}с)`;
         } else if (activeCatMood === 'purr') {
           catMoodBubble.classList.remove('interactive');
-          catMoodBubble.innerHTML = `${getSvgIcon('heart', 14)} Клик x1.5 (${remainingSec}с)`;
-        } else if (activeCatMood === 'scratch') {
+          catMoodBubble.innerHTML = `${getSvgIcon('heart', 15)} Мурчит: Клик x1.5 (${remainingSec}с)`;
+        } else if (activeCatMood === 'pet' || activeCatMood === 'scratch') {
           catMoodBubble.classList.add('interactive');
-          catMoodBubble.innerHTML = `${getSvgIcon('paw', 14)} Погладь! (осталось: ${scratchTapsNeeded})`;
+          catMoodBubble.innerHTML = `${getSvgIcon('paw', 15)} Гладь котика! ${Math.floor(petProgress)}%`;
         }
       }
 
       function triggerCatMoodEvent(forcedType = null) {
         if (state.boosts.feverActive) return;
 
-        const events = ['purr', 'sleep', 'scratch'];
-        activeCatMood = forcedType || events[Math.floor(Math.random() * events.length)];
-        const now = Date.now();
-
-        clearCatMoodVisuals();
+        // Полная очистка предыдущих интервалов перед установкой нового настроения
         if (zzzSpawnInterval) {
           clearInterval(zzzSpawnInterval);
           zzzSpawnInterval = null;
@@ -3958,6 +5020,18 @@ window.getSvgIcon = getSvgIcon;
           clearInterval(purrHeartsInterval);
           purrHeartsInterval = null;
         }
+
+        const events = ['purr', 'sleep', 'scratch'];
+        const selectedMood = forcedType || events[Math.floor(Math.random() * events.length)];
+        const now = Date.now();
+
+        // Снимаем визуал, не затирая новое настроение
+        const target = document.getElementById('dough-target');
+        const wrapper = document.getElementById('fever-wrapper');
+        if (target) target.classList.remove('cat-blissful');
+        if (wrapper) wrapper.classList.remove('sleep-active');
+
+        activeCatMood = selectedMood;
 
         if (activeCatMood === 'purr') {
           moodTimerEnd = now + MOOD_CONFIG.purrDuration;
@@ -3970,88 +5044,108 @@ window.getSvgIcon = getSvgIcon;
           spawnZzzLetter();
           zzzSpawnInterval = setInterval(spawnZzzLetter, 850);
         } else if (activeCatMood === 'scratch' || activeCatMood === 'pet') {
-          activeCatMood = 'scratch';
-          moodTimerEnd = now + MOOD_CONFIG.petTimeout;
-          scratchTapsNeeded = MOOD_CONFIG.petTaps;
+          activeCatMood = 'pet';
+          moodTimerEnd = now + 15000; // 15 секунд на поглаживание
+          petProgress = 0;
           doughTarget.classList.add('cat-blissful');
         }
 
         updateMoodStatusPill();
       }
 
-      let lastPetTapTimestamp = 0;
+      function completePetEvent() {
+        activeCatMood = null;
+        petProgress = 100;
+        catMoodBubble.classList.remove('interactive');
 
-      function handleBubbleScratch(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+        if (navigator.vibrate) navigator.vibrate([30, 50, 30]);
 
-        const now = performance.now();
-        if (now - lastPetTapTimestamp < 90) return;
-        lastPetTapTimestamp = now;
+        const givesYarn = Math.random() < 0.30;
+        let rewardHtml = '';
 
-        if (activeCatMood !== 'scratch' || scratchTapsNeeded <= 0) return;
-
-        scratchTapsNeeded--;
-        SoundFX.playClick(state.settings.soundMuted);
-
-        const rect = catMoodBubble.getBoundingClientRect();
-        spawnPurrHeart(rect.left + rect.width / 2, rect.top);
-
-        if (scratchTapsNeeded > 0) {
-          catMoodBubble.innerHTML = `${getSvgIcon('paw', 14)} Погладь! (осталось: ${scratchTapsNeeded})`;
+        if (givesYarn) {
+          state.meta.yarn += 1;
+          rewardHtml = `Довольный мур! +1 ${getYarnIconSvg(15)}`;
         } else {
-          activeCatMood = null;
-          catMoodBubble.classList.remove('interactive');
+          const currentCps = calculateTotalRate(state);
+          const rawCap = currentCps > 0 
+            ? Math.min(currentCps * 45, Math.max(120, Math.floor(state.run.cookies * 0.06)))
+            : getClickPower(state) * 20;
+          const cookiesPrize = Math.max(60, Math.floor(rawCap));
+          state.run.cookies += cookiesPrize;
+          state.run.lifetimeCookiesRun += cookiesPrize;
+          state.stats.totalCookiesAllTime += cookiesPrize;
+          rewardHtml = `Довольный мур! +${formatNumber(cookiesPrize)} ${getSvgIcon('cookie', 15)}`;
+        }
 
-          const givesYarn = Math.random() < 0.25;
-          let rewardHtml = '';
+        catMoodBubble.innerHTML = rewardHtml;
+        SoundFX.playFever(state.settings.soundMuted);
 
-          if (givesYarn) {
-            state.meta.yarn += 1;
-            rewardHtml = `Довольный мур! +1 ${getYarnIconSvg(14)}`;
-          } else {
-            const currentCps = calculateTotalRate(state);
-            const cookiesPrize = Math.max(100, Math.floor((currentCps > 0 ? currentCps * 40 : getClickPower(state) * 30)));
-            state.run.cookies += cookiesPrize;
-            state.run.lifetimeCookiesRun += cookiesPrize;
-            state.stats.totalCookiesAllTime += cookiesPrize;
-            rewardHtml = `Довольный мур! +${formatNumber(cookiesPrize)} ${getSvgIcon('cookie', 14)}`;
+        setTimeout(() => {
+          clearCatMoodVisuals();
+          catMoodBubble.classList.add('hidden');
+        }, 1400);
+
+        saveToLocal(state);
+        renderStaticUI();
+      }
+
+      function handleCatStroke(clientX, clientY) {
+        if (activeCatMood !== 'pet' && activeCatMood !== 'scratch') return;
+        if (!isPointerDownOnCat) return;
+
+        const dist = Math.hypot(clientX - lastPetMoveX, clientY - lastPetMoveY);
+        if (dist > 8) {
+          lastPetMoveX = clientX;
+          lastPetMoveY = clientY;
+
+          petProgress = Math.min(100, petProgress + 1.25);
+          updateMoodStatusPill();
+
+          const now = performance.now();
+          if (now - lastPetHeartTime > 260) {
+            lastPetHeartTime = now;
+            spawnPurrHeart(clientX, clientY);
+            if (navigator.vibrate) navigator.vibrate(12);
           }
 
-          catMoodBubble.innerHTML = rewardHtml;
-          SoundFX.playFever(state.settings.soundMuted);
-
-          setTimeout(() => {
-            clearCatMoodVisuals();
-            catMoodBubble.classList.add('hidden');
-          }, 1200);
-
-          saveToLocal(state);
-          renderStaticUI();
+          if (petProgress >= 100) {
+            isPointerDownOnCat = false;
+            completePetEvent();
+          }
         }
       }
 
-      catMoodBubble.addEventListener('pointerdown', handleBubbleScratch);
-
-      feverWrapper.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        triggerSquash();
-        const touches = e.targetTouches;
-        for (let i = 0; i < touches.length; i++) {
-          processTap(state, floatingContainer, touches[i].clientX, touches[i].clientY);
-        }
-        checkAchievements(state, showAchievementToast);
-        renderStaticUI();
-      }, { passive: false });
-
       feverWrapper.addEventListener('pointerdown', (e) => {
-        if (e.pointerType === 'touch') return;
+        isPointerDownOnCat = true;
+        lastPetMoveX = e.clientX;
+        lastPetMoveY = e.clientY;
+
         triggerSquash();
         processTap(state, floatingContainer, e.clientX, e.clientY);
         checkAchievements(state, showAchievementToast);
         renderStaticUI();
       });
+
+      window.addEventListener('pointermove', (e) => {
+        if (isPointerDownOnCat) {
+          handleCatStroke(e.clientX, e.clientY);
+        }
+      });
+
+      window.addEventListener('pointerup', () => {
+        isPointerDownOnCat = false;
+      });
+
+      window.addEventListener('pointercancel', () => {
+        isPointerDownOnCat = false;
+      });
+
+      feverWrapper.addEventListener('touchmove', (e) => {
+        if (isPointerDownOnCat && e.touches[0]) {
+          handleCatStroke(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: true });
 
       btnUpgradeClick.addEventListener('click', () => {
         if (buyClickUpgrade(state)) {
@@ -4068,6 +5162,322 @@ window.getSvgIcon = getSvgIcon;
         saveToLocal(state);
         renderStaticUI();
       });
+      let rainbowBubblesLeft = 0;
+
+      function triggerRandomOrder(force = false) {
+        if (state.boosts?.activeOrder) {
+          if (force) {
+            cancelActiveOrder();
+          } else {
+            return;
+          }
+        }
+
+        const currentRate = Math.max(20, calculateTotalRate(state));
+        const rand = Math.random();
+        let diff = 'easy';
+        let mult = 1.35;
+        let dur = 35;
+        let rewardFish = 0;
+        let rewardCookiesSec = 45; // 45 сек текущего дохода
+        let buffMult = 2.0;
+        let buffDur = 15;
+
+        if (rand < 0.55) {
+          // Легкий: разгон на +30–50%
+          diff = 'easy';
+          mult = 1.30 + Math.random() * 0.20;
+          dur = 35;
+          rewardFish = 0;
+          rewardCookiesSec = 45;
+          buffMult = 2.0;
+          buffDur = 15;
+        } else if (rand < 0.85) {
+          // Средний: разгон на +60–90%
+          diff = 'medium';
+          mult = 1.60 + Math.random() * 0.30;
+          dur = 45;
+          rewardFish = 0;
+          rewardCookiesSec = 80;
+          buffMult = 2.5;
+          buffDur = 20;
+        } else {
+          // Королевский: разгон в 2–2.5 раза
+          diff = 'hard';
+          mult = 2.0 + Math.random() * 0.50;
+          dur = 60;
+          rewardFish = 1;
+          rewardCookiesSec = 140;
+          buffMult = 4.0;
+          buffDur = 25;
+        }
+
+        state.boosts.activeOrder = {
+          diff: diff,
+          targetRate: Math.ceil(currentRate * mult),
+          initialRate: currentRate,
+          duration: dur,
+          timeLeft: dur,
+          rewardFish: rewardFish,
+          rewardCookies: Math.floor(currentRate * rewardCookiesSec),
+          buffMult: buffMult,
+          buffDur: buffDur
+        };
+
+        renderOrderBadge();
+      }
+
+      function renderOrderBadge() {
+        let badge = document.getElementById('urgent-order-badge');
+        if (!badge) {
+          badge = document.createElement('div');
+          badge.id = 'urgent-order-badge';
+          badge.className = 'urgent-order-badge';
+          badge.innerHTML = `
+            ${getSvgIcon('scroll', 24)}
+            <div class="order-alert-dot"></div>
+            <div class="order-mini-timer">
+              <div id="order-mini-fill" class="order-mini-fill"></div>
+            </div>
+          `;
+          const handleOpen = (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            openOrderModal();
+          };
+          badge.addEventListener('pointerdown', handleOpen);
+          badge.addEventListener('click', handleOpen);
+          const clickZone = document.querySelector('.click-zone');
+          if (clickZone) clickZone.appendChild(badge);
+        }
+        updateOrderUI();
+      }
+
+      function updateOrderUI() {
+        const ord = state.boosts?.activeOrder;
+        if (!ord) return;
+
+        const fill = document.getElementById('order-mini-fill');
+        if (fill && ord.duration > 0) {
+          fill.style.width = `${Math.max(0, (ord.timeLeft / ord.duration) * 100)}%`;
+        }
+
+        const modalLiveRate = document.getElementById('order-modal-live-rate');
+        const modalLiveTime = document.getElementById('order-modal-live-time');
+        const currentRate = calculateTotalRate(state);
+
+        if (modalLiveRate) {
+          modalLiveRate.textContent = `${formatNumber(currentRate)}/сек`;
+          modalLiveRate.style.color = currentRate >= ord.targetRate ? '#10b981' : '#b45309';
+        }
+        if (modalLiveTime) {
+          modalLiveTime.textContent = `${Math.ceil(Math.max(0, ord.timeLeft))} сек`;
+        }
+
+        // Если цель достигнута — завершаем и сразу выходим
+        if (currentRate >= ord.targetRate) {
+          completeActiveOrder();
+          return;
+        }
+      }
+
+      function openOrderModal() {
+        const ord = state.boosts.activeOrder;
+        if (!ord) return;
+
+        const currentRate = calculateTotalRate(state);
+        const diffLabels = {
+          easy: '<span class="order-difficulty-pill diff-easy">Легкий заказ</span>',
+          medium: '<span class="order-difficulty-pill diff-medium">Особый заказ</span>',
+          hard: '<span class="order-difficulty-pill diff-hard">Королевский челлендж</span>'
+        };
+
+        const overlay = document.createElement('div');
+        overlay.id = 'order-modal-overlay';
+        overlay.className = 'modal-backdrop';
+        overlay.style.zIndex = '999';
+
+        overlay.innerHTML = `
+          <div class="order-modal-card">
+            ${diffLabels[ord.diff]}
+            <div style="font-size:1.15rem; font-weight:900; color:#1e293b;">Срочный контракт!</div>
+            <div style="font-size:0.85rem; color:#475569; line-height:1.4;">
+              Разгоните кухню до целевой скорости выпечки, докупая пекарей и прокачки:
+            </div>
+            
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:10px; display:flex; justify-content:space-around;">
+              <div>
+                <div style="font-size:0.75rem; color:#64748b;">Сейчас:</div>
+                <div id="order-modal-live-rate" style="font-weight:900; font-size:1rem; color:#b45309;">${formatNumber(currentRate)}/сек</div>
+              </div>
+              <div style="border-left:1px solid #cbd5e1;"></div>
+              <div>
+                <div style="font-size:0.75rem; color:#64748b;">Нужно:</div>
+                <div style="font-weight:900; font-size:1rem; color:#059669;">${formatNumber(ord.targetRate)}/сек</div>
+              </div>
+            </div>
+
+            <div style="font-size:0.8rem; font-weight:700; color:#64748b;">
+              Осталось времени: <span id="order-modal-live-time" style="color:#ef4444;">${Math.ceil(ord.timeLeft)} сек</span>
+            </div>
+
+            <div style="font-size:0.78rem; color:#64748b; background:#f8fafc; border:1.5px dashed #cbd5e1; padding:8px 12px; border-radius:12px; text-align:left; display:flex; flex-direction:column; gap:3px;">
+              <div style="font-weight:800; color:#334155; display:flex; align-items:center; gap:5px;">
+                ${getSvgIcon('lock', 14)}
+                <span>Награда при выполнении:</span>
+              </div>
+              <div style="color:#475569; font-weight:700; display:flex; align-items:center; gap:4px;">
+                ${getSvgIcon('cookie', 14)}
+                <span>+${formatNumber(ord.rewardCookies)} печенек</span>
+              </div>
+              <div style="color:#0284c7; font-weight:700; display:flex; align-items:center; gap:4px;">
+                ${getSvgIcon('lightning', 14)}
+                <span>Выпечка х${ord.buffMult} на ${ord.buffDur || 15}с</span>
+              </div>
+              ${ord.rewardFish > 0 ? `
+                <div style="color:#b45309; font-weight:800; display:flex; align-items:center; gap:4px;">
+                  ${getFishIconSvg(15)}                   <span>+${ord.rewardFish} Золотая рыбка</span>
+                </div>
+              ` : ''}
+            </div>
+
+            <button id="btn-close-order-modal" style="background: linear-gradient(180deg, #f59e0b, #d97706); color:#fff; border:none; padding:11px; border-radius:12px; font-weight:900; font-size:0.9rem; cursor:pointer; box-shadow:0 3px 10px rgba(217,119,6,0.3);">
+              Принять вызов!
+            </button>
+          </div>
+        `;
+
+        overlay.querySelector('#btn-close-order-modal').addEventListener('click', () => overlay.remove());
+        overlay.addEventListener('click', (e) => {
+          if (e.target === overlay) overlay.remove();
+        });
+
+        document.body.appendChild(overlay);
+      }
+
+      function completeActiveOrder() {
+        const ord = state.boosts?.activeOrder;
+        if (!ord) return;
+
+        const fishGained = Number(ord.rewardFish) || 0;
+        const cookiesGained = Number(ord.rewardCookies) || 0;
+        const buffMult = Number(ord.buffMult) || 2.0;
+        const buffDur = Number(ord.buffDur) || 20;
+
+        if (fishGained > 0) state.meta.fish = (state.meta.fish || 0) + fishGained;
+        state.run.cookies = (state.run.cookies || 0) + cookiesGained;
+        state.stats.totalCookiesAllTime = (state.stats.totalCookiesAllTime || 0) + cookiesGained;
+
+        state.boosts.orderRushMultiplier = buffMult;
+        state.boosts.orderRushTimer = buffDur;
+
+        state.boosts.activeOrder = null;
+        state.boosts.nextOrderCooldown = 150 + Math.random() * 120;
+
+        document.getElementById('urgent-order-badge')?.remove();
+        document.getElementById('order-modal-overlay')?.remove();
+
+        try {
+          SoundFX.playBuy(state.settings?.soundMuted);
+        } catch (e) {}
+
+        saveToLocal(state);
+
+        if (typeof renderStaticUI === 'function') renderStaticUI();
+        else if (typeof updateUI === 'function') updateUI();
+
+        showOrderCompleteScreen(fishGained, cookiesGained, buffMult, buffDur);
+      }
+
+      function showOrderCompleteScreen(rewardFish, rewardCookies, buffMult, buffDur) {
+        const existing = document.getElementById('order-complete-modal');
+        if (existing) existing.remove();
+
+        const overlay = document.createElement('div');
+        overlay.id = 'order-complete-modal';
+        overlay.className = 'order-complete-overlay';
+
+        overlay.innerHTML = `
+          <div class="order-complete-card">
+            <div style="filter: drop-shadow(0 4px 12px rgba(245,158,11,0.35));">${getSvgIcon('scroll', 54)}</div>
+            <div style="font-size: 1.35rem; font-weight: 900; color: #1e293b;">Контракт закрыт!</div>
+            <div style="font-size: 0.86rem; color: #64748b; line-height: 1.4;">
+              Отличный разгон кухни! Ваша заслуженная выплата:
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 8px; width: 100%; margin: 4px 0;">
+              <div class="order-reward-badge-pill" style="background: #fffbeb; border-color: #fde68a; color: #b45309;">
+                ${getSvgIcon('cookie', 18)}
+                <span>+${formatNumber(rewardCookies)} печенек</span>
+              </div>
+              <div class="order-reward-badge-pill" style="background: #f0fdf4; border-color: #86efac; color: #166534;">
+                ${getSvgIcon('lightning', 18)}
+                <span>Выпечка х${buffMult} на ${buffDur}с!</span>
+              </div>
+              ${rewardFish > 0 ? `
+                <div class="order-reward-badge-pill" style="background: #fefce8; border-color: #facc15; color: #854d0e;">
+                  <span>+${rewardFish}</span>
+                  ${getFishIconSvg(18)}
+                  <span>Золотая рыбка</span>
+                </div>
+              ` : ''}
+            </div>
+
+            <button id="btn-claim-order-reward" style="width: 100%; padding: 12px; background: linear-gradient(180deg, #f59e0b, #d97706); color: #ffffff; font-weight: 900; font-size: 1rem; border: none; border-radius: 14px; box-shadow: 0 4px 14px rgba(217,119,6,0.35); cursor: pointer;">
+              Забрать награду!
+            </button>
+          </div>
+        `;
+
+        overlay.querySelector('#btn-claim-order-reward').addEventListener('click', () => {
+          overlay.remove();
+          SoundFX.playClick(state.settings?.soundMuted);
+        });
+
+        document.body.appendChild(overlay);
+      }
+
+      function cancelActiveOrder() {
+        state.boosts.activeOrder = null;
+        state.boosts.nextOrderCooldown = 120 + Math.random() * 60;
+        document.getElementById('urgent-order-badge')?.remove();
+        document.getElementById('order-modal-overlay')?.remove();
+      }
+
+      function startRainbowBubbleGame() {
+        rainbowBubblesLeft = 5;
+        for (let i = 0; i < 5; i++) {
+          setTimeout(() => {
+            const bubble = document.createElement('div');
+            bubble.className = 'rainbow-bubble-target';
+            bubble.style.left = `${15 + Math.random() * 70}%`;
+            bubble.style.top = `${25 + Math.random() * 55}%`;
+            bubble.innerHTML = getSvgIcon('bubble', 32);
+
+            const onPop = (e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              bubble.remove();
+              rainbowBubblesLeft--;
+              SoundFX.playClick(state.settings?.soundMuted);
+              if (rainbowBubblesLeft <= 0) {
+                state.meta.yarn += 1;
+                const rewardCookies = Math.max(1000, calculateTotalRate(state) * 1800);
+                state.run.cookies += rewardCookies;
+                state.stats.totalCookiesAllTime += rewardCookies;
+                showGenericToast(getYarnIconSvg(20), 'Радужная магия!', 'Все пузыри лопнуты!', `+1 ${getYarnIconSvg(16)} +${formatNumber(rewardCookies)} ${getSvgIcon('cookie', 16)}`);
+                saveToLocal(state);
+                renderStaticUI();
+              }
+            };
+
+            bubble.addEventListener('pointerdown', onPop);
+            document.body.appendChild(bubble);
+            setTimeout(() => bubble.remove(), 6000);
+          }, i * 350);
+        }
+      }
+
       let activeFlyingFish = null;
 
       function getNextFishIntervalSec() {
@@ -4083,9 +5493,13 @@ window.getSvgIcon = getSvgIcon;
           activeFlyingFish.remove();
         }
 
+        const isRainbow = Math.random() < 0.05;
         const fish = document.createElement('div');
-        fish.className = 'flying-fish-entity';
+        fish.className = 'flying-fish-entity' + (isRainbow ? ' rainbow-fish' : '');
         fish.innerHTML = `<svg viewBox="0 0 24 24" style="width:100%;height:100%;"><use href="#universal-gold-fish" /></svg>`;
+        if (isRainbow) {
+          fish.style.filter = 'drop-shadow(0 0 10px #ec4899) drop-shadow(0 0 16px #06b6d4)';
+        }
 
         const fromLeft = Math.random() > 0.5;
         const topY = 60 + Math.random() * 90;
@@ -4184,9 +5598,15 @@ window.getSvgIcon = getSvgIcon;
 
           SoundFX.playFever(state.settings.soundMuted);
 
+          if (isRainbow) {
+            startRainbowBubbleGame();
+            return;
+          }
+
           let catchChance = 0.65;
           if (hasWardrobeUnlocked(state, 'devil_horns')) catchChance += 0.10;
           if (hasWardrobeUnlocked(state, 'gold_medal')) catchChance += 0.15;
+          if (hasWardrobeUnlocked(state, 'star_pendant')) catchChance += 0.20;
 
           const isSuccess = Math.random() < catchChance;
           let claimCallback = null;
@@ -4215,7 +5635,10 @@ window.getSvgIcon = getSvgIcon;
               };
             } else {
               const currentCps = calculateTotalRate(state);
-              const consolation = Math.max(150, Math.floor((currentCps > 0 ? currentCps * 180 : getClickPower(state) * 120)));
+              const rawConsolation = currentCps > 0 
+                ? Math.min(currentCps * 90, Math.max(100, Math.floor(state.run.cookies * 0.08)))
+                : getClickPower(state) * 30;
+              const consolation = Math.max(50, Math.floor(rawConsolation));
               boxRewardIcon.innerHTML = getSvgIcon('cookie', 48);
               boxRewardTitle.textContent = 'Рыбка сорвалась!';
               boxRewardDesc.textContent = 'Она уплыла в глубину, но подняла со дна корзинку свежей выпечки!';
@@ -4308,7 +5731,10 @@ window.getSvgIcon = getSvgIcon;
         boxTapsRemaining = 3;
         boxTapsLeftEl.textContent = '3';
 
-        const spawnRight = Math.random() > 0.5;
+        // Если активен контракт (висит в правом углу), подарок принудительно спавнится слева
+        const hasActiveOrder = !!(state.boosts?.activeOrder || document.getElementById('urgent-order-badge'));
+        const spawnRight = hasActiveOrder ? false : (Math.random() > 0.5);
+
         mysteryBoxEl.style.top = '18%';
         mysteryBoxEl.style.bottom = 'auto';
         if (spawnRight) {
@@ -4340,16 +5766,17 @@ window.getSvgIcon = getSvgIcon;
         let claimCallback = null;
 
         if (roll < 0.50) {
-          // 50%: Мешок муки (Time Warp 180с CPS или 120 кликов; на старте от 50 кликов)
+          // 50%: Мешок муки (Софт-кап: не более 120с CPS и не более 10% от текущего банка)
           const currentCps = calculateTotalRate(state);
           const currentClick = getClickPower(state);
-          const prize = currentCps > 0
-            ? Math.max(currentCps * 180, currentClick * 120)
-            : Math.max(150, currentClick * 50);
+          let rawPrize = currentCps > 0
+            ? Math.min(currentCps * 120, Math.max(150, Math.floor(state.run.cookies * 0.10)))
+            : Math.max(50, currentClick * 25);
+          const prize = Math.max(50, Math.floor(rawPrize));
 
           boxRewardIcon.innerHTML = getSvgIcon('cookie', 48);
           boxRewardTitle.textContent = 'Куш пекарни!';
-          boxRewardDesc.textContent = 'В коробке оказался отборный мешок муки! Дополнительная выпечка за 3 минуты работы!';
+          boxRewardDesc.textContent = 'В коробке оказался отборный мешок муки! Аккуратный запас свежего теста!';
           boxRewardBadgeIcon.innerHTML = getSvgIcon('cookie', 22);
           boxRewardAmount.textContent = `+${formatNumber(prize)} печенек`;
 
@@ -4434,7 +5861,6 @@ window.getSvgIcon = getSvgIcon;
         state.stats.totalCookiesAllTime += bonus;
         saveToLocal(state);
         renderStaticUI();
-        showGenericToast(getSvgIcon('cookie', 20), 'Проверка функций', 'Начислено 100 тыс. печенек!', `+100 тыс. ${getSvgIcon('cookie', 14)}`);
       });
 
       devAdd10m.addEventListener('click', () => {
@@ -4444,14 +5870,30 @@ window.getSvgIcon = getSvgIcon;
         state.stats.totalCookiesAllTime += bonus;
         saveToLocal(state);
         renderStaticUI();
-        showGenericToast(getSvgIcon('cookie', 20), 'Проверка функций', 'Начислено 10 млн. печенек!', `+10 млн. ${getSvgIcon('cookie', 14)}`);
+      });
+
+      devAdd10b?.addEventListener('click', () => {
+        const bonus = 10000000000;
+        state.run.cookies += bonus;
+        state.run.lifetimeCookiesRun += bonus;
+        state.stats.totalCookiesAllTime += bonus;
+        saveToLocal(state);
+        renderStaticUI();
+      });
+
+      devAdd1t?.addEventListener('click', () => {
+        const bonus = 1000000000000;
+        state.run.cookies += bonus;
+        state.run.lifetimeCookiesRun += bonus;
+        state.stats.totalCookiesAllTime += bonus;
+        saveToLocal(state);
+        renderStaticUI();
       });
 
       devAdd50Fish.addEventListener('click', () => {
         state.meta.fish += 50;
         saveToLocal(state);
         renderStaticUI();
-        showGenericToast(getFishIconSvg(20), 'Проверка функций', 'Начислено 50 золотых рыбок!', `+50 ${getFishIconSvg(18)}`);
       });
 
       devAdd5Stars.addEventListener('click', () => {
@@ -4459,14 +5901,12 @@ window.getSvgIcon = getSvgIcon;
         state.meta.lifetimeStars += 5;
         saveToLocal(state);
         renderStaticUI();
-        showGenericToast(getSvgIcon('star', 20), 'Проверка функций', 'Начислено 5 Звёзд Мишлен!', `+5 ${getSvgIcon('star', 16)}`);
       });
 
       devAdd20Yarn.addEventListener('click', () => {
         state.meta.yarn += 20;
         saveToLocal(state);
         renderStaticUI();
-        showGenericToast(getYarnIconSvg(20), 'Проверка функций', 'Начислено 20 зелёных клубков пряжи!', `+20 ${getYarnIconSvg(18)}`);
       });
 
       devToggleFever.addEventListener('click', () => {
@@ -4474,10 +5914,8 @@ window.getSvgIcon = getSvgIcon;
           state.boosts.feverActive = false;
           state.boosts.feverProgress = 0;
           feverRemainingTimer = 0;
-          showGenericToast(getSvgIcon('lightning', 20), 'Проверка функций', 'Лихорадка отключена!', 'Обычный режим');
         } else {
           triggerFeverMode(state);
-          showGenericToast(getSvgIcon('lightning', 20), 'Проверка функций', 'Лихорадка включена!', 'Утроенный клик');
         }
         renderStaticUI();
       });
@@ -4490,13 +5928,16 @@ window.getSvgIcon = getSvgIcon;
         });
         saveToLocal(state);
         renderStaticUI();
-        showGenericToast(getSvgIcon('tag', 20), 'Проверка функций', 'Весь гардероб открыт!', 'Все пассивные бонусы активны!');
       });
 
       devSpawnFish.addEventListener('click', () => spawnFlyingFish());
       devSpawnBox.addEventListener('click', () => {
         if (typeof hideMysteryBox === 'function') hideMysteryBox();
         spawnSurpriseBox();
+      });
+      document.getElementById('dev-btn-order')?.addEventListener('click', () => {
+        triggerRandomOrder(true);
+        showGenericToast(getSvgIcon('scroll', 22), 'Срочный заказ!', 'Контракт призван через DevTools', 'Проверьте условия в углу');
       });
       document.getElementById('dev-mood-purr')?.addEventListener('click', () => {
         triggerCatMoodEvent('purr');
@@ -4508,37 +5949,39 @@ window.getSvgIcon = getSvgIcon;
         triggerCatMoodEvent('sleep');
       });
 
-      devLoc0.addEventListener('click', () => {
-        state.meta.prestigeCount = 0;
+      function applyDevLocation(targetStage) {
+        state.meta.prestigeCount = targetStage;
+        const loc = LOCATIONS_CONFIG[targetStage] || LOCATIONS_CONFIG[0];
+        
+        if (targetStage === 0) {
+          state.meta.wardrobe.equippedHead = 'chef_hat_1';
+          state.meta.wardrobe.equippedNeck = 'neck_none';
+        } else if (loc.rewardItem) {
+          if (loc.rewardItem.head) {
+            if (!state.meta.wardrobe.unlocked.includes(loc.rewardItem.head)) {
+              state.meta.wardrobe.unlocked.push(loc.rewardItem.head);
+            }
+            state.meta.wardrobe.equippedHead = loc.rewardItem.head;
+          }
+          if (loc.rewardItem.neck) {
+            if (!state.meta.wardrobe.unlocked.includes(loc.rewardItem.neck)) {
+              state.meta.wardrobe.unlocked.push(loc.rewardItem.neck);
+            }
+            state.meta.wardrobe.equippedNeck = loc.rewardItem.neck;
+          }
+        }
+        
         updateCatVisuals(state);
         saveToLocal(state);
         renderStaticUI();
-        showGenericToast(getSvgIcon('home', 20), 'Проверка функций', 'Филиал 1: Уютная кухня', 'Домашний стиль');
-      });
+      }
 
-      devLoc1.addEventListener('click', () => {
-        state.meta.prestigeCount = 1;
-        if (!state.meta.wardrobe.unlocked.includes('chef_hat_2')) state.meta.wardrobe.unlocked.push('chef_hat_2');
-        if (!state.meta.wardrobe.unlocked.includes('red_bowtie')) state.meta.wardrobe.unlocked.push('red_bowtie');
-        state.meta.wardrobe.equippedHead = 'chef_hat_2';
-        state.meta.wardrobe.equippedNeck = 'red_bowtie';
-        updateCatVisuals(state);
-        saveToLocal(state);
-        renderStaticUI();
-        showGenericToast(getSvgIcon('baker', 20), 'Проверка функций', 'Филиал 2: Городское кафе', 'Шефский стиль');
-      });
-
-      devLoc2.addEventListener('click', () => {
-        state.meta.prestigeCount = 2;
-        if (!state.meta.wardrobe.unlocked.includes('beret_royal')) state.meta.wardrobe.unlocked.push('beret_royal');
-        if (!state.meta.wardrobe.unlocked.includes('gold_medal')) state.meta.wardrobe.unlocked.push('gold_medal');
-        state.meta.wardrobe.equippedHead = 'beret_royal';
-        state.meta.wardrobe.equippedNeck = 'gold_medal';
-        updateCatVisuals(state);
-        saveToLocal(state);
-        renderStaticUI();
-        showGenericToast(getSvgIcon('crown', 20), 'Проверка функций', 'Филиал 3: Королевский дворец', 'Королевский стиль');
-      });
+      devLoc0?.addEventListener('click', () => applyDevLocation(0));
+      devLoc1?.addEventListener('click', () => applyDevLocation(1));
+      devLoc2?.addEventListener('click', () => applyDevLocation(2));
+      document.getElementById('dev-loc-3')?.addEventListener('click', () => applyDevLocation(3));
+      document.getElementById('dev-loc-4')?.addEventListener('click', () => applyDevLocation(4));
+      document.getElementById('dev-loc-5')?.addEventListener('click', () => applyDevLocation(5));
 
       devTestOffline.addEventListener('click', () => {
         settingsModal.classList.add('hidden');
@@ -4712,12 +6155,25 @@ window.getSvgIcon = getSvgIcon;
           if (!state.meta.wardrobe.unlocked.includes('red_bowtie')) state.meta.wardrobe.unlocked.push('red_bowtie');
           state.meta.wardrobe.equippedHead = 'chef_hat_2';
           state.meta.wardrobe.equippedNeck = 'red_bowtie';
-        } else if (state.meta.prestigeCount >= 2) {
+        } else if (state.meta.prestigeCount === 2) {
           state.meta.yarn += 10;
           if (!state.meta.wardrobe.unlocked.includes('beret_royal')) state.meta.wardrobe.unlocked.push('beret_royal');
           if (!state.meta.wardrobe.unlocked.includes('gold_medal')) state.meta.wardrobe.unlocked.push('gold_medal');
           state.meta.wardrobe.equippedHead = 'beret_royal';
           state.meta.wardrobe.equippedNeck = 'gold_medal';
+        } else if (state.meta.prestigeCount >= 3) {
+          state.meta.yarn += 15;
+          const activeLocReward = LOCATIONS_CONFIG[Math.min(state.meta.prestigeCount, LOCATIONS_CONFIG.length - 1)]?.rewardItem;
+          if (activeLocReward) {
+            if (activeLocReward.head && !state.meta.wardrobe.unlocked.includes(activeLocReward.head)) {
+              state.meta.wardrobe.unlocked.push(activeLocReward.head);
+              state.meta.wardrobe.equippedHead = activeLocReward.head;
+            }
+            if (activeLocReward.neck && !state.meta.wardrobe.unlocked.includes(activeLocReward.neck)) {
+              state.meta.wardrobe.unlocked.push(activeLocReward.neck);
+              state.meta.wardrobe.equippedNeck = activeLocReward.neck;
+            }
+          }
         }
 
         const vanLevel = state.meta?.perks?.start_van || 0;
@@ -4760,19 +6216,37 @@ window.getSvgIcon = getSvgIcon;
 
       function renderPrestigeView() {
         const targetContainer = tabPanes.prestige;
+        if (!targetContainer) return;
         targetContainer.innerHTML = '';
 
-        const rewardStars = calculatePrestigeReward(state);
-        const canPrestige = rewardStars > 0;
-        const currentStarsMult = Math.round((state.meta.stars || 0) * 5);
-        const allTime = state.stats.totalCookiesAllTime || 0;
-        const { prev, next } = getPrestigeThresholds(allTime, state);
-        const progressPct = Math.min(100, Math.max(0, Math.floor(((allTime - prev) / (next - prev)) * 100)));
-        const neededToNext = Math.max(0, next - allTime);
+        // Прогресс считается от напеченного в этом забеге
+        const runBaked = Math.max(state.run?.cookies || 0, state.run?.lifetimeCookiesRun || 0);
+        const currentPrestige = state.meta?.prestigeCount || 0;
+        const maxTier = LOCATIONS_CONFIG.length - 1;
+        const isMaxBranch = currentPrestige >= maxTier;
 
-        const btnText = canPrestige 
-          ? `${getSvgIcon('star', 15)} Переехать и получить +${rewardStars} Звёзд` 
-          : `До следующей Звезды: ${formatNumber(neededToNext)} ${getSvgIcon('cookie', 14)}`;
+        const targetLocIdx = Math.min(currentPrestige + 1, maxTier);
+        const targetLoc = LOCATIONS_CONFIG[targetLocIdx] || LOCATIONS_CONFIG[0];
+
+        const inspectorLvl = state?.meta?.perks?.generous_inspector || 0;
+        const discountMult = 1 - Math.min(0.25, inspectorLvl * 0.05);
+        const targetReq = isMaxBranch ? 1 : Math.max(1, Math.floor(targetLoc.reqCookies * discountMult));
+
+        const progressPct = isMaxBranch ? 100 : Math.min(100, Math.max(0, Math.floor((runBaked / targetReq) * 100)));
+        const neededToNext = Math.max(0, targetReq - runBaked);
+
+        const starsByBranch = [0, 5, 15, 35, 75, 150];
+        const rewardStars = starsByBranch[currentPrestige + 1] || 10;
+        const canPrestige = !isMaxBranch && allTime >= targetReq;
+
+        const branchTitle = isMaxBranch ? `${targetLoc.name} (Макс. уровень)` : `Новый филиал: ${targetLoc.name}`;
+        const currentStarsMult = Math.round((state.meta.stars || 0) * 10);
+
+        const btnText = isMaxBranch 
+          ? `Все филиалы открыты!` 
+          : (canPrestige 
+              ? `${getSvgIcon('crown', 15)} Открыть «${targetLoc.name}» (+${rewardStars} Звёзд)` 
+              : `До переезда: ${formatNumber(neededToNext)} ${getSvgIcon('cookie', 14)}`);
 
         const banner = document.createElement('div');
         banner.className = 'prestige-banner';
@@ -4780,13 +6254,13 @@ window.getSvgIcon = getSvgIcon;
           <div class="prestige-header-row">
             <div class="prestige-banner-title">
               <span>${getSvgIcon('star', 18)}</span>
-              <span>Филиал Мишлен</span>
+              <span>${branchTitle}</span>
             </div>
             <div class="prestige-badge-mult">+${currentStarsMult}% выпечка / +${state.meta.stars || 0} к клику</div>
           </div>
           <div class="prestige-progress-box">
             <div class="prestige-progress-label">
-              <span id="prestige-progress-text">След. звезда: ${formatNumber(allTime)} / ${formatNumber(next)} (${progressPct}%)</span>
+              <span id="prestige-progress-text">${isMaxBranch ? 'Филиал максимального уровня' : `След. филиал: ${formatNumber(allTime)} / ${formatNumber(targetReq)} (${progressPct}%)`}</span>
               <span id="prestige-progress-pct">${progressPct}%</span>
             </div>
             <div class="milestone-bar-bg" style="height: 5px;">
@@ -4848,23 +6322,26 @@ window.getSvgIcon = getSvgIcon;
         const bellLvl = state.meta?.shop?.catBell || 0;
         const jarLvl = state.meta?.shop?.fishJar || 0;
 
+        const meteorLvl = state.meta?.shop?.meteorFlour || 0;
         const catnipCost = (catnipLvl + 1) * 3;
         const pinCost = (pinLvl + 1) * 6;
         const sauceCost = (sauceLvl + 1) * 10;
         const bellCost = (bellLvl + 1) * 5;
         const jarCost = (jarLvl + 1) * 8;
+        const meteorCost = (meteorLvl + 1) * 15;
 
-        const isBellMax = bellLvl >= 5;
+        const isBellMax = bellLvl >= 8;
 
         targetContainer.innerHTML = `
-          <div class="shop-section-title">${getSvgIcon('star', 16)} Улучшения за золотых рыбок</div>
-
           <div class="shop-card">
             <div class="shop-card-left">
               <div class="shop-card-avatar">${getSvgIcon('herb', 26)}</div>
               <div class="shop-card-info">
-                <span class="shop-card-title">Кошачья мята (ур. ${catnipLvl})</span>
-                <span class="shop-card-desc">+25% к скорости заполнения Лихорадки</span>
+                <div class="gen-title-row">
+                  <span class="gen-name">Кошачья мята</span>
+                  <span class="gen-level-badge">ур. ${catnipLvl}</span>
+                </div>
+                <span class="shop-card-desc">+25% к скорости Лихорадки</span>
               </div>
             </div>
             <button id="btn-shop-catnip" class="shop-buy-btn" ${state.meta.fish < catnipCost ? 'disabled' : ''}>
@@ -4876,8 +6353,11 @@ window.getSvgIcon = getSvgIcon;
             <div class="shop-card-left">
               <div class="shop-card-avatar">${getSvgIcon('pin', 26)}</div>
               <div class="shop-card-info">
-                <span class="shop-card-title">Золотая скалка (ур. ${pinLvl})</span>
-                <span class="shop-card-desc">+15% к клику и синергии за уровень</span>
+                <div class="gen-title-row">
+                  <span class="gen-name">Золотая скалка</span>
+                  <span class="gen-level-badge">ур. ${pinLvl}</span>
+                </div>
+                <span class="shop-card-desc">+15% к клику и синергии</span>
               </div>
             </div>
             <button id="btn-shop-rolling-pin" class="shop-buy-btn" ${state.meta.fish < pinCost ? 'disabled' : ''}>
@@ -4889,8 +6369,11 @@ window.getSvgIcon = getSvgIcon;
             <div class="shop-card-left">
               <div class="shop-card-avatar">${getSvgIcon('sauce', 26)}</div>
               <div class="shop-card-info">
-                <span class="shop-card-title">Сливочный соус (ур. ${sauceLvl})</span>
-                <span class="shop-card-desc">+15% к выпечке пекарей за уровень</span>
+                <div class="gen-title-row">
+                  <span class="gen-name">Сливочный соус</span>
+                  <span class="gen-level-badge">ур. ${sauceLvl}</span>
+                </div>
+                <span class="shop-card-desc">+15% к выпечке пекарей</span>
               </div>
             </div>
             <button id="btn-shop-cream-sauce" class="shop-buy-btn" ${state.meta.fish < sauceCost ? 'disabled' : ''}>
@@ -4902,8 +6385,11 @@ window.getSvgIcon = getSvgIcon;
             <div class="shop-card-left">
               <div class="shop-card-avatar">${getSvgIcon('bell', 26)}</div>
               <div class="shop-card-info">
-                <span class="shop-card-title">Кошачий колокольчик (${bellLvl}/5)</span>
-                <span class="shop-card-desc">Рыбка прилетает на 3 сек чаще за уровень</span>
+                <div class="gen-title-row">
+                  <span class="gen-name">Кошачий колокольчик</span>
+                  <span class="gen-level-badge">${bellLvl} / 5</span>
+                </div>
+                <span class="shop-card-desc">Рыбка прилетает на 3 сек чаще</span>
               </div>
             </div>
             <button id="btn-shop-bell" class="shop-buy-btn" ${isBellMax || state.meta.fish < bellCost ? 'disabled' : ''}>
@@ -4915,15 +6401,44 @@ window.getSvgIcon = getSvgIcon;
             <div class="shop-card-left">
               <div class="shop-card-avatar">${getSvgIcon('jar', 26)}</div>
               <div class="shop-card-info">
-                <span class="shop-card-title">Золотая банка (ур. ${jarLvl})</span>
-                <span class="shop-card-desc">+2 сек к Лихорадке (${Math.round(getMaxFeverDuration(state))} сек)</span>
+                <div class="gen-title-row">
+                  <span class="gen-name">Золотая банка</span>
+                  <span class="gen-level-badge">ур. ${jarLvl}</span>
+                </div>
+                <span class="shop-card-desc">+2 сек к Лихорадке (${Math.round(getMaxFeverDuration(state))}с)</span>
               </div>
             </div>
             <button id="btn-shop-jar" class="shop-buy-btn" ${state.meta.fish < jarCost ? 'disabled' : ''}>
               ${jarCost} ${getFishIconSvg(16)}
             </button>
           </div>
+
+          <div class="shop-card">
+            <div class="shop-card-left">
+              <div class="shop-card-avatar">${getSvgIcon('star', 26)}</div>
+              <div class="shop-card-info">
+                <div class="gen-title-row">
+                  <span class="gen-name">Метеоритная мука</span>
+                  <span class="gen-level-badge">ур. ${meteorLvl}</span>
+                </div>
+                <span class="shop-card-desc">+30% к общему доходу пекарни</span>
+              </div>
+            </div>
+            <button id="btn-shop-meteor" class="shop-buy-btn" ${state.meta.fish < meteorCost ? 'disabled' : ''}>
+              ${meteorCost} ${getFishIconSvg(16)}
+            </button>
+          </div>
         `;
+
+        targetContainer.querySelector('#btn-shop-meteor')?.addEventListener('click', () => {
+          if (state.meta.fish >= meteorCost) {
+            state.meta.fish -= meteorCost;
+            state.meta.shop.meteorFlour = (state.meta.shop.meteorFlour || 0) + 1;
+            SoundFX.playBuy(state.settings?.soundMuted);
+            saveToLocal(state);
+            renderStaticUI();
+          }
+        });
 
         targetContainer.querySelector('#btn-shop-catnip').addEventListener('click', () => {
           if (state.meta.fish >= catnipCost) {
@@ -5023,7 +6538,7 @@ window.getSvgIcon = getSvgIcon;
           /* ЖЁСТКАЯ БЛОКИРОВКА ПРЕСТИЖНЫХ ШАПОК И АКСЕССУАРОВ */
           if (isStageLocked) {
             btnClass = 'loc-locked';
-            btnText = `🔒 Локация ${item.unlockStage + 1}`;
+            btnText = `${getSvgIcon('lock', 13)} Локация ${item.unlockStage + 1}`;
             btnDisabled = true;
           } else if (item.isBase) {
             btnClass = 'base-locked';
@@ -5234,11 +6749,47 @@ window.getSvgIcon = getSvgIcon;
             state.boosts.feverActive = false;
             state.boosts.feverProgress = 0;
             feverRemainingTimer = 0;
+            const wrapper = document.getElementById('fever-wrapper');
+            if (wrapper) wrapper.classList.remove('fever-active');
           } else {
             state.boosts.feverProgress = Math.max(0, (feverRemainingTimer / maxFeverDur) * 100);
+            
+            if (Math.random() < 0.35) {
+              spawnFeverSpark();
+            }
           }
         } else if (state.boosts.feverProgress > 0) {
           state.boosts.feverProgress = Math.max(0, state.boosts.feverProgress - 2.5 * dt);
+        }
+
+        const orderRushPill = document.getElementById('order-rush-pill');
+        const orderRushTimerLabel = document.getElementById('order-rush-timer-label');
+        const orderRushMultLabel = document.getElementById('order-rush-mult-label');
+
+        if (state.boosts.orderRushTimer > 0) {
+          state.boosts.orderRushTimer = Math.max(0, state.boosts.orderRushTimer - dt);
+          if (orderRushPill) {
+            orderRushPill.style.display = 'inline-flex';
+            if (orderRushTimerLabel) orderRushTimerLabel.textContent = `${Math.ceil(state.boosts.orderRushTimer)}с`;
+            if (orderRushMultLabel) orderRushMultLabel.textContent = `x${state.boosts.orderRushMultiplier || 2}`;
+          }
+        } else {
+          if (orderRushPill) orderRushPill.style.display = 'none';
+        }
+
+        if (state.boosts?.activeOrder) {
+          state.boosts.activeOrder.timeLeft -= dt;
+          if (state.boosts.activeOrder.timeLeft <= 0) {
+            cancelActiveOrder();
+          } else {
+            updateOrderUI();
+          }
+        } else {
+          if (state.boosts.nextOrderCooldown > 0) {
+            state.boosts.nextOrderCooldown -= dt;
+          } else if (!state.boosts.feverActive) {
+            triggerRandomOrder();
+          }
         }
 
         const currentRate = calculateTotalRate(state);
@@ -5263,26 +6814,21 @@ window.getSvgIcon = getSvgIcon;
           spawnSurpriseBox();
         }
 
-        if (nowMs >= nextCatMoodTimestamp) {
+        if (!nextCatMoodTimestamp || isNaN(nextCatMoodTimestamp)) {
+          nextCatMoodTimestamp = nowMs + (25 + Math.random() * 20) * 1000;
+        }
+
+        if (!activeCatMood && !state.boosts.feverActive && nowMs >= nextCatMoodTimestamp) {
           triggerCatMoodEvent();
-          nextCatMoodTimestamp = nowMs + (60 + Math.random() * 30) * 1000;
+          nextCatMoodTimestamp = nowMs + (40 + Math.random() * 30) * 1000;
         }
 
         if (activeCatMood) {
-          if (nowMs > moodTimerEnd) {
-            activeCatMood = null;
-            catMoodBubble.classList.add('hidden');
-            if (zzzSpawnInterval) {
-              clearInterval(zzzSpawnInterval);
-              zzzSpawnInterval = null;
-            }
-            if (purrHeartsInterval) {
-              clearInterval(purrHeartsInterval);
-              purrHeartsInterval = null;
-            }
+          if (nowMs >= moodTimerEnd) {
             clearCatMoodVisuals();
+            nextCatMoodTimestamp = nowMs + (40 + Math.random() * 30) * 1000;
           } else {
-            updateMoodStatusPill();
+            if (typeof updateMoodStatusPill === 'function') updateMoodStatusPill();
           }
         }
 
@@ -5296,7 +6842,12 @@ window.getSvgIcon = getSvgIcon;
         rateDisplay.textContent = formatNumber(calculateTotalRate(state));
         const sleepTag = document.getElementById('sleep-rate-tag');
         if (sleepTag) {
-          sleepTag.style.display = (activeCatMood === 'sleep' && nowMs < moodTimerEnd) ? 'inline' : 'none';
+          const isSleeping = activeCatMood === 'sleep' && nowMs < moodTimerEnd;
+          sleepTag.style.display = isSleeping ? 'inline-flex' : 'none';
+          if (isSleeping && !sleepTag.dataset.svgApplied) {
+            sleepTag.innerHTML = ` ${getSvgIcon('cat_sleep', 13)} (Выпечка x2.5)`;
+            sleepTag.dataset.svgApplied = 'true';
+          }
         }
 
         const progress = Math.max(0, Math.min(100, state.boosts.feverProgress || 0));
@@ -5319,10 +6870,20 @@ window.getSvgIcon = getSvgIcon;
         }
 
         if (activeTabId === 'prestige') {
-          const allTime = state.stats.totalCookiesAllTime || 0;
-          const { prev, next } = getPrestigeThresholds(allTime, state);
-          const progressPct = Math.min(100, Math.max(0, Math.floor(((allTime - prev) / (next - prev)) * 100)));
-          const neededToNext = Math.max(0, next - allTime);
+          const runBaked = Math.max(state.run?.cookies || 0, state.run?.lifetimeCookiesRun || 0);
+          const currentPrestige = state.meta?.prestigeCount || 0;
+          const nextLocIdx = Math.min(currentPrestige + 1, LOCATIONS_CONFIG.length - 1);
+          const nextLoc = LOCATIONS_CONFIG[nextLocIdx] || LOCATIONS_CONFIG[0];
+          const isMaxBranch = currentPrestige >= LOCATIONS_CONFIG.length - 1;
+
+          const inspectorLvl = state?.meta?.perks?.generous_inspector || 0;
+          const discountMult = 1 - Math.min(0.25, inspectorLvl * 0.05);
+          const targetReq = isMaxBranch ? 1 : Math.floor(nextLoc.reqCookies * discountMult);
+
+          const progressPct = isMaxBranch ? 100 : Math.min(100, Math.max(0, Math.floor((runBaked / targetReq) * 100)));
+          const neededToNext = Math.max(0, targetReq - runBaked);
+          const rewardStars = calculatePrestigeReward(state);
+          const canPrestige = !isMaxBranch && runBaked >= targetReq;
 
           const barFill = document.getElementById('prestige-bar-fill');
           const progText = document.getElementById('prestige-progress-text');
@@ -5331,16 +6892,16 @@ window.getSvgIcon = getSvgIcon;
           const doPrestigeText = document.getElementById('btn-do-prestige-text');
 
           if (barFill) barFill.style.width = `${progressPct}%`;
-          if (progText) progText.textContent = `След. звезда: ${formatNumber(allTime)} / ${formatNumber(next)} (${progressPct}%)`;
+          if (progText) progText.textContent = isMaxBranch ? 'Максимальный филиал' : `До переезда: ${formatNumber(runBaked)} / ${formatNumber(targetReq)} (${progressPct}%)`;
           if (progPct) progPct.textContent = `${progressPct}%`;
 
-          const rewardStars = calculatePrestigeReward(state);
-          const canPrestige = rewardStars > 0;
           if (doPrestigeBtn) doPrestigeBtn.disabled = !canPrestige;
           if (doPrestigeText) {
-            doPrestigeText.innerHTML = canPrestige 
-              ? `${getSvgIcon('star', 15)} Переехать и получить +${rewardStars} Звёзд` 
-              : `До следующей Звезды: ${formatNumber(neededToNext)} ${getSvgIcon('cookie', 14)}`;
+            doPrestigeText.innerHTML = isMaxBranch 
+              ? `Все филиалы открыты!` 
+              : (canPrestige
+                  ? `${getSvgIcon('crown', 15)} Открыть «${nextLoc.name}» (+${rewardStars} Звёзд)`
+                  : `До переезда: ${formatNumber(neededToNext)} ${getSvgIcon('cookie', 14)}`);
           }
         }
 

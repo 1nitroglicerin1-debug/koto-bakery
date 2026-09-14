@@ -50,6 +50,7 @@
     html, body {
       width: 100%;
       height: 100%;
+      height: 100dvh;
       overflow: hidden;
       background-color: #19120e;
       font-family: var(--font-family);
@@ -60,6 +61,7 @@
     .app-container {
       width: 100%;
       height: 100%;
+      height: 100dvh;
       max-width: 480px;
       margin: 0 auto;
       position: relative;
@@ -73,41 +75,15 @@
     }
 
     .app-container.theme-bakery-0 {
-      background: radial-gradient(130% 80% at 50% 0%, #fffbf7 0%, var(--color-bg) 65%, #f7ebe0 100%);
-    }
-
-    .app-container.theme-bakery-0 .click-zone {
-      background: transparent;
+      background: radial-gradient(130% 80% at 50% 0%, #fffdfa 0%, #fff7ee 60%, #f6e8dc 100%);
     }
 
     .app-container.theme-bakery-1 {
       background: repeating-linear-gradient(90deg, #f3faf6 0px, #f3faf6 24px, #e8f6ee 24px, #e8f6ee 48px);
     }
-    .app-container.theme-bakery-1 .click-zone::before {
-      content: '';
-      position: absolute;
-      width: 250px;
-      height: 80px;
-      bottom: 24px;
-      border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(167, 243, 208, 0.65) 0%, rgba(167, 243, 208, 0) 72%);
-      pointer-events: none;
-      z-index: 1;
-    }
 
     .app-container.theme-bakery-2 {
       background: radial-gradient(130% 85% at 50% 10%, #fff1f2 0%, #ffe4e6 55%, #fed7aa 100%);
-    }
-    .app-container.theme-bakery-2 .click-zone::before {
-      content: '';
-      position: absolute;
-      width: 260px;
-      height: 84px;
-      bottom: 22px;
-      border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(254, 215, 170, 0.85) 0%, rgba(254, 215, 170, 0) 74%);
-      pointer-events: none;
-      z-index: 1;
     }
 
     .top-bar {
@@ -244,13 +220,13 @@
     }
 
     .location-badge {
-      background: rgba(255, 255, 255, 0.94);
+      background: rgba(255, 255, 255, 0.9);
       border: 1.5px solid var(--color-border);
-      padding: 4px 14px;
+      padding: 3px 12px;
       border-radius: var(--radius-pill);
-      font-size: 0.76rem;
+      font-size: 0.74rem;
       font-weight: 800;
-      color: var(--color-text-main);
+      color: var(--color-text-muted);
       margin-bottom: 6px;
       box-shadow: var(--shadow-sm);
       display: inline-flex;
@@ -277,6 +253,7 @@
       overflow: hidden;
       z-index: 35;
     }
+
     .floating-number {
       position: absolute;
       font-size: 1.85rem;
@@ -321,6 +298,28 @@
       }
     }
 
+    .crumb-particle {
+      position: absolute;
+      pointer-events: none;
+      border-radius: 50%;
+      background: #e28f54;
+      border: 1px solid #7c3f1d;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+      z-index: 36;
+      animation: crumbFly 0.35s ease-out forwards;
+    }
+
+    @keyframes crumbFly {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.3);
+      }
+    }
+
     .dough-fever-wrapper {
       position: relative;
       width: 230px;
@@ -337,13 +336,13 @@
       height: 100%;
       transform: rotate(-90deg);
       pointer-events: none;
-      filter: drop-shadow(0 4px 10px rgba(61, 44, 37, 0.06));
+      filter: drop-shadow(0 4px 12px rgba(52, 34, 26, 0.08));
     }
 
     .ring-bg {
       fill: none;
       stroke: var(--color-border);
-      stroke-width: 8;
+      stroke-width: 9;
     }
 
     .ring-fill {
@@ -353,12 +352,7 @@
       stroke-linecap: round;
       stroke-dasharray: 678.58;
       stroke-dashoffset: 678.58;
-      filter: drop-shadow(0 0 8px rgba(255, 183, 3, 0.85));
       transition: stroke-dashoffset 0.12s ease-out;
-    }
-
-    .dough-fever-wrapper.fever-active .ring-fill {
-      filter: drop-shadow(0 0 14px rgba(255, 183, 3, 1)) drop-shadow(0 0 24px rgba(251, 133, 0, 0.9));
     }
 
     .cat-bun-entity {
@@ -366,7 +360,7 @@
       height: 185px;
       cursor: pointer;
       touch-action: manipulation;
-      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -382,10 +376,9 @@
       filter: drop-shadow(0 14px 22px rgba(52, 34, 26, 0.2));
     }
 
-    .cat-bun-entity:active,
     .cat-bun-entity.squash {
-      transform: scale(0.85, 1.15) translateY(8px);
-      transition-duration: 0.06s;
+      transform: scale(1.12, 0.88) translateY(6px) !important;
+      transition: transform 0.05s ease-out !important;
     }
 
     .dough-fever-wrapper.fever-active .cat-bun-svg {
@@ -401,7 +394,7 @@
 
     .click-upgrade-btn {
       margin-top: 8px;
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.95);
       border: 2px solid var(--color-border);
       padding: 6px 16px;
       border-radius: var(--radius-pill);
@@ -792,6 +785,7 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
+      text-align: center;
     }
 
     .btn-prestige-reset:not(:disabled):active {
@@ -799,10 +793,11 @@
     }
 
     .btn-prestige-reset:disabled {
-      background: #d4c5bd;
-      box-shadow: none;
+      background: #d4c5bd !important;
+      color: #786b64 !important;
+      box-shadow: none !important;
       cursor: not-allowed;
-      opacity: 0.65;
+      opacity: 0.75;
     }
 
     .perk-card {
@@ -1167,8 +1162,50 @@
       background: #9ca3af;
     }
 
+    .devtools-box {
+      margin-top: 4px;
+      padding: 10px;
+      background: #f8fafc;
+      border: 1.5px dashed #94a3b8;
+      border-radius: var(--radius-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .devtools-title {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .devtools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .dev-btn {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      padding: 6px 4px;
+      border-radius: var(--radius-xs);
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #334155;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      transition: background-color 0.15s;
+    }
+
+    .dev-btn:active {
+      background-color: #e2e8f0;
+    }
+
     .reset-danger-box {
-      margin-top: 10px;
+      margin-top: 6px;
       padding: 12px;
       background: #fef2f2;
       border: 1.5px dashed #fca5a5;
@@ -1259,64 +1296,19 @@
       gap: 4px;
     }
 
-    .dev-float-pill {
-      position: fixed;
-      bottom: 12px;
-      left: 12px;
-      z-index: 9999;
-      background: rgba(30, 20, 16, 0.72);
-      backdrop-filter: blur(6px);
-      color: #fff;
-      border: 1.5px solid rgba(255, 255, 255, 0.25);
-      border-radius: var(--radius-pill);
-      padding: 6px 12px;
-      font-size: 0.74rem;
-      font-weight: 800;
+    .flying-fish-entity {
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      z-index: 60;
       cursor: pointer;
-      opacity: 0.65;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      transition: opacity 0.15s ease, transform 0.1s ease;
+      filter: drop-shadow(0 4px 10px rgba(255, 152, 0, 0.7));
+      transition: transform 0.1s ease;
+      touch-action: manipulation;
     }
 
-    .dev-float-pill:hover {
-      opacity: 1;
-    }
-
-    .dev-float-pill:active {
-      transform: scale(0.93);
-    }
-
-    .dev-grid-btns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
-    }
-
-    .dev-section-label {
-      font-size: 0.72rem;
-      font-weight: 800;
-      color: var(--color-text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-      margin-top: 4px;
-    }
-
-    .btn-dev-action {
-      border: none;
-      border-radius: var(--radius-xs);
-      padding: 8px 6px;
-      font-size: 0.78rem;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      transition: transform 0.1s ease, filter 0.15s ease;
-    }
-
-    .btn-dev-action:active {
-      transform: scale(0.95);
+    .flying-fish-entity:active {
+      transform: scale(1.25);
     }
   </style>
 </head>
@@ -1325,9 +1317,8 @@
     <svg width="0" height="0" style="position:absolute; pointer-events:none;">
       <defs>
         <linearGradient id="feverGlowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#FFD166" />
-          <stop offset="50%" stop-color="#FFB703" />
-          <stop offset="100%" stop-color="#FB8500" />
+          <stop offset="0%" stop-color="#FFD54F" />
+          <stop offset="100%" stop-color="#FF5722" />
         </linearGradient>
 
         <linearGradient id="goldFishGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -1343,25 +1334,6 @@
           <circle cx="17.5" cy="10.5" r="1.5" fill="#3E2723" />
           <circle cx="18" cy="10.1" r="0.6" fill="#FFFFFF" />
         </g>
-
-        <linearGradient id="woodGrainGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#D79E6F" />
-          <stop offset="32%" stop-color="#C78859" />
-          <stop offset="68%" stop-color="#DC9F71" />
-          <stop offset="100%" stop-color="#BF7E4D" />
-        </linearGradient>
-
-        <radialGradient id="windowSunGrad" cx="50%" cy="45%" r="55%">
-          <stop offset="0%" stop-color="#FFFDF5" />
-          <stop offset="45%" stop-color="#FFEBB8" />
-          <stop offset="85%" stop-color="#FFD180" />
-          <stop offset="100%" stop-color="#FFA726" />
-        </radialGradient>
-
-        <radialGradient id="sunbeamGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#FFF8E1" stop-opacity="0.9" />
-          <stop offset="100%" stop-color="#FFE082" stop-opacity="0" />
-        </radialGradient>
       </defs>
     </svg>
 
@@ -1388,7 +1360,6 @@
       </div>
 
       <div class="top-bar-actions">
-        <button id="btn-open-dev" class="icon-button" title="Панель разработчика" style="font-size: 0.95rem; font-weight: 800;">🛠️</button>
         <button id="btn-open-achievements" class="icon-button" title="Достижения">🏆</button>
         <button id="btn-open-settings" class="icon-button" title="Настройки">⚙️</button>
       </div>
@@ -1404,7 +1375,7 @@
     <main class="click-zone">
       <div id="location-badge" class="location-badge">
         <span id="location-badge-icon">🏠</span>
-        <span id="location-badge-name">Уютный чердачок</span>
+        <span id="location-badge-name">Уютная кухня</span>
       </div>
 
       <div id="floating-container" class="floating-container"></div>
@@ -1448,7 +1419,7 @@
                 <stop offset="50%" stop-color="#BE123C" />
                 <stop offset="100%" stop-color="#881337" />
               </linearGradient>
-              <linearGradient id="beretBandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <linearGradient id="beretBandGrad" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stop-color="#9F1239" />
                 <stop offset="100%" stop-color="#4C0519" />
               </linearGradient>
@@ -1466,7 +1437,7 @@
               </radialGradient>
             </defs>
 
-            <!-- Ушки котика -->
+            <!-- Ears -->
             <path d="M 44 88 C 30 52 56 22 75 42 C 85 53 88 75 86 90 Z" 
                   fill="#EEB48B" stroke="#42291E" stroke-width="4.5" stroke-linejoin="round" />
             <path d="M 50 82 C 41 58 60 40 70 52 C 77 60 79 74 78 84 Z" 
@@ -1477,17 +1448,17 @@
             <path d="M 190 82 C 199 58 180 40 170 52 C 163 60 161 74 162 84 Z" 
                   fill="url(#earSoftPink)" opacity="0.95" />
 
-            <!-- Тело запеченного батончика -->
+            <!-- Body -->
             <path d="M 30 142 C 20 88 64 58 120 58 C 176 58 220 88 210 142 C 202 192 172 212 120 212 C 68 212 38 192 30 142 Z"
                   fill="url(#catCrustGrad)" stroke="#42291E" stroke-width="5" stroke-linejoin="round" />
             <path d="M 36 150 C 48 194 80 210 120 210 C 160 210 192 194 204 150 C 184 190 152 204 120 204 C 88 204 56 190 36 150 Z"
                   fill="url(#catBottomShadow)" />
 
-            <!-- Мучные надрезы на корочке -->
+            <!-- Flour crust cuts -->
             <path d="M 68 86 Q 78 80 88 84" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.8" />
             <path d="M 152 84 Q 162 80 172 86" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.8" />
 
-            <!-- ШЛЯПНЫЙ СЛОЙ 1: КОЛПАК (Классический белый поварской) -->
+            <!-- Hats -->
             <g id="cat-hat-classic" class="cat-dynamic-hat" transform="translate(0, -6)">
               <path d="M 92 48 C 80 34 85 10 106 14 C 112 4 128 4 134 14 C 155 10 160 34 148 48 Z" 
                     fill="url(#chefHatGrad)" stroke="#42291E" stroke-width="4" stroke-linejoin="round" />
@@ -1497,7 +1468,6 @@
                     fill="url(#hatBandGrad)" stroke="#42291E" stroke-width="3.8" />
             </g>
 
-            <!-- ШЛЯПНЫЙ СЛОЙ 2: БЕРЕТ (Французский берет пекаря, престиж 1) -->
             <g id="cat-hat-beret" class="cat-dynamic-hat" style="display: none;" transform="translate(0, -5)">
               <path d="M 128 17 L 132 10" stroke="#4C0519" stroke-width="3.5" stroke-linecap="round" />
               <path d="M 82 46 C 72 32 82 14 116 16 C 146 12 168 24 164 42 C 162 48 152 52 142 50 C 118 47 96 49 82 46 Z" 
@@ -1507,7 +1477,6 @@
                     fill="url(#beretBandGrad)" stroke="#38040E" stroke-width="3.6" />
             </g>
 
-            <!-- ШЛЯПНЫЙ СЛОЙ 3: КОРОНА (Королевская корона Шеф-Мастера, престиж 2+) -->
             <g id="cat-hat-crown" class="cat-dynamic-hat" style="display: none;" transform="translate(0, -6)">
               <path d="M 88 48 L 84 25 L 102 34 L 120 12 L 138 34 L 156 25 L 152 48 Z" 
                     fill="url(#crownGrad)" stroke="#4A2600" stroke-width="4" stroke-linejoin="round" />
@@ -1521,7 +1490,7 @@
               <path d="M 116 4 L 124 4" stroke="#FFF" stroke-width="2.5" stroke-linecap="round" />
             </g>
 
-            <!-- Мордочка котика -->
+            <!-- Face -->
             <path d="M 72 130 Q 86 116 100 130" fill="none" stroke="#42291E" stroke-width="4.8" stroke-linecap="round" />
             <path d="M 98 123 L 104 120" stroke="#42291E" stroke-width="3.5" stroke-linecap="round" />
             <path d="M 140 130 Q 154 116 168 130" fill="none" stroke="#42291E" stroke-width="4.8" stroke-linecap="round" />
@@ -1538,6 +1507,7 @@
             <line x1="202" y1="135" x2="182" y2="139" stroke="#42291E" stroke-width="2.8" stroke-linecap="round" opacity="0.75" />
             <line x1="204" y1="147" x2="184" y2="146" stroke="#42291E" stroke-width="2.8" stroke-linecap="round" opacity="0.75" />
 
+            <!-- Paws -->
             <path d="M 92 184 C 90 168 105 168 107 184 C 107 190 92 190 92 184 Z" fill="#FFF8F0" stroke="#42291E" stroke-width="3.8" />
             <path d="M 133 184 C 133 168 148 168 148 184 C 148 190 133 190 133 184 Z" fill="#FFF8F0" stroke="#42291E" stroke-width="3.8" />
           </svg>
@@ -1545,7 +1515,7 @@
       </div>
 
       <button id="btn-upgrade-click" class="click-upgrade-btn">
-        <span class="btn-title">Лапка ур. <span id="click-level-val">1</span> (<span id="click-power-val">+1</span>)</span>
+        <span class="btn-title">Лапка ур. <span id="click-level-val">1</span></span>
         <span class="btn-cost">🐾 <span id="click-cost-display">15</span></span>
       </button>
     </main>
@@ -1574,7 +1544,6 @@
       </div>
     </section>
 
-    <!-- Модальное окно обучения -->
     <div id="tutorial-modal" class="modal-backdrop hidden">
       <div class="modal-card" style="text-align: center;">
         <div id="tutorial-icon" style="font-size: 2.8rem; margin-bottom: 8px;">🌟</div>
@@ -1584,7 +1553,6 @@
       </div>
     </div>
 
-    <!-- Модальное окно офлайн-дохода -->
     <div id="offline-modal" class="modal-backdrop hidden">
       <div class="modal-card" style="text-align: center;">
         <div style="font-size: 3rem; margin-bottom: 4px;">🐱💤</div>
@@ -1608,7 +1576,6 @@
       </div>
     </div>
 
-    <!-- Модальное окно «Достижения» -->
     <div id="achievements-modal" class="modal-backdrop hidden">
       <div class="modal-card">
         <div class="modal-header-row">
@@ -1622,7 +1589,6 @@
       </div>
     </div>
 
-    <!-- Модальное окно «Настройки» -->
     <div id="settings-modal" class="modal-backdrop hidden">
       <div class="modal-card">
         <div class="modal-header-row">
@@ -1641,6 +1607,15 @@
             <button id="btn-toggle-sound" class="toggle-btn">ВКЛ</button>
           </div>
 
+          <div class="devtools-box">
+            <div class="devtools-title">🛠️ DevTools / Тестирование</div>
+            <div class="devtools-grid">
+              <button id="dev-spawn-fish" class="dev-btn">🐟 Спавн рыбки</button>
+              <button id="dev-add-cookies" class="dev-btn">+1M 🐾</button>
+              <button id="dev-trigger-fever" class="dev-btn">⚡ Лихорадка</button>
+            </div>
+          </div>
+
           <div class="reset-danger-box">
             <div class="reset-warning-text">Сброс очистит все печеньки, работников и достижения!</div>
             <button id="btn-prompt-reset" class="btn-danger-reset">Сбросить весь прогресс</button>
@@ -1653,52 +1628,10 @@
       </div>
     </div>
 
-    <!-- Модальное окно DEV-панели (Читы) -->
-    <div id="dev-modal" class="modal-backdrop hidden">
-      <div class="modal-card">
-        <div class="modal-header-row">
-          <div class="modal-title-wrap">
-            <span>🛠️</span>
-            <span>Панель разработчика</span>
-          </div>
-          <button id="btn-close-dev" class="btn-close-modal">✕</button>
-        </div>
-        <div class="modal-scroll-body" style="max-height: 70vh; gap: 8px;">
-          <div class="dev-section-label">Печеньки (🐾)</div>
-          <div class="dev-grid-btns">
-            <button id="dev-add-100k" class="btn-dev-action" style="background: #ff7043; color: #fff;">+100k Печенек</button>
-            <button id="dev-add-10m" class="btn-dev-action" style="background: #f4511e; color: #fff;">+10M Печенек</button>
-            <button id="dev-add-1b" class="btn-dev-action" style="grid-column: span 2; background: #d84315; color: #fff;">+1B Печенек (1 000 000 000)</button>
-          </div>
-
-          <div class="dev-section-label">Валюты и Бусты</div>
-          <div class="dev-grid-btns">
-            <button id="dev-add-fish" class="btn-dev-action" style="background: #ffa000; color: #fff;">+10 🐠 Рыбок</button>
-            <button id="dev-add-stars" class="btn-dev-action" style="background: #8e24aa; color: #fff;">+1 ⭐ Звезда</button>
-            <button id="dev-trigger-fever" class="btn-dev-action" style="grid-column: span 2; background: linear-gradient(135deg, #ef4444, #d32f2f); color: #fff;">🔥 Запустить Лихорадку</button>
-          </div>
-
-          <div class="dev-section-label">Принудительная смена темы</div>
-          <div class="dev-grid-btns">
-            <button id="dev-theme-0" class="btn-dev-action" style="background: #efebe9; color: #3e2723; border: 1px solid #d7ccc8;">Тема 0: Чердак</button>
-            <button id="dev-theme-1" class="btn-dev-action" style="background: #e8f5e9; color: #1b5e20; border: 1px solid #c8e6c9;">Тема 1: Кафе</button>
-            <button id="dev-theme-2" class="btn-dev-action" style="grid-column: span 2; background: #fce4ec; color: #880e4f; border: 1px solid #f8bbd0;">Тема 2: Дворец</button>
-          </div>
-
-          <div class="dev-section-label" style="margin-top: 6px;">Управление данными</div>
-          <button id="dev-reset-save" class="btn-dev-action" style="background: #b71c1c; color: #fff; padding: 10px;">⚠️ Сбросить сейв и перезагрузить</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Плавающая кнопка DEV в нижнем углу экрана -->
-    <button id="floating-dev-btn" class="dev-float-pill" title="Панель разработчика">🛠️ DEV</button>
-
-    <!-- Всплывающий тост достижения -->
     <div id="achievement-toast" class="toast-card hidden">
-      <div class="toast-icon">🏆</div>
+      <div id="toast-icon-slot" class="toast-icon">🏆</div>
       <div class="toast-body">
-        <div class="toast-badge">Новое достижение!</div>
+        <div id="toast-badge-slot" class="toast-badge">Новое достижение!</div>
         <div id="toast-title" class="toast-title">Мастер-разминатель</div>
         <div id="toast-reward" class="toast-reward">
           +1 <svg class="gold-fish-icon" viewBox="0 0 24 24"><use href="#gold-fish-symbol" /></svg>
@@ -1708,19 +1641,18 @@
   </div>
 
   <script>
-    const STORAGE_KEY = 'koto_bakery_standalone_v7';
+    const STORAGE_KEY = 'koto_bakery_standalone_v15';
     const FEVER_CIRCUMFERENCE = 678.58;
-    const FEVER_MAX_DURATION_SEC = 15.0;
 
     const GENERATOR_IDS = ['lapkolap', 'mur_pech', 'kot_barista', 'courier', 'chef_murych'];
     const PERK_IDS = ['start_van', 'strong_paws', 'cat_sleep', 'bulk_buy', 'generous_inspector'];
 
     const GENERATORS_CONFIG = {
-      lapkolap: { name: 'Лапколап', baseCost: 50, baseRate: 1, costGrowthRate: 1.10 },
-      mur_pech: { name: 'Мур-Печь', baseCost: 450, baseRate: 8, costGrowthRate: 1.10 },
-      kot_barista: { name: 'Кот-Бариста', baseCost: 3200, baseRate: 45, costGrowthRate: 1.10 },
-      courier: { name: 'Курьер', baseCost: 24000, baseRate: 260, costGrowthRate: 1.10 },
-      chef_murych: { name: 'Шеф Мурыч', baseCost: 180000, baseRate: 1600, costGrowthRate: 1.10 }
+      lapkolap: { name: 'Лапколап', baseCost: 50, baseRate: 1, costGrowthRate: 1.15 },
+      mur_pech: { name: 'Мур-Печь', baseCost: 450, baseRate: 8, costGrowthRate: 1.15 },
+      kot_barista: { name: 'Кот-Бариста', baseCost: 3200, baseRate: 45, costGrowthRate: 1.15 },
+      courier: { name: 'Курьер', baseCost: 24000, baseRate: 260, costGrowthRate: 1.15 },
+      chef_murych: { name: 'Шеф Мурыч', baseCost: 120000, baseRate: 1800, costGrowthRate: 1.15 }
     };
 
     const GENERATOR_ICONS = {
@@ -1734,42 +1666,73 @@
     const MILESTONES = [25, 50, 100, 200];
 
     const LOCATION_THEMES = [
-      { name: 'Уютный чердачок', icon: '🏠' },
+      { name: 'Уютная кухня', icon: '🏠' },
       { name: 'Парижская кондитерская', icon: '🥐' },
       { name: 'Королевский дворец', icon: '👑' }
     ];
 
-    const GOLDEN_FISH_SVG = `<svg class="gold-fish-icon" viewBox="0 0 24 24"><use href="#gold-fish-symbol" /></svg>`;
-    const GOLDEN_FISH_HERO_SVG = `<svg class="gold-fish-icon hero" viewBox="0 0 24 24"><use href="#gold-fish-symbol" /></svg>`;
-
     function getFishIconSvg(extraClass = '') {
       return `<svg class="gold-fish-icon ${extraClass}" viewBox="0 0 24 24"><use href="#gold-fish-symbol" /></svg>`;
+    }
+
+    const GOLDEN_FISH_SVG = getFishIconSvg();
+    const GOLDEN_FISH_HERO_SVG = getFishIconSvg('hero');
+
+    function getMaxFeverDuration(state) {
+      const jarLvl = state.meta?.shop?.fishJar || 0;
+      return 15.0 + jarLvl * 2.0;
+    }
+
+    function getPrestigeThresholds(allTime, state) {
+      const inspectorLvl = state?.meta?.perks?.generous_inspector || 0;
+      const discountMult = 1 - Math.min(0.25, inspectorLvl * 0.05);
+      let threshold = Math.floor(1000000 * discountMult);
+      let prevThreshold = 0;
+      while (allTime >= threshold) {
+        prevThreshold = threshold;
+        threshold *= 5;
+      }
+      return { prev: prevThreshold, next: threshold };
+    }
+
+    function calculatePrestigeReward(state) {
+      const allTime = state.stats?.totalCookiesAllTime || 0;
+      const inspectorLvl = state?.meta?.perks?.generous_inspector || 0;
+      const discountMult = 1 - Math.min(0.25, inspectorLvl * 0.05);
+      let eligibleStars = 0;
+      let threshold = Math.floor(1000000 * discountMult);
+      while (allTime >= threshold) {
+        eligibleStars++;
+        threshold *= 5;
+      }
+      const reward = Math.max(0, eligibleStars - (state.meta?.lifetimeStars || 0));
+      return reward;
     }
 
     const PRESTIGE_PERKS_CONFIG = {
       start_van: {
         id: 'start_van',
         name: 'Стартовый фургон',
-        desc: 'Дает +5 Лапколапов сразу после переезда за каждый уровень',
+        desc: 'Дает +2 Лапколапа сразу после переезда за каждый уровень (макс. 10)',
         icon: '🚐',
         maxLevel: 5,
-        getCost: (l) => (l + 1) * 2
+        getCost: (l) => (l === 0 ? 1 : (l + 1) * 2)
       },
       strong_paws: {
         id: 'strong_paws',
         name: 'Крепкие лапки',
-        desc: '+100% к силе ручного клика за каждый уровень',
+        desc: '+100% к силе клика и синергии за каждый уровень',
         icon: '🐾',
         maxLevel: 10,
-        getCost: (l) => Math.floor(1 * Math.pow(1.5, l))
+        getCost: (l) => (l === 0 ? 1 : Math.floor(1 * Math.pow(1.5, l)))
       },
       cat_sleep: {
         id: 'cat_sleep',
         name: 'Кошачий сон',
-        desc: '+1ч к лимиту сна (до 7ч) и +10% к эффективности офлайна (до 100%) за ур.',
+        desc: 'Увеличивает максимальный сон оффлайн: 4ч → 6ч → 8ч → 12ч',
         icon: '💤',
-        maxLevel: 5,
-        getCost: (l) => (l + 1) * 3
+        maxLevel: 3,
+        getCost: (l) => (l === 0 ? 1 : (l + 1) * 5)
       },
       bulk_buy: {
         id: 'bulk_buy',
@@ -1777,15 +1740,15 @@
         desc: 'Постоянная скидка -1% на всех работников (до -5%)',
         icon: '🏷️',
         maxLevel: 5,
-        getCost: (l) => (l + 1) * 3
+        getCost: (l) => (l === 0 ? 1 : (l + 1) * 3)
       },
       generous_inspector: {
         id: 'generous_inspector',
         name: 'Щедрый инспектор',
-        desc: '+10% к получаемым Звёздам при переезде за уровень',
+        desc: 'Снижает порог печенек для получения Звёзд на 5% за уровень (до -25%)',
         icon: '🧐',
         maxLevel: 5,
-        getCost: (l) => (l + 1) * 4
+        getCost: (l) => (l === 0 ? 1 : (l + 1) * 4)
       }
     };
 
@@ -1942,7 +1905,7 @@
     function createInitialState() {
       const now = Date.now();
       return {
-        version: 7,
+        version: 15,
         run: {
           cookies: 0,
           lifetimeCookiesRun: 0,
@@ -1958,7 +1921,9 @@
           shop: {
             catnip: 0,
             goldenRollingPin: 0,
-            creamSauce: 0
+            creamSauce: 0,
+            catBell: 0,
+            fishJar: 0
           },
           achievements: []
         },
@@ -2013,31 +1978,30 @@
         }
       }
 
-      let parsedStars = Math.floor(sanitizeNumber(data.meta?.stars, 0));
-      let parsedPrestigeCount = Math.floor(sanitizeNumber(data.meta?.prestigeCount, 0));
-
-      if (parsedStars > 50 && parsedPrestigeCount <= 1) {
-        parsedStars = Math.max(1, parsedPrestigeCount);
-      }
+      const parsedStars = Math.floor(sanitizeNumber(data.meta?.stars, 0));
+      const parsedLifetimeStars = Math.max(parsedStars, Math.floor(sanitizeNumber(data.meta?.lifetimeStars, 0)));
+      const parsedPrestigeCount = Math.floor(sanitizeNumber(data.meta?.prestigeCount, 0));
 
       return {
-        version: 7,
+        version: 15,
         run: {
-          cookies: sanitizeNumber(data.run?.cookies, defaults.run.cookies),
-          lifetimeCookiesRun: sanitizeNumber(data.run?.lifetimeCookiesRun, 0),
+          cookies: Math.floor(sanitizeNumber(data.run?.cookies, defaults.run.cookies)),
+          lifetimeCookiesRun: Math.floor(sanitizeNumber(data.run?.lifetimeCookiesRun, 0)),
           clickLevel: Math.max(1, Math.floor(sanitizeNumber(data.run?.clickLevel, 1))),
           generators: mergedGenerators
         },
         meta: {
           stars: parsedStars,
-          lifetimeStars: Math.max(parsedStars, Math.floor(sanitizeNumber(data.meta?.lifetimeStars, 0))),
+          lifetimeStars: parsedLifetimeStars,
           fish: Math.floor(sanitizeNumber(data.meta?.fish, 0)),
           prestigeCount: parsedPrestigeCount,
           perks: mergedPerks,
           shop: {
             catnip: Math.floor(sanitizeNumber(data.meta?.shop?.catnip, 0)),
             goldenRollingPin: Math.floor(sanitizeNumber(data.meta?.shop?.goldenRollingPin, 0)),
-            creamSauce: Math.floor(sanitizeNumber(data.meta?.shop?.creamSauce || data.meta?.shop?.eternalEnergy, 0))
+            creamSauce: Math.floor(sanitizeNumber(data.meta?.shop?.creamSauce || data.meta?.shop?.eternalEnergy, 0)),
+            catBell: Math.min(5, Math.floor(sanitizeNumber(data.meta?.shop?.catBell, 0))),
+            fishJar: Math.floor(sanitizeNumber(data.meta?.shop?.fishJar, 0))
           },
           achievements: Array.isArray(data.meta?.achievements) ? data.meta.achievements : []
         },
@@ -2061,7 +2025,7 @@
         },
         stats: {
           totalClicks: Math.floor(sanitizeNumber(data.stats?.totalClicks, 0)),
-          totalCookiesAllTime: sanitizeNumber(data.stats?.totalCookiesAllTime, 0)
+          totalCookiesAllTime: Math.floor(sanitizeNumber(data.stats?.totalCookiesAllTime, 0))
         }
       };
     }
@@ -2156,7 +2120,7 @@
       const isAdBoosted = (state.boosts.adMultiplierExpiresAt || 0) > Date.now();
       const adMultiplier = isAdBoosted ? 2 : 1;
 
-      return baseTotalRate * prestigeMultiplier * shopSauceMultiplier * adMultiplier;
+      return Math.floor(baseTotalRate * prestigeMultiplier * shopSauceMultiplier * adMultiplier);
     }
 
     function getCostWithDiscount(rawPrice, perkLevel = 0) {
@@ -2187,12 +2151,12 @@
 
     function getMaxAffordable(generatorId, state) {
       const config = GENERATORS_CONFIG[generatorId];
-      if (!config) return { count: 0, cost: 0 };
+      if (!config) return { count: 0, cost: 0, canAfford: false };
 
       const availableCookies = state.run.cookies;
       const singleCost = getSingleGeneratorCost(generatorId, state);
       if (availableCookies < singleCost) {
-        return { count: 0, cost: singleCost };
+        return { count: 0, cost: singleCost, canAfford: false };
       }
 
       const k = state.run.generators[generatorId] || 0;
@@ -2202,19 +2166,21 @@
       const currentStepBase = config.baseCost * Math.pow(r, k) * discountMultiplier;
 
       const argument = 1 + (availableCookies * (r - 1)) / currentStepBase;
-      let maxCount = Math.floor(Math.log(argument) / Math.log(r));
+      let maxCount = Math.floor(Math.log(Math.max(1, argument)) / Math.log(r));
 
-      let totalCost = getBatchCost(generatorId, maxCount, state);
-      while (totalCost > availableCookies && maxCount > 0) {
-        maxCount -= 1;
-        totalCost = getBatchCost(generatorId, maxCount, state);
+      while (maxCount > 0 && getBatchCost(generatorId, maxCount, state) > availableCookies) {
+        maxCount--;
+      }
+
+      while (getBatchCost(generatorId, maxCount + 1, state) <= availableCookies) {
+        maxCount++;
       }
 
       if (maxCount <= 0) {
-        return { count: 0, cost: singleCost };
+        return { count: 0, cost: singleCost, canAfford: false };
       }
 
-      return { count: maxCount, cost: totalCost };
+      return { count: maxCount, cost: getBatchCost(generatorId, maxCount, state), canAfford: true };
     }
 
     function buyGenerator(generatorId, state, amount = 1) {
@@ -2242,7 +2208,6 @@
       saveToLocal(state);
 
       const milestoneSpiked = MILESTONES.some(m => prevCount < m && newCount >= m);
-
       return { success: true, countBought: countToBuy, totalCost, milestoneSpiked };
     }
 
@@ -2288,32 +2253,18 @@
     }
 
     function getClickPower(state) {
-      const clickLevel = Math.max(1, Math.floor(state.run?.clickLevel || 1));
-      const stars = Math.max(0, Math.floor(state.meta?.stars || 0));
-
-      const baseClick = clickLevel + stars;
-
-      const strongPawsLevel = Math.floor(state.meta?.perks?.strong_paws || 0);
-      const rollingPinLevel = Math.floor(state.meta?.shop?.goldenRollingPin || 0);
-
-      const perkClickMult = 1 + (strongPawsLevel * 0.5);
-      const shopMultiplier = 1 + (rollingPinLevel * 0.15);
-
+      const basePower = (1 + (state.meta.stars || 0)) * Math.max(1, state.run.clickLevel);
+      const perkMult = 1 + (state.meta?.perks?.strong_paws || 0);
+      const pinMult = 1 + (state.meta?.shop?.goldenRollingPin || 0) * 0.15;
+      const clickUpgradesMult = perkMult * pinMult;
+      
       const totalPassiveRate = calculateTotalRate(state);
-      const synergyClick = Math.floor(totalPassiveRate / 100);
-
-      let finalClick = Math.floor(baseClick * perkClickMult * shopMultiplier) + synergyClick;
-
-      if (state.boosts?.feverActive) {
-        finalClick *= 3;
-      }
-
-      return Math.max(1, Math.floor(finalClick));
-    }
-
-    function formatClickNumber(val) {
-      const safeInt = Math.max(1, Math.floor(val));
-      return formatNumber(safeInt);
+      const synergyBase = totalPassiveRate * 0.01;
+      
+      const totalClickBeforeFever = (basePower + synergyBase) * clickUpgradesMult;
+      const feverMult = state.boosts.feverActive ? 3 : 1;
+      
+      return Math.max(1, Math.round(totalClickBeforeFever * feverMult));
     }
 
     function buyClickUpgrade(state) {
@@ -2333,7 +2284,7 @@
 
       const el = document.createElement('div');
       el.className = `floating-number${isFever ? ' fever' : ''}`;
-      el.textContent = `+${formatClickNumber(amount)}`;
+      el.textContent = `+${formatNumber(amount)}`;
       el.style.left = `${x}px`;
       el.style.top = `${y}px`;
 
@@ -2345,17 +2296,50 @@
       container.appendChild(el);
     }
 
+    function spawnCrumbs(container, clientX, clientY) {
+      if (!container) return;
+      const rect = container.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+
+      const count = 3 + Math.floor(Math.random() * 2);
+      for (let i = 0; i < count; i++) {
+        const crumb = document.createElement('div');
+        crumb.className = 'crumb-particle';
+        const size = 5 + Math.random() * 6;
+        crumb.style.width = `${size}px`;
+        crumb.style.height = `${size}px`;
+        crumb.style.left = `${x}px`;
+        crumb.style.top = `${y}px`;
+
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 28 + Math.random() * 45;
+        const dx = Math.cos(angle) * dist;
+        const dy = Math.sin(angle) * dist;
+
+        crumb.style.setProperty('--dx', `${dx}px`);
+        crumb.style.setProperty('--dy', `${dy}px`);
+
+        container.appendChild(crumb);
+        setTimeout(() => {
+          if (crumb.parentNode === container) {
+            crumb.remove();
+          }
+        }, 350);
+      }
+    }
+
     let feverRemainingTimer = 0;
 
     function triggerFeverMode(state) {
       state.boosts.feverActive = true;
       state.boosts.feverProgress = 100;
-      feverRemainingTimer = FEVER_MAX_DURATION_SEC;
+      feverRemainingTimer = getMaxFeverDuration(state);
       SoundFX.playFever(state.settings.soundMuted);
     }
 
     function processTap(state, container, clientX, clientY) {
-      const power = Math.floor(getClickPower(state));
+      const power = getClickPower(state);
       state.run.cookies += power;
       state.run.lifetimeCookiesRun += power;
       state.stats.totalCookiesAllTime += power;
@@ -2372,34 +2356,36 @@
 
       SoundFX.playClick(state.settings.soundMuted);
       spawnFloatingNumber(container, clientX, clientY, power, state.boosts.feverActive);
+      spawnCrumbs(container, clientX, clientY);
       return power;
     }
 
     function calculateOfflineProgress(state) {
       const now = Date.now();
+      const firstStart = state.timestamps.firstStartTime || now;
+      if ((now - firstStart) < 300 * 1000) {
+        return { isEligible: false, baseEarned: 0, doubleEarned: 0, effectiveSeconds: 0 };
+      }
+
       const lastSave = state.timestamps.lastSaveTime || now;
       const secondsAway = Math.floor((now - lastSave) / 1000);
 
       if (secondsAway < 60) {
-        return { isEligible: false, baseEarned: 0, doubleEarned: 0, secondsAway: 0, effectiveSeconds: 0, maxHours: 2, efficiency: 0.5 };
+        return { isEligible: false, baseEarned: 0, doubleEarned: 0, effectiveSeconds: 0 };
       }
 
-      const perkLevel = Math.min(5, Math.max(0, state.meta?.perks?.cat_sleep || 0));
-      const maxHours = 2 + perkLevel;
-      const efficiency = 0.5 + (perkLevel * 0.1);
-      const maxCapSeconds = maxHours * 3600;
+      const capsHours = [4, 6, 8, 12];
+      const perkLevel = state.meta?.perks?.cat_sleep || 0;
+      const maxCapSeconds = (capsHours[Math.min(perkLevel, 3)] || 4) * 3600;
       const effectiveSeconds = Math.min(secondsAway, maxCapSeconds);
 
       const rate = calculateTotalRate(state);
-      const baseEarned = Math.floor(effectiveSeconds * rate * efficiency);
+      const baseEarned = Math.floor(effectiveSeconds * rate * 0.5);
       return {
         isEligible: baseEarned > 0,
         baseEarned,
         doubleEarned: baseEarned * 2,
-        secondsAway,
-        effectiveSeconds,
-        maxHours,
-        efficiency
+        effectiveSeconds
       };
     }
 
@@ -2418,23 +2404,9 @@
       }
     }
 
-    function getPrestigeThreshold(prestigeCount) {
-      const safeCount = Math.max(0, Math.floor(prestigeCount || 0));
-      return 10000000 * Math.pow(5, safeCount);
-    }
-
-    function calculatePrestigeReward(state) {
-      const lifetime = state.run.lifetimeCookiesRun || 0;
-      const currentThreshold = getPrestigeThreshold(state.meta?.prestigeCount || 0);
-      if (lifetime < currentThreshold) return 0;
-      const inspectorLevel = state.meta?.perks?.generous_inspector || 0;
-      const bonusMult = 1 + inspectorLevel * 0.1;
-      const baseStars = Math.floor(Math.sqrt(lifetime / currentThreshold));
-      return Math.floor(baseStars * bonusMult);
-    }
-
     function initGame() {
       let state = loadFromLocal();
+      let subCookieAccumulator = 0;
 
       const appRoot = document.getElementById('app-root');
       const cookiesDisplay = document.getElementById('cookies-display');
@@ -2456,22 +2428,12 @@
       const btnUpgradeClick = document.getElementById('btn-upgrade-click');
       const clickCostDisplay = document.getElementById('click-cost-display');
       const clickLevelVal = document.getElementById('click-level-val');
-      const clickPowerVal = document.getElementById('click-power-val');
 
       const btnAdBoost = document.getElementById('btn-ad-boost');
       const adBoostTimer = document.getElementById('ad-boost-timer');
 
       const btnOpenAchievements = document.getElementById('btn-open-achievements');
       const btnOpenSettings = document.getElementById('btn-open-settings');
-      const btnOpenDev = document.getElementById('btn-open-dev');
-
-      const devModal = document.getElementById('dev-modal');
-      const btnCloseDev = document.getElementById('btn-close-dev');
-      const devAddCookies = document.getElementById('dev-add-cookies');
-      const devAddFish = document.getElementById('dev-add-fish');
-      const devAddStars = document.getElementById('dev-add-stars');
-      const devTriggerFever = document.getElementById('dev-trigger-fever');
-      const devUnlockAch = document.getElementById('dev-unlock-ach');
 
       const tabButtons = document.querySelectorAll('.tab-btn');
       const tabPanes = {
@@ -2511,20 +2473,26 @@
 
       const toastCard = document.getElementById('achievement-toast');
       const toastTitle = document.getElementById('toast-title');
+      const toastBadgeSlot = document.getElementById('toast-badge-slot');
+      const toastIconSlot = document.getElementById('toast-icon-slot');
+      const toastRewardSlot = document.getElementById('toast-reward');
+
+      const devSpawnFish = document.getElementById('dev-spawn-fish');
+      const devAddCookies = document.getElementById('dev-add-cookies');
+      const devTriggerFever = document.getElementById('dev-trigger-fever');
 
       let currentBatchMode = '1';
       let activeTabId = 'generators';
       let toastTimeoutId = null;
-      let forcedThemeIndex = null;
 
       function updateCatVisual(gameState) {
         const prestiges = gameState.meta?.prestigeCount || 0;
-        const themeIndex = forcedThemeIndex !== null ? forcedThemeIndex : Math.min(2, prestiges);
+        const themeIndex = Math.min(2, prestiges);
 
         if (hatClassic && hatBeret && hatCrown) {
-          hatClassic.style.display = themeIndex === 0 ? 'block' : 'none';
-          hatBeret.style.display = themeIndex === 1 ? 'block' : 'none';
-          hatCrown.style.display = themeIndex >= 2 ? 'block' : 'none';
+          hatClassic.style.display = prestiges === 0 ? 'block' : 'none';
+          hatBeret.style.display = prestiges === 1 ? 'block' : 'none';
+          hatCrown.style.display = prestiges >= 2 ? 'block' : 'none';
         }
 
         appRoot.classList.remove('theme-bakery-0', 'theme-bakery-1', 'theme-bakery-2');
@@ -2533,11 +2501,6 @@
         const locConfig = LOCATION_THEMES[themeIndex] || LOCATION_THEMES[0];
         if (locationBadgeIcon) locationBadgeIcon.textContent = locConfig.icon;
         if (locationBadgeName) locationBadgeName.textContent = locConfig.name;
-      }
-
-      function forceTheme(themeIdx) {
-        forcedThemeIndex = themeIdx;
-        updateCatVisual(state);
       }
 
       function showTutorial(icon, title, text, btnText, onConfirm) {
@@ -2555,9 +2518,12 @@
         btnCloseTutorial.addEventListener('click', handler);
       }
 
-      function showAchievementToast(ach) {
+      function showGenericToast(icon, badge, title, rewardHtml) {
         if (toastTimeoutId) clearTimeout(toastTimeoutId);
-        toastTitle.textContent = ach.title;
+        toastIconSlot.innerHTML = icon;
+        toastBadgeSlot.textContent = badge;
+        toastTitle.textContent = title;
+        toastRewardSlot.innerHTML = rewardHtml;
         toastCard.classList.remove('hidden');
         SoundFX.playBuy(state.settings.soundMuted);
         toastTimeoutId = setTimeout(() => {
@@ -2566,11 +2532,13 @@
         }, 3500);
       }
 
+      function showAchievementToast(ach) {
+        showGenericToast('🏆', 'Новое достижение!', ach.title, `+${ach.rewardFish} ${getFishIconSvg('small')}`);
+      }
+
       const offlineData = calculateOfflineProgress(state);
       if (offlineData.isEligible) {
-        const timeText = formatTime(offlineData.secondsAway, 'duration');
-        const effPct = Math.round(offlineData.efficiency * 100);
-        offlineTimeSpent.innerHTML = `${timeText}<br><span style="font-size: 0.78rem; font-weight: 700; color: var(--color-text-muted);">Пекарня пекла на ${effPct}% мощности (лимит: ${offlineData.maxHours} ч)</span>`;
+        offlineTimeSpent.textContent = formatTime(offlineData.effectiveSeconds, 'duration');
         offlineCookiesAmount.textContent = formatNumber(offlineData.baseEarned);
         offlineDoubleAmount.textContent = formatNumber(offlineData.doubleEarned);
         offlineModal.classList.remove('hidden');
@@ -2594,9 +2562,14 @@
         renderStaticUI();
       });
 
+      let squashTimer = null;
       const triggerSquash = () => {
+        if (squashTimer) clearTimeout(squashTimer);
         doughTarget.classList.add('squash');
-        setTimeout(() => doughTarget.classList.remove('squash'), 70);
+        squashTimer = setTimeout(() => {
+          doughTarget.classList.remove('squash');
+          squashTimer = null;
+        }, 60);
       };
 
       doughTarget.addEventListener('touchstart', (e) => {
@@ -2634,6 +2607,114 @@
         renderStaticUI();
       });
 
+      let activeFlyingFish = null;
+
+      function getNextFishIntervalSec() {
+        const bellLvl = state.meta?.shop?.catBell || 0;
+        const baseInterval = 60 + Math.random() * 30;
+        return Math.max(45, baseInterval - bellLvl * 3);
+      }
+
+      let nextFishSpawnTimestamp = Date.now() + 1000 * getNextFishIntervalSec();
+
+      function spawnFlyingFish() {
+        if (activeFlyingFish && activeFlyingFish.parentNode) {
+          activeFlyingFish.remove();
+        }
+
+        const fish = document.createElement('div');
+        fish.className = 'flying-fish-entity';
+        fish.innerHTML = `<svg viewBox="0 0 24 24" style="width:100%;height:100%;"><use href="#gold-fish-symbol" /></svg>`;
+
+        const fromLeft = Math.random() > 0.5;
+        const topY = 70 + Math.random() * 110;
+        const startX = fromLeft ? -60 : 490;
+        const endX = fromLeft ? 490 : -60;
+
+        fish.style.top = `${topY}px`;
+        fish.style.left = `${startX}px`;
+        if (!fromLeft) {
+          fish.style.transform = 'scaleX(-1)';
+        }
+
+        appRoot.appendChild(fish);
+        activeFlyingFish = fish;
+
+        const startTime = performance.now();
+        const duration = 5000;
+        let animationFrameId = null;
+
+        function moveFish(currTime) {
+          const elapsed = currTime - startTime;
+          const p = Math.min(1, elapsed / duration);
+          const curX = startX + (endX - startX) * p;
+          const wobbleY = Math.sin(p * Math.PI * 4) * 14;
+
+          fish.style.left = `${curX}px`;
+          fish.style.top = `${topY + wobbleY}px`;
+
+          if (p < 1 && activeFlyingFish === fish) {
+            animationFrameId = requestAnimationFrame(moveFish);
+          } else {
+            if (activeFlyingFish === fish) {
+              fish.remove();
+              activeFlyingFish = null;
+            }
+          }
+        }
+        animationFrameId = requestAnimationFrame(moveFish);
+
+        const onCatch = (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          if (animationFrameId) cancelAnimationFrame(animationFrameId);
+          if (fish.parentNode) fish.remove();
+          activeFlyingFish = null;
+
+          SoundFX.playFever(state.settings.soundMuted);
+
+          const roll = Math.random();
+          if (roll < 0.70) {
+            const jackpot = Math.max(50, Math.floor(calculateTotalRate(state) * 180));
+            state.run.cookies += jackpot;
+            state.run.lifetimeCookiesRun += jackpot;
+            state.stats.totalCookiesAllTime += jackpot;
+            showGenericToast('🐟', 'Золотая Рыбка поймана!', 'Щедрый улов печенек (3 мин)!', `+${formatNumber(jackpot)} 🐾`);
+          } else if (roll < 0.90) {
+            triggerFeverMode(state);
+            const dur = Math.round(getMaxFeverDuration(state));
+            showGenericToast('⚡', 'Золотая Рыбка поймана!', 'Взрыв энергии теста!', `Лихорадка на ${dur} сек!`);
+          } else {
+            state.meta.fish += 1;
+            showGenericToast('✨', 'Золотая Рыбка поймана!', 'Редкая добыча!', `+1 ${getFishIconSvg('small')}`);
+          }
+
+          saveToLocal(state);
+          renderStaticUI();
+        };
+
+        fish.addEventListener('pointerdown', onCatch);
+      }
+
+      devSpawnFish.addEventListener('click', () => {
+        spawnFlyingFish();
+      });
+
+      devAddCookies.addEventListener('click', () => {
+        const bonus = 1000000;
+        state.run.cookies += bonus;
+        state.run.lifetimeCookiesRun += bonus;
+        state.stats.totalCookiesAllTime += bonus;
+        saveToLocal(state);
+        renderStaticUI();
+        showGenericToast('🛠️', 'DevTools', 'Добавлено 1,000,000 печенек!', '+1M 🐾');
+      });
+
+      devTriggerFever.addEventListener('click', () => {
+        triggerFeverMode(state);
+        renderStaticUI();
+      });
+
       tabButtons.forEach((btn) => {
         btn.addEventListener('click', () => {
           tabButtons.forEach((b) => b.classList.remove('active'));
@@ -2657,7 +2738,7 @@
             showTutorial(
               '🌟',
               'Новый филиал!',
-              'Переезд сбрасывает текущих поварят, но дарит постоянные Звёзды Мишлен. Каждая звезда даёт +25% к выпечке/сек, +1 к силе клика и открывает мощные перки!',
+              'Переезд сбрасывает текущих поварят, но дарит постоянные Звёзды Мишлен. Каждая звезда навсегда увеличивает базовый клик на +1 и дает +25% к пассивному доходу!',
               'Понятно! 🐾',
               () => {
                 state.tutorials.prestigeSeen = true;
@@ -2708,9 +2789,15 @@
             canBuy = state.run.cookies >= cost && cost > 0;
           } else if (currentBatchMode === 'max') {
             const maxInfo = getMaxAffordable(id, state);
-            countToBuy = maxInfo.count;
-            cost = maxInfo.cost;
-            canBuy = countToBuy > 0 && state.run.cookies >= cost;
+            if (maxInfo.count > 0) {
+              countToBuy = maxInfo.count;
+              cost = maxInfo.cost;
+              canBuy = state.run.cookies >= cost;
+            } else {
+              countToBuy = 1;
+              cost = maxInfo.cost;
+              canBuy = false;
+            }
           } else {
             countToBuy = 1;
             cost = data.nextCost;
@@ -2784,11 +2871,14 @@
         state.run.cookies = 0;
         state.run.lifetimeCookiesRun = 0;
         state.run.clickLevel = 1;
+        subCookieAccumulator = 0;
+
         for (const id of GENERATOR_IDS) {
           state.run.generators[id] = 0;
         }
+
         if (vanLevel > 0) {
-          state.run.generators.lapkolap = vanLevel * 5;
+          state.run.generators.lapkolap = vanLevel * 2;
         }
 
         updateCatVisual(state);
@@ -2801,7 +2891,7 @@
           showTutorial(
             '🥐✨',
             'Новый статус: Парижская кондитерская!',
-            '🎉 Ваша пекарня вышла на международный уровень! Котик надел элегантный французский берет, а интерьер украшен в изысканном стиле!',
+            '🎉 Ваша пекарня вышла на международный уровень! Котик надел элегантный французский берет, клик усилен навсегда, а доход стал выше!',
             'Великолепно! 🐾'
           );
         } else if (prevPrestige === 1 && state.meta.prestigeCount >= 2) {
@@ -2821,9 +2911,14 @@
         const rewardStars = calculatePrestigeReward(state);
         const canPrestige = rewardStars > 0;
         const currentStarsMult = Math.round((state.meta.stars || 0) * 25);
-        const lifetimeRun = state.run.lifetimeCookiesRun || 0;
-        const reqThreshold = getPrestigeThreshold(state.meta?.prestigeCount || 0);
-        const progressPct = Math.min(100, Math.round((lifetimeRun / reqThreshold) * 100));
+        const allTime = state.stats.totalCookiesAllTime || 0;
+        const { prev, next } = getPrestigeThresholds(allTime, state);
+        const progressPct = Math.min(100, Math.max(0, Math.floor(((allTime - prev) / (next - prev)) * 100)));
+        const neededToNext = Math.max(0, next - allTime);
+
+        const btnText = canPrestige 
+          ? `⭐ Переехать и получить +${rewardStars} Звёзд` 
+          : `До следующей Звезды: ${formatNumber(neededToNext)} 🐾`;
 
         const banner = document.createElement('div');
         banner.className = 'prestige-banner';
@@ -2833,23 +2928,19 @@
               <span>🌟</span>
               <span>Филиал Мишлен</span>
             </div>
-            <div class="prestige-badge-mult">+${currentStarsMult}% к доходу</div>
-          </div>
-          <div style="font-size: 0.76rem; font-weight: 700; color: #b75500; margin-top: -2px;">
-            Каждая звезда даёт +25% к выпечке/сек и +1 к силе клика
+            <div class="prestige-badge-mult">+${currentStarsMult}% дох / +${state.meta.stars || 0} к клику</div>
           </div>
           <div class="prestige-progress-box">
             <div class="prestige-progress-label">
-              <span>Прогресс до переезда:</span>
-              <span>${formatNumber(lifetimeRun)} / ${formatNumber(reqThreshold)} (${progressPct}%)</span>
+              <span id="prestige-progress-text">След. звезда: ${formatNumber(allTime)} / ${formatNumber(next)} (${progressPct}%)</span>
+              <span id="prestige-progress-pct">${progressPct}%</span>
             </div>
             <div class="milestone-bar-bg" style="height: 6px;">
-              <div class="milestone-bar-fill" style="width: ${progressPct}%;"></div>
+              <div id="prestige-bar-fill" class="milestone-bar-fill" style="width: ${progressPct}%;"></div>
             </div>
           </div>
           <button id="btn-do-prestige" class="btn-prestige-reset" ${!canPrestige ? 'disabled' : ''}>
-            <span>⭐</span>
-            <span>${canPrestige ? `Переехать и получить +${rewardStars} Звёзд` : `Нужно минимум ${formatNumber(reqThreshold)} выпечки`}</span>
+            <span id="btn-do-prestige-text">${btnText}</span>
           </button>
         `;
 
@@ -2901,6 +2992,16 @@
         const catnipLvl = state.meta?.shop?.catnip || 0;
         const pinLvl = state.meta?.shop?.goldenRollingPin || 0;
         const sauceLvl = state.meta?.shop?.creamSauce || 0;
+        const bellLvl = state.meta?.shop?.catBell || 0;
+        const jarLvl = state.meta?.shop?.fishJar || 0;
+
+        const catnipCost = (catnipLvl + 1) * 3;
+        const pinCost = (pinLvl + 1) * 6;
+        const sauceCost = (sauceLvl + 1) * 10;
+        const bellCost = (bellLvl + 1) * 5;
+        const jarCost = (jarLvl + 1) * 8;
+
+        const isBellMax = bellLvl >= 5;
 
         targetContainer.innerHTML = `
           <div class="shop-card">
@@ -2908,11 +3009,11 @@
               <div class="shop-card-avatar">🌿</div>
               <div class="shop-card-info">
                 <span class="shop-card-title">Кошачья мята (ур. ${catnipLvl})</span>
-                <span class="shop-card-desc">+25% к скорости накопления Лихорадки</span>
+                <span class="shop-card-desc">+25% к скорости накопления Лихорадки за ур.</span>
               </div>
             </div>
-            <button id="btn-shop-catnip" class="shop-buy-btn" ${state.meta.fish < 3 ? 'disabled' : ''}>
-              3 ${getFishIconSvg()}
+            <button id="btn-shop-catnip" class="shop-buy-btn" ${state.meta.fish < catnipCost ? 'disabled' : ''}>
+              ${catnipCost} ${getFishIconSvg()}
             </button>
           </div>
 
@@ -2921,11 +3022,11 @@
               <div class="shop-card-avatar">🥢</div>
               <div class="shop-card-info">
                 <span class="shop-card-title">Золотая скалка (ур. ${pinLvl})</span>
-                <span class="shop-card-desc">+15% к силе ручного клика навсегда</span>
+                <span class="shop-card-desc">+15% к силе ручного клика и синергии за ур.</span>
               </div>
             </div>
-            <button id="btn-shop-rolling-pin" class="shop-buy-btn" ${state.meta.fish < 6 ? 'disabled' : ''}>
-              6 ${getFishIconSvg()}
+            <button id="btn-shop-rolling-pin" class="shop-buy-btn" ${state.meta.fish < pinCost ? 'disabled' : ''}>
+              ${pinCost} ${getFishIconSvg()}
             </button>
           </div>
 
@@ -2934,18 +3035,44 @@
               <div class="shop-card-avatar">🍶</div>
               <div class="shop-card-info">
                 <span class="shop-card-title">Сливочный соус (ур. ${sauceLvl})</span>
-                <span class="shop-card-desc">+15% к доходу всех поварят навсегда</span>
+                <span class="shop-card-desc">+15% к пассивному доходу поварят за ур.</span>
               </div>
             </div>
-            <button id="btn-shop-cream-sauce" class="shop-buy-btn" ${state.meta.fish < 10 ? 'disabled' : ''}>
-              10 ${getFishIconSvg()}
+            <button id="btn-shop-cream-sauce" class="shop-buy-btn" ${state.meta.fish < sauceCost ? 'disabled' : ''}>
+              ${sauceCost} ${getFishIconSvg()}
+            </button>
+          </div>
+
+          <div class="shop-card">
+            <div class="shop-card-left">
+              <div class="shop-card-avatar">🔔</div>
+              <div class="shop-card-info">
+                <span class="shop-card-title">Кошачий колокольчик (${bellLvl}/5)</span>
+                <span class="shop-card-desc">Рыбка прилетает на 3 сек быстрее за ур.</span>
+              </div>
+            </div>
+            <button id="btn-shop-bell" class="shop-buy-btn" ${isBellMax || state.meta.fish < bellCost ? 'disabled' : ''}>
+              ${isBellMax ? 'МАКС' : `${bellCost} ${getFishIconSvg()}`}
+            </button>
+          </div>
+
+          <div class="shop-card">
+            <div class="shop-card-left">
+              <div class="shop-card-avatar">🏺</div>
+              <div class="shop-card-info">
+                <span class="shop-card-title">Золотая банка (ур. ${jarLvl})</span>
+                <span class="shop-card-desc">+2 сек к длительности Лихорадки (${Math.round(getMaxFeverDuration(state))} сек)</span>
+              </div>
+            </div>
+            <button id="btn-shop-jar" class="shop-buy-btn" ${state.meta.fish < jarCost ? 'disabled' : ''}>
+              ${jarCost} ${getFishIconSvg()}
             </button>
           </div>
         `;
 
         targetContainer.querySelector('#btn-shop-catnip').addEventListener('click', () => {
-          if (state.meta.fish >= 3) {
-            state.meta.fish -= 3;
+          if (state.meta.fish >= catnipCost) {
+            state.meta.fish -= catnipCost;
             state.meta.shop.catnip = (state.meta.shop.catnip || 0) + 1;
             SoundFX.playBuy(state.settings.soundMuted);
             saveToLocal(state);
@@ -2954,8 +3081,8 @@
         });
 
         targetContainer.querySelector('#btn-shop-rolling-pin').addEventListener('click', () => {
-          if (state.meta.fish >= 6) {
-            state.meta.fish -= 6;
+          if (state.meta.fish >= pinCost) {
+            state.meta.fish -= pinCost;
             state.meta.shop.goldenRollingPin = (state.meta.shop.goldenRollingPin || 0) + 1;
             SoundFX.playBuy(state.settings.soundMuted);
             saveToLocal(state);
@@ -2964,9 +3091,32 @@
         });
 
         targetContainer.querySelector('#btn-shop-cream-sauce').addEventListener('click', () => {
-          if (state.meta.fish >= 10) {
-            state.meta.fish -= 10;
+          if (state.meta.fish >= sauceCost) {
+            state.meta.fish -= sauceCost;
             state.meta.shop.creamSauce = (state.meta.shop.creamSauce || 0) + 1;
+            SoundFX.playBuy(state.settings.soundMuted);
+            saveToLocal(state);
+            renderStaticUI();
+          }
+        });
+
+        const bellBtn = targetContainer.querySelector('#btn-shop-bell');
+        if (!isBellMax) {
+          bellBtn.addEventListener('click', () => {
+            if (state.meta.fish >= bellCost) {
+              state.meta.fish -= bellCost;
+              state.meta.shop.catBell = (state.meta.shop.catBell || 0) + 1;
+              SoundFX.playBuy(state.settings.soundMuted);
+              saveToLocal(state);
+              renderStaticUI();
+            }
+          });
+        }
+
+        targetContainer.querySelector('#btn-shop-jar').addEventListener('click', () => {
+          if (state.meta.fish >= jarCost) {
+            state.meta.fish -= jarCost;
+            state.meta.shop.fishJar = (state.meta.shop.fishJar || 0) + 1;
             SoundFX.playBuy(state.settings.soundMuted);
             saveToLocal(state);
             renderStaticUI();
@@ -3017,59 +3167,6 @@
         settingsModal.classList.add('hidden');
       });
 
-      const floatingDevBtn = document.getElementById('floating-dev-btn');
-      const openDevHandler = () => devModal.classList.remove('hidden');
-      
-      btnOpenDev.addEventListener('click', openDevHandler);
-      if (floatingDevBtn) floatingDevBtn.addEventListener('click', openDevHandler);
-
-      btnCloseDev.addEventListener('click', () => {
-        devModal.classList.add('hidden');
-      });
-
-      const addCookies = (amount) => {
-        state.run.cookies += amount;
-        state.run.lifetimeCookiesRun += amount;
-        state.stats.totalCookiesAllTime += amount;
-        SoundFX.playBuy(state.settings.soundMuted);
-        saveToLocal(state);
-        renderStaticUI();
-      };
-
-      document.getElementById('dev-add-100k').addEventListener('click', () => addCookies(100000));
-      document.getElementById('dev-add-10m').addEventListener('click', () => addCookies(10000000));
-      document.getElementById('dev-add-1b').addEventListener('click', () => addCookies(1000000000));
-
-      devAddFish.addEventListener('click', () => {
-        state.meta.fish += 10;
-        SoundFX.playBuy(state.settings.soundMuted);
-        saveToLocal(state);
-        renderStaticUI();
-      });
-
-      devAddStars.addEventListener('click', () => {
-        state.meta.stars += 1;
-        state.meta.lifetimeStars += 1;
-        SoundFX.playBuy(state.settings.soundMuted);
-        saveToLocal(state);
-        renderStaticUI();
-      });
-
-      devTriggerFever.addEventListener('click', () => {
-        triggerFeverMode(state);
-        devModal.classList.add('hidden');
-        renderStaticUI();
-      });
-
-      document.getElementById('dev-theme-0').addEventListener('click', () => forceTheme(0));
-      document.getElementById('dev-theme-1').addEventListener('click', () => forceTheme(1));
-      document.getElementById('dev-theme-2').addEventListener('click', () => forceTheme(2));
-
-      document.getElementById('dev-reset-save').addEventListener('click', () => {
-        localStorage.removeItem(STORAGE_KEY);
-        location.reload();
-      });
-
       function updateSoundUI() {
         const isMuted = !!state.settings.soundMuted;
         btnToggleSound.textContent = isMuted ? 'ВЫКЛ' : 'ВКЛ';
@@ -3096,6 +3193,7 @@
 
       btnExecuteReset.addEventListener('click', () => {
         state = createInitialState();
+        subCookieAccumulator = 0;
         saveToLocal(state);
         settingsModal.classList.add('hidden');
         updateCatVisual(state);
@@ -3109,9 +3207,6 @@
         const clickCost = getClickUpgradeCost(state.run.clickLevel);
         clickCostDisplay.textContent = formatNumber(clickCost);
         clickLevelVal.textContent = state.run.clickLevel;
-        if (clickPowerVal) {
-          clickPowerVal.textContent = `+${formatClickNumber(getClickPower(state))}`;
-        }
 
         if (state.run.cookies >= clickCost) {
           btnUpgradeClick.classList.add('can-afford');
@@ -3145,12 +3240,15 @@
 
       let lastTimestamp = performance.now();
       let saveAccumulator = 0;
+
       function tick(currentTimestamp) {
         let dt = (currentTimestamp - lastTimestamp) / 1000;
         lastTimestamp = currentTimestamp;
 
         if (dt > 1.0) dt = 1.0;
         if (dt < 0 || Number.isNaN(dt)) dt = 0;
+
+        const maxFeverDur = getMaxFeverDuration(state);
 
         if (state.boosts.feverActive) {
           feverRemainingTimer -= dt;
@@ -3159,18 +3257,28 @@
             state.boosts.feverProgress = 0;
             feverRemainingTimer = 0;
           } else {
-            state.boosts.feverProgress = Math.max(0, (feverRemainingTimer / FEVER_MAX_DURATION_SEC) * 100);
+            state.boosts.feverProgress = Math.max(0, (feverRemainingTimer / maxFeverDur) * 100);
           }
         } else if (state.boosts.feverProgress > 0) {
-          state.boosts.feverProgress = Math.max(0, state.boosts.feverProgress - 5.0 * dt);
+          state.boosts.feverProgress = Math.max(0, state.boosts.feverProgress - 2.5 * dt);
         }
 
         const currentRate = calculateTotalRate(state);
         if (currentRate > 0 && dt > 0) {
-          const produced = currentRate * dt;
-          state.run.cookies += produced;
-          state.run.lifetimeCookiesRun += produced;
-          state.stats.totalCookiesAllTime += produced;
+          subCookieAccumulator += currentRate * dt;
+          const intEarned = Math.floor(subCookieAccumulator);
+          if (intEarned > 0) {
+            state.run.cookies += intEarned;
+            state.run.lifetimeCookiesRun += intEarned;
+            state.stats.totalCookiesAllTime += intEarned;
+            subCookieAccumulator -= intEarned;
+          }
+        }
+
+        const nowMs = Date.now();
+        if (nowMs >= nextFishSpawnTimestamp) {
+          spawnFlyingFish();
+          nextFishSpawnTimestamp = nowMs + 1000 * getNextFishIntervalSec();
         }
 
         saveAccumulator += dt;
@@ -3192,14 +3300,41 @@
           feverWrapper.classList.remove('fever-active');
         }
 
-        const now = Date.now();
         const expiry = state.boosts.adMultiplierExpiresAt || 0;
-        if (expiry > now) {
+        if (expiry > nowMs) {
           btnAdBoost.classList.remove('inactive');
-          adBoostTimer.textContent = formatTime(Math.floor((expiry - now) / 1000), 'timer');
+          adBoostTimer.textContent = formatTime(Math.floor((expiry - nowMs) / 1000), 'timer');
         } else {
           btnAdBoost.classList.add('inactive');
           adBoostTimer.textContent = 'Активировать';
+        }
+
+        if (activeTabId === 'prestige') {
+          const allTime = state.stats.totalCookiesAllTime || 0;
+          const { prev, next } = getPrestigeThresholds(allTime, state);
+          const progressPct = Math.min(100, Math.max(0, Math.floor(((allTime - prev) / (next - prev)) * 100)));
+          const neededToNext = Math.max(0, next - allTime);
+
+          const barFill = document.getElementById('prestige-bar-fill');
+          const progText = document.getElementById('prestige-progress-text');
+          const progPct = document.getElementById('prestige-progress-pct');
+          const doPrestigeBtn = document.getElementById('btn-do-prestige');
+          const doPrestigeText = document.getElementById('btn-do-prestige-text');
+
+          if (barFill) barFill.style.width = `${progressPct}%`;
+          if (progText) progText.textContent = `След. звезда: ${formatNumber(allTime)} / ${formatNumber(next)} (${progressPct}%)`;
+          if (progPct) progPct.textContent = `${progressPct}%`;
+
+          const rewardStars = calculatePrestigeReward(state);
+          const canPrestige = rewardStars > 0;
+          if (doPrestigeBtn) {
+            doPrestigeBtn.disabled = !canPrestige;
+          }
+          if (doPrestigeText) {
+            doPrestigeText.textContent = canPrestige 
+              ? `⭐ Переехать и получить +${rewardStars} Звёзд` 
+              : `До следующей Звезды: ${formatNumber(neededToNext)} 🐾`;
+          }
         }
 
         if (activeTabId === 'generators') {
@@ -3220,9 +3355,15 @@
               canAfford = state.run.cookies >= cost && cost > 0;
             } else if (currentBatchMode === 'max') {
               const maxInfo = getMaxAffordable(genId, state);
-              count = maxInfo.count;
-              cost = maxInfo.cost;
-              canAfford = count > 0 && state.run.cookies >= cost;
+              if (maxInfo.count > 0) {
+                count = maxInfo.count;
+                cost = maxInfo.cost;
+                canAfford = state.run.cookies >= cost;
+              } else {
+                count = 1;
+                cost = maxInfo.cost;
+                canAfford = false;
+              }
             } else {
               cost = getSingleGeneratorCost(genId, state);
               count = 1;
@@ -3246,9 +3387,6 @@
         }
 
         const clickCost = getClickUpgradeCost(state.run.clickLevel);
-        if (clickPowerVal) {
-          clickPowerVal.textContent = `+${formatClickNumber(getClickPower(state))}`;
-        }
         if (state.run.cookies >= clickCost) {
           btnUpgradeClick.classList.add('can-afford');
         } else {

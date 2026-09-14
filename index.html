@@ -11,14 +11,23 @@
       --color-bg-card: #ffffff;
       --color-bg-secondary: #faede0;
       --color-bg-tertiary: #f4e1cf;
+      
+      /* Фирменная тёплая красно-коралловая палитра игры */
       --color-primary: #ff5722;
       --color-primary-hover: #f44336;
       --color-primary-light: #ffeade;
+      --color-coral-btn: #ff4757;
+      --color-coral-btn-hover: #e84118;
+      --color-coral-shadow: rgba(255, 71, 87, 0.35);
+
       --color-accent-mint: #2ea373;
       --color-accent-mint-hover: #268960;
       --color-accent-gold: #ff9800;
       --color-accent-gold-glow: rgba(255, 152, 0, 0.55);
+      --color-accent-emerald: #10b981;
+      --color-accent-pink: #f43f5e;
       --color-accent-purple: #8e24aa;
+      
       --color-text-main: #34221a;
       --color-text-muted: #836e65;
       --color-border: #ebd3c2;
@@ -37,7 +46,6 @@
 
       --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
-
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -85,13 +93,13 @@
     .app-container.theme-bakery-2 {
       background: radial-gradient(130% 85% at 50% 10%, #fff1f2 0%, #ffe4e6 55%, #fed7aa 100%);
     }
-
+    /* Верхняя панель */
     .top-bar {
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 8px 12px 2px;
+      padding: 6px 12px 2px;
       background: transparent;
       z-index: 20;
     }
@@ -99,37 +107,48 @@
     .top-bar-currencies {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
     }
 
     .currency-badge {
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(8px);
-      padding: 3px 9px;
+      padding: 2px 8px;
       border-radius: var(--radius-pill);
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       font-weight: 800;
       box-shadow: var(--shadow-sm);
-      border: 1.5px solid var(--color-border);
-      color: var(--color-text-main);
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
     }
 
-    .gold-fish-icon {
-      width: 18px;
-      height: 18px;
+    /* Капсула Звёзд: мягкая бронзово-коричневая обводка */
+    .currency-badge.stars {
+      border: 1.5px solid #8d6e63;
+      background: #fbeee6;
+      color: #4e342e;
+    }
+
+    /* Капсула Рыбок: тёплая золотисто-янтарная обводка */
+    .currency-badge.fish {
+      border: 1.5px solid #f39c12;
+      background: #fef9e7;
+      color: #9a3412;
+    }
+
+    /* Капсула Клубков: нежно-зелёная мятная обводка */
+    .currency-badge.yarn {
+      border: 1.5px solid #2ecc71;
+      background: #e8f8f0;
+      color: #065f46;
+    }
+
+    .icon-svg-badge {
       display: inline-block;
       vertical-align: middle;
       flex-shrink: 0;
-      filter: drop-shadow(0 1px 2px rgba(255, 152, 0, 0.45));
     }
-
-    .gold-fish-icon.large { width: 24px; height: 24px; }
-    .gold-fish-icon.small { width: 14px; height: 14px; }
-    .gold-fish-icon.hero { width: 50px; height: 50px; }
-
     .main-cookies-wrap {
       display: flex;
       flex-direction: column;
@@ -149,7 +168,7 @@
     }
 
     .cookies-value {
-      font-size: 1.95rem;
+      font-size: 1.9rem;
       font-weight: 900;
       color: var(--color-text-main);
       letter-spacing: -0.8px;
@@ -158,7 +177,7 @@
 
     .rate-counter {
       margin-top: 2px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 800;
       color: var(--color-text-muted);
     }
@@ -212,15 +231,13 @@
       transition: transform 0.12s ease;
     }
 
-    .ad-boost-pill:active {
-      transform: scale(0.95);
-    }
+    .ad-boost-pill:active { transform: scale(0.95); }
 
     .ad-boost-pill.inactive {
       background: linear-gradient(135deg, #9d8e87, #84756f);
       box-shadow: none;
     }
-
+    /* Игровая зона клика */
     .click-zone {
       flex: 1;
       min-height: 0;
@@ -229,7 +246,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-evenly;
-      padding: 4px 0 6px;
+      padding: 2px 0 4px;
       overflow: hidden;
       z-index: 10;
     }
@@ -289,17 +306,9 @@
     }
 
     @keyframes floatUp {
-      0% {
-        opacity: 1;
-        transform: translate(-50%, 0) scale(0.75);
-      }
-      20% {
-        transform: translate(-50%, -30px) scale(1.25);
-      }
-      100% {
-        opacity: 0;
-        transform: translate(-50%, -105px) scale(0.92);
-      }
+      0% { opacity: 1; transform: translate(-50%, 0) scale(0.75); }
+      20% { transform: translate(-50%, -30px) scale(1.25); }
+      100% { opacity: 0; transform: translate(-50%, -105px) scale(0.92); }
     }
 
     .crumb-particle {
@@ -314,21 +323,14 @@
     }
 
     @keyframes crumbFly {
-      0% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-      }
-      100% {
-        opacity: 0;
-        transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.3);
-      }
+      0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.3); }
     }
-
-    /* Fixed proportions: fever ring surrounds the cat with a comfortable margin */
+    /* Кольцо Лихорадки и котик */
     .dough-fever-wrapper {
       position: relative;
-      width: min(210px, 46vw);
-      height: min(210px, 46vw);
+      width: min(210px, 47vw);
+      height: min(210px, 47vw);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -362,8 +364,8 @@
     }
 
     .cat-bun-entity {
-      width: 76%;
-      height: 76%;
+      width: 84%;
+      height: 84%;
       cursor: pointer;
       touch-action: manipulation;
       transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -379,16 +381,16 @@
       width: 100%;
       height: 100%;
       overflow: visible;
-      filter: drop-shadow(0 10px 18px rgba(52, 34, 26, 0.18));
+      filter: drop-shadow(0 8px 16px rgba(52, 34, 26, 0.18));
     }
 
     .cat-bun-entity.squash {
-      transform: scale(1.12, 0.88) translateY(5px) !important;
+      transform: scale(1.12, 0.88) translateY(6px) !important;
       transition: transform 0.05s ease-out !important;
     }
 
     .dough-fever-wrapper.fever-active .cat-bun-svg {
-      filter: drop-shadow(0 0 22px var(--color-accent-gold-glow)) drop-shadow(0 14px 22px rgba(52, 34, 26, 0.22));
+      filter: drop-shadow(0 0 22px var(--color-accent-gold-glow)) drop-shadow(0 12px 20px rgba(52, 34, 26, 0.22));
       animation: feverShake 0.35s infinite alternate ease-in-out;
     }
 
@@ -398,7 +400,28 @@
       100% { transform: scale(1.02) rotate(-0.5deg); }
     }
 
-    /* Fixed button position right under the cat wrapper */
+    /* Анимация сердечек */
+    @keyframes heartFloat {
+      0% { transform: translateY(0px) scale(1); }
+      100% { transform: translateY(-7px) scale(1.08); }
+    }
+
+    .floating-heart {
+      transform-box: fill-box;
+      transform-origin: center center;
+      animation: heartFloat 2.6s ease-in-out infinite alternate;
+    }
+
+    .floating-heart:nth-child(2) {
+      animation-delay: 0.8s;
+      animation-duration: 3s;
+    }
+
+    .floating-heart:nth-child(3) {
+      animation-delay: 1.4s;
+      animation-duration: 2.3s;
+    }
+    /* Кнопка прокачки клика */
     .click-upgrade-btn {
       flex-shrink: 0;
       margin-top: 4px;
@@ -415,9 +438,7 @@
       transition: transform 0.12s ease, border-color 0.2s ease, background-color 0.2s ease;
     }
 
-    .click-upgrade-btn:active {
-      transform: scale(0.94);
-    }
+    .click-upgrade-btn:active { transform: scale(0.94); }
 
     .click-upgrade-btn.can-afford {
       border-color: var(--color-primary);
@@ -440,6 +461,7 @@
       gap: 3px;
     }
 
+    /* Нижняя панель */
     .bottom-panel {
       height: 50%;
       min-height: 50%;
@@ -459,7 +481,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 7px 12px 5px;
+      padding: 6px 10px 4px;
       border-bottom: 1.5px solid var(--color-border-subtle);
       background: rgba(255, 255, 255, 0.98);
       gap: 4px;
@@ -467,22 +489,21 @@
 
     .tabs-nav {
       display: flex;
-      gap: 4px;
+      gap: 3px;
       flex-wrap: nowrap;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
+      flex: 1;
     }
 
-    .tabs-nav::-webkit-scrollbar {
-      display: none;
-    }
+    .tabs-nav::-webkit-scrollbar { display: none; }
 
     .tab-btn {
       background: transparent;
       border: none;
-      padding: 5px 9px;
-      font-size: 0.78rem;
+      padding: 5px 7px;
+      font-size: 0.74rem;
       font-weight: 800;
       color: var(--color-text-muted);
       border-radius: var(--radius-sm);
@@ -490,7 +511,7 @@
       white-space: nowrap;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
       transition: background-color 0.2s ease, color 0.2s ease;
       flex-shrink: 0;
     }
@@ -512,8 +533,8 @@
     .batch-btn {
       border: none;
       background: transparent;
-      padding: 3px 7px;
-      font-size: 0.72rem;
+      padding: 3px 6px;
+      font-size: 0.7rem;
       font-weight: 800;
       color: var(--color-text-muted);
       border-radius: var(--radius-pill);
@@ -534,16 +555,14 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    .tab-pane {
-      display: none;
-    }
+    .tab-pane { display: none; }
 
     .tab-pane.active {
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
-
+    /* Карточки пекарей */
     .generator-card {
       display: flex;
       align-items: center;
@@ -705,9 +724,7 @@
       flex-shrink: 0;
     }
 
-    .gen-buy-btn:not(:disabled):active {
-      transform: scale(0.94);
-    }
+    .gen-buy-btn:not(:disabled):active { transform: scale(0.94); }
 
     .gen-buy-btn:disabled {
       background: #c8b7ae !important;
@@ -717,18 +734,9 @@
       opacity: 0.7;
     }
 
-    .btn-buy-count {
-      font-size: 0.66rem;
-      opacity: 0.95;
-    }
-
-    .btn-buy-cost {
-      font-size: 0.82rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 2px;
-    }
-
+    .btn-buy-count { font-size: 0.66rem; opacity: 0.95; }
+    .btn-buy-cost { font-size: 0.82rem; display: inline-flex; align-items: center; gap: 2px; }
+    /* Престиж */
     .prestige-banner {
       background: linear-gradient(135deg, #fff3e0, #ffe0b2);
       border: 2px solid var(--color-accent-gold);
@@ -801,9 +809,7 @@
       text-align: center;
     }
 
-    .btn-prestige-reset:not(:disabled):active {
-      transform: scale(0.96);
-    }
+    .btn-prestige-reset:not(:disabled):active { transform: scale(0.96); }
 
     .btn-prestige-reset:disabled {
       background: #d4c5bd !important;
@@ -896,15 +902,26 @@
       text-align: center;
     }
 
-    .perk-buy-btn:not(:disabled):active {
-      transform: scale(0.94);
-    }
+    .perk-buy-btn:not(:disabled):active { transform: scale(0.94); }
 
     .perk-buy-btn:disabled {
       background: #c8b7ae;
       cursor: not-allowed;
       opacity: 0.6;
       box-shadow: none;
+    }
+    /* Лавка за золотых рыбок */
+    .shop-section-title {
+      font-size: 0.8rem;
+      font-weight: 900;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 6px;
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
 
     .shop-card {
@@ -924,6 +941,7 @@
       align-items: center;
       gap: 8px;
       flex: 1;
+      min-width: 0;
     }
 
     .shop-card-avatar {
@@ -943,12 +961,17 @@
       display: flex;
       flex-direction: column;
       gap: 1px;
+      flex: 1;
+      min-width: 0;
     }
 
     .shop-card-title {
       font-size: 0.82rem;
       font-weight: 800;
       color: var(--color-text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .shop-card-desc {
@@ -968,22 +991,186 @@
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 3px;
+      justify-content: center;
+      gap: 4px;
       box-shadow: 0 4px 12px rgba(255, 111, 0, 0.3);
       flex-shrink: 0;
+      min-width: 76px;
+      text-align: center;
     }
 
-    .shop-buy-btn:not(:disabled):active {
-      transform: scale(0.95);
-    }
+    .shop-buy-btn:not(:disabled):active { transform: scale(0.95); }
 
     .shop-buy-btn:disabled {
-      background: #c8b7ae;
-      box-shadow: none;
+      background: #c8b7ae !important;
+      box-shadow: none !important;
       cursor: not-allowed;
       opacity: 0.6;
     }
+    /* ФИРМЕННЫЙ КРАСНО-КОРАЛЛОВЫЙ ДИЗАЙН ГАРДЕРОБА */
+    .wardrobe-slots-nav {
+      display: flex;
+      background: var(--color-bg-secondary);
+      border-radius: var(--radius-pill);
+      padding: 2px;
+      border: 1px solid var(--color-border);
+      margin-bottom: 6px;
+      gap: 3px;
+    }
 
+    .wardrobe-slot-tab {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 5px 8px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: var(--color-text-muted);
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: center;
+    }
+
+    .wardrobe-slot-tab.active {
+      background: var(--color-bg-card);
+      color: var(--color-primary);
+      box-shadow: 0 2px 6px rgba(52, 34, 26, 0.12);
+    }
+
+    .wardrobe-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .wardrobe-card {
+      background: #ffffff;
+      border: 1.5px solid var(--color-border);
+      border-radius: 14px;
+      padding: 9px 8px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Фирменная кораллово-розовая рамка активного выбранного скина */
+    .wardrobe-card.equipped {
+      border-color: #ff4757;
+      background: #fff5f5;
+      box-shadow: 0 0 14px rgba(255, 71, 87, 0.25);
+    }
+
+    .wardrobe-preview {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 4px;
+      background: var(--color-bg-secondary);
+      border-radius: 10px;
+      border: 1px solid var(--color-border);
+    }
+
+    .wardrobe-title {
+      font-size: 0.76rem;
+      font-weight: 800;
+      margin-bottom: 2px;
+      color: var(--color-text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+
+    /* Плашка бонуса: нежно-розовый фон с контрастным коралловым текстом */
+    .wardrobe-bonus-badge {
+      font-size: 0.62rem;
+      font-weight: 800;
+      color: #d32f2f;
+      background: #ffebee;
+      border: 1px solid #ffcdd2;
+      padding: 2px 6px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 4px;
+      white-space: nowrap;
+    }
+
+    .wardrobe-desc {
+      font-size: 0.65rem;
+      color: var(--color-text-muted);
+      margin-bottom: 6px;
+      line-height: 1.15;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wardrobe-btn {
+      width: 100%;
+      padding: 6px 0;
+      font-size: 0.74rem;
+      font-weight: 900;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      transition: transform 0.1s ease, background 0.15s ease;
+    }
+
+    .wardrobe-btn:not(:disabled):active { transform: scale(0.95); }
+
+    /* Насыщенная кораллово-красная кнопка покупки с мягкой тенью */
+    .wardrobe-btn.buy {
+      background: linear-gradient(135deg, #ff4757, #e84118);
+      color: #ffffff;
+      box-shadow: 0 2px 8px var(--color-coral-shadow);
+    }
+
+    .wardrobe-btn.buy:disabled {
+      background: #c8b7ae;
+      cursor: not-allowed;
+      opacity: 0.6;
+      box-shadow: none;
+    }
+
+    .wardrobe-btn.equip {
+      background: #faede0;
+      color: var(--color-text-main);
+      border: 1px solid var(--color-border);
+    }
+
+    .wardrobe-btn.unequip {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1.5px solid #ef4444;
+      color: #dc2626;
+    }
+
+    .wardrobe-btn.base-locked {
+      background: #f1f5f9;
+      color: #64748b;
+      border: 1.5px solid #cbd5e1;
+      cursor: default;
+    }
+
+    .wardrobe-btn.loc-locked {
+      background: #e2e8f0;
+      color: #64748b;
+      border: 1.5px solid #cbd5e1;
+      cursor: not-allowed;
+      font-size: 0.7rem;
+    }
+    /* Модальные окна */
     .modal-backdrop {
       position: absolute;
       inset: 0;
@@ -1004,8 +1191,8 @@
 
     .modal-card {
       width: 100%;
-      max-width: 360px;
-      max-height: 85vh;
+      max-width: 375px;
+      max-height: 88vh;
       background: var(--color-bg-card);
       border-radius: var(--radius-lg);
       padding: 16px 14px;
@@ -1134,12 +1321,13 @@
       background: #f3f4f6;
       color: #6b7280;
     }
-
+    /* Настройки и пульт разработчика */
     .settings-group {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      padding: 4px 0;
+      gap: 9px;
+      padding: 2px 0;
+      overflow-y: auto;
     }
 
     .settings-row {
@@ -1147,7 +1335,7 @@
       align-items: center;
       justify-content: space-between;
       background: var(--color-bg-secondary);
-      padding: 10px 12px;
+      padding: 9px 12px;
       border-radius: var(--radius-sm);
       border: 1px solid var(--color-border);
     }
@@ -1171,55 +1359,80 @@
       cursor: pointer;
     }
 
-    .toggle-btn.off {
-      background: #9ca3af;
-    }
+    .toggle-btn.off { background: #9ca3af; }
 
     .devtools-box {
       margin-top: 2px;
-      padding: 8px;
+      padding: 9px;
       background: #f8fafc;
-      border: 1.5px dashed #94a3b8;
+      border: 1.5px dashed #64748b;
       border-radius: var(--radius-sm);
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 6px;
     }
 
     .devtools-title {
-      font-size: 0.74rem;
-      font-weight: 800;
-      color: #475569;
+      font-size: 0.75rem;
+      font-weight: 900;
+      color: #334155;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .devtools-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 5px;
+    }
+
+    .devtools-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
     }
 
     .dev-btn {
       background: #ffffff;
       border: 1.5px solid #cbd5e1;
-      padding: 5px 3px;
+      padding: 5px 4px;
       border-radius: var(--radius-xs);
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 800;
       color: #334155;
       cursor: pointer;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-      transition: background-color 0.15s;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      transition: background-color 0.12s, transform 0.08s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      text-align: center;
     }
 
     .dev-btn:active {
       background-color: #e2e8f0;
+      transform: scale(0.97);
+    }
+
+    .dev-btn.accent {
+      background: #fff7ed;
+      border-color: #fdba74;
+      color: #c2410c;
+    }
+
+    .dev-btn.emerald {
+      background: #ecfdf5;
+      border-color: #6ee7b7;
+      color: #047857;
     }
 
     .reset-danger-box {
-      margin-top: 4px;
-      padding: 10px;
+      margin-top: 2px;
+      padding: 9px;
       background: #fef2f2;
       border: 1.5px dashed #fca5a5;
       border-radius: var(--radius-sm);
@@ -1230,7 +1443,7 @@
     }
 
     .reset-warning-text {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: #991b1b;
       font-weight: 700;
     }
@@ -1239,10 +1452,10 @@
       border: none;
       background: #dc2626;
       color: #fff;
-      padding: 8px;
+      padding: 7px;
       border-radius: var(--radius-sm);
       font-weight: 900;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       cursor: pointer;
     }
 
@@ -1250,10 +1463,10 @@
       border: none;
       background: #991b1b;
       color: #fff;
-      padding: 8px;
+      padding: 7px;
       border-radius: var(--radius-sm);
       font-weight: 900;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       cursor: pointer;
       animation: pulse 1s infinite alternate;
     }
@@ -1262,7 +1475,7 @@
       from { transform: scale(1); }
       to { transform: scale(1.02); }
     }
-
+    /* Всплывающий тост */
     .toast-card {
       position: absolute;
       top: 12px;
@@ -1295,10 +1508,7 @@
       text-transform: uppercase;
     }
 
-    .toast-title {
-      font-size: 0.84rem;
-      font-weight: 800;
-    }
+    .toast-title { font-size: 0.84rem; font-weight: 800; }
 
     .toast-reward {
       font-size: 0.78rem;
@@ -1309,10 +1519,11 @@
       gap: 3px;
     }
 
+    /* Летающая золотая рыбка */
     .flying-fish-entity {
       position: absolute;
-      width: 44px;
-      height: 44px;
+      width: 46px;
+      height: 46px;
       z-index: 60;
       cursor: pointer;
       filter: drop-shadow(0 4px 10px rgba(255, 152, 0, 0.7));
@@ -1320,13 +1531,88 @@
       touch-action: manipulation;
     }
 
-    .flying-fish-entity:active {
-      transform: scale(1.25);
+    .flying-fish-entity:active { transform: scale(1.25); }
+
+    .fish-sparkle {
+      position: absolute;
+      pointer-events: none;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fff8e1 0%, #ffb300 70%, rgba(255, 179, 0, 0) 100%);
+      box-shadow: 0 0 6px #ffca28;
+      z-index: 59;
+      animation: sparkleFade 0.45s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    @keyframes sparkleFade {
+      0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      100% { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
+    }
+
+    /* Интерактивная посылка-сюрприз */
+    .surprise-box-entity {
+      position: absolute;
+      width: 52px;
+      height: 52px;
+      z-index: 45;
+      cursor: pointer;
+      touch-action: manipulation;
+      filter: drop-shadow(0 6px 14px rgba(255, 87, 34, 0.4));
+      animation: boxBounce 0.7s infinite alternate ease-in-out;
+      transform-origin: bottom center;
+    }
+
+    @keyframes boxBounce {
+      0% { transform: translateY(0) scale(1, 1); }
+      100% { transform: translateY(-8px) scale(0.97, 1.03) rotate(3deg); }
+    }
+
+    .surprise-box-entity.shake {
+      animation: boxShake 0.25s ease-out !important;
+    }
+
+    @keyframes boxShake {
+      0%, 100% { transform: scale(1.15) rotate(0); }
+      25% { transform: scale(1.15) rotate(-8deg); }
+      75% { transform: scale(1.15) rotate(8deg); }
+    }
+
+    .box-tap-indicator {
+      position: absolute;
+      top: -6px;
+      right: -4px;
+      background: #ff5722;
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 900;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      pointer-events: none;
+      z-index: 70;
+      border-radius: 2px;
+      animation: confettiExplode 0.65s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    @keyframes confettiExplode {
+      0% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+      100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.4) rotate(var(--rot)); }
     }
   </style>
 </head>
 <body>
   <div id="app-root" class="app-container theme-bakery-0">
+    <!-- Глобальные SVG ресурсы -->
     <svg width="0" height="0" style="position:absolute; pointer-events:none;">
       <defs>
         <linearGradient id="feverGlowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -1334,23 +1620,107 @@
           <stop offset="100%" stop-color="#FF5722" />
         </linearGradient>
 
-        <linearGradient id="goldFishGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#FFE082" />
-          <stop offset="45%" stop-color="#FFA000" />
+        <linearGradient id="goldFishBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FFF59D" />
+          <stop offset="25%" stop-color="#FFD54F" />
+          <stop offset="65%" stop-color="#FFA000" />
           <stop offset="100%" stop-color="#FF6F00" />
         </linearGradient>
 
-        <g id="gold-fish-symbol">
-          <path d="M 22 12 C 16 7 10 9 5 4 C 6 9 4 15 5 20 C 10 15 16 17 22 12 Z" fill="url(#goldFishGrad)" />
-          <path d="M 12 7 C 14 4 17 5 18 8 Z" fill="#FFA000" opacity="0.9" />
-          <path d="M 11 17 C 13 20 16 19 17 16 Z" fill="#FF8F00" opacity="0.9" />
-          <circle cx="17.5" cy="10.5" r="1.5" fill="#3E2723" />
-          <circle cx="18" cy="10.1" r="0.6" fill="#FFFFFF" />
+        <linearGradient id="goldFishFinGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#FFE082" />
+          <stop offset="100%" stop-color="#FF8F00" />
+        </linearGradient>
+
+        <linearGradient id="bakerHatGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#FFFDF5" />
+          <stop offset="60%" stop-color="#FFF8EE" />
+          <stop offset="100%" stop-color="#F3DFC8" />
+        </linearGradient>
+
+        <linearGradient id="devilHornGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#EF4444" />
+          <stop offset="45%" stop-color="#C62828" />
+          <stop offset="100%" stop-color="#7F1D1D" />
+        </linearGradient>
+
+        <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FB7185" />
+          <stop offset="50%" stop-color="#F43F5E" />
+          <stop offset="100%" stop-color="#BE123C" />
+        </linearGradient>
+
+        <!-- Сочный изумрудно-мятный градиент для клубков пряжи -->
+        <linearGradient id="yarnBallEmeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#6EE7B7" />
+          <stop offset="40%" stop-color="#10B981" />
+          <stop offset="80%" stop-color="#059669" />
+          <stop offset="100%" stop-color="#047857" />
+        </linearGradient>
+
+        <!-- Золотой градиент для ордена шефа -->
+        <linearGradient id="goldMedalBroochGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FFF9C4" />
+          <stop offset="30%" stop-color="#FDE047" />
+          <stop offset="70%" stop-color="#EAB308" />
+          <stop offset="100%" stop-color="#CA8A04" />
+        </linearGradient>
+
+        <!-- Векторная золотая рыбка -->
+        <g id="universal-gold-fish">
+          <path d="M 9 12 C 4 6 1 8 2 12 C 1 16 4 18 9 12 Z" fill="url(#goldFishFinGrad)" />
+          <path d="M 4 12 L 8 12" stroke="#FF6F00" stroke-width="0.8" stroke-linecap="round" opacity="0.6" />
+          <path d="M 12 7 C 14 4 17 5 18 8 Z" fill="url(#goldFishFinGrad)" />
+          <path d="M 12 17 C 14 19.5 17 19 17 16 Z" fill="url(#goldFishFinGrad)" />
+          <ellipse cx="15" cy="12" rx="8" ry="6.2" fill="url(#goldFishBodyGrad)" stroke="#B45309" stroke-width="0.75" />
+          <path d="M 13 9 Q 15 12 13 15" fill="none" stroke="#FFFFFF" stroke-width="0.9" opacity="0.55" stroke-linecap="round" />
+          <path d="M 16 8 Q 18 12 16 16" fill="none" stroke="#FFFFFF" stroke-width="0.9" opacity="0.55" stroke-linecap="round" />
+          <circle cx="19.5" cy="10.2" r="1.6" fill="#261710" />
+          <circle cx="20" cy="9.8" r="0.65" fill="#FFFFFF" />
+          <circle cx="19.2" cy="10.7" r="0.3" fill="#FFFFFF" />
+          <path d="M 22.2 12.8 Q 21.5 13.5 20.8 13" fill="none" stroke="#9A3412" stroke-width="0.7" stroke-linecap="round" />
+        </g>
+
+        <!-- Универсальный изумрудно-мятный клубок пряжи -->
+        <g id="universal-yarn-ball">
+          <circle cx="12" cy="12" r="9.5" fill="url(#yarnBallEmeraldGrad)" stroke="#064E3B" stroke-width="1.1" />
+          <path d="M 6 9 C 9 6, 15 6, 18 9" fill="none" stroke="#D1FAE5" stroke-width="1.3" stroke-linecap="round" />
+          <path d="M 5 13 C 8 16, 16 16, 19 13" fill="none" stroke="#D1FAE5" stroke-width="1.3" stroke-linecap="round" />
+          <path d="M 9 5 C 6 9, 6 15, 9 19" fill="none" stroke="#A7F3D0" stroke-width="1.1" stroke-linecap="round" />
+          <path d="M 15 5 C 18 9, 18 15, 15 19" fill="none" stroke="#047857" stroke-width="1.1" stroke-linecap="round" />
+          <path d="M 18 17 C 20 20, 22 21, 23 20" fill="none" stroke="#10B981" stroke-width="1.4" stroke-linecap="round" />
+        </g>
+
+        <!-- Аккуратный инлайн-SVG поварского колпачка для карточки базового гардероба -->
+        <g id="wardrobe-icon-chef-hat">
+          <path d="M 6 16 C 3 10, 5 5, 11 5 C 13 2, 18 2, 20 5 C 26 5, 28 10, 25 16 Z" fill="#FFFDF5" stroke="#3D2314" stroke-width="1.4" stroke-linejoin="round" />
+          <path d="M 11 7 C 12 10, 12 13, 11 15" stroke="#DEC8B2" stroke-width="1" stroke-linecap="round" fill="none" />
+          <path d="M 20 7 C 19 10, 19 13, 20 15" stroke="#DEC8B2" stroke-width="1" stroke-linecap="round" fill="none" />
+          <rect x="5" y="15" width="21" height="5" rx="1.5" fill="#FFF8EE" stroke="#3D2314" stroke-width="1.3" />
+          <line x1="7" y1="17.5" x2="24" y2="17.5" stroke="#FF8A80" stroke-width="0.8" stroke-linecap="round" />
+        </g>
+
+        <!-- Векторная миниатюра королевского берета для иконок гардероба -->
+        <g id="wardrobe-icon-beret">
+          <path d="M 4 14 C 2 8, 8 4, 14 5 C 20 3, 23 6, 22 11 C 20 13, 16 14, 13 14 C 9 14, 6 15, 4 14 Z" fill="#881337" stroke="#38040E" stroke-width="1.2" stroke-linejoin="round" />
+          <path d="M 5 13 C 9 12, 16 13, 19 14" fill="none" stroke="#FACC15" stroke-width="1.1" stroke-linecap="round" />
+          <path d="M 18 12 Q 22 6, 25 5 Q 23 9, 19 13 Z" fill="#FFFFFF" stroke="#94A3B8" stroke-width="0.8" />
+          <circle cx="18" cy="12" r="1.4" fill="#FACC15" stroke="#713F12" stroke-width="0.6" />
+        </g>
+
+        <!-- Векторная миниатюра золотого ордена для иконки гардероба -->
+        <g id="wardrobe-icon-order">
+          <circle cx="12" cy="12" r="9.5" fill="url(#goldMedalBroochGrad)" stroke="#3D2314" stroke-width="1.2" />
+          <circle cx="12" cy="12" r="7.2" fill="none" stroke="#B45309" stroke-width="0.7" stroke-dasharray="1.5,1.2" />
+          <!-- Тиснёная лапка по центру -->
+          <ellipse cx="12" cy="13.2" rx="3" ry="2.2" fill="#B45309" />
+          <circle cx="9.2" cy="9.8" r="1.1" fill="#B45309" />
+          <circle cx="12" cy="8.6" r="1.1" fill="#B45309" />
+          <circle cx="14.8" cy="9.8" r="1.1" fill="#B45309" />
         </g>
       </defs>
     </svg>
-
-    <!-- Top status bar -->
+    <!-- Верхняя панель валют -->
     <header class="top-bar">
       <div class="top-bar-currencies">
         <div class="currency-badge stars" title="Звёзды Мишлен">
@@ -1358,8 +1728,12 @@
           <span id="stars-display">0</span>
         </div>
         <div class="currency-badge fish" title="Золотые рыбки">
-          <svg class="gold-fish-icon" viewBox="0 0 24 24"><use href="#gold-fish-symbol" /></svg>
+          <svg class="icon-svg-badge" width="16" height="16" viewBox="0 0 24 24"><use href="#universal-gold-fish" /></svg>
           <span id="fish-display">0</span>
+        </div>
+        <div class="currency-badge yarn" title="Клубки пряжи">
+          <svg class="icon-svg-badge" width="16" height="16" viewBox="0 0 24 24"><use href="#universal-yarn-ball" /></svg>
+          <span id="yarn-display">0</span>
         </div>
       </div>
 
@@ -1379,13 +1753,14 @@
       </div>
     </header>
 
+    <!-- Полоска множителя рекламы -->
     <div id="active-boosts-bar" class="boosts-bar">
       <button id="btn-ad-boost" class="ad-boost-pill inactive">
         <span class="boost-icon">⚡ x2</span>
         <span id="ad-boost-timer">Активировать</span>
       </button>
     </div>
-
+    <!-- Основная зона выпечки -->
     <main class="click-zone">
       <div id="location-badge" class="location-badge">
         <span id="location-badge-icon">🏠</span>
@@ -1401,129 +1776,79 @@
         </svg>
 
         <div id="dough-target" class="cat-bun-entity" role="button" tabindex="0" aria-label="Размять котика-пекаря">
-          <svg class="cat-bun-svg" viewBox="0 0 240 230" xmlns="http://www.w3.org/2000/svg">
+          <svg id="cat-svg" class="cat-bun-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <radialGradient id="catCrustGrad" cx="50%" cy="38%" r="62%">
-                <stop offset="0%" stop-color="#FFF8F0" />
-                <stop offset="42%" stop-color="#FDE4CF" />
-                <stop offset="78%" stop-color="#EEB48B" />
-                <stop offset="100%" stop-color="#D98B58" />
+              <radialGradient id="catBodyGrad" cx="46%" cy="38%" r="65%">
+                <stop offset="0%" stop-color="#FFFDF9" />
+                <stop offset="35%" stop-color="#FEDAC2" />
+                <stop offset="78%" stop-color="#F7B794" />
+                <stop offset="100%" stop-color="#DE9168" />
               </radialGradient>
-              <radialGradient id="catBottomShadow" cx="50%" cy="85%" r="50%">
-                <stop offset="0%" stop-color="rgba(180, 95, 45, 0.45)" />
-                <stop offset="100%" stop-color="rgba(180, 95, 45, 0)" />
-              </radialGradient>
-              <linearGradient id="earSoftPink" x1="0%" y1="100%" x2="0%" y2="0%">
-                <stop offset="0%" stop-color="#FF9EAA" />
-                <stop offset="100%" stop-color="#FFD1D8" />
+              <linearGradient id="goldAccMedalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FDE047" />
+                <stop offset="50%" stop-color="#EAB308" />
+                <stop offset="100%" stop-color="#CA8A04" />
               </linearGradient>
-
-              <linearGradient id="chefHatGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#FFFFFF" />
-                <stop offset="75%" stop-color="#F2F5F8" />
-                <stop offset="100%" stop-color="#D9E2EC" />
-              </linearGradient>
-              <linearGradient id="hatBandGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#FFFFFF" />
-                <stop offset="100%" stop-color="#E2E8F0" />
-              </linearGradient>
-
-              <linearGradient id="beretGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#E11D48" />
-                <stop offset="50%" stop-color="#BE123C" />
-                <stop offset="100%" stop-color="#881337" />
-              </linearGradient>
-              <linearGradient id="beretBandGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#9F1239" />
-                <stop offset="100%" stop-color="#4C0519" />
-              </linearGradient>
-
-              <linearGradient id="crownGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#FFF9C4" />
-                <stop offset="30%" stop-color="#FFD54F" />
-                <stop offset="70%" stop-color="#FFA000" />
-                <stop offset="100%" stop-color="#FF6F00" />
-              </linearGradient>
-              <radialGradient id="rubyGrad" cx="35%" cy="35%" r="65%">
-                <stop offset="0%" stop-color="#FF8A80" />
-                <stop offset="40%" stop-color="#D50000" />
-                <stop offset="100%" stop-color="#4A0000" />
-              </radialGradient>
             </defs>
 
-            <!-- Ears -->
-            <path d="M 44 88 C 30 52 56 22 75 42 C 85 53 88 75 86 90 Z" 
-                  fill="#EEB48B" stroke="#42291E" stroke-width="4.5" stroke-linejoin="round" />
-            <path d="M 50 82 C 41 58 60 40 70 52 C 77 60 79 74 78 84 Z" 
-                  fill="url(#earSoftPink)" opacity="0.95" />
+            <!-- ЧИСТЫЙ КОТИК БЕЗ ПОСТОРОННИХ ТЕНЕЙ -->
 
-            <path d="M 196 88 C 210 52 184 22 165 42 C 155 53 152 75 154 90 Z" 
-                  fill="#EEB48B" stroke="#42291E" stroke-width="4.5" stroke-linejoin="round" />
-            <path d="M 190 82 C 199 58 180 40 170 52 C 163 60 161 74 162 84 Z" 
-                  fill="url(#earSoftPink)" opacity="0.95" />
+            <!-- СЛОЙ 1: ВЫВЕРЕННЫЕ КОШАЧЬИ УШКИ -->
+            <g id="cat-ears">
+              <path d="M 38 104 C 30 78, 36 44, 52 32 C 70 42, 82 72, 86 102 Z" 
+                    fill="url(#catBodyGrad)" stroke="#3d2314" stroke-width="4" stroke-linejoin="round" />
+              <path d="M 46 96 C 40 76, 44 50, 54 42 C 68 50, 74 72, 76 94 Z" 
+                    fill="#ffb4b4" />
 
-            <!-- Body -->
-            <path d="M 30 142 C 20 88 64 58 120 58 C 176 58 220 88 210 142 C 202 192 172 212 120 212 C 68 212 38 192 30 142 Z"
-                  fill="url(#catCrustGrad)" stroke="#42291E" stroke-width="5" stroke-linejoin="round" />
-            <path d="M 36 150 C 48 194 80 210 120 210 C 160 210 192 194 204 150 C 184 190 152 204 120 204 C 88 204 56 190 36 150 Z"
-                  fill="url(#catBottomShadow)" />
-
-            <!-- Flour crust cuts -->
-            <path d="M 68 86 Q 78 80 88 84" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.8" />
-            <path d="M 152 84 Q 162 80 172 86" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.8" />
-
-            <!-- Hats -->
-            <g id="cat-hat-classic" class="cat-dynamic-hat" transform="translate(0, -6)">
-              <path d="M 92 48 C 80 34 85 10 106 14 C 112 4 128 4 134 14 C 155 10 160 34 148 48 Z" 
-                    fill="url(#chefHatGrad)" stroke="#42291E" stroke-width="4" stroke-linejoin="round" />
-              <path d="M 106 16 C 110 26 112 42 110 48" fill="none" stroke="#CBD5E1" stroke-width="2.5" stroke-linecap="round" />
-              <path d="M 134 16 C 130 26 128 42 130 48" fill="none" stroke="#CBD5E1" stroke-width="2.5" stroke-linecap="round" />
-              <rect x="88" y="44" width="64" height="15" rx="5" 
-                    fill="url(#hatBandGrad)" stroke="#42291E" stroke-width="3.8" />
+              <path d="M 162 104 C 170 78, 164 44, 148 32 C 130 42, 118 72, 114 102 Z" 
+                    fill="url(#catBodyGrad)" stroke="#3d2314" stroke-width="4" stroke-linejoin="round" />
+              <path d="M 154 96 C 160 76, 156 50, 146 42 C 132 50, 126 72, 124 94 Z" 
+                    fill="#ffb4b4" />
             </g>
 
-            <g id="cat-hat-beret" class="cat-dynamic-hat" style="display: none;" transform="translate(0, -5)">
-              <path d="M 128 17 L 132 10" stroke="#4C0519" stroke-width="3.5" stroke-linecap="round" />
-              <path d="M 82 46 C 72 32 82 14 116 16 C 146 12 168 24 164 42 C 162 48 152 52 142 50 C 118 47 96 49 82 46 Z" 
-                    fill="url(#beretGrad)" stroke="#38040E" stroke-width="4.2" stroke-linejoin="round" />
-              <path d="M 100 30 Q 126 24 152 34" fill="none" stroke="#FDA4AF" stroke-width="2.5" stroke-linecap="round" opacity="0.6" />
-              <path d="M 86 45 C 104 43 134 44 148 48 C 142 54 94 52 86 45 Z" 
-                    fill="url(#beretBandGrad)" stroke="#38040E" stroke-width="3.6" />
+            <!-- СЛОЙ 2: ГОЛОВА-БУЛОЧКА С ПУЗИКОМ -->
+            <circle cx="100" cy="116" r="68" fill="url(#catBodyGrad)" stroke="#3d2314" stroke-width="4" />
+            <ellipse cx="100" cy="144" rx="46" ry="32" fill="#fffbf5" />
+
+            <!-- СЛОЙ 3: МОРДОЧКА, ЩЕЧКИ И УСИКИ -->
+            <path d="M 72 108 Q 82 100 90 108" fill="none" stroke="#3d2314" stroke-width="3.5" stroke-linecap="round" />
+            <path d="M 110 108 Q 118 100 128 108" fill="none" stroke="#3d2314" stroke-width="3.5" stroke-linecap="round" />
+
+            <path d="M 74 100 Q 82 95 88 100" fill="none" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" />
+            <path d="M 112 100 Q 118 95 126 100" fill="none" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" />
+
+            <path d="M 100 114 C 98 109 93 109 95 114 C 97 117 100 120 100 120 C 100 120 103 117 105 114 C 107 109 102 109 100 114 Z" fill="#E11D48" />
+
+            <path d="M 94 122 Q 100 126 100 122 Q 100 126 106 122" fill="none" stroke="#3d2314" stroke-width="3" stroke-linecap="round" />
+
+            <ellipse cx="64" cy="118" rx="11" ry="6.5" fill="#ff9ea8" opacity="0.6" />
+            <ellipse cx="136" cy="118" rx="11" ry="6.5" fill="#ff9ea8" opacity="0.6" />
+
+            <line x1="38" y1="112" x2="56" y2="114" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
+            <line x1="36" y1="122" x2="54" y2="120" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
+            <line x1="162" y1="112" x2="144" y2="114" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
+            <line x1="164" y1="122" x2="146" y2="120" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
+
+            <!-- СЛОЙ 4: ДИНАМИЧЕСКИЙ СЛОЙ ШЕИ / ПУЗИКА (y: 138..144) -->
+            <g id="cat-neck-layer" pointer-events="none"></g>
+
+            <!-- СЛОЙ 5: ПЕРЕДНИЕ ЛАПКИ -->
+            <g id="cat-front-paws">
+              <ellipse cx="80" cy="162" rx="14" ry="10" fill="#fffbf5" stroke="#3d2314" stroke-width="3.2" />
+              <circle cx="80" cy="163" r="4.2" fill="#FFB3BA" />
+              <circle cx="75" cy="158" r="2" fill="#FFB3BA" />
+              <circle cx="80" cy="156" r="2" fill="#FFB3BA" />
+              <circle cx="85" cy="158" r="2" fill="#FFB3BA" />
+
+              <ellipse cx="120" cy="162" rx="14" ry="10" fill="#fffbf5" stroke="#3d2314" stroke-width="3.2" />
+              <circle cx="120" cy="163" r="4.2" fill="#FFB3BA" />
+              <circle cx="115" cy="158" r="2" fill="#FFB3BA" />
+              <circle cx="120" cy="156" r="2" fill="#FFB3BA" />
+              <circle cx="125" cy="158" r="2" fill="#FFB3BA" />
             </g>
 
-            <g id="cat-hat-crown" class="cat-dynamic-hat" style="display: none;" transform="translate(0, -6)">
-              <path d="M 88 48 L 84 25 L 102 34 L 120 12 L 138 34 L 156 25 L 152 48 Z" 
-                    fill="url(#crownGrad)" stroke="#4A2600" stroke-width="4" stroke-linejoin="round" />
-              <rect x="86" y="44" width="68" height="12" rx="4" 
-                    fill="url(#crownGrad)" stroke="#4A2600" stroke-width="3.6" />
-              <circle cx="84" cy="23" r="4.5" fill="#FFE082" stroke="#4A2600" stroke-width="2.5" />
-              <circle cx="120" cy="10" r="6" fill="#FFF9C4" stroke="#4A2600" stroke-width="2.8" />
-              <circle cx="156" cy="23" r="4.5" fill="#FFE082" stroke="#4A2600" stroke-width="2.5" />
-              <polygon points="120,44 126,50 120,56 114,50" fill="url(#rubyGrad)" stroke="#3E0000" stroke-width="1.8" />
-              <path d="M 120 2 L 120 6" stroke="#FFF" stroke-width="2.5" stroke-linecap="round" />
-              <path d="M 116 4 L 124 4" stroke="#FFF" stroke-width="2.5" stroke-linecap="round" />
-            </g>
-
-            <!-- Face -->
-            <path d="M 72 130 Q 86 116 100 130" fill="none" stroke="#42291E" stroke-width="4.8" stroke-linecap="round" />
-            <path d="M 98 123 L 104 120" stroke="#42291E" stroke-width="3.5" stroke-linecap="round" />
-            <path d="M 140 130 Q 154 116 168 130" fill="none" stroke="#42291E" stroke-width="4.8" stroke-linecap="round" />
-            <path d="M 142 123 L 136 120" stroke="#42291E" stroke-width="3.5" stroke-linecap="round" />
-
-            <path d="M 116 138 Q 120 134 124 138 Q 120 144 116 138 Z" fill="#D96B7D" />
-            <path d="M 109 144 Q 115 152 120 145 Q 125 152 131 144" fill="none" stroke="#42291E" stroke-width="4" stroke-linecap="round" />
-
-            <ellipse cx="66" cy="144" rx="15" ry="9" fill="#FF8395" opacity="0.65" />
-            <ellipse cx="174" cy="144" rx="15" ry="9" fill="#FF8395" opacity="0.65" />
-
-            <line x1="38" y1="135" x2="58" y2="139" stroke="#42291E" stroke-width="2.8" stroke-linecap="round" opacity="0.75" />
-            <line x1="36" y1="147" x2="56" y2="146" stroke="#42291E" stroke-width="2.8" stroke-linecap="round" opacity="0.75" />
-            <line x1="202" y1="135" x2="182" y2="139" stroke="#42291E" stroke-width="2.8" stroke-linecap="round" opacity="0.75" />
-            <line x1="204" y1="147" x2="184" y2="146" stroke="#42291E" stroke-width="2.8" stroke-linecap="round" opacity="0.75" />
-
-            <!-- Paws -->
-            <path d="M 92 184 C 90 168 105 168 107 184 C 107 190 92 190 92 184 Z" fill="#FFF8F0" stroke="#42291E" stroke-width="3.8" />
-            <path d="M 133 184 C 133 168 148 168 148 184 C 148 190 133 190 133 184 Z" fill="#FFF8F0" stroke="#42291E" stroke-width="3.8" />
+            <!-- СЛОЙ 6: ГОЛОВНОЙ УБОР / ЭФФЕКТЫ -->
+            <g id="cat-head-layer" pointer-events="none"></g>
           </svg>
         </div>
       </div>
@@ -1533,21 +1858,24 @@
         <span class="btn-cost">🐾 <span id="click-cost-display">15</span></span>
       </button>
     </main>
-
+    <!-- Нижняя панель управления -->
     <section class="bottom-panel">
       <div class="panel-header">
         <nav class="tabs-nav">
-          <button class="tab-btn active" data-tab="generators">Поварята</button>
-          <button class="tab-btn" data-tab="prestige">Филиал ⭐</button>
+          <button class="tab-btn active" data-tab="generators">👨‍🍳 Пекари</button>
+          <button class="tab-btn" data-tab="prestige">⭐ Филиал</button>
           <button class="tab-btn" data-tab="shop">
-            Лавка <svg class="gold-fish-icon" viewBox="0 0 24 24"><use href="#gold-fish-symbol" /></svg>
+            <svg class="icon-svg-badge" width="14" height="14" viewBox="0 0 24 24"><use href="#universal-gold-fish" /></svg> Лавка
+          </button>
+          <button class="tab-btn" data-tab="wardrobe">
+            <svg class="icon-svg-badge" width="14" height="14" viewBox="0 0 24 24"><use href="#universal-yarn-ball" /></svg> Гардероб
           </button>
         </nav>
 
         <div id="batch-container" class="batch-selector">
           <button class="batch-btn active" data-batch="1">x1</button>
           <button class="batch-btn" data-batch="10">x10</button>
-          <button class="batch-btn" data-batch="max">Max</button>
+          <button class="batch-btn" data-batch="max">Макс</button>
         </div>
       </div>
 
@@ -1555,9 +1883,10 @@
         <div id="tab-content-generators" class="tab-pane active"></div>
         <div id="tab-content-prestige" class="tab-pane"></div>
         <div id="tab-content-shop" class="tab-pane"></div>
+        <div id="tab-content-wardrobe" class="tab-pane"></div>
       </div>
     </section>
-
+    <!-- Обучающее модальное окно -->
     <div id="tutorial-modal" class="modal-backdrop hidden">
       <div class="modal-card" style="text-align: center;">
         <div id="tutorial-icon" style="font-size: 2.6rem; margin-bottom: 6px;">🌟</div>
@@ -1567,12 +1896,13 @@
       </div>
     </div>
 
+    <!-- Модальное окно офлайн-прогресса -->
     <div id="offline-modal" class="modal-backdrop hidden">
       <div class="modal-card" style="text-align: center;">
         <div style="font-size: 2.8rem; margin-bottom: 4px;">🐱💤</div>
-        <h2 style="font-size: 1.2rem; font-weight: 900; margin-bottom: 6px;">Котики пекли без тебя!</h2>
+        <h2 style="font-size: 1.2rem; font-weight: 900; margin-bottom: 6px;">Котики пекли без вас!</h2>
         <p style="font-size: 0.84rem; color: var(--color-text-muted); margin-bottom: 12px;">
-          Тебя не было: <span id="offline-time-spent" style="color: var(--color-text-main); font-weight: 800;">0 мин</span>
+          Вас не было: <span id="offline-time-spent" style="color: var(--color-text-main); font-weight: 800;">0 мин</span>
         </p>
         <div style="display: inline-flex; align-items: center; gap: 6px; background: var(--color-bg-secondary); padding: 7px 16px; border-radius: var(--radius-pill); margin-bottom: 14px; border: 1px solid var(--color-border); align-self: center;">
           <span class="paw-icon">🐾</span>
@@ -1581,15 +1911,16 @@
         <div style="display: flex; flex-direction: column; gap: 7px;">
           <button id="btn-claim-offline-double" style="position: relative; background: linear-gradient(135deg, var(--color-accent-mint), #258f64); color: #fff; border: none; padding: 10px; border-radius: var(--radius-md); font-weight: 900; font-size: 0.86rem; cursor: pointer;">
             <span style="position: absolute; top: -5px; right: 10px; background: var(--color-accent-gold); color: #fff; font-size: 0.58rem; font-weight: 900; padding: 2px 4px; border-radius: 4px;">БОНУС</span>
-            Забрать x2 (<span id="offline-double-amount">0</span>)
+            Забрать удвоенную выпечку (<span id="offline-double-amount">0</span>)
           </button>
           <button id="btn-claim-offline-base" style="background: transparent; border: 1.5px solid var(--color-border); color: var(--color-text-muted); padding: 8px; border-radius: var(--radius-md); font-weight: 800; font-size: 0.82rem; cursor: pointer;">
-            Забрать просто
+            Забрать просто так
           </button>
         </div>
       </div>
     </div>
 
+    <!-- Модальное окно достижений -->
     <div id="achievements-modal" class="modal-backdrop hidden">
       <div class="modal-card">
         <div class="modal-header-row">
@@ -1603,6 +1934,7 @@
       </div>
     </div>
 
+    <!-- Модальное окно настроек и DevTools -->
     <div id="settings-modal" class="modal-backdrop hidden">
       <div class="modal-card">
         <div class="modal-header-row">
@@ -1622,19 +1954,53 @@
           </div>
 
           <div class="devtools-box">
-            <div class="devtools-title">🛠️ DevTools / Тестирование</div>
+            <div class="devtools-title">
+              <span>🛠️ Пульт разработчика</span>
+              <span style="font-size: 0.65rem; color: #64748b;">Проверка функций</span>
+            </div>
+            
             <div class="devtools-grid">
-              <button id="dev-spawn-fish" class="dev-btn">🐟 Спавн рыбки</button>
-              <button id="dev-add-cookies" class="dev-btn">+1M 🐾</button>
-              <button id="dev-trigger-fever" class="dev-btn">⚡ Лихорадка</button>
+              <button id="dev-add-100k" class="dev-btn">💰 +100 тыс. 🐾</button>
+              <button id="dev-add-10m" class="dev-btn">💰 +10 млн. 🐾</button>
+            </div>
+
+            <div class="devtools-grid">
+              <button id="dev-add-50-fish" class="dev-btn accent">
+                +50 <svg class="icon-svg-badge" width="13" height="13" viewBox="0 0 24 24"><use href="#universal-gold-fish" /></svg>
+              </button>
+              <button id="dev-add-5-stars" class="dev-btn accent">⭐ +5 Звёзд</button>
+            </div>
+
+            <div class="devtools-grid">
+              <button id="dev-add-20-yarn" class="dev-btn emerald">
+                +20 <svg class="icon-svg-badge" width="13" height="13" viewBox="0 0 24 24"><use href="#universal-yarn-ball" /></svg> Клубков
+              </button>
+              <button id="dev-toggle-fever" class="dev-btn">⚡ Лихорадка: ВКЛ/ВЫКЛ</button>
+            </div>
+
+            <div class="devtools-grid">
+              <button id="dev-unlock-wardrobe" class="dev-btn">👗 Открыть весь гардероб</button>
+              <button id="dev-spawn-box" class="dev-btn">📦 Спавн посылки</button>
+            </div>
+
+            <div class="devtools-grid">
+              <button id="dev-spawn-fish" class="dev-btn">🐠 Спавн летящей рыбки</button>
+              <button id="dev-test-offline" class="dev-btn">⏰ Тест сна (+4 часа)</button>
+            </div>
+
+            <div style="font-size: 0.68rem; font-weight: 800; color: #475569; margin-top: 2px;">Сменить филиал:</div>
+            <div class="devtools-grid-3">
+              <button id="dev-loc-0" class="dev-btn">🏠 Кухня [1]</button>
+              <button id="dev-loc-1" class="dev-btn">🥐 Кафе [2]</button>
+              <button id="dev-loc-2" class="dev-btn">👑 Дворец [3]</button>
             </div>
           </div>
 
           <div class="reset-danger-box">
-            <div class="reset-warning-text">Сброс очистит все печеньки, работников и достижения!</div>
-            <button id="btn-prompt-reset" class="btn-danger-reset">Сбросить весь прогресс</button>
+            <div class="reset-warning-text">Сброс очистит всю выпечку, нанятых пекарей и гардероб!</div>
+            <button id="btn-prompt-reset" class="btn-danger-reset">Сбросить весь прогресс (Сброс игры)</button>
             <div id="reset-confirm-actions" style="display: none; flex-direction: column; gap: 5px;">
-              <button id="btn-execute-reset" class="btn-danger-confirm">ДА, УДАЛИТЬ ВСЁ</button>
+              <button id="btn-execute-reset" class="btn-danger-confirm">ДА, ОЧИСТИТЬ ВСЁ</button>
               <button id="btn-cancel-reset" style="background: #e5e7eb; border: none; padding: 7px; border-radius: var(--radius-xs); font-weight: 700; cursor: pointer;">Отмена</button>
             </div>
           </div>
@@ -1642,20 +2008,18 @@
       </div>
     </div>
 
+    <!-- Всплывающее уведомление -->
     <div id="achievement-toast" class="toast-card hidden">
       <div id="toast-icon-slot" class="toast-icon">🏆</div>
       <div class="toast-body">
         <div id="toast-badge-slot" class="toast-badge">Новое достижение!</div>
         <div id="toast-title" class="toast-title">Мастер-разминатель</div>
-        <div id="toast-reward" class="toast-reward">
-          +1 <svg class="gold-fish-icon" viewBox="0 0 24 24"><use href="#gold-fish-symbol" /></svg>
-        </div>
+        <div id="toast-reward" class="toast-reward"></div>
       </div>
     </div>
   </div>
-
   <script>
-    const STORAGE_KEY = 'koto_bakery_standalone_v16';
+    const STORAGE_KEY = 'koto_bakery_standalone_v52';
     const FEVER_CIRCUMFERENCE = 678.58;
 
     const GENERATOR_IDS = ['lapkolap', 'mur_pech', 'kot_barista', 'courier', 'chef_murych'];
@@ -1681,20 +2045,314 @@
 
     const LOCATION_THEMES = [
       { name: 'Уютная кухня', icon: '🏠' },
-      { name: 'Парижская кондитерская', icon: '🥐' },
+      { name: 'Городское кафе', icon: '🥐' },
       { name: 'Королевский дворец', icon: '👑' }
     ];
 
-    function getFishIconSvg(extraClass = '') {
-      return `<svg class="gold-fish-icon ${extraClass}" viewBox="0 0 24 24"><use href="#gold-fish-symbol" /></svg>`;
+    function getFishIconSvg(size = 16, extraClass = '') {
+      return `<svg class="icon-svg-badge ${extraClass}" width="${size}" height="${size}" viewBox="0 0 24 24"><use href="#universal-gold-fish" /></svg>`;
     }
 
-    const GOLDEN_FISH_SVG = getFishIconSvg();
-    const GOLDEN_FISH_HERO_SVG = getFishIconSvg('hero');
+    function getYarnIconSvg(size = 16, extraClass = '') {
+      return `<svg class="icon-svg-badge ${extraClass}" width="${size}" height="${size}" viewBox="0 0 24 24"><use href="#universal-yarn-ball" /></svg>`;
+    }
+
+    /* Полный каталог гардероба с пассивными бонусами */
+    const WARDROBE_CATALOG = {
+      head: [
+        {
+          id: 'chef_hat_1',
+          name: 'Поварской колпачок',
+          iconSvg: 'wardrobe-icon-chef-hat',
+          cost: 0,
+          currency: 'yarn',
+          isBase: true,
+          bonusDesc: 'Базовый',
+          desc: 'Уютная шапочка из плотной ткани для выпечки булочек',
+          svg: `
+            <g id="acc-chef_hat_1">
+              <path d="M 76 62 C 66 48, 70 34, 86 34 C 92 24, 108 24, 114 34 C 130 34, 134 48, 124 62 Z" 
+                    fill="url(#bakerHatGrad)" stroke="#3D2314" stroke-width="3.5" stroke-linejoin="round" />
+              <path d="M 88 38 C 91 46, 90 53, 88 58" stroke="#DEC8B2" stroke-width="2.2" stroke-linecap="round" fill="none" />
+              <path d="M 112 38 C 109 46, 110 53, 112 58" stroke="#DEC8B2" stroke-width="2.2" stroke-linecap="round" fill="none" />
+              <rect x="74" y="58" width="52" height="10" rx="3.5" fill="#FFFDF5" stroke="#3D2314" stroke-width="3.5" />
+              <line x1="80" y1="63" x2="120" y2="63" stroke="#FF8A80" stroke-width="1.8" stroke-linecap="round" />
+            </g>
+          `
+        },
+        {
+          id: 'chef_hat_2',
+          name: 'Высокий колпак шефа',
+          icon: '👨‍🍳',
+          cost: 0,
+          currency: 'yarn',
+          unlockStage: 1,
+          bonusDesc: '+3% к доходу',
+          desc: 'Классический высокий шефский колпак со строгими складками',
+          svg: `
+            <g id="acc-chef_hat_2">
+              <path d="M 82 58 C 76 38, 80 14, 94 14 C 98 6, 106 6, 110 14 C 124 14, 128 38, 122 58 Z" 
+                    fill="#FFFFFF" stroke="#3D2314" stroke-width="3.5" stroke-linejoin="round" />
+              <path d="M 94 20 L 93 54" stroke="#CBD5E1" stroke-width="2.2" stroke-linecap="round" />
+              <path d="M 102 14 L 102 54" stroke="#CBD5E1" stroke-width="2.2" stroke-linecap="round" />
+              <path d="M 110 20 L 111 54" stroke="#CBD5E1" stroke-width="2.2" stroke-linecap="round" />
+              <rect x="80" y="54" width="44" height="11" rx="3" fill="#F8FAFC" stroke="#3D2314" stroke-width="3.5" />
+            </g>
+          `
+        },
+        {
+          id: 'beret_royal',
+          name: 'Бордовый берет с пером',
+          iconSvg: 'wardrobe-icon-beret',
+          cost: 0,
+          currency: 'yarn',
+          unlockStage: 2,
+          bonusDesc: '+4% ко всем доходам',
+          desc: 'Церемониальный берет шеф-мастера с золотой брошью и пушистым пером',
+          svg: `
+            <g id="acc-beret_royal">
+              <path d="M 78 48 C 72 34, 86 22, 108 24 C 130 20, 144 30, 140 44 C 136 50, 126 52, 118 51 C 104 48, 88 50, 78 48 Z" 
+                    fill="#881337" stroke="#38040E" stroke-width="3.4" stroke-linejoin="round" />
+              <path d="M 82 47 C 96 45, 116 46, 128 49" fill="none" stroke="url(#goldAccMedalGrad)" stroke-width="2.4" stroke-linecap="round" />
+              <path d="M 122 45 Q 140 24 154 18 Q 146 32 126 46 Z" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.4" />
+              <circle cx="124" cy="45" r="3" fill="#FACC15" stroke="#713F12" stroke-width="1.2" />
+            </g>
+          `
+        },
+        {
+          id: 'glasses_cool',
+          name: 'Крутые очки',
+          icon: '🕶️',
+          cost: 3,
+          currency: 'yarn',
+          bonusDesc: '+5% к клику',
+          desc: 'Глянцевые черные очки с красивыми белыми бликами',
+          svg: `
+            <g id="acc-glasses_cool">
+              <rect x="46" y="94" width="46" height="22" rx="5" fill="#111827" stroke="#000000" stroke-width="2.5" />
+              <rect x="108" y="94" width="46" height="22" rx="5" fill="#111827" stroke="#000000" stroke-width="2.5" />
+              <rect x="88" y="98" width="24" height="6" rx="2" fill="#111827" />
+              <polygon points="54,97 62,97 50,112 48,112" fill="#FFFFFF" opacity="0.85" />
+              <polygon points="66,97 71,97 58,112 54,112" fill="#FFFFFF" opacity="0.6" />
+              <polygon points="116,97 124,97 112,112 110,112" fill="#FFFFFF" opacity="0.85" />
+              <polygon points="128,97 133,97 120,112 116,112" fill="#FFFFFF" opacity="0.6" />
+              <path d="M 46 101 L 34 100" stroke="#111827" stroke-width="4" stroke-linecap="round" />
+              <path d="M 154 101 L 166 100" stroke="#111827" stroke-width="4" stroke-linecap="round" />
+            </g>
+          `
+        },
+        {
+          id: 'red_bow',
+          name: 'Красный бантик',
+          icon: '🎀',
+          cost: 5,
+          currency: 'yarn',
+          bonusDesc: '+2 сек Лихорадки',
+          desc: 'Яркий и объёмный красный бант у левого ушка котика',
+          svg: `
+            <g id="acc-red_bow">
+              <ellipse cx="44" cy="58" rx="12" ry="8" fill="#E11D48" stroke="#881337" stroke-width="2.4" transform="rotate(-15 44 58)" />
+              <ellipse cx="45" cy="58" rx="5" ry="3" fill="#FB7185" transform="rotate(-15 45 58)" />
+              <ellipse cx="68" cy="55" rx="12" ry="8" fill="#E11D48" stroke="#881337" stroke-width="2.4" transform="rotate(15 68 55)" />
+              <ellipse cx="67" cy="55" rx="5" ry="3" fill="#FB7185" transform="rotate(15 67 55)" />
+              <path d="M 52 64 Q 45 74 41 80" stroke="#881337" stroke-width="3" stroke-linecap="round" fill="none" />
+              <path d="M 58 64 Q 65 74 69 79" stroke="#881337" stroke-width="3" stroke-linecap="round" fill="none" />
+              <circle cx="56" cy="57" r="5.2" fill="#E11D48" stroke="#881337" stroke-width="2.2" />
+              <circle cx="55" cy="55.5" r="1.8" fill="#FDA4AF" />
+            </g>
+          `
+        },
+        {
+          id: 'flower_wreath',
+          name: 'Венок из сакуры',
+          icon: '🌸',
+          cost: 8,
+          currency: 'yarn',
+          bonusDesc: '+3% к доходу',
+          desc: 'Пышный веночек из нежных розовых цветков с листочками',
+          svg: `
+            <g id="acc-flower_wreath">
+              <path d="M 75 58 Q 100 48 125 58" fill="none" stroke="#65A30D" stroke-width="2.8" stroke-linecap="round" />
+              <ellipse cx="85" cy="51" rx="4.5" ry="2.2" fill="#84CC16" transform="rotate(-20 85 51)" />
+              <ellipse cx="115" cy="51" rx="4.5" ry="2.2" fill="#84CC16" transform="rotate(20 115 51)" />
+              <ellipse cx="100" cy="46" rx="4.2" ry="2.2" fill="#84CC16" />
+              <g transform="translate(80, 54)">
+                <circle cx="0" cy="-4" r="3.6" fill="#FBCFE8" stroke="#DB2777" stroke-width="0.9" />
+                <circle cx="4" cy="-1" r="3.6" fill="#FBCFE8" stroke="#DB2777" stroke-width="0.9" />
+                <circle cx="2" cy="4" r="3.6" fill="#FBCFE8" stroke="#DB2777" stroke-width="0.9" />
+                <circle cx="-3" cy="3" r="3.6" fill="#FBCFE8" stroke="#DB2777" stroke-width="0.9" />
+                <circle cx="-4" cy="-2" r="3.6" fill="#FBCFE8" stroke="#DB2777" stroke-width="0.9" />
+                <circle cx="0" cy="0" r="2.2" fill="#FDE047" stroke="#CA8A04" stroke-width="0.8" />
+              </g>
+              <g transform="translate(100, 48)">
+                <circle cx="0" cy="-4.5" r="4.2" fill="#FCE7F3" stroke="#DB2777" stroke-width="1" />
+                <circle cx="4.5" cy="-1" r="4.2" fill="#FCE7F3" stroke="#DB2777" stroke-width="1" />
+                <circle cx="2.5" cy="4.5" r="4.2" fill="#FCE7F3" stroke="#DB2777" stroke-width="1" />
+                <circle cx="-3.5" cy="3.5" r="4.2" fill="#FCE7F3" stroke="#DB2777" stroke-width="1" />
+                <circle cx="-4.5" cy="-2" r="4.2" fill="#FCE7F3" stroke="#DB2777" stroke-width="1" />
+                <circle cx="0" cy="0" r="2.6" fill="#FDE047" stroke="#CA8A04" stroke-width="0.9" />
+              </g>
+              <g transform="translate(120, 54)">
+                <circle cx="0" cy="-4" r="3.6" fill="#FBCFE8" stroke="#DB2777" stroke-width="0.9" />
+                <circle cx="4" cy="-1" r="3.6" fill="#FBCFE8" stroke="#DB2777" stroke-width="0.9" />
+                <circle cx="2" cy="4" r="3.6" fill="#FBCFE8" stroke="#DB2777" stroke-width="0.9" />
+                <circle cx="-3" cy="3" r="3.6" fill="#FBCFE8" stroke="#DB2777" stroke-width="0.9" />
+                <circle cx="-4" cy="-2" r="3.6" fill="#FBCFE8" stroke="#DB2777" stroke-width="0.9" />
+                <circle cx="0" cy="0" r="2.2" fill="#FDE047" stroke="#CA8A04" stroke-width="0.8" />
+              </g>
+            </g>
+          `
+        },
+        {
+          id: 'devil_horns',
+          name: 'Озорной чертёнок',
+          icon: '😈',
+          cost: 12,
+          currency: 'yarn',
+          bonusDesc: '+10% к улову рыбки',
+          desc: 'Симпатичные рубиновые рожки на лобике и хвостик со стрелочкой',
+          svg: `
+            <g id="acc-devil_horns">
+              <path d="M 148 165 C 168 162, 182 148, 178 132 C 175 124, 166 122, 169 114 C 172 107, 182 106, 186 111" 
+                    fill="none" stroke="#3D2314" stroke-width="4.5" stroke-linecap="round" />
+              <path d="M 148 165 C 168 162, 182 148, 178 132 C 175 124, 166 122, 169 114 C 172 107, 182 106, 186 111" 
+                    fill="none" stroke="#DC2626" stroke-width="2.6" stroke-linecap="round" />
+              <polygon points="186,102 195,113 181,116" fill="#EF4444" stroke="#3D2314" stroke-width="2.5" stroke-linejoin="round" />
+
+              <path d="M 76 55 C 73 47, 69 41, 75 39 C 80 43, 84 48, 83 55 Z" 
+                    fill="url(#devilHornGrad)" stroke="#3D2314" stroke-width="2.6" stroke-linejoin="round" />
+              <path d="M 75 48 Q 77 43 76 41" fill="none" stroke="#FECACA" stroke-width="1.2" stroke-linecap="round" />
+
+              <path d="M 117 55 C 117 47, 121 41, 125 39 C 131 43, 127 48, 124 55 Z" 
+                    fill="url(#devilHornGrad)" stroke="#3D2314" stroke-width="2.6" stroke-linejoin="round" />
+              <path d="M 124 48 Q 122 43 123 41" fill="none" stroke="#FECACA" stroke-width="1.2" stroke-linecap="round" />
+            </g>
+          `
+        },
+        {
+          id: 'love_hearts',
+          name: 'Парящие сердечки',
+          icon: '💖',
+          cost: 16,
+          currency: 'yarn',
+          bonusDesc: '+5% к Лихорадке',
+          desc: 'Три нежных парящих сердечка вокруг довольного котика',
+          svg: `
+            <g id="acc-love_hearts">
+              <g transform="translate(38, 38)">
+                <g class="floating-heart" transform="rotate(-8)">
+                  <path d="M 10 17 C 10 17 2 12 2 7 C 2 4 4.2 2 7 2 C 8.8 2 10 3 10 4.5 C 10 3 11.2 2 13 2 C 15.8 2 18 4 18 7 C 18 12 10 17 10 17 Z" 
+                        fill="url(#heartGrad)" stroke="#3D2314" stroke-width="1.8" stroke-linejoin="round" />
+                  <ellipse cx="5.5" cy="5" rx="1.6" ry="1" fill="#FFE4E6" transform="rotate(-30 5.5 5)" />
+                </g>
+              </g>
+
+              <g transform="translate(158, 32)">
+                <g class="floating-heart" transform="rotate(14)">
+                  <path d="M 11 19 C 11 19 2 13 2 7.5 C 2 4.2 4.6 2 7.8 2 C 9.8 2 11 3.2 11 5 C 11 3.2 12.2 2 14.2 2 C 17.4 2 20 4.2 20 7.5 C 20 13 11 19 11 19 Z" 
+                        fill="url(#heartGrad)" stroke="#3D2314" stroke-width="2" stroke-linejoin="round" />
+                  <ellipse cx="6" cy="5.5" rx="1.8" ry="1" fill="#FFE4E6" transform="rotate(-30 6 5.5)" />
+                </g>
+              </g>
+
+              <g transform="translate(168, 94)">
+                <g class="floating-heart" transform="rotate(-10)">
+                  <path d="M 8 14 C 8 14 1.5 10 1.5 5.5 C 1.5 3 3.5 1.5 5.5 1.5 C 7 1.5 8 2.2 8 3.5 C 8 2.2 9 1.5 10.5 1.5 C 12.5 1.5 14.5 3 14.5 5.5 C 14.5 10 8 14 8 14 Z" 
+                        fill="url(#heartGrad)" stroke="#3D2314" stroke-width="1.6" stroke-linejoin="round" />
+                  <ellipse cx="4.5" cy="4" rx="1.3" ry="0.8" fill="#FFE4E6" transform="rotate(-30 4.5 4)" />
+                </g>
+              </g>
+            </g>
+          `
+        },
+        {
+          id: 'royal_crown',
+          name: 'Королевская корона',
+          icon: '👑',
+          cost: 25,
+          currency: 'yarn',
+          bonusDesc: '+5% ко всем доходам',
+          desc: 'Сверкающий золотой венец монарха с драгоценными рубинами',
+          svg: `
+            <g id="acc-royal_crown">
+              <ellipse cx="100" cy="40" rx="26" ry="14" fill="#991B1B" stroke="#450A0A" stroke-width="2.2" />
+              <circle cx="100" cy="24" r="3.2" fill="#FDE047" stroke="#713F12" stroke-width="1.2" />
+              <path d="M 70 48 L 66 26 L 82 35 L 100 16 L 118 35 L 134 26 L 130 48 Z" 
+                    fill="url(#goldFishBodyGrad)" stroke="#713F12" stroke-width="3.5" stroke-linejoin="round" />
+              <rect x="68" y="44" width="64" height="11" rx="3" fill="url(#goldFishBodyGrad)" stroke="#713F12" stroke-width="3" />
+              <circle cx="66" cy="24" r="3.8" fill="#FFFDF9" stroke="#713F12" stroke-width="1.6" />
+              <circle cx="100" cy="14" r="4.6" fill="#FFFDF9" stroke="#713F12" stroke-width="1.8" />
+              <circle cx="134" cy="24" r="3.8" fill="#FFFDF9" stroke="#713F12" stroke-width="1.6" />
+              <polygon points="100,45 105,49.5 100,54 95,49.5" fill="#DC2626" stroke="#450A0A" stroke-width="1.2" />
+            </g>
+          `
+        }
+      ],
+      neck: [
+        {
+          id: 'neck_none',
+          name: 'Без украшений',
+          icon: '🚫',
+          cost: 0,
+          currency: 'yarn',
+          isBase: true,
+          bonusDesc: 'По умолчанию',
+          desc: 'Оставить животик и подбородок котика свободными',
+          svg: ''
+        },
+        {
+          id: 'red_bowtie',
+          name: 'Шейная бабочка',
+          icon: '🎀',
+          cost: 0,
+          currency: 'yarn',
+          unlockStage: 1,
+          bonusDesc: '+3% к клику',
+          desc: 'Элегантная красная бабочка с золотым зажимом на пузике',
+          svg: `
+            <g id="acc-red_bowtie">
+              <polygon points="90,138 100,141 90,145" fill="#E11D48" stroke="#881337" stroke-width="1.8" />
+              <polygon points="110,138 100,141 110,145" fill="#E11D48" stroke="#881337" stroke-width="1.8" />
+              <circle cx="100" cy="141" r="3.4" fill="url(#goldAccMedalGrad)" stroke="#713F12" stroke-width="1.2" />
+            </g>
+          `
+        },
+        {
+          id: 'gold_medal',
+          name: 'Золотой орден шефа',
+          iconSvg: 'wardrobe-icon-order',
+          cost: 0,
+          currency: 'yarn',
+          unlockStage: 2,
+          bonusDesc: '+15% к улову рыбки',
+          desc: 'Приколотый золотой орден с кошачьей лапкой прямо на манишке',
+          svg: `
+            <g id="acc-gold_medal">
+              <circle cx="100" cy="140" r="11" fill="url(#goldMedalBroochGrad)" stroke="#3D2314" stroke-width="2.5" />
+              <circle cx="100" cy="140" r="8.2" fill="none" stroke="#B45309" stroke-width="1" stroke-dasharray="2,1.5" />
+              <!-- Тиснёная лапка по центру -->
+              <ellipse cx="100" cy="141.5" rx="3.5" ry="2.6" fill="#B45309" />
+              <circle cx="96.5" cy="137.5" r="1.3" fill="#B45309" />
+              <circle cx="100" cy="136" r="1.3" fill="#B45309" />
+              <circle cx="103.5" cy="137.5" r="1.3" fill="#B45309" />
+              <!-- Деликатный блик -->
+              <path d="M 94 135 A 8 8 0 0 1 104 132" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.8" />
+            </g>
+          `
+        }
+      ]
+    };
+    function hasWardrobeUnlocked(state, id) {
+      return Array.isArray(state?.meta?.wardrobe?.unlocked) && state.meta.wardrobe.unlocked.includes(id);
+    }
 
     function getMaxFeverDuration(state) {
       const jarLvl = state.meta?.shop?.fishJar || 0;
-      return 15.0 + jarLvl * 2.0;
+      let duration = 15.0 + jarLvl * 2.0;
+      if (hasWardrobeUnlocked(state, 'red_bow')) {
+        duration += 2.0;
+      }
+      return duration;
     }
 
     function getPrestigeThresholds(allTime, state) {
@@ -1719,15 +2377,14 @@
         eligibleStars++;
         threshold *= 5;
       }
-      const reward = Math.max(0, eligibleStars - (state.meta?.lifetimeStars || 0));
-      return reward;
+      return Math.max(0, eligibleStars - (state.meta?.lifetimeStars || 0));
     }
 
     const PRESTIGE_PERKS_CONFIG = {
       start_van: {
         id: 'start_van',
         name: 'Стартовый фургон',
-        desc: 'Дает +2 Лапколапа сразу после переезда за каждый уровень (макс. 10)',
+        desc: 'Дает +2 Лапколапа сразу после переезда за каждый уровень (максимум 10)',
         icon: '🚐',
         maxLevel: 5,
         getCost: (l) => (l === 0 ? 1 : (l + 1) * 2)
@@ -1743,7 +2400,7 @@
       cat_sleep: {
         id: 'cat_sleep',
         name: 'Кошачий сон',
-        desc: 'Увеличивает максимальный сон оффлайн: 4ч → 6ч → 8ч → 12ч',
+        desc: 'Увеличивает максимальный сон без вас: 4ч → 6ч → 8ч → 12ч',
         icon: '💤',
         maxLevel: 3,
         getCost: (l) => (l === 0 ? 1 : (l + 1) * 5)
@@ -1751,7 +2408,7 @@
       bulk_buy: {
         id: 'bulk_buy',
         name: 'Оптовая закупка',
-        desc: 'Постоянная скидка -1% на всех работников (до -5%)',
+        desc: 'Постоянная скидка -1% на всех пекарей (до -5%)',
         icon: '🏷️',
         maxLevel: 5,
         getCost: (l) => (l === 0 ? 1 : (l + 1) * 3)
@@ -1759,13 +2416,13 @@
       generous_inspector: {
         id: 'generous_inspector',
         name: 'Щедрый инспектор',
-        desc: 'Снижает порог печенек для получения Звёзд на 5% за уровень (до -25%)',
+        desc: 'Снижает порог выпечки для получения Звёзд на 5% за уровень (до -25%)',
         icon: '🧐',
         maxLevel: 5,
         getCost: (l) => (l === 0 ? 1 : (l + 1) * 4)
       }
     };
-
+    /* Звуковые эффекты на базе Web Audio API */
     const SoundFX = {
       ctx: null,
       init() {
@@ -1843,7 +2500,7 @@
         id: 'click_warmup',
         icon: '🐾',
         title: 'Разминка лапок',
-        desc: 'Сделайте первые 100 кликов по тесту',
+        desc: 'Сделайте первые 100 нажатий по тесту',
         rewardFish: 1,
         isUnlocked: (s) => (s.stats?.totalClicks || 0) >= 100
       },
@@ -1851,7 +2508,7 @@
         id: 'click_master',
         icon: '⚡',
         title: 'Мастер-разминатель',
-        desc: 'Сделайте 1 000 кликов по тесту',
+        desc: 'Сделайте 1 000 нажатий по тесту',
         rewardFish: 3,
         isUnlocked: (s) => (s.stats?.totalClicks || 0) >= 1000
       },
@@ -1875,7 +2532,7 @@
         id: 'bakery_empire',
         icon: '👑',
         title: 'Сдобная империя',
-        desc: 'Преодолейте планку 100 000 000 печенек',
+        desc: 'Преодолейте планку в 100 000 000 выпечки',
         rewardFish: 5,
         isUnlocked: (s) => (s.stats?.totalCookiesAllTime || 0) >= 100000000
       },
@@ -1891,7 +2548,7 @@
         id: 'hire_chef_murych',
         icon: '👨‍🍳',
         title: 'Звездный шеф на кухне',
-        desc: 'Наймите хотя бы одного легендарного Шефа Мурыча',
+        desc: 'Наймите легендарного Шефа Мурыча',
         rewardFish: 5,
         isUnlocked: (s) => (s.run?.generators?.chef_murych || 0) >= 1
       },
@@ -1899,7 +2556,7 @@
         id: 'automated_bakery',
         icon: '✨',
         title: 'Полный штат',
-        desc: 'Наймите хотя бы по 1 работнику каждого доступного типа',
+        desc: 'Наймите хотя бы по 1 пекарю каждого типа',
         rewardFish: 3,
         isUnlocked: (s) => {
           const g = s.run?.generators;
@@ -1910,16 +2567,15 @@
         id: 'first_relocation',
         icon: '⭐',
         title: 'Новый филиал',
-        desc: 'Совершите свой первый переезд в новый город',
+        desc: 'Совершите свой первый переезд в новый филиал',
         rewardFish: 10,
         isUnlocked: (s) => (s.meta?.prestigeCount || 0) >= 1
       }
     ];
-
     function createInitialState() {
       const now = Date.now();
       return {
-        version: 16,
+        version: 52,
         run: {
           cookies: 0,
           lifetimeCookiesRun: 0,
@@ -1930,6 +2586,7 @@
           stars: 0,
           lifetimeStars: 0,
           fish: 0,
+          yarn: 0,
           prestigeCount: 0,
           perks: PERK_IDS.reduce((acc, id) => ({ ...acc, [id]: 0 }), {}),
           shop: {
@@ -1939,11 +2596,17 @@
             catBell: 0,
             fishJar: 0
           },
+          wardrobe: {
+            unlocked: ['chef_hat_1', 'neck_none'],
+            equippedHead: 'chef_hat_1',
+            equippedNeck: 'neck_none'
+          },
           achievements: []
         },
         tutorials: {
           prestigeSeen: false,
-          shopSeen: false
+          shopSeen: false,
+          wardrobeSeen: false
         },
         boosts: {
           adMultiplierExpiresAt: 0,
@@ -1956,8 +2619,7 @@
         },
         settings: {
           soundMuted: false,
-          musicMuted: false,
-          lang: 'ru'
+          musicMuted: false
         },
         stats: {
           totalClicks: 0,
@@ -1996,8 +2658,62 @@
       const parsedLifetimeStars = Math.max(parsedStars, Math.floor(sanitizeNumber(data.meta?.lifetimeStars, 0)));
       const parsedPrestigeCount = Math.floor(sanitizeNumber(data.meta?.prestigeCount, 0));
 
+      let wardrobeUnlocked = ['chef_hat_1', 'neck_none'];
+      let equippedHead = 'chef_hat_1';
+      let equippedNeck = 'neck_none';
+
+      if (parsedPrestigeCount >= 1) {
+        wardrobeUnlocked.push('chef_hat_2', 'red_bowtie');
+      }
+      if (parsedPrestigeCount >= 2) {
+        wardrobeUnlocked.push('beret_royal', 'gold_medal');
+      }
+
+      if (data.meta?.wardrobe) {
+        const oldUnlocked = Array.isArray(data.meta.wardrobe.unlocked) ? data.meta.wardrobe.unlocked : [];
+        oldUnlocked.forEach((id) => {
+          if (id === 'none') return;
+          // Предотвращаем разблокировку престижных шапок раньше времени при миграции
+          if ((id === 'chef_hat_2' || id === 'red_bowtie') && parsedPrestigeCount < 1) return;
+          if ((id === 'beret_royal' || id === 'gold_medal') && parsedPrestigeCount < 2) return;
+
+          if (id === 'golden_monocle' && !wardrobeUnlocked.includes('devil_horns')) {
+            wardrobeUnlocked.push('devil_horns');
+          } else if (id === 'cherry_flower' && !wardrobeUnlocked.includes('flower_wreath')) {
+            wardrobeUnlocked.push('flower_wreath');
+          } else if (id === 'angel_halo' && !wardrobeUnlocked.includes('love_hearts')) {
+            wardrobeUnlocked.push('love_hearts');
+          } else if (!wardrobeUnlocked.includes(id)) {
+            wardrobeUnlocked.push(id);
+          }
+        });
+
+        if (typeof data.meta.wardrobe.equippedHead === 'string') {
+          equippedHead = data.meta.wardrobe.equippedHead;
+        } else if (typeof data.meta.wardrobe.equipped === 'string') {
+          const oldEq = data.meta.wardrobe.equipped;
+          if (oldEq === 'golden_monocle') equippedHead = 'devil_horns';
+          else if (oldEq === 'cherry_flower') equippedHead = 'flower_wreath';
+          else if (oldEq === 'angel_halo') equippedHead = 'love_hearts';
+          else if (oldEq !== 'none') equippedHead = oldEq;
+        }
+
+        if (typeof data.meta.wardrobe.equippedNeck === 'string') {
+          equippedNeck = data.meta.wardrobe.equippedNeck;
+        } else {
+          if (parsedPrestigeCount === 1) equippedNeck = 'red_bowtie';
+          else if (parsedPrestigeCount >= 2) equippedNeck = 'gold_medal';
+        }
+      }
+
+      // Проверка валидности надетого головного убора
+      if (equippedHead === 'chef_hat_2' && parsedPrestigeCount < 1) equippedHead = 'chef_hat_1';
+      if (equippedHead === 'beret_royal' && parsedPrestigeCount < 2) equippedHead = 'chef_hat_1';
+      if (equippedNeck === 'red_bowtie' && parsedPrestigeCount < 1) equippedNeck = 'neck_none';
+      if (equippedNeck === 'gold_medal' && parsedPrestigeCount < 2) equippedNeck = 'neck_none';
+
       return {
-        version: 16,
+        version: 52,
         run: {
           cookies: Math.floor(sanitizeNumber(data.run?.cookies, defaults.run.cookies)),
           lifetimeCookiesRun: Math.floor(sanitizeNumber(data.run?.lifetimeCookiesRun, 0)),
@@ -2008,6 +2724,7 @@
           stars: parsedStars,
           lifetimeStars: parsedLifetimeStars,
           fish: Math.floor(sanitizeNumber(data.meta?.fish, 0)),
+          yarn: Math.floor(sanitizeNumber(data.meta?.yarn, 0)),
           prestigeCount: parsedPrestigeCount,
           perks: mergedPerks,
           shop: {
@@ -2017,11 +2734,17 @@
             catBell: Math.min(5, Math.floor(sanitizeNumber(data.meta?.shop?.catBell, 0))),
             fishJar: Math.floor(sanitizeNumber(data.meta?.shop?.fishJar, 0))
           },
+          wardrobe: {
+            unlocked: Array.from(new Set(wardrobeUnlocked)),
+            equippedHead: equippedHead,
+            equippedNeck: equippedNeck
+          },
           achievements: Array.isArray(data.meta?.achievements) ? data.meta.achievements : []
         },
         tutorials: {
           prestigeSeen: !!data.tutorials?.prestigeSeen,
-          shopSeen: !!data.tutorials?.shopSeen
+          shopSeen: !!data.tutorials?.shopSeen,
+          wardrobeSeen: !!data.tutorials?.wardrobeSeen
         },
         boosts: {
           adMultiplierExpiresAt: sanitizeNumber(data.boosts?.adMultiplierExpiresAt, 0),
@@ -2034,8 +2757,7 @@
         },
         settings: {
           soundMuted: !!data.settings?.soundMuted,
-          musicMuted: !!data.settings?.musicMuted,
-          lang: data.settings?.lang === 'en' ? 'en' : 'ru'
+          musicMuted: !!data.settings?.musicMuted
         },
         stats: {
           totalClicks: Math.floor(sanitizeNumber(data.stats?.totalClicks, 0)),
@@ -2060,8 +2782,8 @@
         return createInitialState();
       }
     }
-
-    const NUMBER_SUFFIXES = ['', 'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'Oc'];
+    /* Форматирование чисел и таймеров */
+    const NUMBER_SUFFIXES = ['', ' тыс.', ' млн.', ' млрд.', ' трлн.', ' квдр.', ' квнт.'];
 
     function formatNumber(num) {
       if (typeof num !== 'number' || !Number.isFinite(num) || Number.isNaN(num) || num <= 0) {
@@ -2114,9 +2836,7 @@
       if (!config) return 0;
       const count = state.run.generators[generatorId] || 0;
       if (count <= 0) return 0;
-
-      const milestoneMult = getGeneratorMilestoneMultiplier(count);
-      return config.baseRate * count * milestoneMult;
+      return config.baseRate * count * getGeneratorMilestoneMultiplier(count);
     }
 
     function calculateTotalRate(state) {
@@ -2124,17 +2844,28 @@
       for (const id of GENERATOR_IDS) {
         baseTotalRate += getGeneratorCurrentRate(id, state);
       }
-
       const stars = state.meta.stars || 0;
       const prestigeMultiplier = 1 + stars * 0.25;
-
       const sauceLevel = state.meta?.shop?.creamSauce || 0;
       const shopSauceMultiplier = 1 + sauceLevel * 0.15;
-
       const isAdBoosted = (state.boosts.adMultiplierExpiresAt || 0) > Date.now();
       const adMultiplier = isAdBoosted ? 2 : 1;
 
-      return Math.floor(baseTotalRate * prestigeMultiplier * shopSauceMultiplier * adMultiplier);
+      let wardrobeRateMult = 1.0;
+      if (hasWardrobeUnlocked(state, 'chef_hat_2')) {
+        wardrobeRateMult *= 1.03;
+      }
+      if (hasWardrobeUnlocked(state, 'flower_wreath')) {
+        wardrobeRateMult *= 1.03;
+      }
+      if (hasWardrobeUnlocked(state, 'beret_royal')) {
+        wardrobeRateMult *= 1.04;
+      }
+      if (hasWardrobeUnlocked(state, 'royal_crown')) {
+        wardrobeRateMult *= 1.05;
+      }
+
+      return Math.floor(baseTotalRate * prestigeMultiplier * shopSauceMultiplier * adMultiplier * wardrobeRateMult);
     }
 
     function getCostWithDiscount(rawPrice, perkLevel = 0) {
@@ -2185,7 +2916,6 @@
       while (maxCount > 0 && getBatchCost(generatorId, maxCount, state) > availableCookies) {
         maxCount--;
       }
-
       while (getBatchCost(generatorId, maxCount + 1, state) <= availableCookies) {
         maxCount++;
       }
@@ -2246,8 +2976,6 @@
         progressText = `${currentLevel}/200 (МАКС)`;
       }
 
-      const milestoneMult = getGeneratorMilestoneMultiplier(currentLevel);
-
       return {
         id: generatorId,
         name: config.name,
@@ -2257,11 +2985,10 @@
         nextMilestone,
         milestoneProgress: progress,
         progressText,
-        milestoneMult,
+        milestoneMult: getGeneratorMilestoneMultiplier(currentLevel),
         canAfford
       };
     }
-
     function getClickUpgradeCost(level) {
       return Math.floor(15 * Math.pow(1.12, Math.max(1, level) - 1));
     }
@@ -2270,11 +2997,24 @@
       const basePower = (1 + (state.meta.stars || 0)) * Math.max(1, state.run.clickLevel);
       const perkMult = 1 + (state.meta?.perks?.strong_paws || 0);
       const pinMult = 1 + (state.meta?.shop?.goldenRollingPin || 0) * 0.15;
-      const clickUpgradesMult = perkMult * pinMult;
       
+      let wardrobeClickMult = 1.0;
+      if (hasWardrobeUnlocked(state, 'glasses_cool')) {
+        wardrobeClickMult *= 1.05;
+      }
+      if (hasWardrobeUnlocked(state, 'red_bowtie')) {
+        wardrobeClickMult *= 1.03;
+      }
+      if (hasWardrobeUnlocked(state, 'beret_royal')) {
+        wardrobeClickMult *= 1.04;
+      }
+      if (hasWardrobeUnlocked(state, 'royal_crown')) {
+        wardrobeClickMult *= 1.05;
+      }
+
+      const clickUpgradesMult = perkMult * pinMult * wardrobeClickMult;
       const totalPassiveRate = calculateTotalRate(state);
       const synergyBase = totalPassiveRate * 0.01;
-      
       const totalClickBeforeFever = (basePower + synergyBase) * clickUpgradesMult;
       const feverMult = state.boosts.feverActive ? 3 : 1;
       
@@ -2336,9 +3076,7 @@
 
         container.appendChild(crumb);
         setTimeout(() => {
-          if (crumb.parentNode === container) {
-            crumb.remove();
-          }
+          if (crumb.parentNode === container) crumb.remove();
         }, 350);
       }
     }
@@ -2361,8 +3099,11 @@
 
       if (!state.boosts.feverActive) {
         const catnipLevel = state.meta?.shop?.catnip || 0;
-        const catnipMultiplier = 1 + catnipLevel * 0.25;
-        state.boosts.feverProgress = Math.min(100, state.boosts.feverProgress + (4.0 * catnipMultiplier));
+        let feverGainMult = 1 + catnipLevel * 0.25;
+        if (hasWardrobeUnlocked(state, 'love_hearts')) {
+          feverGainMult *= 1.05;
+        }
+        state.boosts.feverProgress = Math.min(100, state.boosts.feverProgress + (4.0 * feverGainMult));
         if (state.boosts.feverProgress >= 100) {
           triggerFeverMode(state);
         }
@@ -2374,15 +3115,16 @@
       return power;
     }
 
-    function calculateOfflineProgress(state) {
+    function calculateOfflineProgress(state, overrideSeconds = null) {
       const now = Date.now();
       const firstStart = state.timestamps.firstStartTime || now;
-      if ((now - firstStart) < 300 * 1000) {
+      
+      if (overrideSeconds === null && (now - firstStart) < 300 * 1000) {
         return { isEligible: false, baseEarned: 0, doubleEarned: 0, effectiveSeconds: 0 };
       }
 
       const lastSave = state.timestamps.lastSaveTime || now;
-      const secondsAway = Math.floor((now - lastSave) / 1000);
+      const secondsAway = overrideSeconds !== null ? overrideSeconds : Math.floor((now - lastSave) / 1000);
 
       if (secondsAway < 60) {
         return { isEligible: false, baseEarned: 0, doubleEarned: 0, effectiveSeconds: 0 };
@@ -2417,7 +3159,6 @@
         }
       }
     }
-
     function initGame() {
       let state = loadFromLocal();
       let subCookieAccumulator = 0;
@@ -2427,13 +3168,13 @@
       const rateDisplay = document.getElementById('rate-display');
       const starsDisplay = document.getElementById('stars-display');
       const fishDisplay = document.getElementById('fish-display');
+      const yarnDisplay = document.getElementById('yarn-display');
 
       const locationBadgeIcon = document.getElementById('location-badge-icon');
       const locationBadgeName = document.getElementById('location-badge-name');
 
-      const hatClassic = document.getElementById('cat-hat-classic');
-      const hatBeret = document.getElementById('cat-hat-beret');
-      const hatCrown = document.getElementById('cat-hat-crown');
+      const catHeadLayer = document.getElementById('cat-head-layer');
+      const catNeckLayer = document.getElementById('cat-neck-layer');
 
       const doughTarget = document.getElementById('dough-target');
       const feverWrapper = document.getElementById('fever-wrapper');
@@ -2453,7 +3194,8 @@
       const tabPanes = {
         generators: document.getElementById('tab-content-generators'),
         prestige: document.getElementById('tab-content-prestige'),
-        shop: document.getElementById('tab-content-shop')
+        shop: document.getElementById('tab-content-shop'),
+        wardrobe: document.getElementById('tab-content-wardrobe')
       };
 
       const batchButtons = document.querySelectorAll('.batch-btn');
@@ -2491,28 +3233,46 @@
       const toastIconSlot = document.getElementById('toast-icon-slot');
       const toastRewardSlot = document.getElementById('toast-reward');
 
+      const devAdd100k = document.getElementById('dev-add-100k');
+      const devAdd10m = document.getElementById('dev-add-10m');
+      const devAdd50Fish = document.getElementById('dev-add-50-fish');
+      const devAdd5Stars = document.getElementById('dev-add-5-stars');
+      const devAdd20Yarn = document.getElementById('dev-add-20-yarn');
+      const devToggleFever = document.getElementById('dev-toggle-fever');
+      const devUnlockWardrobe = document.getElementById('dev-unlock-wardrobe');
       const devSpawnFish = document.getElementById('dev-spawn-fish');
-      const devAddCookies = document.getElementById('dev-add-cookies');
-      const devTriggerFever = document.getElementById('dev-trigger-fever');
+      const devSpawnBox = document.getElementById('dev-spawn-box');
+      const devLoc0 = document.getElementById('dev-loc-0');
+      const devLoc1 = document.getElementById('dev-loc-1');
+      const devLoc2 = document.getElementById('dev-loc-2');
+      const devTestOffline = document.getElementById('dev-test-offline');
 
       let currentBatchMode = '1';
       let activeTabId = 'generators';
+      let activeWardrobeSlot = 'head';
       let toastTimeoutId = null;
 
-      function updateCatVisual(gameState) {
+      function updateCatVisuals(gameState) {
         const prestiges = gameState.meta?.prestigeCount || 0;
-        const themeIndex = Math.min(2, prestiges);
+        const stageIndex = Math.min(2, prestiges);
 
-        if (hatClassic && hatBeret && hatCrown) {
-          hatClassic.style.display = prestiges === 0 ? 'block' : 'none';
-          hatBeret.style.display = prestiges === 1 ? 'block' : 'none';
-          hatCrown.style.display = prestiges >= 2 ? 'block' : 'none';
+        const eqHeadId = gameState.meta?.wardrobe?.equippedHead || 'chef_hat_1';
+        const eqNeckId = gameState.meta?.wardrobe?.equippedNeck || 'neck_none';
+
+        if (catHeadLayer) {
+          const headItem = WARDROBE_CATALOG.head.find(i => i.id === eqHeadId);
+          catHeadLayer.innerHTML = (headItem && headItem.svg) ? headItem.svg : '';
+        }
+
+        if (catNeckLayer) {
+          const neckItem = WARDROBE_CATALOG.neck.find(i => i.id === eqNeckId);
+          catNeckLayer.innerHTML = (neckItem && neckItem.svg) ? neckItem.svg : '';
         }
 
         appRoot.classList.remove('theme-bakery-0', 'theme-bakery-1', 'theme-bakery-2');
-        appRoot.classList.add(`theme-bakery-${themeIndex}`);
+        appRoot.classList.add(`theme-bakery-${stageIndex}`);
 
-        const locConfig = LOCATION_THEMES[themeIndex] || LOCATION_THEMES[0];
+        const locConfig = LOCATION_THEMES[stageIndex] || LOCATION_THEMES[0];
         if (locationBadgeIcon) locationBadgeIcon.textContent = locConfig.icon;
         if (locationBadgeName) locationBadgeName.textContent = locConfig.name;
       }
@@ -2547,34 +3307,38 @@
       }
 
       function showAchievementToast(ach) {
-        showGenericToast('🏆', 'Новое достижение!', ach.title, `+${ach.rewardFish} ${getFishIconSvg('small')}`);
+        showGenericToast('🏆', 'Новое достижение!', ach.title, `+${ach.rewardFish} ${getFishIconSvg(16)}`);
       }
 
-      const offlineData = calculateOfflineProgress(state);
-      if (offlineData.isEligible) {
-        offlineTimeSpent.textContent = formatTime(offlineData.effectiveSeconds, 'duration');
-        offlineCookiesAmount.textContent = formatNumber(offlineData.baseEarned);
-        offlineDoubleAmount.textContent = formatNumber(offlineData.doubleEarned);
-        offlineModal.classList.remove('hidden');
+      function checkAndTriggerOffline(overrideSec = null) {
+        const offlineData = calculateOfflineProgress(state, overrideSec);
+        if (offlineData.isEligible) {
+          offlineTimeSpent.textContent = formatTime(offlineData.effectiveSeconds, 'duration');
+          offlineCookiesAmount.textContent = formatNumber(offlineData.baseEarned);
+          offlineDoubleAmount.textContent = formatNumber(offlineData.doubleEarned);
+          offlineModal.classList.remove('hidden');
+
+          btnClaimOfflineBase.onclick = () => {
+            state.run.cookies += offlineData.baseEarned;
+            state.run.lifetimeCookiesRun += offlineData.baseEarned;
+            state.stats.totalCookiesAllTime += offlineData.baseEarned;
+            saveToLocal(state);
+            offlineModal.classList.add('hidden');
+            renderStaticUI();
+          };
+
+          btnClaimOfflineDouble.onclick = () => {
+            state.run.cookies += offlineData.doubleEarned;
+            state.run.lifetimeCookiesRun += offlineData.doubleEarned;
+            state.stats.totalCookiesAllTime += offlineData.doubleEarned;
+            saveToLocal(state);
+            offlineModal.classList.add('hidden');
+            renderStaticUI();
+          };
+        }
       }
 
-      btnClaimOfflineBase.addEventListener('click', () => {
-        state.run.cookies += offlineData.baseEarned;
-        state.run.lifetimeCookiesRun += offlineData.baseEarned;
-        state.stats.totalCookiesAllTime += offlineData.baseEarned;
-        saveToLocal(state);
-        offlineModal.classList.add('hidden');
-        renderStaticUI();
-      });
-
-      btnClaimOfflineDouble.addEventListener('click', () => {
-        state.run.cookies += offlineData.doubleEarned;
-        state.run.lifetimeCookiesRun += offlineData.doubleEarned;
-        state.stats.totalCookiesAllTime += offlineData.doubleEarned;
-        saveToLocal(state);
-        offlineModal.classList.add('hidden');
-        renderStaticUI();
-      });
+      checkAndTriggerOffline();
 
       let squashTimer = null;
       const triggerSquash = () => {
@@ -2620,7 +3384,6 @@
         saveToLocal(state);
         renderStaticUI();
       });
-
       let activeFlyingFish = null;
 
       function getNextFishIntervalSec() {
@@ -2638,7 +3401,7 @@
 
         const fish = document.createElement('div');
         fish.className = 'flying-fish-entity';
-        fish.innerHTML = `<svg viewBox="0 0 24 24" style="width:100%;height:100%;"><use href="#gold-fish-symbol" /></svg>`;
+        fish.innerHTML = `<svg viewBox="0 0 24 24" style="width:100%;height:100%;"><use href="#universal-gold-fish" /></svg>`;
 
         const fromLeft = Math.random() > 0.5;
         const topY = 60 + Math.random() * 90;
@@ -2647,9 +3410,7 @@
 
         fish.style.top = `${topY}px`;
         fish.style.left = `${startX}px`;
-        if (!fromLeft) {
-          fish.style.transform = 'scaleX(-1)';
-        }
+        if (!fromLeft) fish.style.transform = 'scaleX(-1)';
 
         appRoot.appendChild(fish);
         activeFlyingFish = fish;
@@ -2657,15 +3418,32 @@
         const startTime = performance.now();
         const duration = 5000;
         let animationFrameId = null;
+        let lastSparkleTime = 0;
 
         function moveFish(currTime) {
           const elapsed = currTime - startTime;
           const p = Math.min(1, elapsed / duration);
           const curX = startX + (endX - startX) * p;
           const wobbleY = Math.sin(p * Math.PI * 4) * 12;
+          const actualY = topY + wobbleY;
 
           fish.style.left = `${curX}px`;
-          fish.style.top = `${topY + wobbleY}px`;
+          fish.style.top = `${actualY}px`;
+
+          if (currTime - lastSparkleTime > 75) {
+            lastSparkleTime = currTime;
+            const sparkle = document.createElement('div');
+            sparkle.className = 'fish-sparkle';
+            const sparkleSize = 4 + Math.random() * 6;
+            sparkle.style.width = `${sparkleSize}px`;
+            sparkle.style.height = `${sparkleSize}px`;
+            sparkle.style.left = `${curX + (fromLeft ? 4 : 40)}px`;
+            sparkle.style.top = `${actualY + 16 + (Math.random() * 10 - 5)}px`;
+            appRoot.appendChild(sparkle);
+            setTimeout(() => {
+              if (sparkle.parentNode) sparkle.remove();
+            }, 450);
+          }
 
           if (p < 1 && activeFlyingFish === fish) {
             animationFrameId = requestAnimationFrame(moveFish);
@@ -2689,18 +3467,25 @@
 
           const roll = Math.random();
           if (roll < 0.70) {
-            const jackpot = Math.max(50, Math.floor(calculateTotalRate(state) * 180));
+            let fishDuration = 180;
+            if (hasWardrobeUnlocked(state, 'devil_horns')) {
+              fishDuration *= 1.10;
+            }
+            if (hasWardrobeUnlocked(state, 'gold_medal')) {
+              fishDuration *= 1.15;
+            }
+            const jackpot = Math.max(50, Math.floor(calculateTotalRate(state) * fishDuration));
             state.run.cookies += jackpot;
             state.run.lifetimeCookiesRun += jackpot;
             state.stats.totalCookiesAllTime += jackpot;
-            showGenericToast('🐟', 'Золотая Рыбка поймана!', 'Щедрый улов печенек (3 мин)!', `+${formatNumber(jackpot)} 🐾`);
+            showGenericToast('🐟', 'Золотая Рыбка поймана!', 'Щедрый улов выпечки!', `+${formatNumber(jackpot)} 🐾`);
           } else if (roll < 0.90) {
             triggerFeverMode(state);
             const dur = Math.round(getMaxFeverDuration(state));
-            showGenericToast('⚡', 'Золотая Рыбка поймана!', 'Взрыв энергии теста!', `Лихорадка на ${dur} сек!`);
+            showGenericToast('⚡', 'Золотая Рыбка поймана!', 'Всплеск вдохновения!', `Лихорадка на ${dur} сек!`);
           } else {
             state.meta.fish += 1;
-            showGenericToast('✨', 'Золотая Рыбка поймана!', 'Редкая добыча!', `+1 ${getFishIconSvg('small')}`);
+            showGenericToast('✨', 'Золотая Рыбка поймана!', 'Редкая драгоценность!', `+1 ${getFishIconSvg(18)}`);
           }
 
           saveToLocal(state);
@@ -2710,25 +3495,247 @@
         fish.addEventListener('pointerdown', onCatch);
       }
 
-      devSpawnFish.addEventListener('click', () => {
-        spawnFlyingFish();
-      });
+      let activeMysteryBox = null;
 
-      devAddCookies.addEventListener('click', () => {
-        const bonus = 1000000;
+      function getNextBoxIntervalSec() {
+        return 240 + Math.random() * 120;
+      }
+
+      let nextBoxSpawnTimestamp = Date.now() + 1000 * getNextBoxIntervalSec();
+
+      function triggerConfetti(centerX, centerY) {
+        const colors = ['#FF5722', '#FF9800', '#FFD54F', '#10B981', '#E91E63', '#9C27B0'];
+        for (let i = 0; i < 24; i++) {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti-piece';
+          confetti.style.left = `${centerX}px`;
+          confetti.style.top = `${centerY}px`;
+          confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+          const angle = Math.random() * Math.PI * 2;
+          const distance = 40 + Math.random() * 90;
+          const dx = Math.cos(angle) * distance;
+          const dy = Math.sin(angle) * distance - 20;
+          const rot = `${Math.floor(Math.random() * 720 - 360)}deg`;
+
+          confetti.style.setProperty('--dx', `${dx}px`);
+          confetti.style.setProperty('--dy', `${dy}px`);
+          confetti.style.setProperty('--rot', rot);
+
+          appRoot.appendChild(confetti);
+          setTimeout(() => {
+            if (confetti.parentNode) confetti.remove();
+          }, 650);
+        }
+      }
+
+      function spawnSurpriseBox() {
+        if (activeMysteryBox && activeMysteryBox.parentNode) {
+          activeMysteryBox.remove();
+        }
+
+        const clickZone = document.querySelector('.click-zone');
+        if (!clickZone) return;
+
+        const box = document.createElement('div');
+        box.className = 'surprise-box-entity';
+        let tapsRemaining = 3;
+
+        box.innerHTML = `
+          <svg viewBox="0 0 64 64" style="width:100%;height:100%;overflow:visible;">
+            <defs>
+              <linearGradient id="boxRibbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFE082" />
+                <stop offset="100%" stop-color="#FF9800" />
+              </linearGradient>
+            </defs>
+            <rect x="8" y="24" width="48" height="34" rx="6" fill="#E11D48" stroke="#881337" stroke-width="3" />
+            <rect x="5" y="16" width="54" height="12" rx="4" fill="#BE123C" stroke="#881337" stroke-width="3" />
+            <rect x="27" y="16" width="10" height="42" fill="url(#boxRibbonGrad)" />
+            <path d="M 32 16 C 22 2 12 12 30 16 Z" fill="url(#boxRibbonGrad)" stroke="#B45309" stroke-width="1.5" />
+            <path d="M 32 16 C 42 2 52 12 34 16 Z" fill="url(#boxRibbonGrad)" stroke="#B45309" stroke-width="1.5" />
+            <circle cx="32" cy="16" r="4.5" fill="#FDE047" stroke="#B45309" stroke-width="1.5" />
+          </svg>
+          <div class="box-tap-indicator">${tapsRemaining}</div>
+        `;
+
+        const onRight = Math.random() > 0.45;
+        box.style.bottom = '10px';
+        box.style.top = 'auto';
+        if (onRight) {
+          box.style.right = '18px';
+          box.style.left = 'auto';
+        } else {
+          box.style.left = '18px';
+          box.style.right = 'auto';
+        }
+
+        clickZone.appendChild(box);
+        activeMysteryBox = box;
+
+        const timeoutId = setTimeout(() => {
+          if (activeMysteryBox === box) {
+            box.remove();
+            activeMysteryBox = null;
+          }
+        }, 28000);
+
+        box.addEventListener('pointerdown', (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          tapsRemaining--;
+
+          box.classList.remove('shake');
+          void box.offsetWidth;
+          box.classList.add('shake');
+
+          SoundFX.playClick(state.settings.soundMuted);
+
+          const badge = box.querySelector('.box-tap-indicator');
+          if (badge) badge.textContent = tapsRemaining;
+
+          if (tapsRemaining <= 0) {
+            clearTimeout(timeoutId);
+            const rect = box.getBoundingClientRect();
+            const rootRect = appRoot.getBoundingClientRect();
+            triggerConfetti(rect.left - rootRect.left + 26, rect.top - rootRect.top + 26);
+
+            box.remove();
+            activeMysteryBox = null;
+            SoundFX.playFever(state.settings.soundMuted);
+
+            const p = Math.random();
+            if (p < 0.50) {
+              const jackpot = Math.max(100, Math.floor(calculateTotalRate(state) * 300));
+              state.run.cookies += jackpot;
+              state.run.lifetimeCookiesRun += jackpot;
+              state.stats.totalCookiesAllTime += jackpot;
+              showGenericToast('🎁', 'Посылка доставлена!', 'Куш свежей выпечки!', `+${formatNumber(jackpot)} 🐾`);
+            } else if (p < 0.75) {
+              const droppedYarn = 1 + Math.floor(Math.random() * 3);
+              state.meta.yarn += droppedYarn;
+              showGenericToast('🧶', 'Посылка доставлена!', 'Зелёные клубки пряжи!', `+${droppedYarn} ${getYarnIconSvg(18)}`);
+            } else if (p < 0.90) {
+              state.meta.fish += 2;
+              showGenericToast('🐟', 'Посылка доставлена!', 'Две золотые рыбки!', `+2 ${getFishIconSvg(18)}`);
+            } else {
+              triggerFeverMode(state);
+              const dur = Math.round(getMaxFeverDuration(state));
+              showGenericToast('⚡', 'Посылка доставлена!', 'Сверхактивная Лихорадка!', `${dur} сек утроенного клика!`);
+            }
+
+            saveToLocal(state);
+            renderStaticUI();
+          }
+        });
+      }
+      /* Обработчики Super-DevTools */
+      devAdd100k.addEventListener('click', () => {
+        const bonus = 100000;
         state.run.cookies += bonus;
         state.run.lifetimeCookiesRun += bonus;
         state.stats.totalCookiesAllTime += bonus;
         saveToLocal(state);
         renderStaticUI();
-        showGenericToast('🛠️', 'DevTools', 'Добавлено 1,000,000 печенек!', '+1M 🐾');
+        showGenericToast('🛠️', 'Проверка функций', 'Начислено 100 тыс. печенек!', '+100 тыс. 🐾');
       });
 
-      devTriggerFever.addEventListener('click', () => {
-        triggerFeverMode(state);
+      devAdd10m.addEventListener('click', () => {
+        const bonus = 10000000;
+        state.run.cookies += bonus;
+        state.run.lifetimeCookiesRun += bonus;
+        state.stats.totalCookiesAllTime += bonus;
+        saveToLocal(state);
+        renderStaticUI();
+        showGenericToast('🛠️', 'Проверка функций', 'Начислено 10 млн. печенек!', '+10 млн. 🐾');
+      });
+
+      devAdd50Fish.addEventListener('click', () => {
+        state.meta.fish += 50;
+        saveToLocal(state);
+        renderStaticUI();
+        showGenericToast('🛠️', 'Проверка функций', 'Начислено 50 золотых рыбок!', `+50 ${getFishIconSvg(18)}`);
+      });
+
+      devAdd5Stars.addEventListener('click', () => {
+        state.meta.stars += 5;
+        state.meta.lifetimeStars += 5;
+        saveToLocal(state);
+        renderStaticUI();
+        showGenericToast('🛠️', 'Проверка функций', 'Начислено 5 Звёзд Мишлен!', '+5 ⭐');
+      });
+
+      devAdd20Yarn.addEventListener('click', () => {
+        state.meta.yarn += 20;
+        saveToLocal(state);
+        renderStaticUI();
+        showGenericToast('🧶', 'Проверка функций', 'Начислено 20 зелёных клубков пряжи!', `+20 ${getYarnIconSvg(18)}`);
+      });
+
+      devToggleFever.addEventListener('click', () => {
+        if (state.boosts.feverActive) {
+          state.boosts.feverActive = false;
+          state.boosts.feverProgress = 0;
+          feverRemainingTimer = 0;
+          showGenericToast('🛠️', 'Проверка функций', 'Лихорадка отключена!', 'Обычный режим');
+        } else {
+          triggerFeverMode(state);
+          showGenericToast('🛠️', 'Проверка функций', 'Лихорадка включена!', 'Утроенный клик');
+        }
         renderStaticUI();
       });
 
+      devUnlockWardrobe.addEventListener('click', () => {
+        [...WARDROBE_CATALOG.head, ...WARDROBE_CATALOG.neck].forEach(item => {
+          if (!state.meta.wardrobe.unlocked.includes(item.id)) {
+            state.meta.wardrobe.unlocked.push(item.id);
+          }
+        });
+        saveToLocal(state);
+        renderStaticUI();
+        showGenericToast('👗', 'Проверка функций', 'Весь гардероб открыт!', 'Все пассивные бонусы активны!');
+      });
+
+      devSpawnFish.addEventListener('click', () => spawnFlyingFish());
+      devSpawnBox.addEventListener('click', () => spawnSurpriseBox());
+
+      devLoc0.addEventListener('click', () => {
+        state.meta.prestigeCount = 0;
+        updateCatVisuals(state);
+        saveToLocal(state);
+        renderStaticUI();
+        showGenericToast('🏠', 'Проверка функций', 'Филиал 1: Уютная кухня', 'Домашний стиль');
+      });
+
+      devLoc1.addEventListener('click', () => {
+        state.meta.prestigeCount = 1;
+        if (!state.meta.wardrobe.unlocked.includes('chef_hat_2')) state.meta.wardrobe.unlocked.push('chef_hat_2');
+        if (!state.meta.wardrobe.unlocked.includes('red_bowtie')) state.meta.wardrobe.unlocked.push('red_bowtie');
+        state.meta.wardrobe.equippedHead = 'chef_hat_2';
+        state.meta.wardrobe.equippedNeck = 'red_bowtie';
+        updateCatVisuals(state);
+        saveToLocal(state);
+        renderStaticUI();
+        showGenericToast('🥐', 'Проверка функций', 'Филиал 2: Городское кафе', 'Шефский стиль');
+      });
+
+      devLoc2.addEventListener('click', () => {
+        state.meta.prestigeCount = 2;
+        if (!state.meta.wardrobe.unlocked.includes('beret_royal')) state.meta.wardrobe.unlocked.push('beret_royal');
+        if (!state.meta.wardrobe.unlocked.includes('gold_medal')) state.meta.wardrobe.unlocked.push('gold_medal');
+        state.meta.wardrobe.equippedHead = 'beret_royal';
+        state.meta.wardrobe.equippedNeck = 'gold_medal';
+        updateCatVisuals(state);
+        saveToLocal(state);
+        renderStaticUI();
+        showGenericToast('👑', 'Проверка функций', 'Филиал 3: Королевский дворец', 'Королевский стиль');
+      });
+
+      devTestOffline.addEventListener('click', () => {
+        settingsModal.classList.add('hidden');
+        checkAndTriggerOffline(4 * 3600);
+      });
+      /* Навигация по вкладкам */
       tabButtons.forEach((btn) => {
         btn.addEventListener('click', () => {
           tabButtons.forEach((b) => b.classList.remove('active'));
@@ -2751,8 +3758,8 @@
           if (tabKey === 'prestige' && !state.tutorials.prestigeSeen) {
             showTutorial(
               '🌟',
-              'Новый филиал!',
-              'Переезд сбрасывает текущих поварят, но дарит постоянные Звёзды Мишлен. Каждая звезда навсегда увеличивает базовый клик на +1 и дает +25% к пассивному доходу!',
+              'Новый филиал пекарни!',
+              'Переезд сбрасывает текущих нанятых пекарей, но награждает постоянными Звёздами Мишлен. Каждая звезда навсегда увеличивает базовый клик на +1 и повышает пассивный доход пекарни на +25%!',
               'Понятно! 🐾',
               () => {
                 state.tutorials.prestigeSeen = true;
@@ -2761,12 +3768,23 @@
             );
           } else if (tabKey === 'shop' && !state.tutorials.shopSeen) {
             showTutorial(
-              GOLDEN_FISH_HERO_SVG,
-              `${GOLDEN_FISH_SVG} Лавка редкостей!`,
-              `Здесь можно обменять пойманные золотые рыбки ${GOLDEN_FISH_SVG} на постоянные усиления пекарни.`,
-              'Вкусно! 🐾',
+              getFishIconSvg(48),
+              `${getFishIconSvg(22)} Лавка редкостей!`,
+              `Здесь можно обменять пойманные золотые рыбки на постоянные улучшения скорости Лихорадки, силы клика и помощи верных пекарей!`,
+              'Замечательно! 🐾',
               () => {
                 state.tutorials.shopSeen = true;
+                saveToLocal(state);
+              }
+            );
+          } else if (tabKey === 'wardrobe' && !state.tutorials.wardrobeSeen) {
+            showTutorial(
+              getYarnIconSvg(48),
+              `${getYarnIconSvg(22)} Гардероб шефа!`,
+              `Здесь за зелёные клубки пряжи можно примерить стильные головные уборы и шейные украшения. Все бонусы действуют навсегда за сам факт открытия, так что наряжайте котика в своё удовольствие!`,
+              'Какая красота! 🐾',
+              () => {
+                state.tutorials.wardrobeSeen = true;
                 saveToLocal(state);
               }
             );
@@ -2869,7 +3887,6 @@
           targetContainer.appendChild(card);
         });
       }
-
       function performPrestige() {
         const rewardStars = calculatePrestigeReward(state);
         if (rewardStars <= 0) return;
@@ -2879,6 +3896,20 @@
         state.meta.stars += rewardStars;
         state.meta.lifetimeStars += rewardStars;
         state.meta.prestigeCount += 1;
+
+        if (state.meta.prestigeCount === 1) {
+          state.meta.yarn += 5;
+          if (!state.meta.wardrobe.unlocked.includes('chef_hat_2')) state.meta.wardrobe.unlocked.push('chef_hat_2');
+          if (!state.meta.wardrobe.unlocked.includes('red_bowtie')) state.meta.wardrobe.unlocked.push('red_bowtie');
+          state.meta.wardrobe.equippedHead = 'chef_hat_2';
+          state.meta.wardrobe.equippedNeck = 'red_bowtie';
+        } else if (state.meta.prestigeCount >= 2) {
+          state.meta.yarn += 10;
+          if (!state.meta.wardrobe.unlocked.includes('beret_royal')) state.meta.wardrobe.unlocked.push('beret_royal');
+          if (!state.meta.wardrobe.unlocked.includes('gold_medal')) state.meta.wardrobe.unlocked.push('gold_medal');
+          state.meta.wardrobe.equippedHead = 'beret_royal';
+          state.meta.wardrobe.equippedNeck = 'gold_medal';
+        }
 
         const vanLevel = state.meta?.perks?.start_van || 0;
 
@@ -2895,7 +3926,7 @@
           state.run.generators.lapkolap = vanLevel * 2;
         }
 
-        updateCatVisual(state);
+        updateCatVisuals(state);
         SoundFX.playFever(state.settings.soundMuted);
         saveToLocal(state);
         checkAchievements(state, showAchievementToast);
@@ -2904,16 +3935,16 @@
         if (prevPrestige === 0 && state.meta.prestigeCount === 1) {
           showTutorial(
             '🥐✨',
-            'Новый статус: Парижская кондитерская!',
-            '🎉 Ваша пекарня вышла на международный уровень! Котик надел элегантный французский берет, клик усилен навсегда, а доход стал выше!',
+            'Новый филиал: Городское кафе!',
+            'Поздравляем! Ваша пекарня вышла на городской уровень! Котику открылись высокий колпак шефа и шейная бабочка, а также начислено +5 зелёных клубков пряжи!',
             'Великолепно! 🐾'
           );
         } else if (prevPrestige === 1 && state.meta.prestigeCount >= 2) {
           showTutorial(
             '👑✨',
-            'Новый статус: Королевский дворец!',
-            '🎉 Легендарный успех! Котик коронован в звании Шеф-Мастера, а пекарня превратилась в Королевский дворец сдобы!',
-            'Да здравствует Шеф! 🐾'
+            'Новый филиал: Королевский дворец!',
+            'Триумф кондитерского искусства! На груди засиял золотой орден мастера с лапкой, открылся бархатный берет с пером и получено +10 зелёных клубков пряжи!',
+            'Вперёд к новым вершинам! 🐾'
           );
         }
       }
@@ -2942,7 +3973,7 @@
               <span>🌟</span>
               <span>Филиал Мишлен</span>
             </div>
-            <div class="prestige-badge-mult">+${currentStarsMult}% дох / +${state.meta.stars || 0} к клику</div>
+            <div class="prestige-badge-mult">+${currentStarsMult}% выпечка / +${state.meta.stars || 0} к клику</div>
           </div>
           <div class="prestige-progress-box">
             <div class="prestige-progress-label">
@@ -3000,7 +4031,6 @@
           targetContainer.appendChild(card);
         });
       }
-
       function renderShopView() {
         const targetContainer = tabPanes.shop;
         const catnipLvl = state.meta?.shop?.catnip || 0;
@@ -3018,16 +4048,18 @@
         const isBellMax = bellLvl >= 5;
 
         targetContainer.innerHTML = `
+          <div class="shop-section-title">🌟 Улучшения за золотых рыбок</div>
+
           <div class="shop-card">
             <div class="shop-card-left">
               <div class="shop-card-avatar">🌿</div>
               <div class="shop-card-info">
                 <span class="shop-card-title">Кошачья мята (ур. ${catnipLvl})</span>
-                <span class="shop-card-desc">+25% к скорости накопления Лихорадки за ур.</span>
+                <span class="shop-card-desc">+25% к скорости заполнения Лихорадки</span>
               </div>
             </div>
             <button id="btn-shop-catnip" class="shop-buy-btn" ${state.meta.fish < catnipCost ? 'disabled' : ''}>
-              ${catnipCost} ${getFishIconSvg()}
+              ${catnipCost} ${getFishIconSvg(16)}
             </button>
           </div>
 
@@ -3036,11 +4068,11 @@
               <div class="shop-card-avatar">🥢</div>
               <div class="shop-card-info">
                 <span class="shop-card-title">Золотая скалка (ур. ${pinLvl})</span>
-                <span class="shop-card-desc">+15% к силе ручного клика и синергии за ур.</span>
+                <span class="shop-card-desc">+15% к клику и синергии за уровень</span>
               </div>
             </div>
             <button id="btn-shop-rolling-pin" class="shop-buy-btn" ${state.meta.fish < pinCost ? 'disabled' : ''}>
-              ${pinCost} ${getFishIconSvg()}
+              ${pinCost} ${getFishIconSvg(16)}
             </button>
           </div>
 
@@ -3049,11 +4081,11 @@
               <div class="shop-card-avatar">🍶</div>
               <div class="shop-card-info">
                 <span class="shop-card-title">Сливочный соус (ур. ${sauceLvl})</span>
-                <span class="shop-card-desc">+15% к пассивному доходу поварят за ур.</span>
+                <span class="shop-card-desc">+15% к выпечке пекарей за уровень</span>
               </div>
             </div>
             <button id="btn-shop-cream-sauce" class="shop-buy-btn" ${state.meta.fish < sauceCost ? 'disabled' : ''}>
-              ${sauceCost} ${getFishIconSvg()}
+              ${sauceCost} ${getFishIconSvg(16)}
             </button>
           </div>
 
@@ -3062,11 +4094,11 @@
               <div class="shop-card-avatar">🔔</div>
               <div class="shop-card-info">
                 <span class="shop-card-title">Кошачий колокольчик (${bellLvl}/5)</span>
-                <span class="shop-card-desc">Рыбка прилетает на 3 сек быстрее за ур.</span>
+                <span class="shop-card-desc">Рыбка прилетает на 3 сек чаще за уровень</span>
               </div>
             </div>
             <button id="btn-shop-bell" class="shop-buy-btn" ${isBellMax || state.meta.fish < bellCost ? 'disabled' : ''}>
-              ${isBellMax ? 'МАКС' : `${bellCost} ${getFishIconSvg()}`}
+              ${isBellMax ? 'МАКС' : `${bellCost} ${getFishIconSvg(16)}`}
             </button>
           </div>
 
@@ -3075,11 +4107,11 @@
               <div class="shop-card-avatar">🏺</div>
               <div class="shop-card-info">
                 <span class="shop-card-title">Золотая банка (ур. ${jarLvl})</span>
-                <span class="shop-card-desc">+2 сек к длительности Лихорадки (${Math.round(getMaxFeverDuration(state))} сек)</span>
+                <span class="shop-card-desc">+2 сек к Лихорадке (${Math.round(getMaxFeverDuration(state))} сек)</span>
               </div>
             </div>
             <button id="btn-shop-jar" class="shop-buy-btn" ${state.meta.fish < jarCost ? 'disabled' : ''}>
-              ${jarCost} ${getFishIconSvg()}
+              ${jarCost} ${getFishIconSvg(16)}
             </button>
           </div>
         `;
@@ -3137,7 +4169,134 @@
           }
         });
       }
+      function renderWardrobeView() {
+        const targetContainer = tabPanes.wardrobe;
+        targetContainer.innerHTML = `
+          <div class="wardrobe-slots-nav">
+            <button id="slot-tab-head" class="wardrobe-slot-tab ${activeWardrobeSlot === 'head' ? 'active' : ''}">Головные уборы и эффекты</button>
+            <button id="slot-tab-neck" class="wardrobe-slot-tab ${activeWardrobeSlot === 'neck' ? 'active' : ''}">Шея и аксессуары</button>
+          </div>
+          <div class="wardrobe-grid" id="wardrobe-grid-content"></div>
+        `;
 
+        targetContainer.querySelector('#slot-tab-head').addEventListener('click', () => {
+          activeWardrobeSlot = 'head';
+          renderWardrobeView();
+        });
+
+        targetContainer.querySelector('#slot-tab-neck').addEventListener('click', () => {
+          activeWardrobeSlot = 'neck';
+          renderWardrobeView();
+        });
+
+        const grid = targetContainer.querySelector('#wardrobe-grid-content');
+        const items = WARDROBE_CATALOG[activeWardrobeSlot] || [];
+        const unlocked = new Set(state.meta?.wardrobe?.unlocked || []);
+        const currentStage = state.meta?.prestigeCount || 0;
+        const equippedCurrent = activeWardrobeSlot === 'head' 
+          ? state.meta?.wardrobe?.equippedHead 
+          : state.meta?.wardrobe?.equippedNeck;
+
+        items.forEach((item) => {
+          const isUnlocked = unlocked.has(item.id);
+          const isEquipped = equippedCurrent === item.id;
+          const canAfford = state.meta.yarn >= item.cost;
+          const isStageLocked = (item.unlockStage !== undefined && currentStage < item.unlockStage);
+
+          const card = document.createElement('div');
+          card.className = `wardrobe-card${isEquipped ? ' equipped' : ''}`;
+
+          let btnClass = 'buy';
+          let btnText = item.cost === 0 ? 'Получить' : `Купить ${item.cost} ${getYarnIconSvg(14)}`;
+          let btnDisabled = false;
+
+          /* ЖЁСТКАЯ БЛОКИРОВКА ПРЕСТИЖНЫХ ШАПОК И АКСЕССУАРОВ */
+          if (isStageLocked) {
+            btnClass = 'loc-locked';
+            btnText = `🔒 Локация ${item.unlockStage + 1}`;
+            btnDisabled = true;
+          } else if (item.isBase) {
+            if (isEquipped) {
+              btnClass = 'base-locked';
+              btnText = 'По умолчанию ✓';
+              btnDisabled = true;
+            } else {
+              btnClass = 'equip';
+              btnText = 'Выбрать';
+            }
+          } else if (isEquipped) {
+            /* Кнопка «Снять ✕» доступна ТОЛЬКО на надетых купленных/престижных вещах */
+            btnClass = 'unequip';
+            btnText = 'Снять ✕';
+          } else if (isUnlocked) {
+            btnClass = 'equip';
+            btnText = 'Надеть';
+          } else {
+            btnDisabled = !canAfford;
+          }
+
+          let previewContent = item.icon || '🎀';
+          if (item.iconSvg) {
+            previewContent = `<svg width="34" height="34" viewBox="0 0 28 24"><use href="#${item.iconSvg}" /></svg>`;
+          }
+
+          card.innerHTML = `
+            <div class="wardrobe-preview">${previewContent}</div>
+            <div class="wardrobe-title">${item.name}</div>
+            <div class="wardrobe-bonus-badge">${item.bonusDesc}</div>
+            <div class="wardrobe-desc">${item.desc}</div>
+            <button class="wardrobe-btn ${btnClass}" ${btnDisabled ? 'disabled' : ''}>${btnText}</button>
+          `;
+
+          const btn = card.querySelector('.wardrobe-btn');
+          btn.addEventListener('click', () => {
+            if (isStageLocked) return;
+            if (item.isBase && isEquipped) return;
+
+            if (isEquipped) {
+              /* Снятие аксессуара мгновенно возвращает слот к базовому виду */
+              if (activeWardrobeSlot === 'head') {
+                state.meta.wardrobe.equippedHead = 'chef_hat_1';
+              } else {
+                state.meta.wardrobe.equippedNeck = 'neck_none';
+              }
+              SoundFX.playClick(state.settings.soundMuted);
+              saveToLocal(state);
+              updateCatVisuals(state);
+              renderWardrobeView();
+            } else if (isUnlocked) {
+              if (activeWardrobeSlot === 'head') {
+                state.meta.wardrobe.equippedHead = item.id;
+              } else {
+                state.meta.wardrobe.equippedNeck = item.id;
+              }
+              SoundFX.playBuy(state.settings.soundMuted);
+              saveToLocal(state);
+              updateCatVisuals(state);
+              renderWardrobeView();
+            } else {
+              if (state.meta.yarn >= item.cost) {
+                state.meta.yarn -= item.cost;
+                if (!state.meta.wardrobe.unlocked.includes(item.id)) {
+                  state.meta.wardrobe.unlocked.push(item.id);
+                }
+                if (activeWardrobeSlot === 'head') {
+                  state.meta.wardrobe.equippedHead = item.id;
+                } else {
+                  state.meta.wardrobe.equippedNeck = item.id;
+                }
+                SoundFX.playFever(state.settings.soundMuted);
+                saveToLocal(state);
+                updateCatVisuals(state);
+                renderStaticUI();
+                showGenericToast('🎀', 'Гардероб шефа!', `Открыто: ${item.name}!`, `${item.bonusDesc} активен! ✨`);
+              }
+            }
+          });
+
+          grid.appendChild(card);
+        });
+      }
       function renderAchievementsModal() {
         achievementsModalList.innerHTML = '';
         const unlockedSet = new Set(Array.isArray(state.meta?.achievements) ? state.meta.achievements : []);
@@ -3155,7 +4314,7 @@
               </div>
             </div>
             <div class="ach-status-badge ${isDone ? 'done' : 'locked'}">
-              ${isDone ? '✓ Выполнено' : `+${ach.rewardFish} ${getFishIconSvg('small')}`}
+              ${isDone ? '✓ Выполнено' : `+${ach.rewardFish} ${getFishIconSvg(15)}`}
             </div>
           `;
           achievementsModalList.appendChild(item);
@@ -3210,13 +4369,14 @@
         subCookieAccumulator = 0;
         saveToLocal(state);
         settingsModal.classList.add('hidden');
-        updateCatVisual(state);
+        updateCatVisuals(state);
         renderStaticUI();
       });
 
       function renderStaticUI() {
         starsDisplay.textContent = formatNumber(state.meta?.stars || 0);
         fishDisplay.textContent = formatNumber(state.meta?.fish || 0);
+        yarnDisplay.textContent = formatNumber(state.meta?.yarn || 0);
 
         const clickCost = getClickUpgradeCost(state.run.clickLevel);
         clickCostDisplay.textContent = formatNumber(clickCost);
@@ -3236,22 +4396,18 @@
           renderPrestigeView();
         } else if (activeTabId === 'shop') {
           renderShopView();
+        } else if (activeTabId === 'wardrobe') {
+          renderWardrobeView();
         }
       }
 
-      window.addEventListener('beforeunload', () => {
-        saveToLocal(state);
-      });
-
+      window.addEventListener('beforeunload', () => saveToLocal(state));
       document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'hidden') {
-          saveToLocal(state);
-        }
+        if (document.visibilityState === 'hidden') saveToLocal(state);
       });
 
-      updateCatVisual(state);
+      updateCatVisuals(state);
       renderStaticUI();
-
       let lastTimestamp = performance.now();
       let saveAccumulator = 0;
 
@@ -3293,6 +4449,11 @@
         if (nowMs >= nextFishSpawnTimestamp) {
           spawnFlyingFish();
           nextFishSpawnTimestamp = nowMs + 1000 * getNextFishIntervalSec();
+        }
+
+        if (nowMs >= nextBoxSpawnTimestamp) {
+          spawnSurpriseBox();
+          nextBoxSpawnTimestamp = nowMs + 1000 * getNextBoxIntervalSec();
         }
 
         saveAccumulator += dt;
@@ -3341,9 +4502,7 @@
 
           const rewardStars = calculatePrestigeReward(state);
           const canPrestige = rewardStars > 0;
-          if (doPrestigeBtn) {
-            doPrestigeBtn.disabled = !canPrestige;
-          }
+          if (doPrestigeBtn) doPrestigeBtn.disabled = !canPrestige;
           if (doPrestigeText) {
             doPrestigeText.textContent = canPrestige 
               ? `⭐ Переехать и получить +${rewardStars} Звёзд` 

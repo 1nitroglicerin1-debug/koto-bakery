@@ -1782,6 +1782,129 @@ window.getSvgIcon = getSvgIcon;
       font-weight: 900;
       color: var(--color-primary);
     }
+
+    /* Комбо-множитель кликов котика */
+    .combo-pill {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.9);
+      background: linear-gradient(135deg, #ff4757, #ff9800);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 900;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      border: 2px solid #fff;
+      box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 40;
+    }
+
+    .combo-pill.active {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+
+    /* Мурчание: всплывающее сердечко */
+    .purr-heart-float {
+      position: absolute;
+      pointer-events: none;
+      z-index: 45;
+      animation: purrRise 0.8s ease-out forwards;
+    }
+
+    @keyframes purrRise {
+      0% { opacity: 0; transform: translate(-50%, 0) scale(0.6); }
+      30% { opacity: 1; transform: translate(-50%, -18px) scale(1.15); }
+      100% { opacity: 0; transform: translate(-50%, -46px) scale(0.9); }
+    }
+
+    /* Аккуратный нижний бейдж статуса настроения */
+    .cat-mood-bubble {
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-main);
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 2px 9px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 2px 6px rgba(52, 34, 26, 0.08);
+      z-index: 45;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      pointer-events: none;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      transition: opacity 0.2s ease;
+    }
+
+    .cat-mood-bubble.interactive {
+      pointer-events: auto;
+      cursor: pointer;
+      background: #fff5f5;
+      border-color: #ff4757;
+      color: #e11d48;
+      box-shadow: 0 2px 8px rgba(255, 71, 87, 0.25);
+    }
+
+    .cat-mood-bubble.hidden {
+      display: none !important;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Анимация парения букв Zzz */
+    .sleep-zzz-particle {
+      position: absolute;
+      pointer-events: none;
+      font-family: var(--font-family);
+      font-weight: 900;
+      color: #60a5fa;
+      text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+      z-index: 40;
+      animation: zzzFloat 1.8s ease-out forwards;
+    }
+
+    @keyframes zzzFloat {
+      0% { opacity: 0; transform: translate(0, 0) scale(0.6); }
+      20% { opacity: 0.9; transform: translate(6px, -12px) scale(1); }
+      80% { opacity: 0.7; transform: translate(22px, -46px) scale(1.2); }
+      100% { opacity: 0; transform: translate(32px, -65px) scale(1.3); }
+    }
+
+    /* Состояние сна котика */
+    .dough-fever-wrapper.sleep-active .cat-bun-svg {
+      filter: drop-shadow(0 0 16px rgba(96, 165, 250, 0.45)) drop-shadow(0 8px 16px rgba(52, 34, 26, 0.18));
+      animation: sleepBreathe 2s infinite alternate ease-in-out;
+    }
+
+    .dough-fever-wrapper.sleep-active #cat-eyes-awake {
+      display: none !important;
+    }
+
+    .dough-fever-wrapper:not(.sleep-active) #cat-eyes-asleep {
+      display: none !important;
+    }
+
+    @keyframes sleepBreathe {
+      0% { transform: scale(0.98, 0.96) translateY(2px); }
+      100% { transform: scale(1.02, 1.01) translateY(-2px); }
+    }
+
+    /* Восторженная мордочка котика (блаженство/почесушки) */
+    .cat-bun-entity.cat-blissful .cat-bun-svg {
+      filter: drop-shadow(0 0 16px rgba(255, 71, 87, 0.55)) drop-shadow(0 8px 16px rgba(52, 34, 26, 0.18));
+      transform: scale(1.03);
+    }
   </style>
 </head>
 <body>
@@ -1919,7 +2042,7 @@ window.getSvgIcon = getSvgIcon;
           <span id="cookies-display" class="cookies-value">0</span>
         </div>
         <div class="rate-counter">
-          <span id="rate-display">0</span> в сек
+          <span id="rate-display">0</span> в сек<span id="sleep-rate-tag" style="display:none; color:#3b82f6; margin-left:3px; font-weight:800;">(Сон x2.5)</span>
         </div>
       </div>
 
@@ -1962,6 +2085,7 @@ window.getSvgIcon = getSvgIcon;
       <div id="floating-container" class="floating-container"></div>
 
       <div id="fever-wrapper" class="dough-fever-wrapper" role="button" tabindex="0" aria-label="Размять котика-пекаря">
+        <div id="cat-mood-bubble" class="cat-mood-bubble hidden"></div>
         <svg class="fever-ring" viewBox="0 0 240 240">
           <circle class="ring-bg" cx="120" cy="120" r="108" />
           <circle id="fever-ring-progress" class="ring-fill" cx="120" cy="120" r="108" />
@@ -2003,11 +2127,16 @@ window.getSvgIcon = getSvgIcon;
             <ellipse cx="100" cy="144" rx="46" ry="32" fill="#fffbf5" />
 
             <!-- СЛОЙ 3: МОРДОЧКА, ЩЕЧКИ И УСИКИ -->
-            <path d="M 72 108 Q 82 100 90 108" fill="none" stroke="#3d2314" stroke-width="3.5" stroke-linecap="round" />
-            <path d="M 110 108 Q 118 100 128 108" fill="none" stroke="#3d2314" stroke-width="3.5" stroke-linecap="round" />
-
-            <path d="M 74 100 Q 82 95 88 100" fill="none" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" />
-            <path d="M 112 100 Q 118 95 126 100" fill="none" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" />
+            <g id="cat-eyes-awake">
+              <path d="M 72 108 Q 82 100 90 108" fill="none" stroke="#3d2314" stroke-width="3.5" stroke-linecap="round" />
+              <path d="M 110 108 Q 118 100 128 108" fill="none" stroke="#3d2314" stroke-width="3.5" stroke-linecap="round" />
+              <path d="M 74 100 Q 82 95 88 100" fill="none" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" />
+              <path d="M 112 100 Q 118 95 126 100" fill="none" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" />
+            </g>
+            <g id="cat-eyes-asleep">
+              <line x1="72" y1="106" x2="88" y2="106" stroke="#3d2314" stroke-width="3.5" stroke-linecap="round" />
+              <line x1="112" y1="106" x2="128" y2="106" stroke="#3d2314" stroke-width="3.5" stroke-linecap="round" />
+            </g>
 
             <path d="M 100 114 C 98 109 93 109 95 114 C 97 117 100 120 100 120 C 100 120 103 117 105 114 C 107 109 102 109 100 114 Z" fill="#E11D48" />
 
@@ -2047,7 +2176,7 @@ window.getSvgIcon = getSvgIcon;
 
       <button id="btn-upgrade-click" class="click-upgrade-btn">
         <span class="btn-title">Лапка ур. <span id="click-level-val">1</span></span>
-        <span class="btn-cost">🐾 <span id="click-cost-display">15</span></span>
+        <span class="btn-cost"><script>document.write(getSvgIcon('paw', 14));</script> <span id="click-cost-display">15</span></span>
       </button>
     </main>
     <!-- Нижняя панель управления -->
@@ -2222,6 +2351,12 @@ window.getSvgIcon = getSvgIcon;
             <div class="devtools-grid">
               <button id="dev-unlock-wardrobe" class="dev-btn"><script>document.write(getSvgIcon('wardrobe', 13));</script> Весь гардероб</button>
               <button id="dev-spawn-box" class="dev-btn"><script>document.write(getSvgIcon('box', 13));</script> Призвать коробку</button>
+              </div>
+
+            <div class="devtools-grid-3">
+              <button id="dev-mood-purr" class="dev-btn"><script>document.write(getSvgIcon('heart', 13));</script> Мурчание</button>
+              <button id="dev-mood-pet" class="dev-btn"><script>document.write(getSvgIcon('paw', 13));</script> Погладить</button>
+              <button id="dev-mood-sleep" class="dev-btn"><script>document.write(getSvgIcon('cat_sleep', 13));</script> Дрёма</button>
             </div>
 
             <div class="devtools-grid">
@@ -3173,6 +3308,7 @@ window.getSvgIcon = getSvgIcon;
       const shopSauceMultiplier = 1 + sauceLevel * 0.15;
       const isAdBoosted = (state.boosts.adMultiplierExpiresAt || 0) > Date.now();
       const adMultiplier = isAdBoosted ? 2 : 1;
+      const sleepMultiplier = (typeof activeCatMood !== 'undefined' && activeCatMood === 'sleep' && Date.now() < moodTimerEnd) ? 2.5 : 1;
 
       let wardrobeRateMult = 1.0;
       if (hasWardrobeUnlocked(state, 'chef_hat_2')) {
@@ -3188,7 +3324,7 @@ window.getSvgIcon = getSvgIcon;
         wardrobeRateMult *= 1.05;
       }
 
-      return Math.floor(baseTotalRate * prestigeMultiplier * shopSauceMultiplier * adMultiplier * wardrobeRateMult);
+      return Math.floor(baseTotalRate * prestigeMultiplier * shopSauceMultiplier * adMultiplier * sleepMultiplier * wardrobeRateMult);
     }
 
     function getCostWithDiscount(rawPrice, perkLevel = 0) {
@@ -3338,9 +3474,13 @@ window.getSvgIcon = getSvgIcon;
       const clickUpgradesMult = perkMult * pinMult * wardrobeClickMult;
       const totalPassiveRate = calculateTotalRate(state);
       const synergyBase = totalPassiveRate * 0.01;
-      const totalClickBeforeFever = (basePower + synergyBase) * clickUpgradesMult;
-      const feverMult = state.boosts.feverActive ? 3 : 1;
+      let totalClickBeforeFever = (basePower + synergyBase) * clickUpgradesMult;
       
+      if (activeCatMood === 'purr' && Date.now() < moodTimerEnd) {
+        totalClickBeforeFever *= 1.5; // Клик x1.5 во время мурчания
+      }
+
+      const feverMult = state.boosts.feverActive ? 3 : 1;
       return Math.max(1, Math.round(totalClickBeforeFever * feverMult));
     }
 
@@ -3405,8 +3545,43 @@ window.getSvgIcon = getSvgIcon;
     }
 
     let feverRemainingTimer = 0;
+    let clickComboCounter = 0;
+    let lastTapTime = 0;
+    let comboResetTimer = null;
+
+    let activeCatMood = null;
+    let moodTimerEnd = 0;
+    let scratchTapsNeeded = 0;
+    let nextCatMoodTimestamp = Date.now() + (60 + Math.random() * 30) * 1000;
+
+    function getComboMultiplier() {
+      if (clickComboCounter >= 30) return 2.0;
+      if (clickComboCounter >= 20) return 1.6;
+      if (clickComboCounter >= 10) return 1.3;
+      if (clickComboCounter >= 5) return 1.15;
+      return 1.0;
+    }
+
+    function spawnPurrHeart(clientX, clientY) {
+      const container = document.getElementById('floating-container');
+      if (!container) return;
+      const rect = container.getBoundingClientRect();
+      const heart = document.createElement('div');
+      heart.className = 'purr-heart-float';
+      heart.style.left = `${clientX - rect.left}px`;
+      heart.style.top = `${clientY - rect.top}px`;
+      heart.innerHTML = getSvgIcon('heart', 24);
+      container.appendChild(heart);
+      setTimeout(() => heart.remove(), 800);
+    }
 
     function triggerFeverMode(state) {
+      if (typeof activeCatMood !== 'undefined' && activeCatMood) {
+        activeCatMood = null;
+        const catMoodBubbleEl = document.getElementById('cat-mood-bubble');
+        if (catMoodBubbleEl) catMoodBubbleEl.classList.add('hidden');
+        if (typeof clearCatMoodVisuals === 'function') clearCatMoodVisuals();
+      }
       state.boosts.feverActive = true;
       state.boosts.feverProgress = 100;
       feverRemainingTimer = getMaxFeverDuration(state);
@@ -3414,6 +3589,25 @@ window.getSvgIcon = getSvgIcon;
     }
 
     function processTap(state, container, clientX, clientY) {
+      const now = performance.now();
+      if (now - lastTapTime < 900) {
+        clickComboCounter++;
+      } else {
+        clickComboCounter = 1;
+      }
+      lastTapTime = now;
+
+      if (comboResetTimer) clearTimeout(comboResetTimer);
+      comboResetTimer = setTimeout(() => {
+        clickComboCounter = 0;
+        const comboBadge = document.getElementById('combo-badge');
+        if (comboBadge) comboBadge.classList.remove('active');
+      }, 1000);
+
+      if (Math.random() < 0.08) {
+        spawnPurrHeart(clientX, clientY);
+      }
+
       const power = getClickPower(state);
       state.run.cookies += power;
       state.run.lifetimeCookiesRun += power;
@@ -3425,6 +3619,9 @@ window.getSvgIcon = getSvgIcon;
         let feverGainMult = 1 + catnipLevel * 0.25;
         if (hasWardrobeUnlocked(state, 'love_hearts')) {
           feverGainMult *= 1.05;
+        }
+        if (activeCatMood === 'zoomies' && Date.now() < moodTimerEnd) {
+          feverGainMult *= 2.0; // Удвоение скорости теста при тыгыдыке
         }
         state.boosts.feverProgress = Math.min(100, state.boosts.feverProgress + (4.0 * feverGainMult));
         if (state.boosts.feverProgress >= 100) {
@@ -3634,7 +3831,7 @@ window.getSvgIcon = getSvgIcon;
       }
 
       function showAchievementToast(ach) {
-        showGenericToast('🏆', 'Новое достижение!', ach.title, `+${ach.rewardFish} ${getFishIconSvg(16)}`);
+        showGenericToast(getSvgIcon('trophy', 20), 'Новое достижение!', ach.title, `+${ach.rewardFish} ${getFishIconSvg(16)}`);
       }
 
       function checkAndTriggerOffline(overrideSec = null) {
@@ -3676,6 +3873,157 @@ window.getSvgIcon = getSvgIcon;
           squashTimer = null;
         }, 60);
       };
+
+      const catMoodBubble = document.getElementById('cat-mood-bubble');
+
+      function clearCatMoodVisuals() {
+        doughTarget.classList.remove('cat-blissful');
+        feverWrapper.classList.remove('sleep-active');
+      }
+
+      let zzzSpawnInterval = null;
+
+      function spawnZzzLetter() {
+        if (activeCatMood !== 'sleep') return;
+        const letterEl = document.createElement('div');
+        letterEl.className = 'sleep-zzz-particle';
+        const letters = ['z', 'Z', 'Zzz'];
+        letterEl.textContent = letters[Math.floor(Math.random() * letters.length)];
+        letterEl.style.fontSize = `${13 + Math.floor(Math.random() * 5)}px`;
+        letterEl.style.top = '48px';
+        letterEl.style.right = '46px';
+        feverWrapper.appendChild(letterEl);
+        setTimeout(() => letterEl.remove(), 1800);
+      }
+
+      const MOOD_CONFIG = {
+        sleepDuration: 15000,
+        purrDuration: 15000,
+        petTimeout: 12000,
+        petTaps: 5
+      };
+
+      let purrHeartsInterval = null;
+
+      function spawnAmbientPurrHeart() {
+        if (activeCatMood !== 'purr') return;
+        const rect = doughTarget.getBoundingClientRect();
+        const startX = rect.left + rect.width * (0.3 + Math.random() * 0.4);
+        const startY = rect.top + rect.height * (0.3 + Math.random() * 0.4);
+        spawnPurrHeart(startX, startY);
+      }
+
+      function updateMoodStatusPill() {
+        if (!activeCatMood) {
+          catMoodBubble.classList.add('hidden');
+          return;
+        }
+        const remainingSec = Math.max(1, Math.ceil((moodTimerEnd - Date.now()) / 1000));
+        catMoodBubble.classList.remove('hidden');
+
+        if (activeCatMood === 'sleep') {
+          catMoodBubble.classList.remove('interactive');
+          catMoodBubble.innerHTML = `${getSvgIcon('cat_sleep', 14)} CPS x2.5 (${remainingSec}с)`;
+        } else if (activeCatMood === 'purr') {
+          catMoodBubble.classList.remove('interactive');
+          catMoodBubble.innerHTML = `${getSvgIcon('heart', 14)} Клик x1.5 (${remainingSec}с)`;
+        } else if (activeCatMood === 'scratch') {
+          catMoodBubble.classList.add('interactive');
+          catMoodBubble.innerHTML = `${getSvgIcon('paw', 14)} Погладь! (осталось: ${scratchTapsNeeded})`;
+        }
+      }
+
+      function triggerCatMoodEvent(forcedType = null) {
+        if (state.boosts.feverActive) return;
+
+        const events = ['purr', 'sleep', 'scratch'];
+        activeCatMood = forcedType || events[Math.floor(Math.random() * events.length)];
+        const now = Date.now();
+
+        clearCatMoodVisuals();
+        if (zzzSpawnInterval) {
+          clearInterval(zzzSpawnInterval);
+          zzzSpawnInterval = null;
+        }
+        if (purrHeartsInterval) {
+          clearInterval(purrHeartsInterval);
+          purrHeartsInterval = null;
+        }
+
+        if (activeCatMood === 'purr') {
+          moodTimerEnd = now + MOOD_CONFIG.purrDuration;
+          doughTarget.classList.add('cat-blissful');
+          spawnAmbientPurrHeart();
+          purrHeartsInterval = setInterval(spawnAmbientPurrHeart, 900);
+        } else if (activeCatMood === 'sleep') {
+          moodTimerEnd = now + MOOD_CONFIG.sleepDuration;
+          feverWrapper.classList.add('sleep-active');
+          spawnZzzLetter();
+          zzzSpawnInterval = setInterval(spawnZzzLetter, 850);
+        } else if (activeCatMood === 'scratch' || activeCatMood === 'pet') {
+          activeCatMood = 'scratch';
+          moodTimerEnd = now + MOOD_CONFIG.petTimeout;
+          scratchTapsNeeded = MOOD_CONFIG.petTaps;
+          doughTarget.classList.add('cat-blissful');
+        }
+
+        updateMoodStatusPill();
+      }
+
+      let lastPetTapTimestamp = 0;
+
+      function handleBubbleScratch(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+
+        const now = performance.now();
+        if (now - lastPetTapTimestamp < 90) return;
+        lastPetTapTimestamp = now;
+
+        if (activeCatMood !== 'scratch' || scratchTapsNeeded <= 0) return;
+
+        scratchTapsNeeded--;
+        SoundFX.playClick(state.settings.soundMuted);
+
+        const rect = catMoodBubble.getBoundingClientRect();
+        spawnPurrHeart(rect.left + rect.width / 2, rect.top);
+
+        if (scratchTapsNeeded > 0) {
+          catMoodBubble.innerHTML = `${getSvgIcon('paw', 14)} Погладь! (осталось: ${scratchTapsNeeded})`;
+        } else {
+          activeCatMood = null;
+          catMoodBubble.classList.remove('interactive');
+
+          const givesYarn = Math.random() < 0.25;
+          let rewardHtml = '';
+
+          if (givesYarn) {
+            state.meta.yarn += 1;
+            rewardHtml = `Довольный мур! +1 ${getYarnIconSvg(14)}`;
+          } else {
+            const currentCps = calculateTotalRate(state);
+            const cookiesPrize = Math.max(150, Math.floor((currentCps > 0 ? currentCps * 45 : getClickPower(state) * 25)));
+            state.run.cookies += cookiesPrize;
+            state.run.lifetimeCookiesRun += cookiesPrize;
+            state.stats.totalCookiesAllTime += cookiesPrize;
+            rewardHtml = `Довольный мур! +${formatNumber(cookiesPrize)} ${getSvgIcon('cookie', 14)}`;
+          }
+
+          catMoodBubble.innerHTML = rewardHtml;
+          SoundFX.playFever(state.settings.soundMuted);
+
+          setTimeout(() => {
+            clearCatMoodVisuals();
+            catMoodBubble.classList.add('hidden');
+          }, 1200);
+
+          saveToLocal(state);
+          renderStaticUI();
+        }
+      }
+
+      catMoodBubble.addEventListener('pointerdown', handleBubbleScratch);
 
       feverWrapper.addEventListener('touchstart', (e) => {
         e.preventDefault();
@@ -3792,34 +4140,96 @@ window.getSvgIcon = getSvgIcon;
 
           SoundFX.playFever(state.settings.soundMuted);
 
-          const roll = Math.random();
-          if (roll < 0.70) {
-            let fishDuration = 180;
-            if (hasWardrobeUnlocked(state, 'devil_horns')) {
-              fishDuration *= 1.10;
-            }
-            if (hasWardrobeUnlocked(state, 'gold_medal')) {
-              fishDuration *= 1.15;
-            }
-            const jackpot = Math.max(50, Math.floor(calculateTotalRate(state) * fishDuration));
-            state.run.cookies += jackpot;
-            state.run.lifetimeCookiesRun += jackpot;
-            state.stats.totalCookiesAllTime += jackpot;
-            showGenericToast('🐟', 'Золотая Рыбка поймана!', 'Щедрый улов выпечки!', `+${formatNumber(jackpot)} 🐾`);
-          } else if (roll < 0.90) {
-            triggerFeverMode(state);
-            const dur = Math.round(getMaxFeverDuration(state));
-            showGenericToast('⚡', 'Золотая Рыбка поймана!', 'Всплеск вдохновения!', `Лихорадка на ${dur} сек!`);
-          } else {
-            state.meta.fish += 1;
-            showGenericToast('✨', 'Золотая Рыбка поймана!', 'Редкая драгоценность!', `+1 ${getFishIconSvg(18)}`);
-          }
+          const rect = fish.getBoundingClientRect();
+          const rootRect = appRoot.getBoundingClientRect();
+          triggerConfetti(rect.left - rootRect.left + 23, rect.top - rootRect.top + 23);
 
-          saveToLocal(state);
-          renderStaticUI();
+          boxRewardIcon.innerHTML = getSvgIcon('fish', 48);
+          boxRewardTitle.textContent = 'Золотая добыча!';
+          boxRewardDesc.textContent = 'Редкая чешуйчатая красавица попалась в лапки!';
+          boxRewardBadgeIcon.innerHTML = getFishIconSvg(24);
+          boxRewardAmount.textContent = '+1 Золотая рыбка';
+
+          modalBoxReward.classList.remove('hidden');
+
+          btnClaimBoxReward.onclick = () => {
+            state.meta.fish += 1;
+            modalBoxReward.classList.add('hidden');
+            SoundFX.playBuy(state.settings.soundMuted);
+            saveToLocal(state);
+            renderStaticUI();
+          };
         };
 
-        fish.addEventListener('pointerdown', onCatch);
+        fish.addEventListener('pointerdown', (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          if (animationFrameId) cancelAnimationFrame(animationFrameId);
+
+          const rect = fish.getBoundingClientRect();
+          const rootRect = appRoot.getBoundingClientRect();
+          triggerConfetti(rect.left - rootRect.left + 23, rect.top - rootRect.top + 23);
+
+          if (fish.parentNode) fish.remove();
+          activeFlyingFish = null;
+
+          SoundFX.playFever(state.settings.soundMuted);
+
+          let catchChance = 0.65;
+          if (hasWardrobeUnlocked(state, 'devil_horns')) catchChance += 0.10;
+          if (hasWardrobeUnlocked(state, 'gold_medal')) catchChance += 0.15;
+
+          const isSuccess = Math.random() < catchChance;
+          let claimCallback = null;
+
+          if (isSuccess) {
+            boxRewardIcon.innerHTML = getSvgIcon('fish', 48);
+            boxRewardTitle.textContent = 'Золотая добыча!';
+            boxRewardDesc.textContent = 'Редкая чешуйчатая красавица благополучно поймана в лапки!';
+            boxRewardBadgeIcon.innerHTML = getFishIconSvg(24);
+            boxRewardAmount.textContent = '+1 Золотая рыбка';
+
+            claimCallback = () => {
+              state.meta.fish += 1;
+            };
+          } else {
+            const fallbackYarn = Math.random() < 0.4;
+            if (fallbackYarn) {
+              boxRewardIcon.innerHTML = getYarnIconSvg(48);
+              boxRewardTitle.textContent = 'Рыбка выскользнула!';
+              boxRewardDesc.textContent = 'Рыбка вильнула хвостом и уплыла, но обронила в воду клубок!';
+              boxRewardBadgeIcon.innerHTML = getYarnIconSvg(24);
+              boxRewardAmount.textContent = '+1 Клубок';
+
+              claimCallback = () => {
+                state.meta.yarn += 1;
+              };
+            } else {
+              const consolation = Math.max(120, Math.floor(calculateTotalRate(state) * 90 || getClickPower(state) * 40));
+              boxRewardIcon.innerHTML = getSvgIcon('cookie', 48);
+              boxRewardTitle.textContent = 'Рыбка сорвалась!';
+              boxRewardDesc.textContent = 'Она уплыла в глубину, но подняла со дна корзинку свежей выпечки!';
+              boxRewardBadgeIcon.innerHTML = getSvgIcon('cookie', 24);
+              boxRewardAmount.textContent = `+${formatNumber(consolation)}`;
+
+              claimCallback = () => {
+                state.run.cookies += consolation;
+                state.run.lifetimeCookiesRun += consolation;
+                state.stats.totalCookiesAllTime += consolation;
+              };
+            }
+          }
+
+          modalBoxReward.classList.remove('hidden');
+
+          btnClaimBoxReward.onclick = () => {
+            if (claimCallback) claimCallback();
+            modalBoxReward.classList.add('hidden');
+            SoundFX.playBuy(state.settings.soundMuted);
+            saveToLocal(state);
+            renderStaticUI();
+          };
+        });
       }
 
       const mysteryBoxEl = document.getElementById('mystery-box');
@@ -4011,7 +4421,7 @@ window.getSvgIcon = getSvgIcon;
         state.stats.totalCookiesAllTime += bonus;
         saveToLocal(state);
         renderStaticUI();
-        showGenericToast('🛠️', 'Проверка функций', 'Начислено 100 тыс. печенек!', '+100 тыс. 🐾');
+        showGenericToast(getSvgIcon('cookie', 20), 'Проверка функций', 'Начислено 100 тыс. печенек!', `+100 тыс. ${getSvgIcon('cookie', 14)}`);
       });
 
       devAdd10m.addEventListener('click', () => {
@@ -4021,14 +4431,14 @@ window.getSvgIcon = getSvgIcon;
         state.stats.totalCookiesAllTime += bonus;
         saveToLocal(state);
         renderStaticUI();
-        showGenericToast('🛠️', 'Проверка функций', 'Начислено 10 млн. печенек!', '+10 млн. 🐾');
+        showGenericToast(getSvgIcon('cookie', 20), 'Проверка функций', 'Начислено 10 млн. печенек!', `+10 млн. ${getSvgIcon('cookie', 14)}`);
       });
 
       devAdd50Fish.addEventListener('click', () => {
         state.meta.fish += 50;
         saveToLocal(state);
         renderStaticUI();
-        showGenericToast('🛠️', 'Проверка функций', 'Начислено 50 золотых рыбок!', `+50 ${getFishIconSvg(18)}`);
+        showGenericToast(getFishIconSvg(20), 'Проверка функций', 'Начислено 50 золотых рыбок!', `+50 ${getFishIconSvg(18)}`);
       });
 
       devAdd5Stars.addEventListener('click', () => {
@@ -4036,14 +4446,14 @@ window.getSvgIcon = getSvgIcon;
         state.meta.lifetimeStars += 5;
         saveToLocal(state);
         renderStaticUI();
-        showGenericToast('🛠️', 'Проверка функций', 'Начислено 5 Звёзд Мишлен!', '+5 ⭐');
+        showGenericToast(getSvgIcon('star', 20), 'Проверка функций', 'Начислено 5 Звёзд Мишлен!', `+5 ${getSvgIcon('star', 16)}`);
       });
 
       devAdd20Yarn.addEventListener('click', () => {
         state.meta.yarn += 20;
         saveToLocal(state);
         renderStaticUI();
-        showGenericToast('🧶', 'Проверка функций', 'Начислено 20 зелёных клубков пряжи!', `+20 ${getYarnIconSvg(18)}`);
+        showGenericToast(getYarnIconSvg(20), 'Проверка функций', 'Начислено 20 зелёных клубков пряжи!', `+20 ${getYarnIconSvg(18)}`);
       });
 
       devToggleFever.addEventListener('click', () => {
@@ -4051,10 +4461,10 @@ window.getSvgIcon = getSvgIcon;
           state.boosts.feverActive = false;
           state.boosts.feverProgress = 0;
           feverRemainingTimer = 0;
-          showGenericToast('🛠️', 'Проверка функций', 'Лихорадка отключена!', 'Обычный режим');
+          showGenericToast(getSvgIcon('lightning', 20), 'Проверка функций', 'Лихорадка отключена!', 'Обычный режим');
         } else {
           triggerFeverMode(state);
-          showGenericToast('🛠️', 'Проверка функций', 'Лихорадка включена!', 'Утроенный клик');
+          showGenericToast(getSvgIcon('lightning', 20), 'Проверка функций', 'Лихорадка включена!', 'Утроенный клик');
         }
         renderStaticUI();
       });
@@ -4067,7 +4477,7 @@ window.getSvgIcon = getSvgIcon;
         });
         saveToLocal(state);
         renderStaticUI();
-        showGenericToast('👗', 'Проверка функций', 'Весь гардероб открыт!', 'Все пассивные бонусы активны!');
+        showGenericToast(getSvgIcon('tag', 20), 'Проверка функций', 'Весь гардероб открыт!', 'Все пассивные бонусы активны!');
       });
 
       devSpawnFish.addEventListener('click', () => spawnFlyingFish());
@@ -4075,13 +4485,22 @@ window.getSvgIcon = getSvgIcon;
         if (typeof hideMysteryBox === 'function') hideMysteryBox();
         spawnSurpriseBox();
       });
+      document.getElementById('dev-mood-purr')?.addEventListener('click', () => {
+        triggerCatMoodEvent('purr');
+      });
+      document.getElementById('dev-mood-pet')?.addEventListener('click', () => {
+        triggerCatMoodEvent('scratch');
+      });
+      document.getElementById('dev-mood-sleep')?.addEventListener('click', () => {
+        triggerCatMoodEvent('sleep');
+      });
 
       devLoc0.addEventListener('click', () => {
         state.meta.prestigeCount = 0;
         updateCatVisuals(state);
         saveToLocal(state);
         renderStaticUI();
-        showGenericToast('🏠', 'Проверка функций', 'Филиал 1: Уютная кухня', 'Домашний стиль');
+        showGenericToast(getSvgIcon('home', 20), 'Проверка функций', 'Филиал 1: Уютная кухня', 'Домашний стиль');
       });
 
       devLoc1.addEventListener('click', () => {
@@ -4093,7 +4512,7 @@ window.getSvgIcon = getSvgIcon;
         updateCatVisuals(state);
         saveToLocal(state);
         renderStaticUI();
-        showGenericToast('🥐', 'Проверка функций', 'Филиал 2: Городское кафе', 'Шефский стиль');
+        showGenericToast(getSvgIcon('baker', 20), 'Проверка функций', 'Филиал 2: Городское кафе', 'Шефский стиль');
       });
 
       devLoc2.addEventListener('click', () => {
@@ -4105,7 +4524,7 @@ window.getSvgIcon = getSvgIcon;
         updateCatVisuals(state);
         saveToLocal(state);
         renderStaticUI();
-        showGenericToast('👑', 'Проверка функций', 'Филиал 3: Королевский дворец', 'Королевский стиль');
+        showGenericToast(getSvgIcon('crown', 20), 'Проверка функций', 'Филиал 3: Королевский дворец', 'Королевский стиль');
       });
 
       devTestOffline.addEventListener('click', () => {
@@ -4134,10 +4553,10 @@ window.getSvgIcon = getSvgIcon;
 
           if (tabKey === 'prestige' && !state.tutorials.prestigeSeen) {
             showTutorial(
-              '🌟',
-              'Новый филиал пекарни!',
+              getSvgIcon('star', 48),
+              `${getSvgIcon('star', 22)} Новый филиал пекарни!`,
               'Переезд сбрасывает текущих нанятых пекарей, но награждает постоянными Звёздами Мишлен. Каждая звезда навсегда увеличивает базовый клик на +1 и повышает пассивный доход пекарни на +25%!',
-              'Понятно! 🐾',
+              'Понятно!',
               () => {
                 state.tutorials.prestigeSeen = true;
                 saveToLocal(state);
@@ -4148,7 +4567,7 @@ window.getSvgIcon = getSvgIcon;
               getFishIconSvg(48),
               `${getFishIconSvg(22)} Лавка редкостей!`,
               `Здесь можно обменять пойманные золотые рыбки на постоянные улучшения скорости Лихорадки, силы клика и помощи верных пекарей!`,
-              'Замечательно! 🐾',
+              'Замечательно!',
               () => {
                 state.tutorials.shopSeen = true;
                 saveToLocal(state);
@@ -4159,7 +4578,7 @@ window.getSvgIcon = getSvgIcon;
               getYarnIconSvg(48),
               `${getYarnIconSvg(22)} Гардероб шефа!`,
               `Здесь за зелёные клубки пряжи можно примерить стильные головные уборы и шейные украшения. Все бонусы действуют навсегда за сам факт открытия, так что наряжайте котика в своё удовольствие!`,
-              'Какая красота! 🐾',
+              'Какая красота!',
               () => {
                 state.tutorials.wardrobeSeen = true;
                 saveToLocal(state);
@@ -4240,7 +4659,7 @@ window.getSvgIcon = getSvgIcon;
             </div>
             <button class="gen-buy-btn" data-gen-id="${id}" ${!canBuy ? 'disabled' : ''}>
               <span class="btn-buy-count">+${countToBuy}</span>
-              <span class="btn-buy-cost">🐾 ${formatNumber(cost)}</span>
+              <span class="btn-buy-cost">${getSvgIcon('cookie', 14)} ${formatNumber(cost)}</span>
             </button>
           `;
 
@@ -4311,17 +4730,17 @@ window.getSvgIcon = getSvgIcon;
 
         if (prevPrestige === 0 && state.meta.prestigeCount === 1) {
           showTutorial(
-            '🥐✨',
-            'Новый филиал: Городское кафе!',
+            getSvgIcon('baker', 48),
+            `${getSvgIcon('baker', 22)} Новый филиал: Городское кафе!`,
             'Поздравляем! Ваша пекарня вышла на городской уровень! Котику открылись высокий колпак шефа и шейная бабочка, а также начислено +5 зелёных клубков пряжи!',
-            'Великолепно! 🐾'
+            'Великолепно!'
           );
         } else if (prevPrestige === 1 && state.meta.prestigeCount >= 2) {
           showTutorial(
-            '👑✨',
-            'Новый филиал: Королевский дворец!',
+            getSvgIcon('crown', 48),
+            `${getSvgIcon('crown', 22)} Новый филиал: Королевский дворец!`,
             'Триумф кондитерского искусства! На груди засиял золотой орден мастера с лапкой, открылся бархатный берет с пером и получено +10 зелёных клубков пряжи!',
-            'Вперёд к новым вершинам! 🐾'
+            'Вперёд к новым вершинам!'
           );
         }
       }
@@ -4662,7 +5081,7 @@ window.getSvgIcon = getSvgIcon;
                 saveToLocal(state);
                 updateCatVisuals(state);
                 renderStaticUI();
-                showGenericToast('🎀', 'Гардероб шефа!', `Открыто: ${item.name}!`, `${item.bonusDesc} активен! ✨`);
+                showGenericToast(getSvgIcon('bow', 20), 'Гардероб шефа!', `Открыто: ${item.name}!`, `${item.bonusDesc} активен!`);
               }
             }
           });
@@ -4831,6 +5250,29 @@ window.getSvgIcon = getSvgIcon;
           spawnSurpriseBox();
         }
 
+        if (nowMs >= nextCatMoodTimestamp) {
+          triggerCatMoodEvent();
+          nextCatMoodTimestamp = nowMs + (60 + Math.random() * 30) * 1000;
+        }
+
+        if (activeCatMood) {
+          if (nowMs > moodTimerEnd) {
+            activeCatMood = null;
+            catMoodBubble.classList.add('hidden');
+            if (zzzSpawnInterval) {
+              clearInterval(zzzSpawnInterval);
+              zzzSpawnInterval = null;
+            }
+            if (purrHeartsInterval) {
+              clearInterval(purrHeartsInterval);
+              purrHeartsInterval = null;
+            }
+            clearCatMoodVisuals();
+          } else {
+            updateMoodStatusPill();
+          }
+        }
+
         saveAccumulator += dt;
         if (saveAccumulator >= 3.0) {
           saveAccumulator = 0;
@@ -4839,6 +5281,10 @@ window.getSvgIcon = getSvgIcon;
 
         cookiesDisplay.textContent = formatNumber(state.run.cookies);
         rateDisplay.textContent = formatNumber(calculateTotalRate(state));
+        const sleepTag = document.getElementById('sleep-rate-tag');
+        if (sleepTag) {
+          sleepTag.style.display = (activeCatMood === 'sleep' && nowMs < moodTimerEnd) ? 'inline' : 'none';
+        }
 
         const progress = Math.max(0, Math.min(100, state.boosts.feverProgress || 0));
         const offset = FEVER_CIRCUMFERENCE - (progress / 100) * FEVER_CIRCUMFERENCE;

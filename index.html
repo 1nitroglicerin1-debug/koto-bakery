@@ -5,6 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="theme-color" content="#FFF7EE">
   <title>Кото-Пекарня: Мурчащий Батон</title>
+  <script>
+function getSvgIcon(name, size = 16) {
+  const s = size;
+  const icons = {
+    van: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="2" y="7" width="13" height="10" rx="1.5" fill="#3498db"/><path d="M15 10 H19 L22 13 V17 H15 Z" fill="#2980b9"/><circle cx="6" cy="18" r="2.5" fill="#2c3e50"/><circle cx="18" cy="18" r="2.5" fill="#2c3e50"/></svg>`,
+    tag: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M20.6 13 L12.5 4.9 C12.1 4.5 11.6 4.3 11 4.3 H4.5 C3.7 4.3 3 5 3 5.8 V12.3 C3 12.9 3.2 13.4 3.6 13.8 L11.7 21.9 C12.5 22.7 13.7 22.7 14.5 21.9 L20.6 15.8 C21.4 15 21.4 13.8 20.6 13 Z" fill="#e74c3c"/><circle cx="7.5" cy="8.5" r="1.5" fill="#ffffff"/></svg>`,
+    inspector: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="12" cy="12" r="7" fill="#f1c40f"/><circle cx="15" cy="11" r="3.5" stroke="#2c3e50" stroke-width="1.5" fill="none"/><line x1="17.5" y1="13.5" x2="20" y2="17" stroke="#2c3e50" stroke-width="1.5"/></svg>`,
+    paw: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><ellipse cx="12" cy="15" rx="5" ry="4" fill="#ff6d00"/><circle cx="6.5" cy="9.5" r="2.2" fill="#ff6d00"/><circle cx="10" cy="6.5" r="2.2" fill="#ff6d00"/><circle cx="14" cy="6.5" r="2.2" fill="#ff6d00"/><circle cx="17.5" cy="9.5" r="2.2" fill="#ff6d00"/></svg>`,
+    cookie: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="12" cy="12" r="10" fill="#e6a15c" stroke="#8d5b2d" stroke-width="1.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="#5c3818"/><circle cx="15.5" cy="9.5" r="1.3" fill="#5c3818"/><circle cx="11" cy="13.5" r="1.6" fill="#5c3818"/><circle cx="15.5" cy="15.5" r="1.2" fill="#5c3818"/><circle cx="8" cy="15" r="1.1" fill="#5c3818"/></svg>`,
+    herb: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M17 8C8 10 5 19 5 19C5 19 14 16 16 7" stroke="#27ae60" stroke-width="2" stroke-linecap="round"/><path d="M12 12C9 9 10 3 10 3C10 3 16 4 15 10" fill="#2ecc71"/></svg>`,
+    pin: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="5" y="10" width="14" height="4" rx="2" fill="#d35400"/><rect x="2" y="11" width="3" height="2" rx="1" fill="#7f8c8d"/><rect x="19" y="11" width="3" height="2" rx="1" fill="#7f8c8d"/></svg>`,
+    sauce: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M8 9H16V19C16 20.1 15.1 21 14 21H10C8.9 21 8 20.1 8 19V9Z" fill="#ecf0f1" stroke="#bdc3c7" stroke-width="1.5"/><path d="M10 5H14V9H10V5Z" fill="#e74c3c"/></svg>`,
+    bell: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M18 16V11C18 7.7 15.3 5 12 5C8.7 5 6 7.7 6 11V16L4 18H20L18 16Z" fill="#f1c40f" stroke="#d4ac0d" stroke-width="1.5"/><circle cx="12" cy="19" r="2" fill="#d4ac0d"/></svg>`,
+    jar: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="6" y="8" width="12" height="13" rx="3" fill="#3498db" fill-opacity="0.3" stroke="#2980b9" stroke-width="1.5"/><rect x="8" y="4" width="8" height="4" rx="1" fill="#e67e22"/></svg>`,
+    glasses: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="7" cy="12" r="4" stroke="#2c3e50" stroke-width="2" fill="none"/><circle cx="17" cy="12" r="4" stroke="#2c3e50" stroke-width="2" fill="none"/><line x1="11" y1="12" x2="13" y2="12" stroke="#2c3e50" stroke-width="2"/></svg>`,
+    bow: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><polygon points="4,8 12,12 4,16" fill="#e91e63"/><polygon points="20,8 12,12 20,16" fill="#e91e63"/><circle cx="12" cy="12" r="2.5" fill="#c2185b"/></svg>`,
+    money_bag: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M12 4 C10 4 9 2.5 7.5 3 C6.5 3.5 7 5.5 8.5 6 C5 8 3.5 12 4 16 C4.5 20.5 8 22 12 22 C16 22 19.5 20.5 20 16 C20.5 12 19 8 15.5 6 C17 5.5 17.5 3.5 16.5 3 C15 2.5 14 4 12 4 Z" fill="#e67e22" stroke="#b95c00" stroke-width="1.2"/><path d="M7.5 6.5 C10 8 14 8 16.5 6.5" stroke="#f1c40f" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="14" r="4.5" fill="#f1c40f" stroke="#b95c00" stroke-width="1"/><text x="12" y="17" font-size="6.5" font-weight="900" fill="#783d00" text-anchor="middle" font-family="Arial, sans-serif">$</text></svg>`,
+    flower: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><g stroke="#b83b5e" stroke-width="1.2" stroke-linejoin="round"><circle cx="12" cy="6.5" r="3.8" fill="#ffccd5"/><circle cx="17.2" cy="10.2" r="3.8" fill="#ffccd5"/><circle cx="15.2" cy="16.5" r="3.8" fill="#ffccd5"/><circle cx="8.8" cy="16.5" r="3.8" fill="#ffccd5"/><circle cx="6.8" cy="10.2" r="3.8" fill="#ffccd5"/></g><circle cx="12" cy="12" r="3.2" fill="#ffd166" stroke="#f4a261" stroke-width="1"/></svg>`,
+    devil: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M5 4 C6 7 7 10 9 11 C8 9 7 6 5 4 Z" fill="#e74c3c" stroke="#962d22" stroke-width="0.8"/><path d="M19 4 C18 7 17 10 15 11 C16 9 17 6 19 4 Z" fill="#e74c3c" stroke="#962d22" stroke-width="0.8"/><circle cx="12" cy="13" r="8.5" fill="#e74c3c" stroke="#962d22" stroke-width="1.2"/><circle cx="9" cy="11.5" r="1.8" fill="#ffffff"/><circle cx="9.2" cy="11.5" r="0.9" fill="#2c3e50"/><circle cx="15" cy="11.5" r="1.8" fill="#ffffff"/><circle cx="14.8" cy="11.5" r="0.9" fill="#2c3e50"/><path d="M9 15 Q12 18.5 15 15" stroke="#2c3e50" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>`,
+    heart: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#e74c3c"/></svg>`,
+    fish: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M3 12 C7 6, 17 6, 21 12 C17 18, 7 18, 3 12 Z" fill="#f39c12"/><polygon points="21,12 24,8 24,16" fill="#e67e22"/><circle cx="7" cy="11" r="1" fill="#2c3e50"/></svg>`,
+    yarn: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="12" cy="12" r="10" fill="#2ecc71" stroke="#27ae60" stroke-width="1.5"/><path d="M5 12 Q12 7 19 12 M6 16 Q12 11 18 16 M8 8 Q12 13 16 8" stroke="#ffffff" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M19 17 Q21 21 23 20" stroke="#2ecc71" stroke-width="1.5" fill="none"/></svg>`,
+    star: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><polygon points="12,2 15,8.5 22,9.3 17,14 18.5,21 12,17.3 5.5,21 7,14 2,9.3 9,8.5" fill="#f1c40f" stroke="#d4ac0d" stroke-width="1.5"/></svg>`,
+    trophy: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M5 4 H19 V10 C19 14 15.5 17 12 17 C8.5 17 5 14 5 10 Z" fill="#f1c40f" stroke="#d4ac0d" stroke-width="1.5"/><path d="M5 6 H2 C2 9 4 10 5 10 M19 6 H22 C22 9 20 10 19 10 M10 17 V20 H14 V17 M8 20 H16 V22 H8 Z" stroke="#d4ac0d" stroke-width="1.5" fill="none"/></svg>`,
+    gear: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="12" cy="12" r="4" fill="none" stroke="#7f8c8d" stroke-width="2"/><path d="M12 2 V5 M12 19 V22 M2 12 H5 M19 12 H22 M4.9 4.9 L7.1 7.1 M16.9 16.9 L19.1 19.1 M4.9 19.1 L7.1 16.9 M16.9 7.1 L19.1 4.9" stroke="#7f8c8d" stroke-width="2" stroke-linecap="round"/></svg>`,
+    lightning: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><polygon points="13,2 4,14 11,14 9,22 20,10 13,10" fill="#f39c12" stroke="#d68910" stroke-width="1.2"/></svg>`,
+    baker: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M6 18 H18 V21 H6 Z" fill="#ecf0f1" stroke="#bdc3c7" stroke-width="1.2"/><path d="M6 18 C3 18 3 13 6 12 C5 9 9 7 12 8 C15 7 19 9 18 12 C21 13 21 18 18 18 Z" fill="#ffffff" stroke="#bdc3c7" stroke-width="1.2"/></svg>`,
+    crown: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><polygon points="3,18 4,8 8.5,13 12,6 15.5,13 20,8 21,18" fill="#f1c40f" stroke="#d4ac0d" stroke-width="1.5"/><rect x="3" y="18" width="18" height="3" fill="#e67e22"/></svg>`,
+    home: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M3 10 L12 3 L21 10 V20 C21 20.6 20.6 21 20 21 H4 C3.4 21 3 20.6 3 20 Z" fill="#e67e22"/><polygon points="9,21 9,14 15,14 15,21" fill="#ffffff"/></svg>`,
+    sound_on: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><polygon points="4,9 8,9 13,4 13,20 8,15 4,15" fill="#7f8c8d"/><path d="M16 8 C17.5 9.5 17.5 14.5 16 16 M18.5 5.5 C21 8 21 16 18.5 18.5" stroke="#7f8c8d" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg>`,
+    cat_sleep: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="12" cy="14" r="7" fill="#f7caa5" stroke="#3d2314" stroke-width="1.2"/><polygon points="6,9 9,12 5,12" fill="#f7caa5" stroke="#3d2314" stroke-width="1"/><polygon points="18,9 15,12 19,12" fill="#f7caa5" stroke="#3d2314" stroke-width="1"/><path d="M9 14 Q10.5 15.5 12 14 Q13.5 15.5 15 14" stroke="#3d2314" stroke-width="1.2" fill="none"/></svg>`,
+    lock: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="6" y="10" width="12" height="11" rx="2" fill="#95a5a6" stroke="#7f8c8d" stroke-width="1.5"/><path d="M8 10 V7 C8 4.8 9.8 3 12 3 C14.2 3 16 4.8 16 7 V10" stroke="#7f8c8d" stroke-width="2" fill="none"/></svg>`
+  };
+  return icons[name] || '';
+}
+window.getSvgIcon = getSvgIcon;
+</script>
   <style>
     :root {
       --color-bg: #fff7ee;
@@ -193,13 +230,19 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      font-size: 1.15rem;
       cursor: pointer;
       box-shadow: var(--shadow-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 0 !important;
       transition: transform 0.12s ease, background-color 0.2s;
+    }
+
+    .icon-button svg {
+      display: block !important;
+      margin: auto !important;
+      flex-shrink: 0;
     }
 
     .icon-button:active {
@@ -276,22 +319,42 @@
     }
 
     .floating-number {
-      position: absolute;
-      font-size: 1.75rem;
-      font-weight: 900;
-      color: #ff5722;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      text-shadow: 
-        -2.5px -2.5px 0 #ffffff,
-         2.5px -2.5px 0 #ffffff,
-        -2.5px  2.5px 0 #ffffff,
-         2.5px  2.5px 0 #ffffff,
-         0 4px 14px rgba(0, 0, 0, 0.35);
-      animation: floatUp 0.85s cubic-bezier(0.16, 0.89, 0.32, 1.25) forwards;
-      will-change: transform, opacity;
-      letter-spacing: -0.5px;
-    }
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  font-family: inherit;
+  font-weight: 900;
+  font-size: 24px;
+  color: #ff4757; /* Яркий акцентный кораллово-красный */
+  /* Плотная белая обводка со всех сторон + мягкая тень */
+  text-shadow: 
+    -2px -2px 0 #ffffff,
+     2px -2px 0 #ffffff,
+    -2px  2px 0 #ffffff,
+     2px  2px 0 #ffffff,
+     0 3px 8px rgba(92, 40, 10, 0.25);
+  animation: floatUp 0.8s ease-out forwards;
+  z-index: 100;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(0.8);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -15px) scale(1.15);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-50%, -40px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -60px) scale(0.9);
+  }
+}
 
     .floating-number.fever {
       font-size: 2.3rem;
@@ -430,12 +493,27 @@
       border: 2px solid var(--color-border);
       padding: 5px 14px;
       border-radius: var(--radius-pill);
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 6px;
+      justify-content: center;
+      gap: 8px;
       cursor: pointer;
       box-shadow: var(--shadow-soft);
       transition: transform 0.12s ease, border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .click-upgrade-btn svg {
+      display: inline-block;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+
+    .click-upgrade-btn .btn-title,
+    .click-upgrade-btn .btn-cost {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      line-height: 1;
     }
 
     .click-upgrade-btn:active { transform: scale(0.94); }
@@ -487,38 +565,56 @@
       gap: 4px;
     }
 
+    /* Стало: */
     .tabs-nav {
-      display: flex;
-      gap: 3px;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      align-items: center !important;
+      gap: 4px !important;
+      width: 100% !important;
+      padding: 6px 4px !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
       flex: 1;
     }
 
-    .tabs-nav::-webkit-scrollbar { display: none; }
-
     .tab-btn {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 2px !important;
+      padding: 6px 2px !important;
+      font-size: 11px !important;
+      line-height: 1.1 !important;
+      white-space: nowrap !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
       background: transparent;
       border: none;
-      padding: 5px 7px;
-      font-size: 0.74rem;
-      font-weight: 800;
       color: var(--color-text-muted);
-      border-radius: var(--radius-sm);
+      border-radius: 12px;
       cursor: pointer;
-      white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-      transition: background-color 0.2s ease, color 0.2s ease;
+      transition: all 0.2s ease;
       flex-shrink: 0;
     }
 
+    .tab-btn svg,
+    .tab-btn .icon-svg-badge,
+    .tab-btn .tab-icon {
+      width: 18px !important;
+      height: 18px !important;
+      display: block !important;
+      margin: 0 auto !important;
+      flex-shrink: 0 !important;
+    }
+
     .tab-btn.active {
-      background-color: var(--color-bg-secondary);
-      color: var(--color-primary);
+      display: flex !important;
+      flex-direction: column !important;
+      color: #ff3b5c !important;
+      background: #ffebee !important;
+      border-radius: 12px !important;
     }
 
     .batch-selector {
@@ -552,10 +648,16 @@
       flex: 1;
       overflow-y: auto;
       padding: 8px 10px 18px;
+      padding-bottom: calc(85px + env(safe-area-inset-bottom, 0px)) !important;
       -webkit-overflow-scrolling: touch;
+      box-sizing: border-box !important;
     }
 
-    .tab-pane { display: none; }
+    .tab-pane {
+      display: none;
+      padding-bottom: calc(85px + env(safe-area-inset-bottom, 0px)) !important;
+      box-sizing: border-box !important;
+    }
 
     .tab-pane.active {
       display: flex;
@@ -735,7 +837,19 @@
     }
 
     .btn-buy-count { font-size: 0.66rem; opacity: 0.95; }
-    .btn-buy-cost { font-size: 0.82rem; display: inline-flex; align-items: center; gap: 2px; }
+    .btn-buy-cost {
+      font-size: 0.82rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+      line-height: 1;
+    }
+    .btn-buy-cost svg {
+      display: inline-block;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
     /* Престиж */
     .prestige-banner {
       background: linear-gradient(135deg, #fff3e0, #ffe0b2);
@@ -1724,7 +1838,9 @@
     <header class="top-bar">
       <div class="top-bar-currencies">
         <div class="currency-badge stars" title="Звёзды Мишлен">
-          <span class="icon">⭐</span>
+          <svg class="icon-svg-badge" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L14.9 8.5L22 9.2L16.7 14L18.2 21L12 17.3L5.8 21L7.3 14L2 9.2L9.1 8.5L12 2Z" fill="#f1c40f" stroke="#d4ac0d" stroke-width="1.2" stroke-linejoin="round"/>
+          </svg>
           <span id="stars-display">0</span>
         </div>
         <div class="currency-badge fish" title="Золотые рыбки">
@@ -1739,7 +1855,7 @@
 
       <div class="main-cookies-wrap">
         <div class="cookies-counter">
-          <span class="paw-icon">🐾</span>
+          <span id="main-cookie-icon" class="paw-icon"></span>
           <span id="cookies-display" class="cookies-value">0</span>
         </div>
         <div class="rate-counter">
@@ -1748,22 +1864,38 @@
       </div>
 
       <div class="top-bar-actions">
-        <button id="btn-open-achievements" class="icon-button" title="Достижения">🏆</button>
-        <button id="btn-open-settings" class="icon-button" title="Настройки">⚙️</button>
+        <button id="btn-open-achievements" class="icon-button" title="Достижения">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 4H17V9C17 11.8 14.8 14 12 14C9.2 14 7 11.8 7 9V4Z" fill="#f59e0b" stroke="#b45309" stroke-width="1.2"/>
+            <path d="M7 6H4C3.4 6 3 6.4 3 7C3 9 4.5 10.6 6.5 10.9M17 6H20C20.6 6 21 6.4 21 7C21 9 19.5 10.6 17.5 10.9" stroke="#b45309" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M10 14V17H14V14M8 20H16V17H8V20Z" fill="#d97706" stroke="#b45309" stroke-width="1.2" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button id="btn-open-settings" class="icon-button" title="Настройки">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="3" fill="#94a3b8" stroke="#475569" stroke-width="1.2"/>
+            <path d="M12 2V4M12 20V22M4 12H2M22 12H20M5 5L6.5 6.5M17.5 17.5L19 19M5 19L6.5 17.5M17.5 6.5L19 5" stroke="#64748b" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="6" stroke="#64748b" stroke-width="1.5"/>
+          </svg>
+        </button>
       </div>
     </header>
 
     <!-- Полоска множителя рекламы -->
     <div id="active-boosts-bar" class="boosts-bar">
       <button id="btn-ad-boost" class="ad-boost-pill inactive">
-        <span class="boost-icon">⚡ x2</span>
+        <span class="boost-icon">
+          <script>document.write(getSvgIcon('lightning', 16));</script> x2
+        </span>
         <span id="ad-boost-timer">Активировать</span>
       </button>
     </div>
     <!-- Основная зона выпечки -->
     <main class="click-zone">
       <div id="location-badge" class="location-badge">
-        <span id="location-badge-icon">🏠</span>
+        <span id="location-badge-icon">
+          <script>document.write(getSvgIcon('home', 14));</script>
+        </span>
         <span id="location-badge-name">Уютная кухня</span>
       </div>
 
@@ -1862,13 +1994,26 @@
     <section class="bottom-panel">
       <div class="panel-header">
         <nav class="tabs-nav">
-          <button class="tab-btn active" data-tab="generators">👨‍🍳 Пекари</button>
-          <button class="tab-btn" data-tab="prestige">⭐ Филиал</button>
+          <button class="tab-btn active" data-tab="generators">
+            <svg class="tab-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 14C3.5 14 2 11.5 3 9C2.5 6 6 4 8.5 5.5C10 3 14 3 15.5 5.5C18 4 21.5 6 21 9C22 11.5 20.5 14 18 14Z" fill="#ffffff" stroke="#78350f" stroke-width="1.2"/>
+              <rect x="6" y="14" width="12" height="5" rx="1.5" fill="#fef3c7" stroke="#78350f" stroke-width="1.2"/>
+            </svg>
+            <span>Пекари</span>
+          </button>
+          <button class="tab-btn" data-tab="prestige">
+            <svg class="tab-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L14.9 8.5L22 9.2L16.7 14L18.2 21L12 17.3L5.8 21L7.3 14L2 9.2L9.1 8.5L12 2Z" fill="#f1c40f" stroke="#d4ac0d" stroke-width="1.2" stroke-linejoin="round"/>
+            </svg>
+            <span>Филиал</span>
+          </button>
           <button class="tab-btn" data-tab="shop">
-            <svg class="icon-svg-badge" width="14" height="14" viewBox="0 0 24 24"><use href="#universal-gold-fish" /></svg> Лавка
+            <svg class="icon-svg-badge" width="18" height="18" viewBox="0 0 24 24"><use href="#universal-gold-fish" /></svg>
+            <span>Лавка</span>
           </button>
           <button class="tab-btn" data-tab="wardrobe">
-            <svg class="icon-svg-badge" width="14" height="14" viewBox="0 0 24 24"><use href="#universal-yarn-ball" /></svg> Гардероб
+            <svg class="icon-svg-badge" width="18" height="18" viewBox="0 0 24 24"><use href="#universal-yarn-ball" /></svg>
+            <span>Гардероб</span>
           </button>
         </nav>
 
@@ -1889,7 +2034,9 @@
     <!-- Обучающее модальное окно -->
     <div id="tutorial-modal" class="modal-backdrop hidden">
       <div class="modal-card" style="text-align: center;">
-        <div id="tutorial-icon" style="font-size: 2.6rem; margin-bottom: 6px;">🌟</div>
+        <div id="tutorial-icon" style="margin-bottom: 6px;">
+          <script>document.write(getSvgIcon('star', 36));</script>
+        </div>
         <h2 id="tutorial-title" style="font-size: 1.15rem; font-weight: 900; margin-bottom: 6px;"></h2>
         <p id="tutorial-text" style="font-size: 0.84rem; color: var(--color-text-muted); line-height: 1.4; margin-bottom: 14px;"></p>
         <button id="btn-close-tutorial" style="background: linear-gradient(135deg, var(--color-primary), #f44336); color: #fff; border: none; padding: 10px 20px; border-radius: var(--radius-pill); font-weight: 900; font-size: 0.88rem; cursor: pointer; box-shadow: var(--shadow-pop);"></button>
@@ -1899,13 +2046,15 @@
     <!-- Модальное окно офлайн-прогресса -->
     <div id="offline-modal" class="modal-backdrop hidden">
       <div class="modal-card" style="text-align: center;">
-        <div style="font-size: 2.8rem; margin-bottom: 4px;">🐱💤</div>
+        <div style="margin-bottom: 4px;">
+          <script>document.write(getSvgIcon('cat_sleep', 38));</script>
+        </div>
         <h2 style="font-size: 1.2rem; font-weight: 900; margin-bottom: 6px;">Котики пекли без вас!</h2>
         <p style="font-size: 0.84rem; color: var(--color-text-muted); margin-bottom: 12px;">
           Вас не было: <span id="offline-time-spent" style="color: var(--color-text-main); font-weight: 800;">0 мин</span>
         </p>
         <div style="display: inline-flex; align-items: center; gap: 6px; background: var(--color-bg-secondary); padding: 7px 16px; border-radius: var(--radius-pill); margin-bottom: 14px; border: 1px solid var(--color-border); align-self: center;">
-          <span class="paw-icon">🐾</span>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="12" cy="12" r="9.5" fill="#e09e53" stroke="#a06023" stroke-width="1.2"/><circle cx="8" cy="9" r="1.5" fill="#5c2e0b"/><circle cx="15.5" cy="8.5" r="1.4" fill="#5c2e0b"/><circle cx="11.5" cy="14" r="1.6" fill="#5c2e0b"/><circle cx="16" cy="15.5" r="1.3" fill="#5c2e0b"/><circle cx="7.5" cy="14.5" r="1.2" fill="#5c2e0b"/></svg>
           <span id="offline-cookies-amount" style="font-size: 1.35rem; font-weight: 900; color: var(--color-primary);">0</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 7px;">
@@ -1925,7 +2074,7 @@
       <div class="modal-card">
         <div class="modal-header-row">
           <div class="modal-title-wrap">
-            <span>🏆</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 4H17V9C17 11.8 14.8 14 12 14C9.2 14 7 11.8 7 9V4Z" fill="#f59e0b" stroke="#b45309" stroke-width="1.2"/><path d="M7 6H4C3.4 6 3 6.4 3 7C3 9 4.5 10.6 6.5 10.9M17 6H20C20.6 6 21 6.4 21 7C21 9 19.5 10.6 17.5 10.9" stroke="#b45309" stroke-width="1.2" stroke-linecap="round"/><path d="M10 14V17H14V14M8 20H16V17H8V20Z" fill="#d97706" stroke="#b45309" stroke-width="1.2" stroke-linejoin="round"/></svg>
             <span>Книга достижений</span>
           </div>
           <button id="btn-close-achievements" class="btn-close-modal">✕</button>
@@ -1939,7 +2088,7 @@
       <div class="modal-card">
         <div class="modal-header-row">
           <div class="modal-title-wrap">
-            <span>⚙️</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="3" fill="#94a3b8" stroke="#475569" stroke-width="1.2"/><path d="M12 2V4M12 20V22M4 12H2M22 12H20M5 5L6.5 6.5M17.5 17.5L19 19M5 19L6.5 17.5M17.5 6.5L19 5" stroke="#64748b" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="6" stroke="#64748b" stroke-width="1.5"/></svg>
             <span>Настройки пекарни</span>
           </div>
           <button id="btn-close-settings" class="btn-close-modal">✕</button>
@@ -1947,7 +2096,9 @@
         <div class="settings-group">
           <div class="settings-row">
             <span class="settings-label">
-              <span id="sound-icon-indicator">🔊</span>
+              <span id="sound-icon-indicator">
+                <script>document.write(getSvgIcon('sound_on', 18));</script>
+              </span>
               <span>Звуковые эффекты</span>
             </span>
             <button id="btn-toggle-sound" class="toggle-btn">ВКЛ</button>
@@ -1955,44 +2106,44 @@
 
           <div class="devtools-box">
             <div class="devtools-title">
-              <span>🛠️ Пульт разработчика</span>
+              <span><script>document.write(getSvgIcon('tools', 14));</script> Пульт разработчика</span>
               <span style="font-size: 0.65rem; color: #64748b;">Проверка функций</span>
             </div>
             
             <div class="devtools-grid">
-              <button id="dev-add-100k" class="dev-btn">💰 +100 тыс. 🐾</button>
-              <button id="dev-add-10m" class="dev-btn">💰 +10 млн. 🐾</button>
+              <button id="dev-add-100k" class="dev-btn"><script>document.write(getSvgIcon('money_bag', 13));</script> +100 тыс. <script>document.write(getSvgIcon('cookie', 13));</script></button>
+              <button id="dev-add-10m" class="dev-btn"><script>document.write(getSvgIcon('money_bag', 13));</script> +10 млн. <script>document.write(getSvgIcon('cookie', 13));</script></button>
             </div>
 
             <div class="devtools-grid">
               <button id="dev-add-50-fish" class="dev-btn accent">
                 +50 <svg class="icon-svg-badge" width="13" height="13" viewBox="0 0 24 24"><use href="#universal-gold-fish" /></svg>
               </button>
-              <button id="dev-add-5-stars" class="dev-btn accent">⭐ +5 Звёзд</button>
+              <button id="dev-add-5-stars" class="dev-btn accent"><script>document.write(getSvgIcon('star', 13));</script> +5 Звёзд</button>
             </div>
 
             <div class="devtools-grid">
               <button id="dev-add-20-yarn" class="dev-btn emerald">
                 +20 <svg class="icon-svg-badge" width="13" height="13" viewBox="0 0 24 24"><use href="#universal-yarn-ball" /></svg> Клубков
               </button>
-              <button id="dev-toggle-fever" class="dev-btn">⚡ Лихорадка: ВКЛ/ВЫКЛ</button>
+              <button id="dev-toggle-fever" class="dev-btn"><script>document.write(getSvgIcon('lightning', 13));</script> Лихорадка</button>
             </div>
 
             <div class="devtools-grid">
-              <button id="dev-unlock-wardrobe" class="dev-btn">👗 Открыть весь гардероб</button>
-              <button id="dev-spawn-box" class="dev-btn">📦 Спавн посылки</button>
+              <button id="dev-unlock-wardrobe" class="dev-btn"><script>document.write(getSvgIcon('wardrobe', 13));</script> Весь гардероб</button>
+              <button id="dev-spawn-box" class="dev-btn"><script>document.write(getSvgIcon('box', 13));</script> Спавн посылки</button>
             </div>
 
             <div class="devtools-grid">
-              <button id="dev-spawn-fish" class="dev-btn">🐠 Спавн летящей рыбки</button>
-              <button id="dev-test-offline" class="dev-btn">⏰ Тест сна (+4 часа)</button>
+              <button id="dev-spawn-fish" class="dev-btn"><script>document.write(getSvgIcon('fish', 13));</script> Спавн рыбки</button>
+              <button id="dev-test-offline" class="dev-btn"><script>document.write(getSvgIcon('clock', 13));</script> Сон (+4 часа)</button>
             </div>
 
             <div style="font-size: 0.68rem; font-weight: 800; color: #475569; margin-top: 2px;">Сменить филиал:</div>
             <div class="devtools-grid-3">
-              <button id="dev-loc-0" class="dev-btn">🏠 Кухня [1]</button>
-              <button id="dev-loc-1" class="dev-btn">🥐 Кафе [2]</button>
-              <button id="dev-loc-2" class="dev-btn">👑 Дворец [3]</button>
+              <button id="dev-loc-0" class="dev-btn"><script>document.write(getSvgIcon('home', 13));</script> Кухня</button>
+              <button id="dev-loc-1" class="dev-btn"><script>document.write(getSvgIcon('cookie', 13));</script> Кафе</button>
+              <button id="dev-loc-2" class="dev-btn"><script>document.write(getSvgIcon('crown', 13));</script> Дворец</button>
             </div>
           </div>
 
@@ -2010,7 +2161,9 @@
 
     <!-- Всплывающее уведомление -->
     <div id="achievement-toast" class="toast-card hidden">
-      <div id="toast-icon-slot" class="toast-icon">🏆</div>
+      <div id="toast-icon-slot" class="toast-icon">
+        <script>document.write(getSvgIcon('trophy', 22));</script>
+      </div>
       <div class="toast-body">
         <div id="toast-badge-slot" class="toast-badge">Новое достижение!</div>
         <div id="toast-title" class="toast-title">Мастер-разминатель</div>
@@ -2034,19 +2187,19 @@
     };
 
     const GENERATOR_ICONS = {
-      lapkolap: '🐾',
-      mur_pech: '🔥',
-      kot_barista: '☕',
-      courier: '🛵',
-      chef_murych: '👨‍🍳'
+      lapkolap: getSvgIcon('paw', 24),
+      mur_pech: getSvgIcon('fire', 24),
+      kot_barista: getSvgIcon('coffee', 24),
+      courier: getSvgIcon('scooter', 24),
+      chef_murych: getSvgIcon('baker', 24)
     };
 
     const MILESTONES = [25, 50, 100, 200];
 
     const LOCATION_THEMES = [
-      { name: 'Уютная кухня', icon: '🏠' },
-      { name: 'Городское кафе', icon: '🥐' },
-      { name: 'Королевский дворец', icon: '👑' }
+      { name: 'Уютная кухня', icon: getSvgIcon('home', 14) },
+      { name: 'Городское кафе', icon: getSvgIcon('cookie', 14) },
+      { name: 'Королевский дворец', icon: getSvgIcon('crown', 14) }
     ];
 
     function getFishIconSvg(size = 16, extraClass = '') {
@@ -2083,7 +2236,7 @@
         {
           id: 'chef_hat_2',
           name: 'Высокий колпак шефа',
-          icon: '👨‍🍳',
+          icon: getSvgIcon('baker', 28),
           cost: 0,
           currency: 'yarn',
           unlockStage: 1,
@@ -2122,7 +2275,7 @@
         {
           id: 'glasses_cool',
           name: 'Крутые очки',
-          icon: '🕶️',
+          icon: getSvgIcon('glasses', 28),
           cost: 3,
           currency: 'yarn',
           bonusDesc: '+5% к клику',
@@ -2144,7 +2297,7 @@
         {
           id: 'red_bow',
           name: 'Красный бантик',
-          icon: '🎀',
+          icon: getSvgIcon('bow', 28),
           cost: 5,
           currency: 'yarn',
           bonusDesc: '+2 сек Лихорадки',
@@ -2165,7 +2318,7 @@
         {
           id: 'flower_wreath',
           name: 'Венок из сакуры',
-          icon: '🌸',
+          icon: getSvgIcon('flower', 28),
           cost: 8,
           currency: 'yarn',
           bonusDesc: '+3% к доходу',
@@ -2206,7 +2359,7 @@
         {
           id: 'devil_horns',
           name: 'Озорной чертёнок',
-          icon: '😈',
+          icon: getSvgIcon('devil', 28),
           cost: 12,
           currency: 'yarn',
           bonusDesc: '+10% к улову рыбки',
@@ -2232,7 +2385,7 @@
         {
           id: 'love_hearts',
           name: 'Парящие сердечки',
-          icon: '💖',
+          icon: getSvgIcon('heart', 28),
           cost: 16,
           currency: 'yarn',
           bonusDesc: '+5% к Лихорадке',
@@ -2268,7 +2421,7 @@
         {
           id: 'royal_crown',
           name: 'Королевская корона',
-          icon: '👑',
+          icon: getSvgIcon('crown', 28),
           cost: 25,
           currency: 'yarn',
           bonusDesc: '+5% ко всем доходам',
@@ -2292,7 +2445,7 @@
         {
           id: 'neck_none',
           name: 'Без украшений',
-          icon: '🚫',
+          icon: getSvgIcon('cancel', 26),
           cost: 0,
           currency: 'yarn',
           isBase: true,
@@ -2303,7 +2456,7 @@
         {
           id: 'red_bowtie',
           name: 'Шейная бабочка',
-          icon: '🎀',
+          icon: getSvgIcon('bow', 28),
           cost: 0,
           currency: 'yarn',
           unlockStage: 1,
@@ -2317,6 +2470,7 @@
             </g>
           `
         },
+        // Стало:
         {
           id: 'gold_medal',
           name: 'Золотой орден шефа',
@@ -2327,21 +2481,100 @@
           bonusDesc: '+15% к улову рыбки',
           desc: 'Приколотый золотой орден с кошачьей лапкой прямо на манишке',
           svg: `
-            <g id="acc-gold_medal">
-              <circle cx="100" cy="140" r="11" fill="url(#goldMedalBroochGrad)" stroke="#3D2314" stroke-width="2.5" />
-              <circle cx="100" cy="140" r="8.2" fill="none" stroke="#B45309" stroke-width="1" stroke-dasharray="2,1.5" />
-              <!-- Тиснёная лапка по центру -->
-              <ellipse cx="100" cy="141.5" rx="3.5" ry="2.6" fill="#B45309" />
-              <circle cx="96.5" cy="137.5" r="1.3" fill="#B45309" />
-              <circle cx="100" cy="136" r="1.3" fill="#B45309" />
-              <circle cx="103.5" cy="137.5" r="1.3" fill="#B45309" />
-              <!-- Деликатный блик -->
-              <path d="M 94 135 A 8 8 0 0 1 104 132" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.8" />
+            <g id="acc-gold_medal" pointer-events="none">
+              <circle cx="82" cy="136" r="9.5" fill="url(#goldMedalBroochGrad)" stroke="#3D2314" stroke-width="1.6" />
+              <circle cx="82" cy="136" r="7.4" fill="none" stroke="#B45309" stroke-width="0.75" stroke-dasharray="1.5,1.2" />
+              <ellipse cx="82" cy="137.3" rx="3.0" ry="2.2" fill="#B45309" />
+              <circle cx="79" cy="134" r="1.0" fill="#B45309" />
+              <circle cx="82" cy="132.8" r="1.0" fill="#B45309" />
+              <circle cx="85" cy="134" r="1.0" fill="#B45309" />
+              <path d="M 76.5 132.5 A 7 7 0 0 1 84.8 128.5" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" fill="none" opacity="0.85" />
             </g>
           `
         }
       ]
     };
+    // Стало:
+    function getSvgIcon(name, size = 16) {
+  const s = `width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"`;
+  switch (name) {
+    case 'paw':
+      return `<svg ${s}><ellipse cx="12" cy="15.5" rx="4.8" ry="3.8" fill="#ff6d00"/><circle cx="6.5" cy="10" r="2.2" fill="#ff6d00"/><circle cx="10" cy="6.8" r="2.2" fill="#ff6d00"/><circle cx="14" cy="6.8" r="2.2" fill="#ff6d00"/><circle cx="17.5" cy="10" r="2.2" fill="#ff6d00"/></svg>`;
+    case 'cookie':
+      return `<svg ${s}><circle cx="12" cy="12" r="9.5" fill="#e09e53" stroke="#a06023" stroke-width="1.2"/><circle cx="8" cy="9" r="1.5" fill="#5c2e0b"/><circle cx="15.5" cy="8.5" r="1.4" fill="#5c2e0b"/><circle cx="11.5" cy="14" r="1.6" fill="#5c2e0b"/><circle cx="16" cy="15.5" r="1.3" fill="#5c2e0b"/><circle cx="7.5" cy="14.5" r="1.2" fill="#5c2e0b"/></svg>`;
+    case 'star':
+      return `<svg ${s}><path d="M12 2L14.9 8.5L22 9.2L16.7 14L18.2 21L12 17.3L5.8 21L7.3 14L2 9.2L9.1 8.5L12 2Z" fill="#f1c40f" stroke="#d4ac0d" stroke-width="1.2" stroke-linejoin="round"/></svg>`;
+    case 'trophy':
+      return `<svg ${s}><path d="M7 4H17V9C17 11.8 14.8 14 12 14C9.2 14 7 11.8 7 9V4Z" fill="#f59e0b" stroke="#b45309" stroke-width="1.2"/><path d="M7 6H4C3.4 6 3 6.4 3 7C3 9 4.5 10.6 6.5 10.9M17 6H20C20.6 6 21 6.4 21 7C21 9 19.5 10.6 17.5 10.9" stroke="#b45309" stroke-width="1.2" stroke-linecap="round"/><path d="M10 14V17H14V14M8 20H16V17H8V20Z" fill="#d97706" stroke="#b45309" stroke-width="1.2" stroke-linejoin="round"/></svg>`;
+    case 'gear':
+      return `<svg ${s}><circle cx="12" cy="12" r="3" fill="#94a3b8" stroke="#475569" stroke-width="1.2"/><path d="M12 2V4M12 20V22M4 12H2M22 12H20M5 5L6.5 6.5M17.5 17.5L19 19M5 19L6.5 17.5M17.5 6.5L19 5" stroke="#64748b" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="6" stroke="#64748b" stroke-width="1.5"/></svg>`;
+    case 'lightning':
+      return `<svg ${s}><polygon points="13,2 4,13 11,13 10,22 20,10 13,10" fill="#fbbf24" stroke="#d97706" stroke-width="1.2" stroke-linejoin="round"/></svg>`;
+    case 'crown':
+      return `<svg ${s}><path d="M4 18L2 7L7.5 12L12 5L16.5 12L22 7L20 18H4Z" fill="#f59e0b" stroke="#b45309" stroke-width="1.2" stroke-linejoin="round"/><circle cx="2" cy="7" r="1.2" fill="#ef4444"/><circle cx="12" cy="5" r="1.2" fill="#ef4444"/><circle cx="22" cy="7" r="1.2" fill="#ef4444"/></svg>`;
+    case 'baker':
+      return `<svg ${s}><path d="M6 14C3.5 14 2 11.5 3 9C2.5 6 6 4 8.5 5.5C10 3 14 3 15.5 5.5C18 4 21.5 6 21 9C22 11.5 20.5 14 18 14Z" fill="#ffffff" stroke="#78350f" stroke-width="1.2"/><rect x="6" y="14" width="12" height="5" rx="1.5" fill="#fef3c7" stroke="#78350f" stroke-width="1.2"/></svg>`;
+    case 'fire':
+      return `<svg ${s}><path d="M12 2C10 6 7 9 7 13C7 16.5 9.5 19 12 19C14.5 19 17 16.5 17 13C17 9 14 6 12 2Z" fill="#ef4444" stroke="#b91c1c" stroke-width="1.2"/><path d="M12 8C11 10.5 9.5 12 9.5 14C9.5 15.5 10.5 17 12 17C13.5 17 14.5 15.5 14.5 14C14.5 12 13 10.5 12 8Z" fill="#fbbf24"/></svg>`;
+    case 'coffee':
+      return `<svg ${s}><rect x="4" y="8" width="12" height="11" rx="3" fill="#854d0e" stroke="#582f0e" stroke-width="1.2"/><path d="M16 10H18C19.5 10 20.5 11 20.5 12.5C20.5 14 19.5 15 18 15H16" stroke="#582f0e" stroke-width="1.2" stroke-linecap="round"/><path d="M7 5C7 5 7.5 3 9 3M11 5C11 5 11.5 3 13 3" stroke="#d97706" stroke-width="1" stroke-linecap="round"/></svg>`;
+    case 'scooter':
+      return `<svg ${s}><circle cx="6" cy="17" r="3" fill="#64748b" stroke="#334155" stroke-width="1.2"/><circle cx="18" cy="17" r="3" fill="#64748b" stroke="#334155" stroke-width="1.2"/><path d="M6 17H12L15 10H9L8 6H5M15 10L17 17" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    case 'cat_sleep':
+      return `<svg ${s}><circle cx="12" cy="13" r="7.5" fill="#fed7aa" stroke="#7c2d12" stroke-width="1.2"/><path d="M6 8L8 11M18 8L16 11" stroke="#7c2d12" stroke-width="1.4" stroke-linecap="round"/><path d="M9 14Q10.5 15 12 14Q13.5 15 15 14" stroke="#7c2d12" stroke-width="1.2" stroke-linecap="round" fill="none"/><path d="M16 4H19L16 7H19M19 1H21L19 3H21" stroke="#3b82f6" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    case 'sound_on':
+      return `<svg ${s}><polygon points="3,9 7,9 12,4 12,20 7,15 3,15" fill="#10b981" stroke="#047857" stroke-width="1.2"/><path d="M16 8C17.5 9.5 17.5 14.5 16 16M19 5C22 8 22 16 19 19" stroke="#047857" stroke-width="1.3" stroke-linecap="round" fill="none"/></svg>`;
+    case 'sound_off':
+      return `<svg ${s}><polygon points="3,9 7,9 12,4 12,20 7,15 3,15" fill="#94a3b8" stroke="#475569" stroke-width="1.2"/><line x1="16" y1="9" x2="21" y2="15" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/><line x1="21" y1="9" x2="16" y2="15" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+    case 'money_bag':
+      return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M12 4 C10 4 9 2.5 7.5 3 C6.5 3.5 7 5.5 8.5 6 C5 8 3.5 12 4 16 C4.5 20.5 8 22 12 22 C16 22 19.5 20.5 20 16 C20.5 12 19 8 15.5 6 C17 5.5 17.5 3.5 16.5 3 C15 2.5 14 4 12 4 Z" fill="#e67e22" stroke="#b95c00" stroke-width="1.2"/><path d="M7.5 6.5 C10 8 14 8 16.5 6.5" stroke="#f1c40f" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="14" r="4.5" fill="#f1c40f" stroke="#b95c00" stroke-width="1"/><text x="12" y="17" font-size="6.5" font-weight="900" fill="#783d00" text-anchor="middle" font-family="Arial, sans-serif">$</text></svg>`;
+    case 'wardrobe':
+      return `<svg ${s}><path d="M12 4C10.5 4 10 5.5 10 6.5C10 8 12 8.5 12 10L3 15V17H21V15L12 10" stroke="#9b59b6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="18.5" r="1" fill="#9b59b6"/></svg>`;
+    case 'box':
+      return `<svg ${s}><rect x="4" y="9" width="16" height="12" rx="2" fill="#d97706" stroke="#78350f" stroke-width="1.2"/><path d="M2 9L12 4L22 9" stroke="#78350f" stroke-width="1.2" stroke-linecap="round"/><line x1="12" y1="9" x2="12" y2="21" stroke="#78350f" stroke-width="1.2"/><rect x="10" y="9" width="4" height="12" fill="#fde68a"/></svg>`;
+    case 'fish':
+      return `<svg ${s}><path d="M4 12C1 8 2 5 3 4C6 8 8 10 11 9L15 6C19 6 22 9 22 12C22 15 19 18 15 18L11 15C8 14 6 16 3 20C2 19 1 16 4 12Z" fill="#ffb300" stroke="#ff8f00" stroke-width="1"/><circle cx="18.5" cy="10.5" r="1.2" fill="#2d1600"/><circle cx="18.8" cy="10.2" r="0.4" fill="#fff"/></svg>`;
+    case 'clock':
+      return `<svg ${s}><circle cx="12" cy="12" r="8.5" fill="#f8fafc" stroke="#475569" stroke-width="1.3"/><polyline points="12,7 12,12 15,14" stroke="#475569" stroke-width="1.4" stroke-linecap="round"/></svg>`;
+    case 'home':
+      return `<svg ${s}><path d="M3 11L12 3L21 11V20H5V11" fill="#f97316" stroke="#9a3412" stroke-width="1.2" stroke-linejoin="round"/><rect x="9" y="14" width="6" height="6" fill="#fef3c7" stroke="#9a3412" stroke-width="1"/></svg>`;
+    case 'tools':
+      return `<svg ${s}><path d="M14.5 4.5L19.5 9.5L9.5 19.5H4.5V14.5L14.5 4.5Z" fill="#cbd5e1" stroke="#475569" stroke-width="1.2" stroke-linejoin="round"/><circle cx="16" cy="6" r="1" fill="#475569"/></svg>`;
+    case 'van':
+      return `<svg ${s}><rect x="3" y="7" width="13" height="9" rx="2" fill="#38bdf8" stroke="#0284c7" stroke-width="1.2"/><path d="M16 9H20L22 13V16H16V9Z" fill="#7dd3fc" stroke="#0284c7" stroke-width="1.2"/><circle cx="7" cy="16" r="2.5" fill="#334155"/><circle cx="18" cy="16" r="2.5" fill="#334155"/></svg>`;
+    case 'tag':
+      return `<svg ${s}><path d="M20.59 13.41L13.42 20.58C12.64 21.36 11.37 21.36 10.59 20.58L3.41 13.41C2.63 12.63 2.63 11.37 3.41 10.59L10.59 3.41C11.37 2.63 12.64 2.63 13.42 3.41L20.59 10.59C21.37 11.37 21.37 12.64 20.59 13.41Z" fill="#f43f5e" stroke="#be123c" stroke-width="1.2"/><circle cx="8.5" cy="8.5" r="1.5" fill="#ffffff"/></svg>`;
+    case 'inspector':
+      return `<svg ${s}><circle cx="10" cy="10" r="6" fill="#fef3c7" stroke="#b45309" stroke-width="1.3"/><circle cx="10" cy="10" r="3.5" stroke="#d97706" stroke-width="1"/><line x1="14.5" y1="14.5" x2="20" y2="20" stroke="#78350f" stroke-width="2" stroke-linecap="round"/></svg>`;
+    case 'herb':
+      return `<svg ${s}><path d="M17 4C11 4 7 8 7 14C7 16 8 18 9 20C15 20 19 16 19 10C19 8 18 6 17 4Z" fill="#86efac" stroke="#16a34a" stroke-width="1.3"/><path d="M7 20C9 15 13 11 17 4" stroke="#16a34a" stroke-width="1.2" stroke-linecap="round"/></svg>`;
+    case 'pin':
+      return `<svg ${s}><rect x="6" y="9" width="12" height="6" rx="2" fill="#fed7aa" stroke="#c2410c" stroke-width="1.2"/><rect x="2" y="10.5" width="4" height="3" rx="1" fill="#fdba74" stroke="#c2410c" stroke-width="1"/><rect x="18" y="10.5" width="4" height="3" rx="1" fill="#fdba74" stroke="#c2410c" stroke-width="1"/></svg>`;
+    case 'sauce':
+      return `<svg ${s}><path d="M8 8C8 6 10 5 12 5C14 5 16 6 16 8V19C16 20.1 15.1 21 14 21H10C8.9 21 8 20.1 8 19V8Z" fill="#fef3c7" stroke="#d97706" stroke-width="1.2"/><path d="M10 5V3H14V5" stroke="#d97706" stroke-width="1.2" stroke-linecap="round"/><ellipse cx="12" cy="12" rx="2.5" ry="3" fill="#fde68a"/></svg>`;
+    case 'bell':
+      return `<svg ${s}><path d="M12 4C8.7 4 6 6.7 6 10V14L4 17H20L18 14V10C18 6.7 15.3 4 12 4Z" fill="#fde047" stroke="#ca8a04" stroke-width="1.2" stroke-linejoin="round"/><circle cx="12" cy="19" r="2" fill="#ca8a04"/></svg>`;
+    case 'jar':
+      return `<svg ${s}><rect x="6" y="8" width="12" height="13" rx="3" fill="#fef08a" stroke="#ca8a04" stroke-width="1.2"/><rect x="7" y="4" width="10" height="4" rx="1.5" fill="#f59e0b" stroke="#b45309" stroke-width="1"/><line x1="8" y1="12" x2="16" y2="12" stroke="#eab308" stroke-width="1.2"/></svg>`;
+    case 'glasses':
+      return `<svg ${s}><rect x="3" y="9" width="8" height="6" rx="2" fill="#1e293b" stroke="#0f172a" stroke-width="1.2"/><rect x="13" y="9" width="8" height="6" rx="2" fill="#1e293b" stroke="#0f172a" stroke-width="1.2"/><line x1="11" y1="12" x2="13" y2="12" stroke="#0f172a" stroke-width="1.4"/></svg>`;
+    case 'bow':
+      return `<svg ${s}><polygon points="7,8 12,12 7,16" fill="#f43f5e" stroke="#be123c" stroke-width="1.2"/><polygon points="17,8 12,12 17,16" fill="#f43f5e" stroke="#be123c" stroke-width="1.2"/><circle cx="12" cy="12" r="2.5" fill="#e11d48" stroke="#be123c" stroke-width="1"/></svg>`;
+    case 'flower':
+      return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><g stroke="#b83b5e" stroke-width="1.2" stroke-linejoin="round"><circle cx="12" cy="6.5" r="3.8" fill="#ffccd5"/><circle cx="17.2" cy="10.2" r="3.8" fill="#ffccd5"/><circle cx="15.2" cy="16.5" r="3.8" fill="#ffccd5"/><circle cx="8.8" cy="16.5" r="3.8" fill="#ffccd5"/><circle cx="6.8" cy="10.2" r="3.8" fill="#ffccd5"/></g><circle cx="12" cy="12" r="3.2" fill="#ffd166" stroke="#f4a261" stroke-width="1"/></svg>`;
+    case 'devil':
+      return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M5 4 C6 7 7 10 9 11 C8 9 7 6 5 4 Z" fill="#e74c3c" stroke="#962d22" stroke-width="0.8"/><path d="M19 4 C18 7 17 10 15 11 C16 9 17 6 19 4 Z" fill="#e74c3c" stroke="#962d22" stroke-width="0.8"/><circle cx="12" cy="13" r="8.5" fill="#e74c3c" stroke="#962d22" stroke-width="1.2"/><circle cx="9" cy="11.5" r="1.8" fill="#ffffff"/><circle cx="9.2" cy="11.5" r="0.9" fill="#2c3e50"/><circle cx="15" cy="11.5" r="1.8" fill="#ffffff"/><circle cx="14.8" cy="11.5" r="0.9" fill="#2c3e50"/><path d="M9 15 Q12 18.5 15 15" stroke="#2c3e50" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>`;
+    case 'money_bag':
+      return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M9 4 C9 2.8 10.3 2 12 2 C13.7 2 15 2.8 15 4 L17 7 H7 Z" fill="#d35400"/><ellipse cx="12" cy="7" rx="5" ry="1.5" fill="#e67e22"/><path d="M5 9 C4 14 5 21 12 21 C19 21 20 14 19 9 C18 7.5 6 7.5 5 9 Z" fill="#f1c40f" stroke="#d4ac0d" stroke-width="1.2"/><text x="12" y="16.5" font-size="9" font-weight="900" fill="#784212" text-anchor="middle" font-family="sans-serif">$</text></svg>`;
+    case 'heart':
+      return `<svg ${s}><path d="M12 20C12 20 4 14.5 4 8.5C4 5.5 6.5 3.5 9.5 3.5C11 3.5 12 4.5 12 4.5C12 4.5 13 3.5 14.5 3.5C17.5 3.5 20 5.5 20 8.5C20 14.5 12 20 12 20Z" fill="#f43f5e" stroke="#be123c" stroke-width="1.2"/></svg>`;
+    case 'cancel':
+      return `<svg ${s}><circle cx="12" cy="12" r="8" fill="none" stroke="#94a3b8" stroke-width="1.5"/><line x1="6.5" y1="6.5" x2="17.5" y2="17.5" stroke="#ef4444" stroke-width="1.5"/></svg>`;
+    default:
+      return '';
+  }
+}
+
     function hasWardrobeUnlocked(state, id) {
       return Array.isArray(state?.meta?.wardrobe?.unlocked) && state.meta.wardrobe.unlocked.includes(id);
     }
@@ -2385,7 +2618,7 @@
         id: 'start_van',
         name: 'Стартовый фургон',
         desc: 'Дает +2 Лапколапа сразу после переезда за каждый уровень (максимум 10)',
-        icon: '🚐',
+        icon: getSvgIcon('van', 22),
         maxLevel: 5,
         getCost: (l) => (l === 0 ? 1 : (l + 1) * 2)
       },
@@ -2393,7 +2626,7 @@
         id: 'strong_paws',
         name: 'Крепкие лапки',
         desc: '+100% к силе клика и синергии за каждый уровень',
-        icon: '🐾',
+        icon: getSvgIcon('paw', 22),
         maxLevel: 10,
         getCost: (l) => (l === 0 ? 1 : Math.floor(1 * Math.pow(1.5, l)))
       },
@@ -2401,7 +2634,7 @@
         id: 'cat_sleep',
         name: 'Кошачий сон',
         desc: 'Увеличивает максимальный сон без вас: 4ч → 6ч → 8ч → 12ч',
-        icon: '💤',
+        icon: getSvgIcon('cat_sleep', 22),
         maxLevel: 3,
         getCost: (l) => (l === 0 ? 1 : (l + 1) * 5)
       },
@@ -2409,7 +2642,7 @@
         id: 'bulk_buy',
         name: 'Оптовая закупка',
         desc: 'Постоянная скидка -1% на всех пекарей (до -5%)',
-        icon: '🏷️',
+        icon: getSvgIcon('tag', 22),
         maxLevel: 5,
         getCost: (l) => (l === 0 ? 1 : (l + 1) * 3)
       },
@@ -2417,7 +2650,7 @@
         id: 'generous_inspector',
         name: 'Щедрый инспектор',
         desc: 'Снижает порог выпечки для получения Звёзд на 5% за уровень (до -25%)',
-        icon: '🧐',
+        icon: getSvgIcon('inspector', 22),
         maxLevel: 5,
         getCost: (l) => (l === 0 ? 1 : (l + 1) * 4)
       }
@@ -2498,7 +2731,7 @@
     const ACHIEVEMENTS_CONFIG = [
       {
         id: 'click_warmup',
-        icon: '🐾',
+        icon: getSvgIcon('paw', 24),
         title: 'Разминка лапок',
         desc: 'Сделайте первые 100 нажатий по тесту',
         rewardFish: 1,
@@ -2506,7 +2739,7 @@
       },
       {
         id: 'click_master',
-        icon: '⚡',
+        icon: getSvgIcon('lightning', 24),
         title: 'Мастер-разминатель',
         desc: 'Сделайте 1 000 нажатий по тесту',
         rewardFish: 3,
@@ -2514,7 +2747,7 @@
       },
       {
         id: 'first_batch',
-        icon: '🥐',
+        icon: getSvgIcon('cookie', 24),
         title: 'Первая свежая выпечка',
         desc: 'Заработайте суммарно 10 000 печенек',
         rewardFish: 1,
@@ -2522,7 +2755,7 @@
       },
       {
         id: 'cookie_millionaire',
-        icon: '💰',
+        icon: getSvgIcon('money_bag', 24),
         title: 'Печеньковый миллионер',
         desc: 'Напеките 1 000 000 печенек за всё время',
         rewardFish: 3,
@@ -2530,7 +2763,7 @@
       },
       {
         id: 'bakery_empire',
-        icon: '👑',
+        icon: getSvgIcon('crown', 24),
         title: 'Сдобная империя',
         desc: 'Преодолейте планку в 100 000 000 выпечки',
         rewardFish: 5,
@@ -2538,7 +2771,7 @@
       },
       {
         id: 'lapkolap_brigade',
-        icon: '🐱',
+        icon: getSvgIcon('cat_sleep', 24),
         title: 'Кошачья бригада',
         desc: 'Наймите 25 поварят Лапколапов',
         rewardFish: 2,
@@ -2546,7 +2779,7 @@
       },
       {
         id: 'hire_chef_murych',
-        icon: '👨‍🍳',
+        icon: getSvgIcon('baker', 24),
         title: 'Звездный шеф на кухне',
         desc: 'Наймите легендарного Шефа Мурыча',
         rewardFish: 5,
@@ -2554,7 +2787,7 @@
       },
       {
         id: 'automated_bakery',
-        icon: '✨',
+        icon: getSvgIcon('star', 24),
         title: 'Полный штат',
         desc: 'Наймите хотя бы по 1 пекарю каждого типа',
         rewardFish: 3,
@@ -2565,7 +2798,7 @@
       },
       {
         id: 'first_relocation',
-        icon: '⭐',
+        icon: getSvgIcon('star', 24),
         title: 'Новый филиал',
         desc: 'Совершите свой первый переезд в новый филиал',
         rewardFish: 10,
@@ -3166,6 +3399,10 @@
       const appRoot = document.getElementById('app-root');
       const cookiesDisplay = document.getElementById('cookies-display');
       const rateDisplay = document.getElementById('rate-display');
+      const mainCookieIcon = document.getElementById('main-cookie-icon');
+      if (mainCookieIcon) {
+        mainCookieIcon.innerHTML = getSvgIcon('cookie', 30);
+      }
       const starsDisplay = document.getElementById('stars-display');
       const fishDisplay = document.getElementById('fish-display');
       const yarnDisplay = document.getElementById('yarn-display');
@@ -3273,7 +3510,7 @@
         appRoot.classList.add(`theme-bakery-${stageIndex}`);
 
         const locConfig = LOCATION_THEMES[stageIndex] || LOCATION_THEMES[0];
-        if (locationBadgeIcon) locationBadgeIcon.textContent = locConfig.icon;
+        if (locationBadgeIcon) locationBadgeIcon.innerHTML = locConfig.icon;
         if (locationBadgeName) locationBadgeName.textContent = locConfig.name;
       }
 
@@ -3846,7 +4083,7 @@
 
           card.innerHTML = `
             <div class="generator-left">
-              <div class="generator-avatar">${GENERATOR_ICONS[id] || '🐱'}</div>
+              <div class="generator-avatar">${GENERATOR_ICONS[id] || getSvgIcon('paw', 24)}</div>
               <div class="generator-info">
                 <div class="gen-title-row">
                   <span class="gen-name">${data.name} ${spikeBadge}</span>
@@ -3962,15 +4199,15 @@
         const neededToNext = Math.max(0, next - allTime);
 
         const btnText = canPrestige 
-          ? `⭐ Переехать и получить +${rewardStars} Звёзд` 
-          : `До следующей Звезды: ${formatNumber(neededToNext)} 🐾`;
+          ? `${getSvgIcon('star', 15)} Переехать и получить +${rewardStars} Звёзд` 
+          : `До следующей Звезды: ${formatNumber(neededToNext)} ${getSvgIcon('cookie', 14)}`;
 
         const banner = document.createElement('div');
         banner.className = 'prestige-banner';
         banner.innerHTML = `
           <div class="prestige-header-row">
             <div class="prestige-banner-title">
-              <span>🌟</span>
+              <span>${getSvgIcon('star', 18)}</span>
               <span>Филиал Мишлен</span>
             </div>
             <div class="prestige-badge-mult">+${currentStarsMult}% выпечка / +${state.meta.stars || 0} к клику</div>
@@ -4012,7 +4249,7 @@
               </div>
             </div>
             <button class="perk-buy-btn" ${!canAfford || isMax ? 'disabled' : ''}>
-              ${isMax ? 'МАКС' : `⭐ ${cost}`}
+              ${isMax ? 'МАКС' : `${getSvgIcon('star', 13)} ${cost}`}
             </button>
           `;
 
@@ -4048,11 +4285,11 @@
         const isBellMax = bellLvl >= 5;
 
         targetContainer.innerHTML = `
-          <div class="shop-section-title">🌟 Улучшения за золотых рыбок</div>
+          <div class="shop-section-title">${getSvgIcon('star', 16)} Улучшения за золотых рыбок</div>
 
           <div class="shop-card">
             <div class="shop-card-left">
-              <div class="shop-card-avatar">🌿</div>
+              <div class="shop-card-avatar">${getSvgIcon('herb', 26)}</div>
               <div class="shop-card-info">
                 <span class="shop-card-title">Кошачья мята (ур. ${catnipLvl})</span>
                 <span class="shop-card-desc">+25% к скорости заполнения Лихорадки</span>
@@ -4065,7 +4302,7 @@
 
           <div class="shop-card">
             <div class="shop-card-left">
-              <div class="shop-card-avatar">🥢</div>
+              <div class="shop-card-avatar">${getSvgIcon('pin', 26)}</div>
               <div class="shop-card-info">
                 <span class="shop-card-title">Золотая скалка (ур. ${pinLvl})</span>
                 <span class="shop-card-desc">+15% к клику и синергии за уровень</span>
@@ -4078,7 +4315,7 @@
 
           <div class="shop-card">
             <div class="shop-card-left">
-              <div class="shop-card-avatar">🍶</div>
+              <div class="shop-card-avatar">${getSvgIcon('sauce', 26)}</div>
               <div class="shop-card-info">
                 <span class="shop-card-title">Сливочный соус (ур. ${sauceLvl})</span>
                 <span class="shop-card-desc">+15% к выпечке пекарей за уровень</span>
@@ -4091,7 +4328,7 @@
 
           <div class="shop-card">
             <div class="shop-card-left">
-              <div class="shop-card-avatar">🔔</div>
+              <div class="shop-card-avatar">${getSvgIcon('bell', 26)}</div>
               <div class="shop-card-info">
                 <span class="shop-card-title">Кошачий колокольчик (${bellLvl}/5)</span>
                 <span class="shop-card-desc">Рыбка прилетает на 3 сек чаще за уровень</span>
@@ -4104,7 +4341,7 @@
 
           <div class="shop-card">
             <div class="shop-card-left">
-              <div class="shop-card-avatar">🏺</div>
+              <div class="shop-card-avatar">${getSvgIcon('jar', 26)}</div>
               <div class="shop-card-info">
                 <span class="shop-card-title">Золотая банка (ур. ${jarLvl})</span>
                 <span class="shop-card-desc">+2 сек к Лихорадке (${Math.round(getMaxFeverDuration(state))} сек)</span>
@@ -4210,20 +4447,16 @@
           let btnText = item.cost === 0 ? 'Получить' : `Купить ${item.cost} ${getYarnIconSvg(14)}`;
           let btnDisabled = false;
 
+          // Стало:
           /* ЖЁСТКАЯ БЛОКИРОВКА ПРЕСТИЖНЫХ ШАПОК И АКСЕССУАРОВ */
           if (isStageLocked) {
             btnClass = 'loc-locked';
             btnText = `🔒 Локация ${item.unlockStage + 1}`;
             btnDisabled = true;
           } else if (item.isBase) {
-            if (isEquipped) {
-              btnClass = 'base-locked';
-              btnText = 'По умолчанию ✓';
-              btnDisabled = true;
-            } else {
-              btnClass = 'equip';
-              btnText = 'Выбрать';
-            }
+            btnClass = 'base-locked';
+            btnText = 'По умолчанию ✓';
+            btnDisabled = true;
           } else if (isEquipped) {
             /* Кнопка «Снять ✕» доступна ТОЛЬКО на надетых купленных/престижных вещах */
             btnClass = 'unequip';
@@ -4235,7 +4468,7 @@
             btnDisabled = !canAfford;
           }
 
-          let previewContent = item.icon || '🎀';
+          let previewContent = item.icon || getSvgIcon('bow', 28);
           if (item.iconSvg) {
             previewContent = `<svg width="34" height="34" viewBox="0 0 28 24"><use href="#${item.iconSvg}" /></svg>`;
           }
@@ -4344,7 +4577,7 @@
         const isMuted = !!state.settings.soundMuted;
         btnToggleSound.textContent = isMuted ? 'ВЫКЛ' : 'ВКЛ';
         btnToggleSound.classList.toggle('off', isMuted);
-        soundIconIndicator.textContent = isMuted ? '🔇' : '🔊';
+        soundIconIndicator.innerHTML = isMuted ? getSvgIcon('sound_off', 18) : getSvgIcon('sound_on', 18);
       }
 
       btnToggleSound.addEventListener('click', () => {
@@ -4378,9 +4611,12 @@
         fishDisplay.textContent = formatNumber(state.meta?.fish || 0);
         yarnDisplay.textContent = formatNumber(state.meta?.yarn || 0);
 
+        // Стало:
         const clickCost = getClickUpgradeCost(state.run.clickLevel);
-        clickCostDisplay.textContent = formatNumber(clickCost);
-        clickLevelVal.textContent = state.run.clickLevel;
+        const clickPower = getClickPower(state);
+        
+        btnUpgradeClick.querySelector('.btn-title').innerHTML = `${getSvgIcon('cookie', 16)} Клик ур. <span id="click-level-val">${state.run.clickLevel}</span> (+${formatNumber(clickPower)})`;
+        btnUpgradeClick.querySelector('.btn-cost').innerHTML = `${getSvgIcon('cookie', 15)} <span id="click-cost-display">${formatNumber(clickCost)}</span>`;
 
         if (state.run.cookies >= clickCost) {
           btnUpgradeClick.classList.add('can-afford');
@@ -4504,9 +4740,9 @@
           const canPrestige = rewardStars > 0;
           if (doPrestigeBtn) doPrestigeBtn.disabled = !canPrestige;
           if (doPrestigeText) {
-            doPrestigeText.textContent = canPrestige 
-              ? `⭐ Переехать и получить +${rewardStars} Звёзд` 
-              : `До следующей Звезды: ${formatNumber(neededToNext)} 🐾`;
+            doPrestigeText.innerHTML = canPrestige 
+              ? `${getSvgIcon('star', 15)} Переехать и получить +${rewardStars} Звёзд` 
+              : `До следующей Звезды: ${formatNumber(neededToNext)} ${getSvgIcon('cookie', 14)}`;
           }
         }
 
@@ -4549,7 +4785,7 @@
             const costSpan = btn.querySelector('.btn-buy-cost');
 
             if (countSpan) countSpan.textContent = `+${count}`;
-            if (costSpan) costSpan.innerHTML = `🐾 ${formatNumber(cost)}`;
+            if (costSpan) costSpan.innerHTML = `${getSvgIcon('cookie', 14)} ${formatNumber(cost)}`;
 
             if (canAfford) {
               card.classList.add('can-afford');

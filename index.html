@@ -392,12 +392,19 @@ window.getSvgIcon = getSvgIcon;
     /* Кольцо Лихорадки и котик */
     .dough-fever-wrapper {
       position: relative;
-      width: min(210px, 47vw);
-      height: min(210px, 47vw);
+      width: 240px;
+      height: 240px;
+      max-width: 58vw;
+      max-height: 58vw;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      cursor: pointer;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
     }
 
     .fever-ring {
@@ -427,10 +434,9 @@ window.getSvgIcon = getSvgIcon;
     }
 
     .cat-bun-entity {
-      width: 84%;
-      height: 84%;
-      cursor: pointer;
-      touch-action: manipulation;
+      width: 78%;
+      height: 78%;
+      pointer-events: none;
       transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
       display: flex;
       align-items: center;
@@ -444,6 +450,7 @@ window.getSvgIcon = getSvgIcon;
       width: 100%;
       height: 100%;
       overflow: visible;
+      pointer-events: none;
       filter: drop-shadow(0 8px 16px rgba(52, 34, 26, 0.18));
     }
 
@@ -1663,49 +1670,84 @@ window.getSvgIcon = getSvgIcon;
     }
 
     /* Интерактивная посылка-сюрприз */
-    .surprise-box-entity {
+    .mystery-box {
       position: absolute;
-      width: 52px;
-      height: 52px;
-      z-index: 45;
+      top: 18%;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
       touch-action: manipulation;
-      filter: drop-shadow(0 6px 14px rgba(255, 87, 34, 0.4));
-      animation: boxBounce 0.7s infinite alternate ease-in-out;
-      transform-origin: bottom center;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      background: transparent;
+      box-shadow: none;
+      border: none;
+      padding: 0;
+      animation: boxFloat 0.8s infinite alternate ease-in-out;
     }
 
-    @keyframes boxBounce {
-      0% { transform: translateY(0) scale(1, 1); }
-      100% { transform: translateY(-8px) scale(0.97, 1.03) rotate(3deg); }
+    .mystery-box.hidden {
+      display: none !important;
+      opacity: 0;
+      pointer-events: none;
     }
 
-    .surprise-box-entity.shake {
-      animation: boxShake 0.25s ease-out !important;
+    .box-inner {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      box-shadow: none;
     }
 
-    @keyframes boxShake {
-      0%, 100% { transform: scale(1.15) rotate(0); }
-      25% { transform: scale(1.15) rotate(-8deg); }
-      75% { transform: scale(1.15) rotate(8deg); }
+    .box-inner svg {
+      width: 48px;
+      height: 48px;
+      display: block;
+      pointer-events: none;
     }
 
-    .box-tap-indicator {
+    .box-badge-taps {
       position: absolute;
-      top: -6px;
-      right: -4px;
-      background: #ff5722;
-      color: #fff;
-      font-size: 0.65rem;
-      font-weight: 900;
-      width: 19px;
-      height: 19px;
+      top: -2px;
+      right: -2px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
+      font-size: 11px;
+      font-weight: 800;
+      background: #ff4757;
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
       border: 2px solid #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+      pointer-events: none;
+    }
+
+    .mystery-box.shake {
+      animation: boxShakeSide 0.25s ease-out !important;
+    }
+
+    @keyframes boxFloat {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-8px) scale(0.97, 1.03) rotate(3deg); }
+    }
+
+    @keyframes boxShakeSide {
+      0%, 100% { transform: scale(1.15) rotate(0); }
+      25% { transform: scale(1.15) rotate(-9deg); }
+      75% { transform: scale(1.15) rotate(9deg); }
     }
 
     .confetti-piece {
@@ -1713,7 +1755,7 @@ window.getSvgIcon = getSvgIcon;
       width: 8px;
       height: 8px;
       pointer-events: none;
-      z-index: 70;
+      z-index: 95;
       border-radius: 2px;
       animation: confettiExplode 0.65s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     }
@@ -1721,6 +1763,24 @@ window.getSvgIcon = getSvgIcon;
     @keyframes confettiExplode {
       0% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
       100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.4) rotate(var(--rot)); }
+    }
+
+    .box-reward-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--color-bg-secondary);
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 14px;
+      border: 1.5px solid var(--color-border);
+      align-self: center;
+    }
+
+    .box-reward-val {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--color-primary);
     }
   </style>
 </head>
@@ -1901,13 +1961,13 @@ window.getSvgIcon = getSvgIcon;
 
       <div id="floating-container" class="floating-container"></div>
 
-      <div id="fever-wrapper" class="dough-fever-wrapper">
+      <div id="fever-wrapper" class="dough-fever-wrapper" role="button" tabindex="0" aria-label="Размять котика-пекаря">
         <svg class="fever-ring" viewBox="0 0 240 240">
           <circle class="ring-bg" cx="120" cy="120" r="108" />
           <circle id="fever-ring-progress" class="ring-fill" cx="120" cy="120" r="108" />
         </svg>
 
-        <div id="dough-target" class="cat-bun-entity" role="button" tabindex="0" aria-label="Размять котика-пекаря">
+        <div id="dough-target" class="cat-bun-entity">
           <svg id="cat-svg" class="cat-bun-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <radialGradient id="catBodyGrad" cx="46%" cy="38%" r="65%">
@@ -2031,6 +2091,36 @@ window.getSvgIcon = getSvgIcon;
         <div id="tab-content-wardrobe" class="tab-pane"></div>
       </div>
     </section>
+    <!-- Плавающая посылка-сюрприз -->
+    <div id="mystery-box" class="mystery-box hidden">
+      <div class="box-inner">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style="filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18));">
+          <rect x="3" y="10" width="18" height="11" rx="2" fill="#e67e22"/>
+          <rect x="2" y="7" width="20" height="4" rx="1.5" fill="#d35400"/>
+          <rect x="10.5" y="7" width="3" height="14" fill="#f1c40f"/>
+          <path d="M12 7 C10 4 7 4 7 5.5 C7 7 12 7 12 7 Z" fill="#f1c40f"/>
+          <path d="M12 7 C14 4 17 4 17 5.5 C17 7 12 7 12 7 Z" fill="#f1c40f"/>
+        </svg>
+        <div class="box-badge-taps" id="box-taps-left">3</div>
+      </div>
+    </div>
+
+    <!-- Модальное окно получения приза из посылки -->
+    <div id="modal-box-reward" class="modal-backdrop hidden">
+      <div class="modal-card" style="text-align: center;">
+        <div id="box-reward-icon" style="margin-bottom: 6px; display: flex; justify-content: center;"></div>
+        <h2 id="box-reward-title" style="font-size: 1.2rem; font-weight: 900; margin-bottom: 6px;">Посылка от шефа!</h2>
+        <p id="box-reward-desc" style="font-size: 0.84rem; color: var(--color-text-muted); line-height: 1.35; margin-bottom: 12px;"></p>
+        <div class="box-reward-badge">
+          <span id="box-reward-badge-icon" style="display: flex; align-items: center;"></span>
+          <span id="box-reward-amount" class="box-reward-val"></span>
+        </div>
+        <button id="btn-claim-box-reward" style="background: linear-gradient(135deg, var(--color-primary), #f44336); color: #fff; border: none; padding: 11px 22px; border-radius: var(--radius-pill); font-weight: 900; font-size: 0.88rem; cursor: pointer; box-shadow: var(--shadow-pop);">
+          Забрать награду!
+        </button>
+      </div>
+    </div>
+
     <!-- Обучающее модальное окно -->
     <div id="tutorial-modal" class="modal-backdrop hidden">
       <div class="modal-card" style="text-align: center;">
@@ -2131,7 +2221,7 @@ window.getSvgIcon = getSvgIcon;
 
             <div class="devtools-grid">
               <button id="dev-unlock-wardrobe" class="dev-btn"><script>document.write(getSvgIcon('wardrobe', 13));</script> Весь гардероб</button>
-              <button id="dev-spawn-box" class="dev-btn"><script>document.write(getSvgIcon('box', 13));</script> Спавн посылки</button>
+              <button id="dev-spawn-box" class="dev-btn"><script>document.write(getSvgIcon('box', 13));</script> Призвать коробку</button>
             </div>
 
             <div class="devtools-grid">
@@ -3587,7 +3677,7 @@ window.getSvgIcon = getSvgIcon;
         }, 60);
       };
 
-      doughTarget.addEventListener('touchstart', (e) => {
+      feverWrapper.addEventListener('touchstart', (e) => {
         e.preventDefault();
         triggerSquash();
         const touches = e.targetTouches;
@@ -3598,7 +3688,7 @@ window.getSvgIcon = getSvgIcon;
         renderStaticUI();
       }, { passive: false });
 
-      doughTarget.addEventListener('pointerdown', (e) => {
+      feverWrapper.addEventListener('pointerdown', (e) => {
         if (e.pointerType === 'touch') return;
         triggerSquash();
         processTap(state, floatingContainer, e.clientX, e.clientY);
@@ -3732,10 +3822,21 @@ window.getSvgIcon = getSvgIcon;
         fish.addEventListener('pointerdown', onCatch);
       }
 
-      let activeMysteryBox = null;
+      const mysteryBoxEl = document.getElementById('mystery-box');
+      const boxTapsLeftEl = document.getElementById('box-taps-left');
+      const modalBoxReward = document.getElementById('modal-box-reward');
+      const boxRewardIcon = document.getElementById('box-reward-icon');
+      const boxRewardTitle = document.getElementById('box-reward-title');
+      const boxRewardDesc = document.getElementById('box-reward-desc');
+      const boxRewardBadgeIcon = document.getElementById('box-reward-badge-icon');
+      const boxRewardAmount = document.getElementById('box-reward-amount');
+      const btnClaimBoxReward = document.getElementById('btn-claim-box-reward');
+
+      let boxTapsRemaining = 3;
+      let boxDespawnTimeout = null;
 
       function getNextBoxIntervalSec() {
-        return 240 + Math.random() * 120;
+        return 90 + Math.random() * 50; // 90–140 сек
       }
 
       let nextBoxSpawnTimestamp = Date.now() + 1000 * getNextBoxIntervalSec();
@@ -3766,106 +3867,142 @@ window.getSvgIcon = getSvgIcon;
         }
       }
 
-      function spawnSurpriseBox() {
-        if (activeMysteryBox && activeMysteryBox.parentNode) {
-          activeMysteryBox.remove();
+      function hideMysteryBox() {
+        if (boxDespawnTimeout) {
+          clearTimeout(boxDespawnTimeout);
+          boxDespawnTimeout = null;
         }
-
-        const clickZone = document.querySelector('.click-zone');
-        if (!clickZone) return;
-
-        const box = document.createElement('div');
-        box.className = 'surprise-box-entity';
-        let tapsRemaining = 3;
-
-        box.innerHTML = `
-          <svg viewBox="0 0 64 64" style="width:100%;height:100%;overflow:visible;">
-            <defs>
-              <linearGradient id="boxRibbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#FFE082" />
-                <stop offset="100%" stop-color="#FF9800" />
-              </linearGradient>
-            </defs>
-            <rect x="8" y="24" width="48" height="34" rx="6" fill="#E11D48" stroke="#881337" stroke-width="3" />
-            <rect x="5" y="16" width="54" height="12" rx="4" fill="#BE123C" stroke="#881337" stroke-width="3" />
-            <rect x="27" y="16" width="10" height="42" fill="url(#boxRibbonGrad)" />
-            <path d="M 32 16 C 22 2 12 12 30 16 Z" fill="url(#boxRibbonGrad)" stroke="#B45309" stroke-width="1.5" />
-            <path d="M 32 16 C 42 2 52 12 34 16 Z" fill="url(#boxRibbonGrad)" stroke="#B45309" stroke-width="1.5" />
-            <circle cx="32" cy="16" r="4.5" fill="#FDE047" stroke="#B45309" stroke-width="1.5" />
-          </svg>
-          <div class="box-tap-indicator">${tapsRemaining}</div>
-        `;
-
-        const onRight = Math.random() > 0.45;
-        box.style.bottom = '10px';
-        box.style.top = 'auto';
-        if (onRight) {
-          box.style.right = '18px';
-          box.style.left = 'auto';
-        } else {
-          box.style.left = '18px';
-          box.style.right = 'auto';
-        }
-
-        clickZone.appendChild(box);
-        activeMysteryBox = box;
-
-        const timeoutId = setTimeout(() => {
-          if (activeMysteryBox === box) {
-            box.remove();
-            activeMysteryBox = null;
-          }
-        }, 28000);
-
-        box.addEventListener('pointerdown', (e) => {
-          e.stopPropagation();
-          e.preventDefault();
-          tapsRemaining--;
-
-          box.classList.remove('shake');
-          void box.offsetWidth;
-          box.classList.add('shake');
-
-          SoundFX.playClick(state.settings.soundMuted);
-
-          const badge = box.querySelector('.box-tap-indicator');
-          if (badge) badge.textContent = tapsRemaining;
-
-          if (tapsRemaining <= 0) {
-            clearTimeout(timeoutId);
-            const rect = box.getBoundingClientRect();
-            const rootRect = appRoot.getBoundingClientRect();
-            triggerConfetti(rect.left - rootRect.left + 26, rect.top - rootRect.top + 26);
-
-            box.remove();
-            activeMysteryBox = null;
-            SoundFX.playFever(state.settings.soundMuted);
-
-            const p = Math.random();
-            if (p < 0.50) {
-              const jackpot = Math.max(100, Math.floor(calculateTotalRate(state) * 300));
-              state.run.cookies += jackpot;
-              state.run.lifetimeCookiesRun += jackpot;
-              state.stats.totalCookiesAllTime += jackpot;
-              showGenericToast('🎁', 'Посылка доставлена!', 'Куш свежей выпечки!', `+${formatNumber(jackpot)} 🐾`);
-            } else if (p < 0.75) {
-              const droppedYarn = 1 + Math.floor(Math.random() * 3);
-              state.meta.yarn += droppedYarn;
-              showGenericToast('🧶', 'Посылка доставлена!', 'Зелёные клубки пряжи!', `+${droppedYarn} ${getYarnIconSvg(18)}`);
-            } else if (p < 0.90) {
-              state.meta.fish += 2;
-              showGenericToast('🐟', 'Посылка доставлена!', 'Две золотые рыбки!', `+2 ${getFishIconSvg(18)}`);
-            } else {
-              triggerFeverMode(state);
-              const dur = Math.round(getMaxFeverDuration(state));
-              showGenericToast('⚡', 'Посылка доставлена!', 'Сверхактивная Лихорадка!', `${dur} сек утроенного клика!`);
-            }
-
-            saveToLocal(state);
-            renderStaticUI();
-          }
-        });
+        mysteryBoxEl.classList.add('hidden');
+        mysteryBoxEl.classList.remove('shake');
+        nextBoxSpawnTimestamp = Date.now() + 1000 * getNextBoxIntervalSec();
       }
+
+      function spawnSurpriseBox() {
+        if (!mysteryBoxEl) return;
+        if (!mysteryBoxEl.classList.contains('hidden')) return;
+
+        if (mysteryBoxEl.parentElement !== appRoot) {
+          appRoot.appendChild(mysteryBoxEl);
+        }
+
+        boxTapsRemaining = 3;
+        boxTapsLeftEl.textContent = '3';
+
+        const spawnRight = Math.random() > 0.5;
+        mysteryBoxEl.style.top = '18%';
+        mysteryBoxEl.style.bottom = 'auto';
+        if (spawnRight) {
+          mysteryBoxEl.style.right = '24px';
+          mysteryBoxEl.style.left = 'auto';
+        } else {
+          mysteryBoxEl.style.left = '24px';
+          mysteryBoxEl.style.right = 'auto';
+        }
+
+        mysteryBoxEl.classList.remove('hidden');
+
+        boxDespawnTimeout = setTimeout(() => {
+          hideMysteryBox();
+        }, 20000); // 20 сек
+      }
+
+      function openMysteryBoxReward() {
+        const rect = mysteryBoxEl.getBoundingClientRect();
+        const rootRect = appRoot.getBoundingClientRect();
+        triggerConfetti(rect.left - rootRect.left + 27, rect.top - rootRect.top + 27);
+
+        hideMysteryBox();
+        SoundFX.playFever(state.settings.soundMuted);
+
+        const roll = Math.random();
+        let claimCallback = null;
+
+        if (roll < 0.55) {
+          // 55% Куш печенек (180–300 сек пассивного дохода или клика)
+          const duration = 180 + Math.floor(Math.random() * 120);
+          const rate = calculateTotalRate(state);
+          const clickVal = getClickPower(state);
+          const prize = Math.max(150, (rate > 0 ? rate * duration : clickVal * 60));
+
+          boxRewardIcon.innerHTML = getSvgIcon('cookie', 42);
+          boxRewardTitle.textContent = 'Горячий куш выпечки!';
+          boxRewardDesc.textContent = `Шеф-кондитер прислал вам огромную партию свежего печенья за ${Math.round(duration / 60)} мин работы!`;
+          boxRewardBadgeIcon.innerHTML = getSvgIcon('cookie', 22);
+          boxRewardAmount.textContent = `+${formatNumber(prize)}`;
+
+          claimCallback = () => {
+            state.run.cookies += prize;
+            state.run.lifetimeCookiesRun += prize;
+            state.stats.totalCookiesAllTime += prize;
+          };
+        } else if (roll < 0.80) {
+          // 25% Клубки пряжи (2–4 шт.)
+          const yarnCount = 2 + Math.floor(Math.random() * 3);
+
+          boxRewardIcon.innerHTML = getSvgIcon('wardrobe', 42);
+          boxRewardTitle.textContent = 'Зелёные клубки пряжи!';
+          boxRewardDesc.textContent = 'Ценнейший материал для гардероба котика! Открывайте новые шапочки и украшения!';
+          boxRewardBadgeIcon.innerHTML = getYarnIconSvg(22);
+          boxRewardAmount.textContent = `+${yarnCount}`;
+
+          claimCallback = () => {
+            state.meta.yarn += yarnCount;
+          };
+        } else if (roll < 0.92) {
+          // 12% Золотая рыбка (1–2 шт.)
+          const fishCount = Math.random() < 0.75 ? 1 : 2;
+
+          boxRewardIcon.innerHTML = getFishIconSvg(42);
+          boxRewardTitle.textContent = 'Золотая рыбка!';
+          boxRewardDesc.textContent = 'Редчайшая валюта для покупки постоянных улучшений в Лавке редкостей!';
+          boxRewardBadgeIcon.innerHTML = getFishIconSvg(22);
+          boxRewardAmount.textContent = `+${fishCount}`;
+
+          claimCallback = () => {
+            state.meta.fish += fishCount;
+          };
+        } else {
+          // 8% Мгновенная Лихорадка (Fever)
+          const dur = Math.round(getMaxFeverDuration(state));
+
+          boxRewardIcon.innerHTML = getSvgIcon('lightning', 42);
+          boxRewardTitle.textContent = 'Режим Лихорадки!';
+          boxRewardDesc.textContent = `Мгновенный всплеск вдохновения! Утроенная сила клика на целых ${dur} секунд!`;
+          boxRewardBadgeIcon.innerHTML = getSvgIcon('lightning', 22);
+          boxRewardAmount.textContent = `${dur} сек`;
+
+          claimCallback = () => {
+            triggerFeverMode(state);
+          };
+        }
+
+        modalBoxReward.classList.remove('hidden');
+
+        btnClaimBoxReward.onclick = () => {
+          if (claimCallback) claimCallback();
+          modalBoxReward.classList.add('hidden');
+          SoundFX.playBuy(state.settings.soundMuted);
+          saveToLocal(state);
+          renderStaticUI();
+        };
+      }
+
+      mysteryBoxEl.addEventListener('pointerdown', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+
+        boxTapsRemaining--;
+        mysteryBoxEl.classList.remove('shake');
+        void mysteryBoxEl.offsetWidth;
+        mysteryBoxEl.classList.add('shake');
+
+        SoundFX.playClick(state.settings.soundMuted);
+        boxTapsLeftEl.textContent = String(boxTapsRemaining);
+
+        if (boxTapsRemaining <= 0) {
+          openMysteryBoxReward();
+        }
+      });
       /* Обработчики Super-DevTools */
       devAdd100k.addEventListener('click', () => {
         const bonus = 100000;
@@ -3934,7 +4071,10 @@ window.getSvgIcon = getSvgIcon;
       });
 
       devSpawnFish.addEventListener('click', () => spawnFlyingFish());
-      devSpawnBox.addEventListener('click', () => spawnSurpriseBox());
+      devSpawnBox.addEventListener('click', () => {
+        if (typeof hideMysteryBox === 'function') hideMysteryBox();
+        spawnSurpriseBox();
+      });
 
       devLoc0.addEventListener('click', () => {
         state.meta.prestigeCount = 0;
@@ -4689,7 +4829,6 @@ window.getSvgIcon = getSvgIcon;
 
         if (nowMs >= nextBoxSpawnTimestamp) {
           spawnSurpriseBox();
-          nextBoxSpawnTimestamp = nowMs + 1000 * getNextBoxIntervalSec();
         }
 
         saveAccumulator += dt;

@@ -109,9 +109,10 @@ window.getSvgIcon = getSvgIcon;
 
     /* Стили фонов и тем для 6 филиалов (Глубокие градиенты и стеклянный глянец) */
     .bg-loc-kitchen, .theme-bakery-0 {
-      --color-bg: #fff7ee !important;
-      --color-bg-secondary: #faede0 !important;
+      --color-bg: #fff9f2 !important;
+      --color-bg-secondary: #fceee0 !important;
       --color-primary: #ff5722 !important;
+      background: radial-gradient(120% 90% at 50% 15%, #ffffff 0%, #fff7ec 55%, #fbe8d5 100%) !important;
       position: relative;
     }
     .bg-loc-kitchen::before {
@@ -119,11 +120,7 @@ window.getSvgIcon = getSvgIcon;
       position: absolute;
       inset: 0;
       pointer-events: none;
-      /* Четкая уютная керамическая плитка с видимым теплым швом */
-      background-image: 
-        linear-gradient(rgba(234, 179, 8, 0.28) 1.5px, transparent 1.5px),
-        linear-gradient(90deg, rgba(234, 179, 8, 0.28) 1.5px, transparent 1.5px);
-      background-size: 26px 26px;
+      background: radial-gradient(circle at 50% 40%, rgba(255, 237, 213, 0.5) 0%, transparent 75%);
       opacity: 1 !important;
     }
 
@@ -548,6 +545,11 @@ window.getSvgIcon = getSvgIcon;
       display: flex;
       flex-direction: column;
       gap: 3px;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+    .top-bar-currencies:active {
+      transform: scale(0.96);
     }
 
     .currency-badge {
@@ -799,7 +801,6 @@ window.getSvgIcon = getSvgIcon;
       flex-shrink: 0;
       cursor: pointer;
       touch-action: manipulation;
-      -webkit-tap-highlight-color: transparent;
       user-select: none;
     }
 
@@ -3032,6 +3033,48 @@ window.getSvgIcon = getSvgIcon;
       </div>
     </div>
 
+    <!-- Модальное окно справки по валютам -->
+    <div id="currencies-guide-modal" class="modal-backdrop hidden">
+      <div class="modal-card">
+        <div class="modal-header-row">
+          <div class="modal-title-wrap">
+            <script>document.write(getSvgIcon('star', 18));</script>
+            <span>Валюты пекарни</span>
+          </div>
+          <button id="btn-close-currencies-guide" class="btn-close-modal">✕</button>
+        </div>
+        <div class="modal-scroll-body" style="gap: 10px;">
+          <div class="achievement-item" style="background:#fffbeb; border-color:#fde68a;">
+            <div class="ach-left">
+              <div class="ach-icon" style="filter:none; opacity:1;"><script>document.write(getSvgIcon('star', 26));</script></div>
+              <div class="ach-texts">
+                <span class="ach-title" style="color:#b45309;">Звёзды Мишлен</span>
+                <span class="ach-desc">Выдаются за открытие новых филиалов пекарни во вкладке «Филиал». Постоянно увеличивают силу лапки и выпечку всех поваров.</span>
+              </div>
+            </div>
+          </div>
+          <div class="achievement-item" style="background:#fefce8; border-color:#fef08a;">
+            <div class="ach-left">
+              <div class="ach-icon" style="filter:none; opacity:1;"><svg class="icon-svg-badge" width="26" height="26" viewBox="0 0 24 24"><use href="#universal-gold-fish" /></svg></div>
+              <div class="ach-texts">
+                <span class="ach-title" style="color:#854d0e;">Золотые рыбки</span>
+                <span class="ach-desc">Ловите пролетающих рыбок над пекарней и закрывайте срочные контракты. Тратятся в «Лавке» на редкие артефакты.</span>
+              </div>
+            </div>
+          </div>
+          <div class="achievement-item" style="background:#f0fdf4; border-color:#bbf7d0;">
+            <div class="ach-left">
+              <div class="ach-icon" style="filter:none; opacity:1;"><svg class="icon-svg-badge" width="26" height="26" viewBox="0 0 24 24"><use href="#universal-yarn-ball" /></svg></div>
+              <div class="ach-texts">
+                <span class="ach-title" style="color:#166534;">Клубки пряжи</span>
+                <span class="ach-desc">Добываются поглаживанием котика, из посылок-сюрпризов и лопанием радужных пузырей. Открывают наряды в «Гардеробе».</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Модальное окно достижений -->
     <div id="achievements-modal" class="modal-backdrop hidden">
       <div class="modal-card">
@@ -3217,8 +3260,8 @@ window.getSvgIcon = getSvgIcon;
       cpsMultiplier: 2.0,
       clickBonus: 5,
       bgClass: 'bg-loc-cafe',
-      ringColor: '#8c4b18',
-      ringFilter: 'drop-shadow(0 2px 12px rgba(140, 75, 24, 0.45))',
+      ringColor: '#d97706',
+      ringFilter: 'drop-shadow(0 2px 14px rgba(217, 119, 6, 0.45))',
       rewardItem: { head: 'chef_hat_2', neck: 'red_bowtie' }
     },
     {
@@ -3606,12 +3649,11 @@ window.getSvgIcon = getSvgIcon;
           desc: 'Пульсирующее кольцо космической энергии с парящими вокруг звездами',
           svg: `
             <g id="acc-astral_halo">
-              <!-- Статичное кольцо туманности -->
-              <ellipse cx="100" cy="18" rx="44" ry="12" fill="none" stroke="#c084fc" stroke-width="3" 
+              <!-- Опущен ближе к макушке котика (y: 25) -->
+              <ellipse cx="100" cy="25" rx="44" ry="12" fill="none" stroke="#c084fc" stroke-width="3" 
                        stroke-dasharray="12,6" filter="drop-shadow(0 0 10px rgba(192,132,252,0.95))" />
               
-              <!-- Звёздные шарики, движущиеся строго по овалу нимба -->
-              <g transform="translate(100, 18)">
+              <g transform="translate(100, 25)">
                 <g class="astral-star-node">
                   <circle cx="0" cy="0" r="3.6" fill="#ffffff" filter="drop-shadow(0 0 6px #fff)" />
                 </g>
@@ -5143,10 +5185,11 @@ window.getSvgIcon = getSvgIcon;
       });
 
       feverWrapper.addEventListener('touchmove', (e) => {
+        e.preventDefault();
         if (isPointerDownOnCat && e.touches[0]) {
           handleCatStroke(e.touches[0].clientX, e.touches[0].clientY);
         }
-      }, { passive: true });
+      }, { passive: false });
 
       btnUpgradeClick.addEventListener('click', () => {
         if (buyClickUpgrade(state)) {
@@ -5241,13 +5284,10 @@ window.getSvgIcon = getSvgIcon;
               <div id="order-mini-fill" class="order-mini-fill"></div>
             </div>
           `;
-          const handleOpen = (e) => {
+          badge.addEventListener('click', (e) => {
             e.stopPropagation();
-            e.preventDefault();
             openOrderModal();
-          };
-          badge.addEventListener('pointerdown', handleOpen);
-          badge.addEventListener('click', handleOpen);
+          });
           const clickZone = document.querySelector('.click-zone');
           if (clickZone) clickZone.appendChild(badge);
         }
@@ -5767,17 +5807,17 @@ window.getSvgIcon = getSvgIcon;
         let claimCallback = null;
 
         if (roll < 0.50) {
-          // 50%: Мешок муки (Софт-кап: не более 120с CPS и не более 10% от текущего банка)
+          // 50%: Щедрый мешок муки (350–500 сек текущего пассивного дохода)
           const currentCps = calculateTotalRate(state);
           const currentClick = getClickPower(state);
-          let rawPrize = currentCps > 0
-            ? Math.min(currentCps * 120, Math.max(150, Math.floor(state.run.cookies * 0.10)))
-            : Math.max(50, currentClick * 25);
-          const prize = Math.max(50, Math.floor(rawPrize));
+          const secondsYield = 350 + Math.random() * 150;
+          const prize = currentCps > 0
+            ? Math.max(300, Math.floor(currentCps * secondsYield))
+            : Math.max(100, currentClick * 80);
 
           boxRewardIcon.innerHTML = getSvgIcon('cookie', 48);
           boxRewardTitle.textContent = 'Куш пекарни!';
-          boxRewardDesc.textContent = 'В коробке оказался отборный мешок муки! Аккуратный запас свежего теста!';
+          boxRewardDesc.textContent = 'В коробке оказался отборный запас муки высшего сорта от шефа!';
           boxRewardBadgeIcon.innerHTML = getSvgIcon('cookie', 22);
           boxRewardAmount.textContent = `+${formatNumber(prize)} печенек`;
 
@@ -6694,17 +6734,33 @@ window.getSvgIcon = getSvgIcon;
         renderStaticUI();
       });
 
+      const currenciesGuideModal = document.getElementById('currencies-guide-modal');
+      const btnCloseCurrenciesGuide = document.getElementById('btn-close-currencies-guide');
+      const topBarCurrencies = document.querySelector('.top-bar-currencies');
+
+      if (topBarCurrencies && currenciesGuideModal) {
+        topBarCurrencies.addEventListener('click', () => {
+          currenciesGuideModal.classList.remove('hidden');
+          SoundFX.playClick(state.settings?.soundMuted);
+        });
+      }
+
+      if (btnCloseCurrenciesGuide && currenciesGuideModal) {
+        btnCloseCurrenciesGuide.addEventListener('click', () => {
+          currenciesGuideModal.classList.add('hidden');
+        });
+      }
+
       function renderStaticUI() {
         starsDisplay.textContent = formatNumber(state.meta?.stars || 0);
         fishDisplay.textContent = formatNumber(state.meta?.fish || 0);
         yarnDisplay.textContent = formatNumber(state.meta?.yarn || 0);
 
-        // Стало:
         const clickCost = getClickUpgradeCost(state.run.clickLevel);
         const clickPower = getClickPower(state);
         
-        btnUpgradeClick.querySelector('.btn-title').innerHTML = `${getSvgIcon('cookie', 16)} Клик ур. <span id="click-level-val">${state.run.clickLevel}</span> (+${formatNumber(clickPower)})`;
-        btnUpgradeClick.querySelector('.btn-cost').innerHTML = `${getSvgIcon('cookie', 15)} <span id="click-cost-display">${formatNumber(clickCost)}</span>`;
+        btnUpgradeClick.querySelector('.btn-title').innerHTML = `${getSvgIcon('paw', 15)} Лапка ур. <span id="click-level-val">${state.run.clickLevel}</span> (+${formatNumber(clickPower)})`;
+        btnUpgradeClick.querySelector('.btn-cost').innerHTML = `${getSvgIcon('cookie', 14)} <span id="click-cost-display">${formatNumber(clickCost)}</span>`;
 
         if (state.run.cookies >= clickCost) {
           btnUpgradeClick.classList.add('can-afford');

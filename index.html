@@ -482,6 +482,134 @@ window.getSvgIcon = getSvgIcon;
       --radius-pill: 999px;
 
       --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+      /* Базовые переменные окраса котика */
+      --cat-body-c1: #FFFDF9;
+      --cat-body-c2: #FEDAC2;
+      --cat-body-c3: #F7B794;
+      --cat-body-c4: #DE9168;
+      --cat-belly: #fffbf5;
+      --cat-ear-inner: #ffb4b4;
+      --cat-paw-pad: #FFB3BA;
+      --cat-nose: #E11D48;
+      --cat-blush: #FDA4AF;
+      --cat-line: #3d2314;
+    }
+
+    /* 6 скинов котика */
+    .cat-skin-default {
+      --cat-body-c1: #FFFDF9;
+      --cat-body-c2: #FEDAC2;
+      --cat-body-c3: #F7B794;
+      --cat-body-c4: #DE9168;
+      --cat-belly: #fffbf5;
+      --cat-ear-inner: #ffb4b4;
+      --cat-paw-pad: #FFB3BA;
+      --cat-nose: #E11D48;
+      --cat-blush: #FDA4AF;
+      --cat-line: #3d2314;
+    }
+
+    .cat-skin-pink {
+      --cat-body-c1: #FFF1F2;
+      --cat-body-c2: #FCE7F3;
+      --cat-body-c3: #FBCFE8;
+      --cat-body-c4: #F472B6;
+      --cat-belly: #FFF1F2;
+      --cat-ear-inner: #FDA4AF;
+      --cat-paw-pad: #F472B6;
+      --cat-nose: #BE185D;
+      --cat-blush: #FDA4AF;
+      --cat-line: #4A044E;
+    }
+
+    .cat-skin-black {
+      --cat-body-c1: #F1F5F9;
+      --cat-body-c2: #E2E8F0;
+      --cat-body-c3: #CBD5E1;
+      --cat-body-c4: #94A3B8;
+      --cat-belly: #F8FAFC;
+      --cat-ear-inner: #FB7185;
+      --cat-paw-pad: #FB7185;
+      --cat-nose: #FB7185;
+      --cat-blush: #FDA4AF;
+      --cat-line: #334155;
+    }
+
+    .cat-skin-ginger,
+    .cat-skin-orange {
+      --cat-body-c1: #FFFBEB;
+      --cat-body-c2: #FFEDD5;
+      --cat-body-c3: #FED7AA;
+      --cat-body-c4: #FB923C;
+      --cat-belly: #FFFBEB;
+      --cat-ear-inner: #FCA5A5;
+      --cat-paw-pad: #FB923C;
+      --cat-nose: #9A3412;
+      --cat-blush: #FDA4AF;
+      --cat-line: #7C2D12;
+    }
+
+    .cat-skin-blue {
+      --cat-body-c1: #F0F9FF;
+      --cat-body-c2: #E0F2FE;
+      --cat-body-c3: #BAE6FD;
+      --cat-body-c4: #7DD3FC;
+      --cat-belly: #F0F9FF;
+      --cat-ear-inner: #FDA4AF;
+      --cat-paw-pad: #F472B6;
+      --cat-nose: #0284C7;
+      --cat-blush: #FDA4AF;
+      --cat-line: #0C4A6E;
+    }
+
+    .cat-skin-green {
+      --cat-body-c1: #F7FEE7;
+      --cat-body-c2: #ECFCCB;
+      --cat-body-c3: #BBF7D0;
+      --cat-body-c4: #86EFAC;
+      --cat-belly: #F7FEE7;
+      --cat-ear-inner: #FECDD3;
+      --cat-paw-pad: #F472B6;
+      --cat-nose: #15803D;
+      --cat-blush: #FDA4AF;
+      --cat-line: #14532D;
+    }
+
+    /* Селектор палитры скинов в гардеробе */
+    .skin-palette-selector {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--color-bg-secondary);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      gap: 6px;
+    }
+
+    .skin-circle-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      outline: 2px solid transparent;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: transform 0.12s ease, outline-color 0.15s ease;
+      position: relative;
+    }
+
+    .skin-circle-btn:active {
+      transform: scale(0.9);
+    }
+
+    .skin-circle-btn.active {
+      outline-color: var(--color-primary);
+      transform: scale(1.12);
+      box-shadow: 0 0 12px var(--color-coral-shadow);
     }
     *, *::before, *::after {
       box-sizing: border-box;
@@ -2873,10 +3001,10 @@ window.getSvgIcon = getSvgIcon;
           <svg id="cat-svg" class="cat-bun-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <radialGradient id="catBodyGrad" cx="46%" cy="38%" r="65%">
-                <stop offset="0%" stop-color="#FFFDF9" />
-                <stop offset="35%" stop-color="#FEDAC2" />
-                <stop offset="78%" stop-color="#F7B794" />
-                <stop offset="100%" stop-color="#DE9168" />
+                <stop offset="0%" stop-color="var(--cat-body-c1, #FFFDF9)" />
+                <stop offset="35%" stop-color="var(--cat-body-c2, #FEDAC2)" />
+                <stop offset="78%" stop-color="var(--cat-body-c3, #F7B794)" />
+                <stop offset="100%" stop-color="var(--cat-body-c4, #DE9168)" />
               </radialGradient>
               <linearGradient id="goldAccMedalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="#FDE047" />
@@ -2885,66 +3013,66 @@ window.getSvgIcon = getSvgIcon;
               </linearGradient>
             </defs>
 
-            <!-- ЧИСТЫЙ КОТИК БЕЗ ПОСТОРОННИХ ТЕНЕЙ -->
-
-            <!-- СЛОЙ 1: ВЫВЕРЕННЫЕ КОШАЧЬИ УШКИ -->
+            <!-- СЛОЙ 1: ЧЕТКИЕ УПРУГИЕ ТРЕУГОЛЬНЫЕ УШКИ (45 ГРАДУСОВ НАРУЖУ) -->
             <g id="cat-ears">
-              <path d="M 38 104 C 30 78, 36 44, 52 32 C 70 42, 82 72, 86 102 Z" 
-                    fill="url(#catBodyGrad)" stroke="#3d2314" stroke-width="4" stroke-linejoin="round" />
-              <path d="M 46 96 C 40 76, 44 50, 54 42 C 68 50, 74 72, 76 94 Z" 
-                    fill="#ffb4b4" />
+              <!-- Левое треугольное ушко -->
+              <path d="M 38 90 L 49 56 Q 52 51 57 54 L 75 78 Z" 
+                    fill="url(#catBodyGrad)" stroke="var(--cat-line, #3d2314)" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round" />
+              <path d="M 43 83 L 50 61 Q 52 58 55 60 L 68 76 Z" 
+                    fill="var(--cat-ear-inner, #ffb4b4)" />
 
-              <path d="M 162 104 C 170 78, 164 44, 148 32 C 130 42, 118 72, 114 102 Z" 
-                    fill="url(#catBodyGrad)" stroke="#3d2314" stroke-width="4" stroke-linejoin="round" />
-              <path d="M 154 96 C 160 76, 156 50, 146 42 C 132 50, 126 72, 124 94 Z" 
-                    fill="#ffb4b4" />
+              <!-- Правое треугольное ушко -->
+              <path d="M 162 90 L 151 56 Q 148 51 143 54 L 125 78 Z" 
+                    fill="url(#catBodyGrad)" stroke="var(--cat-line, #3d2314)" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round" />
+              <path d="M 157 83 L 150 61 Q 148 58 145 60 L 132 76 Z" 
+                    fill="var(--cat-ear-inner, #ffb4b4)" />
             </g>
 
             <!-- СЛОЙ 2: ГОЛОВА-БУЛОЧКА С ПУЗИКОМ -->
-            <circle cx="100" cy="116" r="68" fill="url(#catBodyGrad)" stroke="#3d2314" stroke-width="4" />
-            <ellipse cx="100" cy="144" rx="46" ry="32" fill="#fffbf5" />
+            <circle cx="100" cy="116" r="68" fill="url(#catBodyGrad)" stroke="var(--cat-line, #3d2314)" stroke-width="4" />
+            <ellipse cx="100" cy="144" rx="46" ry="32" fill="var(--cat-belly, #fffbf5)" />
 
             <!-- СЛОЙ 3: МОРДОЧКА, ЩЕЧКИ И УСИКИ -->
             <g id="cat-eyes-awake">
-              <path d="M 72 108 Q 82 100 90 108" fill="none" stroke="#3d2314" stroke-width="3.5" stroke-linecap="round" />
-              <path d="M 110 108 Q 118 100 128 108" fill="none" stroke="#3d2314" stroke-width="3.5" stroke-linecap="round" />
-              <path d="M 74 100 Q 82 95 88 100" fill="none" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" />
-              <path d="M 112 100 Q 118 95 126 100" fill="none" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" />
+              <path d="M 72 108 Q 82 100 90 108" fill="none" stroke="var(--cat-line, #3d2314)" stroke-width="3.5" stroke-linecap="round" />
+              <path d="M 110 108 Q 118 100 128 108" fill="none" stroke="var(--cat-line, #3d2314)" stroke-width="3.5" stroke-linecap="round" />
+              <path d="M 74 100 Q 82 95 88 100" fill="none" stroke="var(--cat-line, #3d2314)" stroke-width="2.2" stroke-linecap="round" />
+              <path d="M 112 100 Q 118 95 126 100" fill="none" stroke="var(--cat-line, #3d2314)" stroke-width="2.2" stroke-linecap="round" />
             </g>
             <g id="cat-eyes-asleep">
-              <line x1="72" y1="106" x2="88" y2="106" stroke="#3d2314" stroke-width="3.5" stroke-linecap="round" />
-              <line x1="112" y1="106" x2="128" y2="106" stroke="#3d2314" stroke-width="3.5" stroke-linecap="round" />
+              <line x1="72" y1="106" x2="88" y2="106" stroke="var(--cat-line, #3d2314)" stroke-width="3.5" stroke-linecap="round" />
+              <line x1="112" y1="106" x2="128" y2="106" stroke="var(--cat-line, #3d2314)" stroke-width="3.5" stroke-linecap="round" />
             </g>
 
-            <path d="M 100 114 C 98 109 93 109 95 114 C 97 117 100 120 100 120 C 100 120 103 117 105 114 C 107 109 102 109 100 114 Z" fill="#E11D48" />
+            <path d="M 100 114 C 98 109 93 109 95 114 C 97 117 100 120 100 120 C 100 120 103 117 105 114 C 107 109 102 109 100 114 Z" fill="var(--cat-nose, #E11D48)" />
 
-            <path d="M 94 122 Q 100 126 100 122 Q 100 126 106 122" fill="none" stroke="#3d2314" stroke-width="3" stroke-linecap="round" />
+            <path d="M 94 122 Q 100 126 100 122 Q 100 126 106 122" fill="none" stroke="var(--cat-line, #3d2314)" stroke-width="3" stroke-linecap="round" />
 
-            <ellipse cx="64" cy="118" rx="11" ry="6.5" fill="#ff9ea8" opacity="0.6" />
-            <ellipse cx="136" cy="118" rx="11" ry="6.5" fill="#ff9ea8" opacity="0.6" />
+            <ellipse cx="64" cy="118" rx="11" ry="6.5" fill="var(--cat-blush, #FDA4AF)" opacity="0.7" />
+            <ellipse cx="136" cy="118" rx="11" ry="6.5" fill="var(--cat-blush, #FDA4AF)" opacity="0.7" />
 
-            <!-- Оставлено по 2 аккуратных верхних усика (нижние убраны, чтобы не конфликтовать с ошейниками) -->
-            <line x1="38" y1="110" x2="56" y2="112" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
-            <line x1="36" y1="118" x2="55" y2="118" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
-            <line x1="162" y1="110" x2="144" y2="112" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
-            <line x1="164" y1="118" x2="145" y2="118" stroke="#3d2314" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
+            <!-- Верхние усики -->
+            <line x1="38" y1="110" x2="56" y2="112" stroke="var(--cat-line, #3d2314)" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
+            <line x1="36" y1="118" x2="55" y2="118" stroke="var(--cat-line, #3d2314)" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
+            <line x1="162" y1="110" x2="144" y2="112" stroke="var(--cat-line, #3d2314)" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
+            <line x1="164" y1="118" x2="145" y2="118" stroke="var(--cat-line, #3d2314)" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
 
             <!-- СЛОЙ 4: ДИНАМИЧЕСКИЙ СЛОЙ ШЕИ / ПУЗИКА (y: 138..144) -->
             <g id="cat-neck-layer" pointer-events="none"></g>
 
             <!-- СЛОЙ 5: ПЕРЕДНИЕ ЛАПКИ -->
             <g id="cat-front-paws">
-              <ellipse cx="80" cy="162" rx="14" ry="10" fill="#fffbf5" stroke="#3d2314" stroke-width="3.2" />
-              <circle cx="80" cy="163" r="4.2" fill="#FFB3BA" />
-              <circle cx="75" cy="158" r="2" fill="#FFB3BA" />
-              <circle cx="80" cy="156" r="2" fill="#FFB3BA" />
-              <circle cx="85" cy="158" r="2" fill="#FFB3BA" />
+              <ellipse cx="80" cy="162" rx="14" ry="10" fill="var(--cat-belly, #fffbf5)" stroke="var(--cat-line, #3d2314)" stroke-width="3.2" />
+              <circle cx="80" cy="163" r="4.2" fill="var(--cat-paw-pad, #FFB3BA)" />
+              <circle cx="75" cy="158" r="2" fill="var(--cat-paw-pad, #FFB3BA)" />
+              <circle cx="80" cy="156" r="2" fill="var(--cat-paw-pad, #FFB3BA)" />
+              <circle cx="85" cy="158" r="2" fill="var(--cat-paw-pad, #FFB3BA)" />
 
-              <ellipse cx="120" cy="162" rx="14" ry="10" fill="#fffbf5" stroke="#3d2314" stroke-width="3.2" />
-              <circle cx="120" cy="163" r="4.2" fill="#FFB3BA" />
-              <circle cx="115" cy="158" r="2" fill="#FFB3BA" />
-              <circle cx="120" cy="156" r="2" fill="#FFB3BA" />
-              <circle cx="125" cy="158" r="2" fill="#FFB3BA" />
+              <ellipse cx="120" cy="162" rx="14" ry="10" fill="var(--cat-belly, #fffbf5)" stroke="var(--cat-line, #3d2314)" stroke-width="3.2" />
+              <circle cx="120" cy="163" r="4.2" fill="var(--cat-paw-pad, #FFB3BA)" />
+              <circle cx="115" cy="158" r="2" fill="var(--cat-paw-pad, #FFB3BA)" />
+              <circle cx="120" cy="156" r="2" fill="var(--cat-paw-pad, #FFB3BA)" />
+              <circle cx="125" cy="158" r="2" fill="var(--cat-paw-pad, #FFB3BA)" />
             </g>
 
             <!-- СЛОЙ 6: ГОЛОВНОЙ УБОР / ЭФФЕКТЫ -->
@@ -3389,6 +3517,16 @@ window.getSvgIcon = getSvgIcon;
     function getYarnIconSvg(size = 16, extraClass = '') {
       return `<svg class="icon-svg-badge ${extraClass}" width="${size}" height="${size}" viewBox="0 0 24 24"><use href="#universal-yarn-ball" /></svg>`;
     }
+
+    /* 6 скинов котика */
+    const CAT_SKINS_CATALOG = [
+      { id: 'default', name: 'Стандартный', color: 'linear-gradient(135deg, #FFFDF9 0%, #FEDAC2 50%, #DE9168 100%)' },
+      { id: 'pink', name: 'Розовый зефир', color: 'linear-gradient(135deg, #FFF1F2 0%, #FBCFE8 50%, #F472B6 100%)' },
+      { id: 'black', name: 'Дымчатый британец', color: 'linear-gradient(135deg, #F1F5F9 0%, #CBD5E1 50%, #94A3B8 100%)' },
+      { id: 'ginger', name: 'Рыжий имбирь', color: 'linear-gradient(135deg, #FFFBEB 0%, #FED7AA 50%, #FB923C 100%)' },
+      { id: 'blue', name: 'Мятно-голубой', color: 'linear-gradient(135deg, #F0F9FF 0%, #BAE6FD 50%, #7DD3FC 100%)' },
+      { id: 'green', name: 'Фисташковый чай', color: 'linear-gradient(135deg, #F7FEE7 0%, #BBF7D0 50%, #86EFAC 100%)' }
+    ];
 
     /* Полный каталог гардероба с пассивными бонусами */
     const WARDROBE_CATALOG = {
@@ -4073,7 +4211,8 @@ window.getSvgIcon = getSvgIcon;
           wardrobe: {
             unlocked: ['chef_hat_1', 'neck_none'],
             equippedHead: 'chef_hat_1',
-            equippedNeck: 'neck_none'
+            equippedNeck: 'neck_none',
+            selectedSkin: 'default'
           },
           achievements: []
         },
@@ -4218,7 +4357,8 @@ window.getSvgIcon = getSvgIcon;
           wardrobe: {
             unlocked: Array.from(new Set(wardrobeUnlocked)),
             equippedHead: equippedHead,
-            equippedNeck: equippedNeck
+            equippedNeck: equippedNeck,
+            selectedSkin: (typeof data.meta?.wardrobe?.selectedSkin === 'string') ? data.meta.wardrobe.selectedSkin : 'default'
           },
           achievements: Array.isArray(data.meta?.achievements) ? data.meta.achievements : []
         },
@@ -4897,6 +5037,12 @@ window.getSvgIcon = getSvgIcon;
 
         const eqHeadId = gameState.meta?.wardrobe?.equippedHead || 'chef_hat_1';
         const eqNeckId = gameState.meta?.wardrobe?.equippedNeck || 'neck_none';
+        const skinId = gameState.meta?.wardrobe?.selectedSkin || 'default';
+
+        if (doughTarget) {
+          CAT_SKINS_CATALOG.forEach(s => doughTarget.classList.remove(`cat-skin-${s.id}`));
+          doughTarget.classList.add(`cat-skin-${skinId}`);
+        }
 
         if (catHeadLayer) {
           const headItem = WARDROBE_CATALOG.head.find(i => i.id === eqHeadId);
@@ -6572,13 +6718,51 @@ window.getSvgIcon = getSvgIcon;
       }
       function renderWardrobeView() {
         const targetContainer = tabPanes.wardrobe;
+        const currentSkin = state.meta?.wardrobe?.selectedSkin || 'default';
+
+        let skinPillsHtml = `
+          <div class="skin-palette-selector">
+            <span style="font-size: 0.76rem; font-weight: 800; color: var(--color-text-main); margin-right: 4px;">Окрас:</span>
+            <div style="display: flex; gap: 8px; align-items: center;">
+        `;
+
+        CAT_SKINS_CATALOG.forEach(skin => {
+          const isActive = skin.id === currentSkin;
+          skinPillsHtml += `
+            <button class="skin-circle-btn ${isActive ? 'active' : ''}" 
+                    data-skin-id="${skin.id}" 
+                    title="${skin.name}" 
+                    style="background: ${skin.color};"></button>
+          `;
+        });
+        skinPillsHtml += `</div></div>`;
+
         targetContainer.innerHTML = `
           <div class="wardrobe-slots-nav">
-            <button id="slot-tab-head" class="wardrobe-slot-tab ${activeWardrobeSlot === 'head' ? 'active' : ''}">Головные уборы и эффекты</button>
+            <button id="slot-tab-head" class="wardrobe-slot-tab ${activeWardrobeSlot === 'head' ? 'active' : ''}">Головные уборы</button>
             <button id="slot-tab-neck" class="wardrobe-slot-tab ${activeWardrobeSlot === 'neck' ? 'active' : ''}">Шея и аксессуары</button>
           </div>
+          ${skinPillsHtml}
           <div class="wardrobe-grid" id="wardrobe-grid-content"></div>
         `;
+
+        targetContainer.querySelectorAll('.skin-circle-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const skinId = btn.dataset.skinId;
+            if (!state.meta.wardrobe) state.meta.wardrobe = {};
+            state.meta.wardrobe.selectedSkin = skinId;
+
+            if (window.Telegram?.WebApp?.HapticFeedback) {
+              window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
+            } else if (navigator.vibrate) {
+              navigator.vibrate(15);
+            }
+
+            saveToLocal(state);
+            updateCatVisuals(state);
+            renderWardrobeView();
+          });
+        });
 
         targetContainer.querySelector('#slot-tab-head').addEventListener('click', () => {
           activeWardrobeSlot = 'head';

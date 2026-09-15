@@ -547,9 +547,35 @@ window.getSvgIcon = getSvgIcon;
       gap: 3px;
       cursor: pointer;
       touch-action: manipulation;
+      position: relative;
     }
     .top-bar-currencies:active {
       transform: scale(0.96);
+    }
+
+    .tutorial-finger-pointer {
+  position: absolute;
+  left: 30px;
+  top: 77px;
+  z-index: 150;
+  pointer-events: none;
+  transform-origin: top left;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.25));
+  animation: fingerTapDiagonal 1s infinite alternate ease-in-out;
+}
+
+@keyframes fingerTapDiagonal {
+  0% { transform: translate(2px, 7px) rotate(-18deg); }
+  100% { transform: translate(0px, 0px) rotate(-24deg); }
+}
+
+    .tutorial-finger-pointer.hidden {
+      display: none !important;
+    }
+
+    @keyframes fingerTapDiagonal {
+      0% { transform: translate(6px, 6px) rotate(-15deg); }
+      100% { transform: translate(0px, 0px) rotate(-22deg); }
     }
 
     .currency-badge {
@@ -2769,6 +2795,9 @@ window.getSvgIcon = getSvgIcon;
           <svg class="icon-svg-badge" width="16" height="16" viewBox="0 0 24 24"><use href="#universal-yarn-ball" /></svg>
           <span id="yarn-display">0</span>
         </div>
+        <svg id="currency-tutorial-hand" class="tutorial-finger-pointer hidden" width="34" height="34" viewBox="0 0 24 24" fill="none">
+          <path d="M9 11V4.5C9 3.67 9.67 3 10.5 3C11.33 3 12 3.67 12 4.5V10.5M12 7.5C12 6.67 12.67 6 13.5 6C14.33 6 15 6.67 15 7.5V11M15 8.5C15 7.67 15.67 7 16.5 7C17.33 7 18 7.67 18 8.5V12M18 10C18 9.17 18.67 8.5 19.5 8.5C20.33 8.5 21 9.17 21 10V15C21 18.31 18.31 21 15 21H12C9.5 21 7.2 19.5 6.2 17.2L4.3 12.8C3.9 11.9 4.3 10.9 5.2 10.5C6.1 10.1 7.1 10.5 7.5 11.4L9 14.5" fill="#FFFDF8" stroke="#3D2314" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
 
       <div class="main-cookies-wrap">
@@ -2811,6 +2840,11 @@ window.getSvgIcon = getSvgIcon;
       <div id="order-rush-pill" class="ad-boost-pill" style="display:none; background:linear-gradient(135deg, #f59e0b, #d97706); box-shadow:0 4px 12px rgba(217,119,6,0.35);">
         <span class="boost-icon"><script>document.write(getSvgIcon('lightning', 15));</script> <span id="order-rush-mult-label">x2</span></span>
         <span id="order-rush-timer-label">25с</span>
+      </div>
+
+      <div id="sugar-rush-pill" class="ad-boost-pill" style="display:none; background:linear-gradient(135deg, #e11d48, #be123c); box-shadow:0 4px 12px rgba(225,29,72,0.35);">
+        <span class="boost-icon"><script>document.write(getSvgIcon('lightning', 15));</script> <span>x3</span></span>
+        <span id="sugar-rush-timer-label">20с</span>
       </div>
     </div>
     <!-- Основная зона выпечки -->
@@ -4046,10 +4080,12 @@ window.getSvgIcon = getSvgIcon;
         tutorials: {
           prestigeSeen: false,
           shopSeen: false,
-          wardrobeSeen: false
+          wardrobeSeen: false,
+          currenciesSeen: false
         },
         boosts: {
           adMultiplierExpiresAt: 0,
+          sugarRushExpiresAt: 0,
           feverActive: false,
           feverProgress: 0,
           orderRushTimer: 0,
@@ -4189,10 +4225,12 @@ window.getSvgIcon = getSvgIcon;
         tutorials: {
           prestigeSeen: !!data.tutorials?.prestigeSeen,
           shopSeen: !!data.tutorials?.shopSeen,
-          wardrobeSeen: !!data.tutorials?.wardrobeSeen
+          wardrobeSeen: !!data.tutorials?.wardrobeSeen,
+          currenciesSeen: !!data.tutorials?.currenciesSeen
         },
         boosts: {
           adMultiplierExpiresAt: sanitizeNumber(data.boosts?.adMultiplierExpiresAt, 0),
+          sugarRushExpiresAt: sanitizeNumber(data.boosts?.sugarRushExpiresAt, 0),
           feverActive: !!data.boosts?.feverActive,
           feverProgress: Math.min(100, sanitizeNumber(data.boosts?.feverProgress, 0)),
           orderRushTimer: sanitizeNumber(data.boosts?.orderRushTimer, 0),
@@ -4305,7 +4343,7 @@ window.getSvgIcon = getSvgIcon;
       const nowMsTime = Date.now();
       const isAdBoosted = (state.boosts.adMultiplierExpiresAt || 0) > nowMsTime;
       const adMultiplier = isAdBoosted ? 2 : 1;
-      const sugarMultiplier = (typeof sugarRushExpiresAt !== 'undefined' && sugarRushExpiresAt > nowMsTime) ? 3 : 1;
+      const sugarMultiplier = ((state.boosts?.sugarRushExpiresAt || 0) > nowMsTime) ? 3 : 1;
       const sleepMultiplier = (typeof activeCatMood !== 'undefined' && activeCatMood === 'sleep' && nowMsTime < moodTimerEnd) ? 2.5 : 1;
       const orderRushMult = (state.boosts && state.boosts.orderRushTimer > 0) ? (Number(state.boosts.orderRushMultiplier) || 2.0) : 1.0;
 
@@ -5843,16 +5881,14 @@ window.getSvgIcon = getSvgIcon;
           // 15%: Сахарный раж (доход x3 на 20 сек)
           boxRewardIcon.innerHTML = getSvgIcon('lightning', 48);
           boxRewardTitle.textContent = 'Сахарный раж!';
-          boxRewardDesc.textContent = 'Кондитеры поймали кулинарный экстаз! Скорость всей пекарни увеличена в 3 раза на 20 секунд!';
+          boxRewardDesc.textContent = 'Кондитеры поймали кулинарный экстаз! Выпечка всей пекарни увеличена в 3 раза на 20 секунд!';
           boxRewardBadgeIcon.innerHTML = getSvgIcon('lightning', 22);
-          boxRewardAmount.textContent = 'Доход x3 на 20 секунд!';
+          boxRewardAmount.textContent = 'Выпечка x3 на 20 секунд!';
 
           claimCallback = () => {
-            sugarRushExpiresAt = Date.now() + 20000;
-            feverWrapper.classList.add('fever-active');
-            setTimeout(() => {
-              if (!state.boosts.feverActive) feverWrapper.classList.remove('fever-active');
-            }, 20000);
+            state.boosts.sugarRushExpiresAt = Date.now() + 20000;
+            saveToLocal(state);
+            renderStaticUI();
           };
         } else {
           // 10%: Золотая чешуйка (1 Золотая рыбка)
@@ -6731,15 +6767,32 @@ window.getSvgIcon = getSvgIcon;
         saveToLocal(state);
         settingsModal.classList.add('hidden');
         updateCatVisuals(state);
+
+        const curHand = document.getElementById('currency-tutorial-hand');
+        if (curHand) {
+          curHand.classList.remove('hidden');
+          curHand.style.display = 'block';
+        }
+
         renderStaticUI();
       });
 
       const currenciesGuideModal = document.getElementById('currencies-guide-modal');
       const btnCloseCurrenciesGuide = document.getElementById('btn-close-currencies-guide');
       const topBarCurrencies = document.querySelector('.top-bar-currencies');
+      const currencyTutorialHand = document.getElementById('currency-tutorial-hand');
+
+      if (!state.tutorials?.currenciesSeen && currencyTutorialHand) {
+        currencyTutorialHand.classList.remove('hidden');
+      }
 
       if (topBarCurrencies && currenciesGuideModal) {
         topBarCurrencies.addEventListener('click', () => {
+          if (!state.tutorials?.currenciesSeen) {
+            state.tutorials.currenciesSeen = true;
+            if (currencyTutorialHand) currencyTutorialHand.classList.add('hidden');
+            saveToLocal(state);
+          }
           currenciesGuideModal.classList.remove('hidden');
           SoundFX.playClick(state.settings?.soundMuted);
         });
@@ -6832,6 +6885,22 @@ window.getSvgIcon = getSvgIcon;
           }
         } else {
           if (orderRushPill) orderRushPill.style.display = 'none';
+        }
+
+        const sugarRushPill = document.getElementById('sugar-rush-pill');
+        const sugarRushTimerLabel = document.getElementById('sugar-rush-timer-label');
+        const sugarRushExpiry = state.boosts?.sugarRushExpiresAt || 0;
+        const nowCurrentMs = Date.now();
+
+        if (sugarRushExpiry > nowCurrentMs) {
+          if (sugarRushPill) {
+            sugarRushPill.style.display = 'inline-flex';
+            if (sugarRushTimerLabel) {
+              sugarRushTimerLabel.textContent = `${Math.ceil((sugarRushExpiry - nowCurrentMs) / 1000)}с`;
+            }
+          }
+        } else {
+          if (sugarRushPill) sugarRushPill.style.display = 'none';
         }
 
         if (state.boosts?.activeOrder) {

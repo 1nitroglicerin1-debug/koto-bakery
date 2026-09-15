@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="theme-color" content="#FFF7EE"><meta name="theme-color" content="#FFF7EE">
+  <meta name="theme-color" content="#FFF7EE">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='9.5' fill='%23e09e53'/><circle cx='8' cy='9' r='1.5' fill='%235c2e0b'/><circle cx='15.5' cy='8.5' r='1.4' fill='%235c2e0b'/><circle cx='11.5' cy='14' r='1.6' fill='%235c2e0b'/></svg>">
   <title>Кото-Пекарня: Мурчащий Батон</title>
+  <!-- Яндекс Игры SDK -->
+  <script src="https://yandex.ru/games/sdk/v2"></script>
   <script>
 function getSvgIcon(name, size = 16) {
   const s = `width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"`;
@@ -688,7 +690,6 @@ window.getSvgIcon = getSvgIcon;
   z-index: 150;
   pointer-events: none;
   transform-origin: top left;
-  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.25));
   animation: fingerTapDiagonal 1s infinite alternate ease-in-out;
 }
 
@@ -2924,7 +2925,7 @@ window.getSvgIcon = getSvgIcon;
           <span id="yarn-display">0</span>
         </div>
         <svg id="currency-tutorial-hand" class="tutorial-finger-pointer hidden" width="34" height="34" viewBox="0 0 24 24" fill="none">
-          <path d="M9 11V4.5C9 3.67 9.67 3 10.5 3C11.33 3 12 3.67 12 4.5V10.5M12 7.5C12 6.67 12.67 6 13.5 6C14.33 6 15 6.67 15 7.5V11M15 8.5C15 7.67 15.67 7 16.5 7C17.33 7 18 7.67 18 8.5V12M18 10C18 9.17 18.67 8.5 19.5 8.5C20.33 8.5 21 9.17 21 10V15C21 18.31 18.31 21 15 21H12C9.5 21 7.2 19.5 6.2 17.2L4.3 12.8C3.9 11.9 4.3 10.9 5.2 10.5C6.1 10.1 7.1 10.5 7.5 11.4L9 14.5" fill="#FFFDF8" stroke="#3D2314" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 11V4.5C9 3.67 9.67 3 10.5 3C11.33 3 12 3.67 12 4.5V10.5M12 7.5C12 6.67 12.67 6 13.5 6C14.33 6 15 6.67 15 7.5V11M15 8.5C15 7.67 15.67 7 16.5 7C17.33 7 18 7.67 18 8.5V12M18 10C18 9.17 18.67 8.5 19.5 8.5C20.33 8.5 21 9.17 21 10V15C21 18.31 18.31 21 15 21H12C9.5 21 7.2 19.5 6.2 17.2L4.3 12.8C3.9 11.9 4.3 10.9 5.2 10.5C6.1 10.1 7.1 10.5 7.5 11.4L9 14.5" fill="#FFFFFF" stroke="#3D1E0B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
 
@@ -3013,18 +3014,18 @@ window.getSvgIcon = getSvgIcon;
               </linearGradient>
             </defs>
 
-            <!-- СЛОЙ 1: ЧЕТКИЕ УПРУГИЕ ТРЕУГОЛЬНЫЕ УШКИ (45 ГРАДУСОВ НАРУЖУ) -->
+            <!-- СЛОЙ 1: ВЫРАЗИТЕЛЬНЫЕ ВЫСОКИЕ ТРЕУГОЛЬНЫЕ УШКИ -->
             <g id="cat-ears">
-              <!-- Левое треугольное ушко -->
-              <path d="M 38 90 L 49 56 Q 52 51 57 54 L 75 78 Z" 
+              <!-- Левое треугольное ушко: вершина поднята до y: 34, основание макушки под колпак сохранено на (76, 74) -->
+              <path d="M 38 90 L 50 35 Q 53 30 59 34 L 76 74 Z" 
                     fill="url(#catBodyGrad)" stroke="var(--cat-line, #3d2314)" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round" />
-              <path d="M 43 83 L 50 61 Q 52 58 55 60 L 68 76 Z" 
+              <path d="M 44 82 L 52 42 Q 54 38 57 41 L 69 70 Z" 
                     fill="var(--cat-ear-inner, #ffb4b4)" />
 
-              <!-- Правое треугольное ушко -->
-              <path d="M 162 90 L 151 56 Q 148 51 143 54 L 125 78 Z" 
+              <!-- Правое треугольное ушко: симметричный подъем до y: 34, спуск к макушке на (124, 74) -->
+              <path d="M 162 90 L 150 35 Q 147 30 141 34 L 124 74 Z" 
                     fill="url(#catBodyGrad)" stroke="var(--cat-line, #3d2314)" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round" />
-              <path d="M 157 83 L 150 61 Q 148 58 145 60 L 132 76 Z" 
+              <path d="M 156 82 L 148 42 Q 146 38 143 41 L 131 70 Z" 
                     fill="var(--cat-ear-inner, #ffb4b4)" />
             </g>
 
@@ -3044,9 +3045,11 @@ window.getSvgIcon = getSvgIcon;
               <line x1="112" y1="106" x2="128" y2="106" stroke="var(--cat-line, #3d2314)" stroke-width="3.5" stroke-linecap="round" />
             </g>
 
-            <path d="M 100 114 C 98 109 93 109 95 114 C 97 117 100 120 100 120 C 100 120 103 117 105 114 C 107 109 102 109 100 114 Z" fill="var(--cat-nose, #E11D48)" />
+            <!-- Кавайный носик-пуговка -->
+            <ellipse cx="100" cy="115" rx="4" ry="2.8" fill="var(--cat-nose, #FB7185)" />
 
-            <path d="M 94 122 Q 100 126 100 122 Q 100 126 106 122" fill="none" stroke="var(--cat-line, #3d2314)" stroke-width="3" stroke-linecap="round" />
+            <!-- Ротик :3 стыкуется прямо под носиком -->
+            <path d="M 94 121 Q 100 125 100 117.8 Q 100 125 106 121" fill="none" stroke="var(--cat-line, #3d2314)" stroke-width="3" stroke-linecap="round" />
 
             <ellipse cx="64" cy="118" rx="11" ry="6.5" fill="var(--cat-blush, #FDA4AF)" opacity="0.7" />
             <ellipse cx="136" cy="118" rx="11" ry="6.5" fill="var(--cat-blush, #FDA4AF)" opacity="0.7" />
@@ -6752,9 +6755,7 @@ window.getSvgIcon = getSvgIcon;
             if (!state.meta.wardrobe) state.meta.wardrobe = {};
             state.meta.wardrobe.selectedSkin = skinId;
 
-            if (window.Telegram?.WebApp?.HapticFeedback) {
-              window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
-            } else if (navigator.vibrate) {
+            if (navigator.vibrate) {
               navigator.vibrate(15);
             }
 
@@ -7277,9 +7278,25 @@ window.getSvgIcon = getSvgIcon;
       requestAnimationFrame(tick);
     }
 
+    window.ysdk = null;
+
+    function initYandexSDK() {
+      if (typeof YaGames !== 'undefined') {
+        YaGames.init().then(ysdkInstance => {
+          window.ysdk = ysdkInstance;
+        }).catch(err => {
+          console.warn('Ошибка инициализации Яндекс SDK:', err);
+        });
+      }
+    }
+
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initGame);
+      document.addEventListener('DOMContentLoaded', () => {
+        initYandexSDK();
+        initGame();
+      });
     } else {
+      initYandexSDK();
       initGame();
     }
   </script>

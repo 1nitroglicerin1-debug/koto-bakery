@@ -675,9 +675,9 @@ window.getSvgIcon = getSvgIcon;
       flex-shrink: 0;
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      column-gap: 12px;
       align-items: center;
-      gap: 6px;
-      padding: 6px 10px 2px;
+      padding: 6px 12px 2px;
       background: transparent;
       z-index: 20;
       position: relative;
@@ -694,6 +694,7 @@ window.getSvgIcon = getSvgIcon;
       justify-self: start;
       align-items: flex-start;
       min-width: 0;
+      max-width: 100%;
     }
     .top-bar-currencies:active {
       transform: scale(0.96);
@@ -724,9 +725,9 @@ window.getSvgIcon = getSvgIcon;
       display: inline-flex;
       align-items: center;
       gap: 3px;
-      padding: 1px 6px;
+      padding: 1px 5px;
       border-radius: var(--radius-pill);
-      font-size: clamp(0.58rem, 2.7vw, 0.7rem);
+      font-size: clamp(0.55rem, 2.5vw, 0.68rem);
       font-weight: 800;
       box-shadow: var(--shadow-sm);
       backdrop-filter: blur(8px);
@@ -770,6 +771,8 @@ window.getSvgIcon = getSvgIcon;
       z-index: 21;
       min-width: 0;
       max-width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
     }
 
     .cookies-counter {
@@ -801,7 +804,7 @@ window.getSvgIcon = getSvgIcon;
     }
 
     .cookies-value {
-      font-size: clamp(0.95rem, 5vw, 1.55rem);
+      font-size: clamp(0.9rem, 4.6vw, 1.45rem);
       font-weight: 900;
       color: var(--color-text-main);
       letter-spacing: -0.6px;
@@ -828,17 +831,19 @@ window.getSvgIcon = getSvgIcon;
 
     .top-bar-actions {
       display: flex;
-      gap: 5px;
+      gap: 4px;
       justify-self: end;
       align-items: center;
       flex-wrap: nowrap;
+      flex-shrink: 0;
+      min-width: 0;
     }
 
     .icon-button {
       background: rgba(255, 255, 255, 0.96);
       border: 1.5px solid var(--color-border);
-      width: clamp(34px, 9.2vw, 40px);
-      height: clamp(34px, 9.2vw, 40px);
+      width: clamp(32px, 8.6vw, 38px);
+      height: clamp(32px, 8.6vw, 38px);
       border-radius: 50%;
       cursor: pointer;
       box-shadow: var(--shadow-sm);
@@ -854,8 +859,8 @@ window.getSvgIcon = getSvgIcon;
       display: block !important;
       margin: auto !important;
       flex-shrink: 0;
-      width: clamp(17px, 4.6vw, 22px);
-      height: clamp(17px, 4.6vw, 22px);
+      width: clamp(16px, 4.2vw, 20px);
+      height: clamp(16px, 4.2vw, 20px);
     }
 
     .icon-button:active {

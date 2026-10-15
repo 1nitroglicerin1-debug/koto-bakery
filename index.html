@@ -704,10 +704,7 @@ window.getSvgIcon = getSvgIcon;
   animation: fingerTapDiagonal 1s infinite alternate ease-in-out;
 }
 
-@keyframes fingerTapDiagonal {
-  0% { transform: translate(2px, 7px) rotate(-18deg); }
-  100% { transform: translate(0px, 0px) rotate(-24deg); }
-}
+
 
     .tutorial-finger-pointer.hidden {
       display: none !important;
@@ -1045,11 +1042,7 @@ window.getSvgIcon = getSvgIcon;
       }
     }
 
-    @keyframes floatUp {
-      0% { opacity: 1; transform: translate(-50%, 0) scale(0.75); }
-      20% { transform: translate(-50%, -30px) scale(1.25); }
-      100% { opacity: 0; transform: translate(-50%, -105px) scale(0.92); }
-    }
+
 
     .crumb-particle {
       position: absolute;
@@ -1066,6 +1059,22 @@ window.getSvgIcon = getSvgIcon;
       0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
       100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.3); }
     }
+    /* Сочная волна-риппл в месте нажатия */
+    .click-ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 152, 0, 0.5) 0%, rgba(255, 87, 34, 0.18) 50%, transparent 72%);
+      pointer-events: none;
+      transform: translate(-50%, -50%) scale(0);
+      animation: clickRipple 0.5s ease-out forwards;
+      z-index: 6;
+    }
+
+    @keyframes clickRipple {
+      0% { opacity: 0.85; transform: translate(-50%, -50%) scale(0); }
+      100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+    }
+
     /* Кольцо Лихорадки и котик */
     .dough-fever-wrapper {
       position: relative;
@@ -3249,6 +3258,14 @@ window.getSvgIcon = getSvgIcon;
             <circle cx="12" cy="12" r="3" fill="#94a3b8" stroke="#475569" stroke-width="1.2"/>
             <path d="M12 2V4M12 20V22M4 12H2M22 12H20M5 5L6.5 6.5M17.5 17.5L19 19M5 19L6.5 17.5M17.5 6.5L19 5" stroke="#64748b" stroke-width="2" stroke-linecap="round"/>
             <circle cx="12" cy="12" r="6" stroke="#64748b" stroke-width="1.5"/>
+          </svg>
+        </button>
+        <button id="btn-toggle-fullscreen" class="icon-button" title="Во весь экран">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4H10V6H6V10H4V4Z" fill="#64748b"/>
+            <path d="M14 4H20V10H18V6H14V4Z" fill="#64748b"/>
+            <path d="M4 14H6V18H10V20H4V14Z" fill="#64748b"/>
+            <path d="M14 20V18H18V14H20V20H14Z" fill="#64748b"/>
           </svg>
         </button>
       </div>
@@ -6019,6 +6036,19 @@ window.getSvgIcon = getSvgIcon;
         lastPetMoveX = e.clientX;
         lastPetMoveY = e.clientY;
 
+        try {
+          const ripple = document.createElement('div');
+          ripple.className = 'click-ripple';
+          const fr = feverWrapper.getBoundingClientRect();
+          const maxDim = Math.max(fr.width, fr.height);
+          ripple.style.left = `${e.clientX - fr.left}px`;
+          ripple.style.top = `${e.clientY - fr.top}px`;
+          ripple.style.width = `${maxDim}px`;
+          ripple.style.height = `${maxDim}px`;
+          feverWrapper.appendChild(ripple);
+          setTimeout(() => { if (ripple.parentNode) ripple.remove(); }, 500);
+        } catch (err) {}
+
         triggerSquash();
         processTap(state, floatingContainer, e.clientX, e.clientY);
         checkAchievements(state, showAchievementToast);
@@ -7916,6 +7946,30 @@ window.getSvgIcon = getSvgIcon;
         btnPromptReset.style.display = 'block';
         settingsModal.classList.remove('hidden');
       });
+
+      const btnToggleFullscreen = document.getElementById('btn-toggle-fullscreen');
+      if (btnToggleFullscreen) {
+        btnToggleFullscreen.addEventListener('click', () => {
+          const docEl = document.documentElement;
+          const isFull = document.fullscreenElement || document.webkitFullscreenElement;
+          if (!isFull) {
+            if (docEl.requestFullscreen) {
+              try { docEl.requestFullscreen(); } catch (e1) {}
+            } else if (docEl.webkitRequestFullscreen) {
+              try { docEl.webkitRequestFullscreen(); } catch (e2) {}
+            } else if (window.ysdk && window.ysdk.screen && window.ysdk.screen.fullscreen && window.ysdk.screen.fullscreen.request) {
+              try { window.ysdk.screen.fullscreen.request(); } catch (e3) {}
+            }
+          } else {
+            if (document.exitFullscreen) {
+              try { document.exitFullscreen(); } catch (e4) {}
+            } else if (document.webkitExitFullscreen) {
+              try { document.webkitExitFullscreen(); } catch (e5) {}
+            }
+          }
+          SoundFX.init();
+        });
+      }
 
       btnCloseSettings.addEventListener('click', () => {
         settingsModal.classList.add('hidden');

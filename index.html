@@ -674,7 +674,7 @@ window.getSvgIcon = getSvgIcon;
     .top-bar {
       flex-shrink: 0;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      grid-template-columns: auto minmax(0, 1fr) auto;
       column-gap: 12px;
       align-items: center;
       padding: 6px 12px 2px;
@@ -687,7 +687,7 @@ window.getSvgIcon = getSvgIcon;
     .top-bar-currencies {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 4px;
       cursor: pointer;
       touch-action: manipulation;
       position: relative;
@@ -703,7 +703,7 @@ window.getSvgIcon = getSvgIcon;
     .tutorial-finger-pointer {
   position: absolute;
   left: 30px;
-  top: 77px;
+  top: 80px;
   z-index: 150;
   pointer-events: none;
   transform-origin: top left;
@@ -724,10 +724,10 @@ window.getSvgIcon = getSvgIcon;
     .currency-badge {
       display: inline-flex;
       align-items: center;
-      gap: 3px;
-      padding: 1px 5px;
+      gap: 4px;
+      padding: 2px 7px;
       border-radius: var(--radius-pill);
-      font-size: clamp(0.55rem, 2.5vw, 0.68rem);
+      font-size: clamp(0.72rem, 3.4vw, 0.92rem);
       font-weight: 800;
       box-shadow: var(--shadow-sm);
       backdrop-filter: blur(8px);
@@ -1266,7 +1266,7 @@ window.getSvgIcon = getSvgIcon;
       color: var(--color-primary);
       display: flex;
       align-items: center;
-      gap: 3px;
+      gap: 4px;
     }
 
     /* Нижняя панель */
@@ -1511,7 +1511,7 @@ window.getSvgIcon = getSvgIcon;
       font-weight: 800;
       background: var(--color-bg-secondary);
       color: var(--color-text-muted);
-      padding: 1px 5px;
+      padding: 2px 7px;
       border-radius: var(--radius-pill);
     }
 
@@ -1587,7 +1587,7 @@ window.getSvgIcon = getSvgIcon;
       display: inline-flex;
       align-items: center;
       justify-content: flex-end;
-      gap: 3px;
+      gap: 4px;
       line-height: 1;
       max-width: 100%;
       min-width: 0;
@@ -1648,7 +1648,7 @@ window.getSvgIcon = getSvgIcon;
       border: 1px solid #fed7aa;
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 4px;
     }
 
     .prestige-progress-label {
@@ -1747,7 +1747,7 @@ window.getSvgIcon = getSvgIcon;
       font-weight: 800;
       background: #fdf2e9;
       color: #c05621;
-      padding: 1px 5px;
+      padding: 2px 7px;
       border-radius: var(--radius-pill);
     }
 
@@ -1906,7 +1906,7 @@ window.getSvgIcon = getSvgIcon;
       padding: 2px;
       border: 1px solid var(--color-border);
       margin-bottom: 6px;
-      gap: 3px;
+      gap: 4px;
     }
 
     .wardrobe-slot-tab {
@@ -2017,7 +2017,7 @@ window.getSvgIcon = getSvgIcon;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 3px;
+      gap: 4px;
       transition: transform 0.1s ease, background 0.15s ease;
     }
 
@@ -2210,7 +2210,7 @@ window.getSvgIcon = getSvgIcon;
       white-space: nowrap;
       display: inline-flex;
       align-items: center;
-      gap: 3px;
+      gap: 4px;
     }
 
     .ach-status-badge.done {
@@ -2319,7 +2319,7 @@ window.getSvgIcon = getSvgIcon;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 3px;
+      gap: 4px;
       text-align: center;
     }
 
@@ -2388,7 +2388,7 @@ window.getSvgIcon = getSvgIcon;
     /* Всплывающий тост */
     .toast-card {
       position: absolute;
-      top: 68px;
+      top: 128px;
       left: 12px;
       right: 12px;
       background: rgba(255, 255, 255, 0.98);
@@ -2426,7 +2426,7 @@ window.getSvgIcon = getSvgIcon;
       color: var(--color-primary);
       display: inline-flex;
       align-items: center;
-      gap: 3px;
+      gap: 4px;
     }
 
     /* Летающая золотая рыбка */
@@ -2864,7 +2864,7 @@ window.getSvgIcon = getSvgIcon;
       font-size: 0.6rem;
       background: #10b981;
       color: #fff;
-      padding: 1px 5px;
+      padding: 2px 7px;
       border-radius: var(--radius-pill);
       font-weight: 900;
       letter-spacing: 0.3px;
@@ -3242,17 +3242,17 @@ window.getSvgIcon = getSvgIcon;
     <header class="top-bar">
       <div class="top-bar-currencies">
         <div class="currency-badge stars" title="Звёзды Мишлен">
-          <svg class="icon-svg-badge" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="icon-svg-badge" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2L14.9 8.5L22 9.2L16.7 14L18.2 21L12 17.3L5.8 21L7.3 14L2 9.2L9.1 8.5L12 2Z" fill="#f1c40f" stroke="#d4ac0d" stroke-width="1.2" stroke-linejoin="round"/>
           </svg>
           <span id="stars-display">0</span>
         </div>
         <div class="currency-badge fish" title="Золотые рыбки">
-          <svg class="icon-svg-badge" width="16" height="16" viewBox="0 0 24 24"><use href="#universal-gold-fish" /></svg>
+          <svg class="icon-svg-badge" width="20" height="20" viewBox="0 0 24 24"><use href="#universal-gold-fish" /></svg>
           <span id="fish-display">0</span>
         </div>
         <div class="currency-badge yarn" title="Клубки пряжи">
-          <svg class="icon-svg-badge" width="16" height="16" viewBox="0 0 24 24"><use href="#universal-yarn-ball" /></svg>
+          <svg class="icon-svg-badge" width="20" height="20" viewBox="0 0 24 24"><use href="#universal-yarn-ball" /></svg>
           <span id="yarn-display">0</span>
         </div>
         <svg id="currency-tutorial-hand" class="tutorial-finger-pointer hidden" width="34" height="34" viewBox="0 0 24 24" fill="none">

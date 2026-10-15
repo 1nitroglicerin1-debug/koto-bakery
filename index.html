@@ -676,7 +676,7 @@ window.getSvgIcon = getSvgIcon;
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
       column-gap: 12px;
-      align-items: start;
+      align-items: center;
       padding: 6px 12px 2px;
       background: transparent;
       z-index: 20;
@@ -830,12 +830,14 @@ window.getSvgIcon = getSvgIcon;
     }
 
     .top-bar-actions {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      width: max-content;
       gap: 5px;
       justify-self: end;
       align-items: center;
-      flex-wrap: nowrap;
+      align-content: center;
+      justify-content: end;
       flex-shrink: 0;
       min-width: 0;
     }
@@ -907,7 +909,7 @@ window.getSvgIcon = getSvgIcon;
     /* Компактный вертикальный стек виджетов у правого края экрана */
     .side-widgets-stack {
       position: absolute;
-      top: 180px;
+      top: 100px;
       right: 12px;
       display: flex;
       flex-direction: column;
@@ -2389,7 +2391,7 @@ window.getSvgIcon = getSvgIcon;
     /* Всплывающий тост */
     .toast-card {
       position: absolute;
-      top: 180px;
+      top: 128px;
       left: 12px;
       right: 12px;
       background: rgba(255, 255, 255, 0.98);
@@ -2725,7 +2727,7 @@ window.getSvgIcon = getSvgIcon;
     /* Компактный квадратный виджет квеста под боковыми кнопками */
     .urgent-order-badge {
       position: absolute;
-      top: 268px;
+      top: 205px;
       right: 12px;
       width: 42px;
       height: 42px;
